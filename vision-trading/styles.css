@@ -1377,3 +1377,37 @@ main {
   }
 }
 
+/* Lesson Chart Styles */
+.lesson-chart {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  margin: 24px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.lesson-chart svg {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-sm);
+  background: #080a0f;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.lesson-chart-title {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  letter-spacing: 0.5px;
+}
+
+

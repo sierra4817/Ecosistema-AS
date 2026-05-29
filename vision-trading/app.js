@@ -1133,6 +1133,540 @@ window.togglePilarAccordion = (pilarId) => {
   renderAcademicMenu();
 };
 
+// Dynamic support chart generator for the 40 days of the course
+const getGraphicForDay = (dayNum) => {
+  const width = 500;
+  const height = 220;
+  let elementsHtml = "";
+  let title = "";
+
+  const grid = () => `
+    <rect width="${width}" height="${height}" fill="#080a0f" rx="8"/>
+    <line x1="0" y1="${height * 0.25}" x2="${width}" y2="${height * 0.25}" stroke="rgba(255,255,255,0.03)" stroke-width="1" />
+    <line x1="0" y1="${height * 0.5}" x2="${width}" y2="${height * 0.5}" stroke="rgba(255,255,255,0.03)" stroke-width="1" />
+    <line x1="0" y1="${height * 0.75}" x2="${width}" y2="${height * 0.75}" stroke="rgba(255,255,255,0.03)" stroke-width="1" />
+  `;
+
+  const candle = (x, open, close, high, low, color) => {
+    const isBull = color === 'bull' || (color === undefined && close < open);
+    const fill = isBull ? '#10b981' : '#ef4444';
+    const top = Math.min(open, close);
+    const h = Math.abs(open - close) || 2;
+    return `
+      <line x1="${x}" y1="${high}" x2="${x}" y2="${low}" stroke="${fill}" stroke-width="1.5" />
+      <rect x="${x - 6}" y="${top}" width="12" height="${h}" fill="${fill}" rx="1" />
+    `;
+  };
+
+  const trendLine = (pts, color = '#3b82f6', w = 2.5) => {
+    let d = "";
+    pts.forEach((p, idx) => {
+      d += (idx === 0 ? "M " : "L ") + `${p[0]},${p[1]}`;
+    });
+    return `<path d="${d}" fill="none" stroke="${color}" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round" />`;
+  };
+
+  const text = (x, y, str, size = 11, color = '#9ca3af', anchor = 'start', weight = 'normal') => `
+    <text x="${x}" y="${y}" fill="${color}" font-size="${size}" font-family="var(--font-sans), sans-serif" font-weight="${weight}" text-anchor="${anchor}">${str}</text>
+  `;
+
+  const circle = (x, y, r, fill = '#3b82f6') => `
+    <circle cx="${x}" cy="${y}" r="${r}" fill="${fill}" />
+  `;
+
+  const arrow = (x1, y1, x2, y2, color = '#f59e0b') => `
+    <defs>
+      <marker id="arr-${dayNum}" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+        <polygon points="0 0, 6 3, 0 6" fill="${color}" />
+      </marker>
+    </defs>
+    <line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${color}" stroke-width="1.5" marker-end="url(#arr-${dayNum})" />
+  `;
+
+  const zone = (x, y, w, h, fill = 'rgba(16, 185, 129, 0.08)', stroke = 'rgba(16, 185, 129, 0.2)') => `
+    <rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${fill}" stroke="${stroke}" stroke-dasharray="3,3" />
+  `;
+
+  const line = (x1, y1, x2, y2, color = '#242f3d', w = 1, dash = '') => `
+    <line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${color}" stroke-width="${w}" ${dash ? `stroke-dasharray="${dash}"` : ''} />
+  `;
+
+  elementsHtml += grid();
+
+  switch (dayNum) {
+    case 1:
+      title = "El Precio Objetivamente";
+      elementsHtml += candle(80, 150, 130, 120, 160);
+      elementsHtml += candle(140, 135, 145, 125, 155);
+      elementsHtml += candle(200, 140, 110, 100, 150);
+      elementsHtml += candle(260, 115, 125, 110, 135);
+      elementsHtml += candle(320, 120, 80, 70, 130);
+      elementsHtml += candle(380, 85, 55, 45, 95);
+      elementsHtml += trendLine([[80,140], [140,140], [200,125], [260,120], [320,100], [380,70]], '#3b82f6');
+      elementsHtml += circle(380, 70, 5, '#3b82f6');
+      elementsHtml += text(370, 40, "La Única Realidad", 10, '#f3f4f6', 'end', 'bold');
+      break;
+    case 2:
+      title = "Pánico y FOMO en el Gráfico";
+      elementsHtml += trendLine([[40, 140], [100, 150], [180, 60], [220, 45], [300, 160], [380, 175], [440, 100]], 'rgba(255,255,255,0.15)');
+      elementsHtml += circle(220, 45, 6, '#ef4444');
+      elementsHtml += text(220, 30, "FOMO (Comprar el Techo)", 10, '#ef4444', 'middle', 'bold');
+      elementsHtml += circle(380, 175, 6, '#ef4444');
+      elementsHtml += text(380, 195, "PÁNICO (Vender el Suelo)", 10, '#ef4444', 'middle', 'bold');
+      break;
+    case 3:
+      title = "Distribución Aleatoria de Resultados";
+      const tData = ['W', 'L', 'L', 'W', 'W', 'L', 'W', 'L', 'W', 'W'];
+      tData.forEach((t, i) => {
+        const x = 50 + i * 40;
+        const color = t === 'W' ? '#10b981' : '#ef4444';
+        elementsHtml += `
+          <rect x="${x}" y="85" width="28" height="28" fill="${color}15" stroke="${color}" stroke-width="2" rx="4" />
+          <text x="${x + 14}" y="103" fill="${color}" font-size="11" font-family="monospace" text-anchor="middle" font-weight="bold">${t}</text>
+        `;
+      });
+      elementsHtml += text(250, 150, "60% Acierto en Muestra de 10 Operaciones", 11, '#f3f4f6', 'middle');
+      elementsHtml += text(250, 170, "Cualquier trade individual es aleatorio", 10, '#9ca3af', 'middle');
+      break;
+    case 4:
+      title = "SSL Sweep (Caza de Stops)";
+      elementsHtml += line(40, 130, 460, 130, 'rgba(239, 68, 68, 0.4)', 1.5, '3,3');
+      elementsHtml += text(50, 120, "Soporte Obvio Minorista", 10, '#9ca3af');
+      elementsHtml += trendLine([[40, 90], [100, 100], [160, 130], [200, 100], [260, 130], [280, 155], [320, 70], [380, 50]], '#3b82f6');
+      elementsHtml += circle(280, 155, 5, '#10b981');
+      elementsHtml += arrow(280, 185, 280, 162, '#10b981');
+      elementsHtml += text(280, 198, "Liquidez Absorbida", 10, '#10b981', 'middle', 'bold');
+      break;
+    case 5:
+      title = "Cascada de Compras Forzadas (Squeeze)";
+      elementsHtml += line(40, 100, 460, 100, 'rgba(239, 68, 68, 0.4)', 1.5, '3,3');
+      elementsHtml += text(50, 90, "Resistencia Minorista (Buy Stops)", 10, '#9ca3af');
+      elementsHtml += candle(80, 120, 130, 115, 140);
+      elementsHtml += candle(140, 125, 110, 105, 130);
+      elementsHtml += candle(200, 110, 115, 105, 125);
+      elementsHtml += candle(260, 105, 40, 30, 110, 'bull');
+      elementsHtml += arrow(260, 95, 260, 45, '#10b981');
+      elementsHtml += text(275, 60, "SHORT SQUEEZE", 11, '#10b981', 'start', 'bold');
+      break;
+    case 6:
+      title = "Rechazo de Falso Rompimiento (Fakeout)";
+      elementsHtml += line(40, 90, 460, 90, 'rgba(255, 255, 255, 0.15)', 1.5, '3,3');
+      elementsHtml += text(50, 80, "Línea de Resistencia", 10, '#9ca3af');
+      elementsHtml += candle(120, 130, 110, 100, 140);
+      elementsHtml += candle(180, 110, 95, 90, 120);
+      elementsHtml += candle(240, 95, 105, 60, 110, 'bear'); // long wick high
+      elementsHtml += text(240, 50, "Caza y Cierre Interior", 10, '#ef4444', 'middle', 'bold');
+      elementsHtml += candle(300, 105, 135, 100, 140, 'bear');
+      elementsHtml += candle(360, 135, 160, 130, 170, 'bear');
+      break;
+    case 7:
+      title = "El Escudo Mental Estoico";
+      elementsHtml += trendLine([[40,110],[100,130],[160,90],[220,140]], 'rgba(239, 68, 68, 0.25)', 2);
+      elementsHtml += `
+        <path d="M 280,60 C 310,60 330,70 330,100 C 330,140 280,170 280,170 C 280,170 230,140 230,100 C 230,70 250,60 280,60 Z" fill="#3b82f615" stroke="#3b82f6" stroke-width="3" />
+        <path d="M 280,75 L 280,150 M 255,100 L 305,100" stroke="#3b82f6" stroke-width="2" />
+      `;
+      elementsHtml += text(280, 45, "DISCIPLINA INQUEBRANTABLE", 11, '#3b82f6', 'middle', 'bold');
+      elementsHtml += text(110, 160, "Fluctuaciones del Mercado", 10, '#ef4444', 'middle');
+      elementsHtml += arrow(160, 130, 220, 115, '#ef4444');
+      break;
+    case 8:
+      title = "Preservación del Capital de Trabajo";
+      elementsHtml += trendLine([[50, 100], [90, 101], [130, 99], [170, 102], [210, 100], [250, 103], [290, 101], [330, 104], [370, 102], [410, 105]], '#10b981', 2);
+      elementsHtml += trendLine([[50, 100], [90, 115], [130, 130], [170, 142], [210, 160], [250, 178], [290, 195], [330, 210]], '#ef4444', 2.5);
+      elementsHtml += text(420, 105, "Riesgo 1% (Seguro)", 10, '#10b981');
+      elementsHtml += text(340, 205, "Riesgo 10% (Ruina)", 10, '#ef4444');
+      break;
+    case 9:
+      title = "Relación Riesgo Beneficio (R:R)";
+      elementsHtml += line(60, 110, 440, 110, '#3b82f6', 2);
+      elementsHtml += text(70, 100, "Precio de Entrada", 10, '#3b82f6');
+      elementsHtml += zone(120, 110, 260, 40, 'rgba(239, 68, 68, 0.08)', 'rgba(239, 68, 68, 0.25)');
+      elementsHtml += text(250, 135, "Riesgo: 1% ($100) - Stop Loss", 10, '#ef4444', 'middle');
+      elementsHtml += zone(120, 30, 260, 80, 'rgba(16, 185, 129, 0.08)', 'rgba(16, 185, 129, 0.25)');
+      elementsHtml += text(250, 75, "Beneficio: 2% ($200) - Take Profit", 10, '#10b981', 'middle');
+      break;
+    case 10:
+      title = "Daily Drawdown Cut-off";
+      elementsHtml += trendLine([[40, 80], [120, 70], [200, 110], [280, 150]], '#ef4444', 2.5);
+      elementsHtml += line(40, 140, 460, 140, '#f59e0b', 2, '4,4');
+      elementsHtml += text(350, 130, "Límite Diario Tocado", 10, '#f59e0b');
+      elementsHtml += circle(280, 150, 6, '#ef4444');
+      elementsHtml += text(295, 175, "DESCONEXIÓN OBLIGATORIA", 11, '#ef4444', 'start', 'bold');
+      break;
+    case 11:
+      title = "El Diario de Operaciones del Profesional";
+      elementsHtml += `
+        <rect x="60" y="40" width="380" height="140" fill="#131a22" stroke="var(--border-color)" rx="6"/>
+        <rect x="60" y="40" width="380" height="30" fill="#1b222c" rx="6"/>
+        <line x1="60" y1="70" x2="440" y2="70" stroke="var(--border-color)"/>
+      `;
+      elementsHtml += text(70, 60, "FECHA", 9, '#9ca3af', 'start', 'bold');
+      elementsHtml += text(160, 60, "ACTIVO", 9, '#9ca3af', 'start', 'bold');
+      elementsHtml += text(250, 60, "RIESGO", 9, '#9ca3af', 'start', 'bold');
+      elementsHtml += text(340, 60, "P&L NETO", 9, '#9ca3af', 'start', 'bold');
+      
+      elementsHtml += text(70, 100, "Hoy", 9, '#9ca3af');
+      elementsHtml += text(160, 100, "ES Futures", 9, '#f3f4f6');
+      elementsHtml += text(250, 100, "1% ($100)", 9, '#3b82f6');
+      elementsHtml += text(340, 100, "+$200.00", 9, '#10b981', 'start', 'bold');
+      elementsHtml += line(60, 120, 440, 120, 'rgba(255,255,255,0.03)');
+      
+      elementsHtml += text(70, 150, "Ayer", 9, '#9ca3af');
+      elementsHtml += text(160, 150, "NQ Futures", 9, '#f3f4f6');
+      elementsHtml += text(250, 150, "1% ($100)", 9, '#3b82f6');
+      elementsHtml += text(340, 150, "-$100.00", 9, '#ef4444', 'start', 'bold');
+      break;
+    case 12:
+      title = "Proceso Operativo Real";
+      elementsHtml += `
+        <rect x="80" y="40" width="340" height="140" fill="#131a22" stroke="var(--border-color)" rx="8" />
+      `;
+      elementsHtml += text(250, 65, "P&L Bruto en Pantalla: +$250", 11, '#f3f4f6', 'middle');
+      elementsHtml += text(250, 95, "Deslizamiento (Slippage): -$20", 11, '#f59e0b', 'middle');
+      elementsHtml += text(250, 125, "Comisión Operativa: -$5", 11, '#ef4444', 'middle');
+      elementsHtml += line(100, 140, 400, 140, 'var(--border-color)');
+      elementsHtml += text(250, 165, "Resultado Neto en Cuenta: +$225", 12, '#10b981', 'middle', 'bold');
+      break;
+    case 13:
+      title = "El Método Repetible de la Esperanza";
+      elementsHtml += `
+        <rect x="40" y="90" width="80" height="40" fill="#1b222c" stroke="rgba(255,255,255,0.05)" rx="4"/>
+        <text x="80" y="114" fill="#f3f4f6" font-size="10" text-anchor="middle">Reglas Claras</text>
+      `;
+      elementsHtml += arrow(120, 110, 150, 110, '#3b82f6');
+      elementsHtml += `
+        <rect x="150" y="90" width="90" height="40" fill="#3b82f615" stroke="rgba(255,255,255,0.05)" rx="4"/>
+        <text x="195" y="114" fill="#f3f4f6" font-size="10" text-anchor="middle">Igual Ejecución</text>
+      `;
+      elementsHtml += arrow(240, 110, 270, 110, '#3b82f6');
+      elementsHtml += `
+        <rect x="270" y="90" width="80" height="40" fill="#1b222c" stroke="rgba(255,255,255,0.05)" rx="4"/>
+        <text x="310" y="114" fill="#f3f4f6" font-size="10" text-anchor="middle">Muestra 100</text>
+      `;
+      elementsHtml += arrow(350, 110, 380, 110, '#10b981');
+      elementsHtml += `
+        <rect x="380" y="90" width="80" height="40" fill="#10b98115" stroke="rgba(255,255,255,0.05)" rx="4"/>
+        <text x="420" y="114" fill="#f3f4f6" font-size="10" text-anchor="middle">Rentabilidad</text>
+      `;
+      break;
+    case 14:
+      title = "Ajuste de Lotes según Distancia de Stop Loss";
+      elementsHtml += zone(60, 50, 150, 65, 'rgba(239, 68, 68, 0.05)', '#ef4444');
+      elementsHtml += text(135, 75, "SL Ajustado (10 pts)", 10, '#f3f4f6', 'middle');
+      elementsHtml += text(135, 95, "2 Contratos MES", 10, '#10b981', 'middle', 'bold');
+      elementsHtml += text(135, 130, "Riesgo Fijo: $100 (1%)", 9, '#9ca3af', 'middle');
+      
+      elementsHtml += zone(290, 50, 150, 65, 'rgba(239, 68, 68, 0.05)', '#ef4444');
+      elementsHtml += text(365, 75, "SL Amplio (20 pts)", 10, '#f3f4f6', 'middle');
+      elementsHtml += text(365, 95, "1 Contrato MES", 10, '#10b981', 'middle', 'bold');
+      elementsHtml += text(365, 130, "Riesgo Fijo: $100 (1%)", 9, '#9ca3af', 'middle');
+      
+      elementsHtml += arrow(220, 85, 280, 85, '#f59e0b');
+      elementsHtml += text(250, 105, "SL x2", 9, '#f59e0b', 'middle');
+      elementsHtml += text(250, 117, "Lotes /2", 9, '#f59e0b', 'middle');
+      break;
+    case 15:
+      title = "Ancla Metodológica Contra el Ruido";
+      elementsHtml += `
+        <path d="M 250,50 L 250,150 M 220,70 L 280,70 M 210,130 C 210,170 290,170 290,130 M 190,120 L 210,130 M 310,120 L 290,130" stroke="#f59e0b" stroke-width="4" stroke-linecap="round" fill="none" />
+        <circle cx="250" cy="50" r="10" stroke="#f59e0b" stroke-width="3" fill="none" />
+      `;
+      elementsHtml += text(250, 30, "PRESERVACIÓN INDISPENSABLE", 11, '#f59e0b', 'middle', 'bold');
+      elementsHtml += text(100, 110, "Riesgos del Mercado", 10, '#ef4444', 'middle');
+      elementsHtml += arrow(160, 110, 200, 130, '#ef4444');
+      break;
+    case 16:
+      title = "Tendencia Saludable (Estructura)";
+      elementsHtml += trendLine([[40, 170], [100, 110], [140, 130], [210, 70], [250, 95], [330, 40], [370, 60], [440, 15]], 'rgba(255,255,255,0.15)', 1.5);
+      elementsHtml += circle(100, 110, 4, '#3b82f6'); elementsHtml += text(100, 95, "HH", 10, '#3b82f6', 'middle', 'bold');
+      elementsHtml += circle(210, 70, 4, '#3b82f6'); elementsHtml += text(210, 55, "HH", 10, '#3b82f6', 'middle', 'bold');
+      elementsHtml += circle(330, 40, 4, '#3b82f6'); elementsHtml += text(330, 25, "HH", 10, '#3b82f6', 'middle', 'bold');
+      elementsHtml += circle(140, 130, 4, '#10b981'); elementsHtml += text(140, 145, "HL", 10, '#10b981', 'middle', 'bold');
+      elementsHtml += circle(250, 95, 4, '#10b981'); elementsHtml += text(250, 110, "HL", 10, '#10b981', 'middle', 'bold');
+      elementsHtml += circle(370, 60, 4, '#10b981'); elementsHtml += text(370, 75, "HL", 10, '#10b981', 'middle', 'bold');
+      break;
+    case 17:
+      title = "Quiebre Estructural Defensivo";
+      elementsHtml += trendLine([[50, 130], [110, 80], [160, 110], [230, 50], [290, 120], [330, 140], [390, 160]], 'rgba(255,255,255,0.15)', 1.5);
+      elementsHtml += circle(290, 120, 5, '#ef4444');
+      elementsHtml += line(260, 120, 360, 120, '#ef4444', 1.5, '3,3');
+      elementsHtml += text(335, 110, "BOS Bajista", 10, '#ef4444', 'middle', 'bold');
+      elementsHtml += circle(310, 120, 4, '#ef4444');
+      elementsHtml += arrow(330, 120, 350, 140, '#ef4444');
+      break;
+    case 18:
+      title = "Zonas Clave de Oferta y Demanda";
+      elementsHtml += zone(60, 30, 380, 35, 'rgba(239, 68, 68, 0.08)', 'rgba(239, 68, 68, 0.25)');
+      elementsHtml += text(250, 52, "ZONA DE OFERTA (Institucional)", 11, '#ef4444', 'middle', 'bold');
+      elementsHtml += zone(60, 150, 380, 35, 'rgba(16, 185, 129, 0.08)', 'rgba(16, 185, 129, 0.25)');
+      elementsHtml += text(250, 172, "ZONA DE DEMANDA (Institucional)", 11, '#10b981', 'middle', 'bold');
+      elementsHtml += trendLine([[80,155], [160,55], [240,155], [320,55], [400,155]], '#3b82f6', 2);
+      break;
+    case 19:
+      title = "Lectura Limpia de Estructura";
+      elementsHtml += trendLine([[60, 150], [120, 60], [180, 110], [240, 60], [300, 160], [350, 150], [420, 200]], '#3b82f6', 2.5);
+      elementsHtml += circle(120, 60, 6, '#ef4444');
+      elementsHtml += circle(240, 60, 6, '#ef4444');
+      elementsHtml += text(180, 45, "Patrón de Reversión", 11, '#ef4444', 'middle', 'bold');
+      elementsHtml += line(140, 110, 350, 110, '#f59e0b', 1.5, '2,2');
+      elementsHtml += text(360, 114, "Línea de Cuello", 9, '#f59e0b');
+      break;
+    case 20:
+      title = "Principio de Polaridad";
+      elementsHtml += line(40, 110, 460, 110, '#f59e0b', 2);
+      elementsHtml += text(50, 100, "Resistencia Antigua", 10, '#f59e0b');
+      elementsHtml += text(450, 125, "Soporte Nuevo", 10, '#f59e0b', 'end');
+      elementsHtml += trendLine([[60, 160], [130, 130], [200, 140], [270, 80], [330, 110], [410, 50]], '#3b82f6', 2.5);
+      elementsHtml += circle(330, 110, 5, '#10b981');
+      elementsHtml += arrow(330, 140, 330, 115, '#10b981');
+      elementsHtml += text(330, 155, "Testeo (Compra)", 10, '#10b981', 'middle', 'bold');
+      break;
+    case 21:
+      title = "EMA 200 y Momentum RSI";
+      elementsHtml += trendLine([[40, 110], [120, 130], [200, 100], [280, 80], [360, 95], [440, 60]], '#3b82f6', 2.5);
+      elementsHtml += trendLine([[40, 140], [120, 138], [200, 128], [280, 115], [360, 108], [440, 92]], '#f59e0b', 1.5);
+      elementsHtml += text(440, 80, "EMA 200", 9, '#f59e0b', 'end');
+      elementsHtml += `
+        <rect x="40" y="160" width="420" height="45" fill="#131a22" stroke="var(--border-color)" rx="4" />
+        <line x1="40" y1="182" x2="460" y2="182" stroke="rgba(255,255,255,0.1)" stroke-dasharray="2,2"/>
+      `;
+      elementsHtml += text(45, 172, "RSI > 50 (Alza)", 8, '#10b981');
+      elementsHtml += trendLine([[40, 195], [120, 185], [200, 178], [280, 170], [360, 172], [440, 165]], '#10b981', 1.5);
+      break;
+    case 22:
+      title = "Faro de Dirección (Estructura)";
+      elementsHtml += `
+        <path d="M 235,170 L 245,60 L 255,60 L 265,170 Z" fill="#1b222c" stroke="#3b82f6" stroke-width="2" />
+        <rect x="242" y="45" width="16" height="15" fill="#f59e0b" rx="2" />
+        <path d="M 250,52 L 150,10 C 150,10 100,50 150,90 Z" fill="rgba(245,158,11,0.05)" />
+        <path d="M 250,52 L 350,10 C 350,10 400,50 350,90 Z" fill="rgba(245,158,11,0.05)" />
+      `;
+      elementsHtml += text(250, 30, "Estructura = Tu Faro", 11, '#f59e0b', 'middle', 'bold');
+      elementsHtml += text(100, 150, "Ruido de Indicadores", 10, '#ef4444', 'middle');
+      elementsHtml += arrow(160, 140, 220, 130, '#ef4444');
+      break;
+    case 23:
+      title = "Cronograma Diario del Operador";
+      elementsHtml += line(50, 110, 450, 110, 'var(--border-color)', 3);
+      elementsHtml += circle(100, 110, 8, '#3b82f6');
+      elementsHtml += text(100, 90, "Pre-market (Checklist)", 10, '#3b82f6', 'middle', 'bold');
+      elementsHtml += circle(250, 110, 8, '#10b981');
+      elementsHtml += text(250, 90, "Sesión Activa (Ejecutar)", 10, '#10b981', 'middle', 'bold');
+      elementsHtml += circle(400, 110, 8, '#f59e0b');
+      elementsHtml += text(400, 90, "Post-market (Audit)", 10, '#f59e0b', 'middle', 'bold');
+      break;
+    case 24:
+      title = "Checklist pre-market Visión Pro";
+      const drawCheckListItem = (y, str) => `
+        <rect x="80" y="${y}" width="16" height="16" fill="none" stroke="#10b981" stroke-width="2" rx="3" />
+        <polyline points="83 ${y+8}, 87 ${y+12}, 93 ${y+4}" fill="none" stroke="#10b981" stroke-width="2" />
+        <text x="110" y="${y+13}" fill="#f3f4f6" font-size="11">${str}</text>
+      `;
+      elementsHtml += drawCheckListItem(45, "Filtro de tendencia EMA 200 verificado");
+      elementsHtml += drawCheckListItem(80, "Ausencia de noticias macro inminentes");
+      elementsHtml += drawCheckListItem(115, "Zona de valor institucional (POI) identificada");
+      elementsHtml += drawCheckListItem(150, "Cálculo de riesgo (1%) realizado");
+      break;
+    case 25:
+      title = "Pulsaciones vs Enfoque Estoico";
+      elementsHtml += trendLine([[40, 160], [60, 100], [80, 170], [100, 90], [120, 180], [140, 60], [160, 150], [180, 160]], '#ef4444', 1.5);
+      elementsHtml += text(110, 45, "Pulsaciones: 120bpm (Pánico)", 9, '#ef4444', 'middle');
+      elementsHtml += trendLine([[220, 110], [250, 90], [280, 130], [310, 110], [340, 110], [370, 90], [400, 130], [430, 110]], '#3b82f6', 2.5);
+      elementsHtml += text(325, 45, "Pulsaciones: 65bpm (Foco)", 9, '#3b82f6', 'middle');
+      break;
+    case 26:
+      title = "Apagado y Cierre Operativo";
+      elementsHtml += `
+        <circle cx="250" cy="100" r="40" stroke="#ef4444" stroke-width="6" fill="none" />
+        <line x1="250" y1="70" x2="250" y2="110" stroke="#ef4444" stroke-width="6" stroke-linecap="round" />
+      `;
+      elementsHtml += text(250, 170, "DESCONEXIÓN ABSOLUTA TRAS OPERAR", 11, '#ef4444', 'middle', 'bold');
+      break;
+    case 27:
+      title = "Métricas Reales vs Planificadas";
+      const drawBar = (x, h1, h2, label) => `
+        <rect x="${x}" y="${160 - h1}" width="20" height="${h1}" fill="#3b82f6" rx="2" />
+        <rect x="${x + 24}" y="${160 - h2}" width="20" height="${h2}" fill="#10b981" rx="2" />
+        <text x="${x + 22}" y="180" fill="#9ca3af" font-size="9" text-anchor="middle">${label}</text>
+      `;
+      elementsHtml += drawBar(90, 80, 85, "Acierto (50%)");
+      elementsHtml += drawBar(210, 60, 90, "Ratio R:R (1:2)");
+      elementsHtml += drawBar(330, 90, 30, "Límite Pérdidas");
+      elementsHtml += text(110, 40, "Objetivo", 9, '#3b82f6');
+      elementsHtml += text(210, 40, "Real", 9, '#10b981');
+      break;
+    case 28:
+      title = "Agrupación de Errores Operativos";
+      elementsHtml += `
+        <circle cx="250" cy="110" r="70" stroke="var(--border-color)" stroke-width="2" fill="none" />
+        <circle cx="250" cy="110" r="50" stroke="var(--border-color)" stroke-width="2" fill="none" />
+        <circle cx="250" cy="110" r="30" stroke="var(--border-color)" stroke-width="2" fill="none" />
+        <circle cx="250" cy="110" r="10" stroke="#f59e0b" stroke-width="2" fill="#f59e0b" />
+      `;
+      elementsHtml += circle(240, 105, 4, '#3b82f6');
+      elementsHtml += circle(255, 118, 4, '#3b82f6');
+      elementsHtml += text(340, 100, "Técnicos (En setup)", 9, '#3b82f6');
+      elementsHtml += circle(190, 80, 4, '#ef4444');
+      elementsHtml += circle(310, 140, 4, '#ef4444');
+      elementsHtml += text(340, 130, "Emocionales (FOMO)", 9, '#ef4444');
+      break;
+    case 29:
+      title = "Bucle de Mejora Continua Estoica";
+      elementsHtml += `
+        <path d="M 250,30 A 70,70 0 1,1 180,100" fill="none" stroke="#3b82f6" stroke-width="3" />
+        <path d="M 180,100 A 70,70 0 0,1 250,170" fill="none" stroke="#10b981" stroke-width="3" />
+        <path d="M 250,170 A 70,70 0 0,1 250,30" fill="none" stroke="#f59e0b" stroke-width="3" />
+      `;
+      elementsHtml += text(250, 60, "PLANIFICAR", 10, '#3b82f6', 'middle', 'bold');
+      elementsHtml += text(160, 115, "AUDITAR", 10, '#10b981', 'middle', 'bold');
+      elementsHtml += text(310, 115, "MEJORAR", 10, '#f59e0b', 'middle', 'bold');
+      break;
+    case 30:
+      title = "Pilar 4: Maestría en Trading Profesional";
+      elementsHtml += `
+        <rect x="140" y="30" width="220" height="150" fill="#131a22" stroke="#d4af37" stroke-width="3" rx="4" />
+        <rect x="150" y="40" width="200" height="130" fill="none" stroke="rgba(212,175,55,0.2)" stroke-width="1" />
+        <path d="M 220,130 C 210,130 200,120 200,100 C 200,80 220,70 230,70" fill="none" stroke="#d4af37" stroke-width="1.5" />
+        <path d="M 280,130 C 290,130 300,120 300,100 C 300,80 280,70 270,70" fill="none" stroke="#d4af37" stroke-width="1.5" />
+      `;
+      elementsHtml += text(250, 60, "DIPLOMA", 11, '#d4af37', 'middle', 'bold');
+      elementsHtml += text(250, 105, "MAESTRÍA", 10, '#f3f4f6', 'middle', 'bold');
+      elementsHtml += text(250, 120, "TRADING PRO", 9, '#f3f4f6', 'middle');
+      elementsHtml += text(250, 150, "Albert Sierra", 8, '#d4af37', 'middle', 'italic');
+      break;
+    case 31:
+      title = "Estructura de Order Block (OB)";
+      elementsHtml += candle(80, 120, 135, 110, 140, 'bear');
+      elementsHtml += zone(70, 115, 20, 25, 'rgba(239, 68, 68, 0.08)', '#ef4444');
+      elementsHtml += text(80, 155, "OB", 10, '#ef4444', 'middle', 'bold');
+      elementsHtml += candle(140, 100, 60, 50, 110, 'bull');
+      elementsHtml += candle(200, 60, 40, 30, 70, 'bull');
+      elementsHtml += line(180, 40, 250, 40, '#3b82f6', 1, '2,2');
+      elementsHtml += text(215, 30, "BOS", 9, '#3b82f6', 'middle');
+      elementsHtml += candle(260, 50, 90, 45, 100, 'bear');
+      elementsHtml += candle(320, 90, 120, 80, 130, 'bear'); // mitigates
+      elementsHtml += circle(320, 120, 5, '#10b981');
+      elementsHtml += text(320, 155, "Mitigación", 10, '#10b981', 'middle', 'bold');
+      elementsHtml += candle(380, 110, 50, 40, 120, 'bull');
+      break;
+    case 32:
+      title = "Sweeping Liquidity Pool";
+      elementsHtml += line(60, 130, 440, 130, '#ef4444', 1.5, '4,4');
+      elementsHtml += text(70, 120, "Soporte (Liquidez Minorista)", 10, '#9ca3af');
+      elementsHtml += trendLine([[80,90], [140,130], [200,100], [260,130], [290,155], [340,70]], 'rgba(255,255,255,0.15)', 1.5);
+      elementsHtml += candle(290, 110, 80, 70, 155, 'bull'); // sweeps support
+      elementsHtml += circle(290, 150, 5, '#10b981');
+      elementsHtml += text(290, 175, "SSL SWEEP (Absorción)", 10, '#10b981', 'middle', 'bold');
+      break;
+    case 33:
+      title = "Vacío de Ineficiencia FVG (3 Velas)";
+      elementsHtml += candle(120, 160, 140, 150, 170, 'bull'); // Vela 1
+      elementsHtml += candle(200, 140, 60, 50, 150, 'bull');  // Vela 2 (Expansión)
+      elementsHtml += candle(280, 60, 40, 30, 70, 'bull');   // Vela 3
+      elementsHtml += zone(160, 60, 160, 80, 'rgba(245, 158, 11, 0.08)', '#f59e0b');
+      elementsHtml += line(120, 140, 200, 140, '#f59e0b', 1.5, '2,2');
+      elementsHtml += line(280, 60, 200, 60, '#f59e0b', 1.5, '2,2');
+      elementsHtml += text(200, 105, "Fair Value Gap (FVG)", 11, '#f59e0b', 'middle', 'bold');
+      break;
+    case 34:
+      title = "Alineación HTF (Sesgo) + LTF (Entrada)";
+      elementsHtml += zone(30, 30, 180, 160, 'rgba(59, 130, 246, 0.03)', 'var(--border-color)');
+      elementsHtml += text(120, 50, "HTF Bias (1 Hora)", 10, '#3b82f6', 'middle', 'bold');
+      elementsHtml += trendLine([[50, 150], [90, 110], [130, 120], [170, 70]], '#3b82f6', 2);
+      elementsHtml += zone(290, 30, 180, 160, 'rgba(16, 185, 129, 0.03)', 'var(--border-color)');
+      elementsHtml += text(380, 50, "LTF Entry (1 Minuto)", 10, '#10b981', 'middle', 'bold');
+      elementsHtml += trendLine([[310, 140], [340, 110], [360, 125], [390, 90], [420, 100], [450, 60]], '#10b981', 1.5);
+      elementsHtml += circle(390, 90, 4, '#10b981');
+      elementsHtml += text(390, 80, "BOS + Gatillo", 9, '#10b981', 'middle');
+      break;
+    case 35:
+      title = "Rango Premium vs Descuento";
+      elementsHtml += line(60, 110, 440, 110, '#f59e0b', 2);
+      elementsHtml += text(440, 100, "Equilibrio (50%)", 9, '#f59e0b', 'end');
+      elementsHtml += zone(80, 30, 340, 80, 'rgba(239, 68, 68, 0.03)', 'rgba(239, 68, 68, 0.2)');
+      elementsHtml += text(250, 75, "ZONA PREMIUM (No Compras - Vender Caro)", 11, '#ef4444', 'middle', 'bold');
+      elementsHtml += zone(80, 110, 340, 80, 'rgba(16, 185, 129, 0.03)', 'rgba(16, 185, 129, 0.2)');
+      elementsHtml += text(250, 155, "ZONA DE DESCUENTO (Comprar Barato)", 11, '#10b981', 'middle', 'bold');
+      break;
+    case 36:
+      title = "Transición de OB Bajista Roto a Breaker Block";
+      elementsHtml += zone(100, 70, 40, 40, 'rgba(239, 68, 68, 0.08)', '#ef4444');
+      elementsHtml += text(120, 60, "OB Roto", 9, '#ef4444', 'middle');
+      elementsHtml += trendLine([[60, 150], [120, 90], [180, 110], [250, 40], [320, 90], [390, 30]], '#3b82f6', 2.5);
+      elementsHtml += line(140, 90, 350, 90, '#10b981', 1.5, '3,3');
+      elementsHtml += circle(320, 90, 5, '#10b981');
+      elementsHtml += text(320, 115, "Breaker (Test de Soporte)", 10, '#10b981', 'middle', 'bold');
+      break;
+    case 37:
+      title = "Punto de Control de Perfil (POC)";
+      elementsHtml += trendLine([[40, 150], [100, 110], [160, 130], [220, 90], [280, 120]], '#3b82f6', 2);
+      const drawVolBar = (y, w) => `
+        <rect x="${460 - w}" y="${y}" width="${w}" height="10" fill="#f59e0b20" stroke="#f59e0b44" rx="1" />
+      `;
+      elementsHtml += drawVolBar(50, 40);
+      elementsHtml += drawVolBar(65, 60);
+      elementsHtml += drawVolBar(80, 80);
+      elementsHtml += drawVolBar(95, 150); // POC Peak
+      elementsHtml += drawVolBar(110, 100);
+      elementsHtml += drawVolBar(125, 70);
+      elementsHtml += drawVolBar(140, 30);
+      elementsHtml += line(260, 100, 460, 100, '#ef4444', 2);
+      elementsHtml += text(265, 90, "POC de Volumen Máximo", 10, '#ef4444', 'start', 'bold');
+      break;
+    case 38:
+      title = "Reglas de Fondeo (Preservación)";
+      elementsHtml += `
+        <rect x="70" y="40" width="360" height="140" fill="#131a22" stroke="var(--border-color)" rx="8" />
+      `;
+      elementsHtml += text(250, 65, "Capital de Operaciones: $50,000", 11, '#f3f4f6', 'middle', 'bold');
+      elementsHtml += line(90, 80, 410, 80, 'var(--border-color)');
+      elementsHtml += text(120, 115, "Límite Diario (2%):", 10, '#9ca3af');
+      elementsHtml += text(380, 115, "-$1,000", 10, '#ef4444', 'end', 'bold');
+      elementsHtml += text(120, 150, "Pérdida Máxima (5%):", 10, '#9ca3af');
+      elementsHtml += text(380, 150, "-$2,500", 10, '#ef4444', 'end', 'bold');
+      break;
+    case 39:
+      title = "Riesgo Cero tras Parciales";
+      elementsHtml += line(60, 130, 440, 130, '#3b82f6', 2);
+      elementsHtml += text(70, 120, "Entrada (2 lotes)", 9, '#3b82f6');
+      elementsHtml += line(60, 170, 440, 170, '#ef4444', 1.5, '2,2');
+      elementsHtml += text(70, 160, "SL Inicial", 9, '#ef4444');
+      elementsHtml += line(60, 90, 440, 90, '#10b981', 1.5, '2,2');
+      elementsHtml += text(70, 80, "Toma de Parcial R:R 1:1 (Cierra 50%)", 9, '#10b981');
+      elementsHtml += arrow(250, 160, 250, 135, '#10b981');
+      elementsHtml += text(260, 150, "Mover SL a Entrada (Riesgo Cero)", 9, '#10b981', 'start');
+      break;
+    case 40:
+      title = "Checklist de Albert Sierra";
+      const drawCheckListItemFinal = (y, num, txt) => `
+        <circle cx="80" cy="${y}" r="8" fill="#3b82f615" stroke="#3b82f6" stroke-width="1.5" />
+        <text x="80" y="${y+3}" fill="#3b82f6" font-size="8" font-family="monospace" text-anchor="middle" font-weight="bold">${num}</text>
+        <text x="105" y="${y+4}" fill="#f3f4f6" font-size="11" font-weight="500">${txt}</text>
+      `;
+      elementsHtml += drawCheckListItemFinal(40, "1", "Alineación de Contexto HTF (OB / FVG)");
+      elementsHtml += drawCheckListItemFinal(75, "2", "Barrido de Liquidez previo (SSL/BSL)");
+      elementsHtml += drawCheckListItemFinal(110, "3", "Ruptura de Estructura LTF (BOS 1m)");
+      elementsHtml += drawCheckListItemFinal(145, "4", "Operar en Zona de Descuento (<50%)");
+      elementsHtml += drawCheckListItemFinal(180, "5", "Tamaño de lote según 1% de riesgo");
+      break;
+    default:
+      return "";
+  }
+
+  return `
+    <div class="lesson-chart">
+      <svg viewBox="0 0 ${width} ${height}" width="100%" height="${height}" xmlns="http://www.w3.org/2000/svg">
+        ${elementsHtml}
+      </svg>
+      <div class="lesson-chart-title">
+        <i data-lucide="bar-chart-2" style="width: 14px; height: 14px; color: var(--color-accent);"></i>
+        <span>Gráfico de Apoyo: ${title}</span>
+      </div>
+    </div>
+  `;
+};
+
 // Load Day details dynamically
 window.loadDay = (dayId) => {
   const day = courseData[dayId];
@@ -1151,7 +1685,10 @@ window.loadDay = (dayId) => {
 
   // Set visual texts
   document.getElementById("academy-day-title").innerHTML = `<i data-lucide="book-open"></i> Día ${dayId.replace("day", "")}: ${day.title}`;
-  document.getElementById("academy-day-content").innerHTML = day.content;
+  
+  const dayNum = parseInt(dayId.replace("day", ""));
+  const graphicHtml = getGraphicForDay(dayNum);
+  document.getElementById("academy-day-content").innerHTML = (graphicHtml || "") + day.content;
   document.getElementById("academy-challenge-text").innerText = day.challenge;
   
   document.getElementById("btn-narrate-day").setAttribute("data-day", dayId);
@@ -1161,7 +1698,6 @@ window.loadDay = (dayId) => {
   document.getElementById("challenge-response").value = savedResponse;
 
   // Toggle Quiz displaying if review day
-  const dayNum = parseInt(dayId.replace("day", ""));
   const quizCard = document.getElementById("academy-quiz-card");
   
   if ([7, 15, 22, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40].includes(dayNum)) {
