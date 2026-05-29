@@ -423,6 +423,174 @@ const courseData = {
         <strong>🏆 Examen de Certificación Final:</strong> Aprueba el examen técnico-práctico final de 5 preguntas para desbloquear la generación de tu Diploma de Maestría firmado por Albert Sierra.
       </div>
     `
+  },
+  day31: {
+    id: "day31",
+    pilar: 5,
+    title: "Bloques de Órdenes e Intervención Algorítmica",
+    unlocked: false,
+    completed: false,
+    challenge: "Identifica en tu gráfico del simulador una vela de fuerte intención que haya roto un nivel estructural (BOS) y marca el origen de esa vela como un Bloque de Órdenes (OB) institucional.",
+    content: `
+      <p>Comenzamos el <strong>Módulo 5: Bloques de Órdenes</strong>. En el trading institucional, entendemos que el mercado no es movido por traders minoristas, sino por algoritmos interbancarios que inyectan volumen masivo en zonas de precios específicas.</p>
+      <h3>¿Qué es un Order Block (OB)?</h3>
+      <p>Un Order Block es la última vela en sentido contrario antes de un movimiento fuerte e impulsivo que rompe la estructura del mercado (BOS). Esta vela representa la zona exacta donde las instituciones financieras acumularon un volumen masivo de órdenes de compra o venta en el pasado. Dado que las instituciones no pueden inyectar todas sus órdenes a la vez para no colapsar la cotización, dejan órdenes pendientes (límite). Cuando el precio regresa a esta zona (proceso de mitigación), estas órdenes se activan, provocando una reacción fuerte y predecible en el precio.</p>
+      <ul>
+        <li><strong>OB Alcista (Bullish Order Block):</strong> La última vela bajista antes del impulso alcista que rompe un máximo estructural.</li>
+        <li><strong>OB Bajista (Bearish Order Block):</strong> La última vela alcista antes del impulso bajista que rompe un mínimo estructural.</li>
+      </ul>
+      <div class="highlight-box">
+        <strong>💡 Clave Institucional:</strong> Un Order Block solo es válido si genera un BOS real en el precio y deja ineficiencias de volumen (Fair Value Gaps) en su expansión. Si no rompe estructura, es solo ruido del mercado.
+      </div>
+    `
+  },
+  day32: {
+    id: "day32",
+    pilar: 6,
+    title: "Caza de Liquidez y la Ilusión de Soportes/Resistencias",
+    unlocked: false,
+    completed: false,
+    challenge: "Encuentra una mecha larga que haya barrido un soporte o resistencia previa para luego darse la vuelta inmediatamente. Anota el precio del barrido de liquidez.",
+    content: `
+      <p>Comenzamos el <strong>Módulo 6: Liquidez del Mercado</strong>. Los traders minoristas ven los soportes y resistencias como barreras impenetrables donde el precio debe rebotar. Las instituciones los ven como **piscinas de liquidez masivas** (Liquidity Pools).</p>
+      <h3>La Caza de Stops (Liquidity Sweeps)</h3>
+      <p>Para abrir una posición de compra gigante, una institución necesita contrapartida: necesita que otros vendan en esa misma zona. ¿Dónde se concentran las órdenes de venta? Justo debajo de los soportes obvios (los Stop Loss de los compradores minoristas, que se ejecutan como órdenes de venta de mercado). El algoritmo interbancario empuja temporalmente el precio por debajo del soporte para activar estas órdenes de venta masivas, absorbiéndolas como órdenes de compra baratas para iniciar el movimiento alcista real.</p>
+      <ul>
+        <li><strong>BSL (Buy Stop Liquidity):</strong> Liquidez de compras por encima de máximos relativos (stops de vendedores).</li>
+        <li><strong>SSL (Sell Stop Liquidity):</strong> Liquidez de ventas por debajo de mínimos relativos (stops de compradores).</li>
+      </ul>
+      <div class="highlight-box">
+        <strong>👁️ Regla de Oro:</strong> Si no sabes dónde está la liquidez en el gráfico, tú eres la liquidez. Espera a que ocurra el barrido de liquidez (*sweep*) antes de buscar una entrada.
+      </div>
+    `
+  },
+  day33: {
+    id: "day33",
+    pilar: 7,
+    title: "Desequilibrios Algorítmicos e Ineficiencias (FVG)",
+    unlocked: false,
+    completed: false,
+    challenge: "Localiza un desequilibrio de 3 velas en el simulador donde la primera y la tercera vela no se solapen, dejando un vacío o Fair Value Gap (FVG). Anota el precio del rebalanceo.",
+    content: `
+      <p>Comenzamos el <strong>Módulo 7: Fair Value Gaps</strong>. Cuando el volumen institucional entra al mercado de forma agresiva, crea un desequilibrio de precios llamado **Fair Value Gap (FVG)** o ineficiencia de entrega.</p>
+      <h3>Anatomía del FVG</h3>
+      <p>Un FVG se compone de un patrón de 3 velas consecutivas. Ocurre cuando el movimiento de la segunda vela es tan rápido y agresivo que la mecha de la primera vela y la mecha de la tercera vela no logran solaparse, dejando un vacío de precios donde solo hubo participación de un lado del mercado (compras o ventas). El algoritmo interbancario tiende a regresar en el futuro a rebalancear esta ineficiencia para entregar el precio de manera eficiente.</p>
+      <div class="highlight-box">
+        <strong>📈 Confluencia Avanzada:</strong> La combinación de un Order Block con un Fair Value Gap justo en su expansión constituye uno de los setups de mayor probabilidad de acierto del trading institucional.
+      </div>
+    `
+  },
+  day34: {
+    id: "day34",
+    pilar: 8,
+    title: "Fractalidad y Alineación Temporal (HTF/LTF)",
+    unlocked: false,
+    completed: false,
+    challenge: "Describe por escrito cómo utilizarías un gráfico de 1 hora para determinar la dirección general y un gráfico de 1 o 5 minutos para afinar tu stop loss de entrada.",
+    content: `
+      <p>Comenzamos el <strong>Módulo 8: Fractalidad del Mercado</strong>. El mercado financiero es fractal: los mismos patrones estructurales se repiten desde gráficos semanales hasta gráficos de 1 minuto.</p>
+      <h3>Alineación de Marcos Temporales</h3>
+      <p>Un error mortal es operar setups en 1 minuto en dirección opuesta a la tendencia mayor. El trader profesional utiliza marcos temporales altos (HTF) para determinar la dirección y encontrar zonas de interés (POIs), y marcos temporales bajos (LTF) para esperar la confirmación de la entrada mediante quiebres locales de estructura (BOS) y mitigar el riesgo.</p>
+      <ul>
+        <li><strong>HTF (High Timeframe):</strong> Gráfico de 1 Hora o 4 Horas (Determina el sesgo direccional).</li>
+        <li><strong>LTF (Low Timeframe):</strong> Gráfico de 1 Minuto o 5 Minutos (Determina el gatillo de entrada y sitúa el Stop Loss).</li>
+      </ul>
+    `
+  },
+  day35: {
+    id: "day35",
+    pilar: 9,
+    title: "Zonas Premium y Descuento: Comprar Barato, Vender Caro",
+    unlocked: false,
+    completed: false,
+    challenge: "Traza un rango operativo desde el inicio del impulso hasta el final del retroceso en tu simulador. Identifica si el precio actual cotiza por encima (Premium) o por debajo (Descuento) del 50%.",
+    content: `
+      <p>Comenzamos el <strong>Módulo 9: Rangos de Descuento</strong>. Los profesionales operan bajo las mismas reglas de un negocio comercial de inventarios: **comprar barato y vender caro**.</p>
+      <h3>Premium vs Descuento</h3>
+      <p>Utilizando el 50% de un rango operativo como frontera de equilibrio:</p>
+      <ul>
+        <li><strong>Zona Premium (Mitad Superior):</strong> Zona costosa. Solo buscamos ventas y descartamos compras de alto riesgo.</li>
+        <li><strong>Zona de Descuento (Mitad Inferior):</strong> Zona barata. Solo buscamos compras en confluencia con OB y FVG institucionales.</li>
+      </ul>
+    `
+  },
+  day36: {
+    id: "day36",
+    pilar: 10,
+    title: "El Poder de los Breaker Blocks (OB Roto)",
+    unlocked: false,
+    completed: false,
+    challenge: "Describe la diferencia entre un Order Block normal y un Breaker Block (OB roto que cambia de función). Encuentra un ejemplo en tu simulador.",
+    content: `
+      <p>Comenzamos el <strong>Módulo 10: Mitigación & Breakers</strong>. ¿Qué ocurre cuando un bloque de órdenes falla y es roto con fuerza? Se transforma en una zona de alta probabilidad operativa llamada **Breaker Block**.</p>
+      <h3>Mecánica del Breaker Block</h3>
+      <p>El Breaker Block es un bloque de órdenes que fue sobrepasado por un movimiento impulsivo que barrió liquidez previa y luego rompió estructura. Al regresar el precio a este nivel, actúa con el principio de polaridad: un OB bajista roto se convierte en soporte de alta probabilidad para compras, permitiendo a las instituciones mitigar y cerrar en pérdidas nulas sus posiciones contrarias.</p>
+    `
+  },
+  day37: {
+    id: "day37",
+    pilar: 11,
+    title: "Subasta de Volumen: POC y Zonas de Alta Liquidez",
+    unlocked: false,
+    completed: false,
+    challenge: "Identifica el Punto de Control de Volumen (POC) en una consolidación lateral y explica cómo usar las áreas de bajo volumen (LVN) para colocar tu Stop Loss técnico.",
+    content: `
+      <p>Comenzamos el <strong>Módulo 11: Perfil de Volumen</strong>. La acción del precio describe el movimiento; el perfil de volumen nos revela **dónde se negociaron realmente los contratos interbancarios**.</p>
+      <h3>Zonas de Interés de Perfil</h3>
+      <ul>
+        <li><strong>POC (Point of Control):</strong> El precio exacto donde se negoció el mayor volumen de la sesión. Actúa como un imán para el precio.</li>
+        <li><strong>VAL/VAH (Value Area High/Low):</strong> Los límites del área de valor que concentran el 70% de la actividad transaccional.</li>
+      </ul>
+    `
+  },
+  day38: {
+    id: "day38",
+    pilar: 12,
+    title: "Reglas de Fondeo y Control de drawdown Institucional",
+    unlocked: false,
+    completed: false,
+    challenge: "Diseña tu plan de Drawdown Máximo Diario específico para una cuenta financiada simulada de $50,000, respetando el límite del 2% diario.",
+    content: `
+      <p>Comenzamos el <strong>Módulo 12: Especulación de Fondos</strong>. Operar de forma institucional hoy en día implica trabajar con capital de terceros a través de empresas de fondeo (Prop Firms).</p>
+      <h3>La Disciplina del Drawdown</h3>
+      <p>Los traders institucionales no operan sin límites estrictos. En las cuentas fondeadas, la violación del límite de pérdida diario o el límite total (drawdown máximo) conlleva la cancelación inmediata de la cuenta. El autocontrol estoico es la única herramienta que te permite navegar estas reglas corporativas sin entrar en pánico.</p>
+    `
+  },
+  day39: {
+    id: "day39",
+    pilar: 13,
+    title: "Gestión Activa de Posición: Tomar Parciales y Riesgo Cero",
+    unlocked: false,
+    completed: false,
+    challenge: "Simula una operación con 2 contratos en el simulador. Al alcanzar un R:R 1:1, cierra 1 contrato (toma de parcial) y mueve el Stop Loss del segundo contrato a Breakeven.",
+    content: `
+      <p>Comenzamos el <strong>Módulo 13: Drawdown & Cierres</strong>. El objetivo de un trader no es tener un 100% de acierto, sino **gestionar el riesgo de forma activa** para que la esperanza matemática haga su trabajo.</p>
+      <h3>Tomas de Parciales y Breakeven</h3>
+      <p>Los ricos no arriesgan su dinero tontamente. Cuando tu operación alcanza un R:R 1:1, cerrar el 50% de la posición (parcial) asegura ganancias en tu saldo y te permite colocar el Stop Loss de la posición restante a tu precio de entrada (Breakeven), eliminando el riesgo financiero del trade actual por completo.</p>
+    `
+  },
+  day40: {
+    id: "day40",
+    pilar: 14,
+    title: "El Checklist Institucional de Albert Sierra",
+    unlocked: false,
+    completed: false,
+    challenge: "Redacta tu Checklist final de 5 confluencias institucionales antes de cada trade y aprueba la evaluación final de Maestría del Ecosistema.",
+    content: `
+      <p>Comenzamos el <strong>Módulo 14: Plan de Trading Final</strong>. Has culminado tu formación en la especulación de futuros interbancarios. En este último módulo unificamos todos los conocimientos en un Checklist operativo innegociable.</p>
+      <h3>Tu Checklist de Confluencia</h3>
+      <p>Antes de pulsar los botones de compra o venta en el simulador, debes marcar positivamente:</p>
+      <ol>
+        <li>¿El precio está mitigando una zona de interés HTF (OB / FVG)?</li>
+        <li>¿Hubo un barrido de liquidez obvio antes del quiebre?</li>
+        <li>¿Se generó un BOS en temporalidad menor (LTF)?</li>
+        <li>¿Cotizamos en zona de Descuento (para largos) o Premium (para cortos)?</li>
+        <li>¿El tamaño de la posición respeta estrictamente el 1% de riesgo?</li>
+      </ol>
+      <div class="alert-box" style="border-left-color: gold; background: rgba(245, 158, 11, 0.03);">
+        <strong>🏆 Examen de Maestría Final del Ecosistema:</strong> Aprueba la evaluación técnica de abajo para certificar tu maestría definitiva y completar el Ecosistema AS.
+      </div>
+    `
   }
 };
 
@@ -627,6 +795,126 @@ const pilarQuizzes = {
       answer: 0,
       explanation: "El mercado opera bajo incertidumbre. Entenderlo como probabilidades erradica el dolor de perder y la necesidad de tener la razón."
     }
+  ],
+  5: [
+    {
+      q: "¿Qué valida la existencia de un Bloque de Órdenes (Order Block) institucional válido?",
+      options: [
+        "Que el precio haya roto estructura (BOS) y haya dejado ineficiencias (FVG) en su expansión.",
+        "Que la vela sea de color verde y tenga un volumen muy bajo.",
+        "Que coincida con la hora del cierre del mercado de Londres."
+      ],
+      answer: 0,
+      explanation: "Un OB es válido únicamente si el algoritmo rompe estructura (BOS) y expande con fuerza, dejando ineficiencias de volumen."
+    }
+  ],
+  6: [
+    {
+      q: "¿Cuál es el propósito algorítmico detrás de un barrido de liquidez (Liquidity Sweep)?",
+      options: [
+        "Activar los Stop Losses de operadores minoristas para absorber contrapartida institucional.",
+        "Dar tiempo a los reguladores a revisar las transacciones del día.",
+        "Reducir el apalancamiento general de la cuenta del simulador."
+      ],
+      answer: 0,
+      explanation: "Las instituciones necesitan activar stops (órdenes contrarias a mercado) para contrapartida de sus órdenes masivas."
+    }
+  ],
+  7: [
+    {
+      q: "¿Cómo se forma un Fair Value Gap (FVG) en un patrón de tres velas?",
+      options: [
+        "Cuando la mecha de la primera vela y la mecha de la tercera vela no logran solaparse, dejando una ineficiencia en la segunda vela.",
+        "Cuando la segunda vela cruza por encima de la EMA 200.",
+        "Cuando el volumen de la tercera vela es exactamente el doble de la primera."
+      ],
+      answer: 0,
+      explanation: "Un FVG es un vacío de precios provocado por un flujo unilateral agresivo que impide el solapamiento de mechas adyacentes."
+    }
+  ],
+  8: [
+    {
+      q: "¿Cuál es la regla fundamental para alinear marcos de tiempo (HTF y LTF)?",
+      options: [
+        "Definir la dirección y el sesgo en el gráfico mayor (HTF) y buscar el gatillo de entrada en el gráfico menor (LTF).",
+        "Operar únicamente compras en LTF si el RSI en HTF está en sobreventa superior a 90.",
+        "Ejecutar operaciones en sentido contrario a la estructura mayor si se rompe una media móvil."
+      ],
+      answer: 0,
+      explanation: "Usar HTF para la brújula direccional y LTF para optimizar el Stop Loss técnico maximiza el ratio R:R."
+    }
+  ],
+  9: [
+    {
+      q: "Si buscamos operaciones de compra institucionales (Largas), ¿en qué zona de precios debemos operar?",
+      options: [
+        "Por debajo de la línea del 50% del rango operativo (Zona de Descuento).",
+        "Por encima de la línea del 50% del rango operativo (Zona Premium).",
+        "Exactamente en el punto del POC de volumen máximo sin importar la tendencia."
+      ],
+      answer: 0,
+      explanation: "Las compras deben buscarse en zona barata (Descuento) para maximizar la asimetría matemática."
+    }
+  ],
+  10: [
+    {
+      q: "¿Qué define a un Breaker Block alcista?",
+      options: [
+        "Un bloque de órdenes bajista que fue roto con fuerza al alza tras barrer liquidez, y ahora actúa como soporte.",
+        "Una vela que se cierra justo en el POC de la sesión anterior.",
+        "Un gap que nunca fue rellenado en la apertura de Nueva York."
+      ],
+      answer: 0,
+      explanation: "El Breaker es un OB fallido que se transforma en soporte debido a la mitigación de posiciones en breakeven por parte de instituciones."
+    }
+  ],
+  11: [
+    {
+      q: "¿Qué representa el Punto de Control (POC) en un perfil de volumen?",
+      options: [
+        "El precio exacto donde se negoció el mayor volumen de la sesión.",
+        "El precio máximo alcanzado durante la sesión asiática.",
+        "El stop loss óptimo calculado por la plataforma."
+      ],
+      answer: 0,
+      explanation: "El POC representa la zona de mayor aceptación del precio por parte de compradores y vendedores institucionales."
+    }
+  ],
+  12: [
+    {
+      q: "¿Cuál es la medida estoica indispensable para no perder una cuenta de fondeo (Prop Firm)?",
+      options: [
+        "Detener la operativa y apagar la plataforma al tocar tu límite de drawdown diario programado.",
+        "Aumentar el tamaño de contratos al perder para recuperar la cuenta rápido.",
+        "Operar únicamente minutos antes del cierre del mercado para evitar comisiones."
+      ],
+      answer: 0,
+      explanation: "Respetar el drawdown diario incondicionalmente es la única regla inquebrantable de consistencia."
+    }
+  ],
+  13: [
+    {
+      q: "¿Cuál es la ventaja de tomar cierres parciales de posición al R:R 1:1?",
+      options: [
+        "Asegurar ganancias reales de capital y permitir colocar el riesgo de la posición restante a Breakeven.",
+        "Evitar el pago de comisiones del broker.",
+        "Garantizar que el 100% de los trades sean ganadores sin importar el Stop Loss."
+      ],
+      answer: 0,
+      explanation: "Asegurar beneficios intermedios reduce el drawdown emocional y crea una operación libre de riesgo financiero."
+    }
+  ],
+  14: [
+    {
+      q: "¿Qué regla estoica final resume el checklist de Albert Sierra antes de abrir una operación?",
+      options: [
+        "Cumplir el 100% de tus confluencias escritas y no abrir el trade si falta un solo elemento.",
+        "Abrir la operación rápido por FOMO si el precio corre con fuerza en Nueva York.",
+        "Apostar todo el balance sim de tu cuenta si confías mucho en la dirección."
+      ],
+      answer: 0,
+      explanation: "La disciplina estoica consiste en ejecutar únicamente cuando tu checklist institucional se cumple al 100%."
+    }
   ]
 };
 
@@ -635,7 +923,7 @@ let activeSection = "welcome";
 let activeDayId = "day1";
 let activePilarAccordion = 1;
 let activeQuizAnswers = {}; // { questionIndex: selectedOptionIndex }
-let pilarPassedStates = { 1: false, 2: false, 3: false, 4: false };
+let pilarPassedStates = { 1: false, 2: false, 3: false, 4: false, 5: false, 6: false, 7: false, 8: false, 9: false, 10: false, 11: false, 12: false, 13: false, 14: false };
 
 // Load state from localStorage
 const loadProgress = () => {
@@ -676,7 +964,7 @@ const saveProgress = () => {
 // Update progress bar and unlock states
 const updateUIProgress = () => {
   let completedCount = 0;
-  const totalDays = 30;
+  const totalDays = 40;
 
   Object.values(courseData).forEach(day => {
     if (day.completed) completedCount++;
@@ -692,7 +980,7 @@ const updateUIProgress = () => {
   // Toggle Certificate tab in sidebar if course is completed
   const certMenuItem = document.getElementById("menu-item-certificate");
   if (certMenuItem) {
-    const allPassed = pilarPassedStates[1] && pilarPassedStates[2] && pilarPassedStates[3] && pilarPassedStates[4];
+    const allPassed = Object.values(pilarPassedStates).every(val => val === true);
     certMenuItem.style.display = allPassed ? "block" : "none";
   }
 
@@ -709,7 +997,7 @@ window.resetAcademyProgress = () => {
       courseData[key].unlocked = index === 0;
       localStorage.removeItem(`vision_challenge_${key}`);
     });
-    pilarPassedStates = { 1: false, 2: false, 3: false, 4: false };
+    pilarPassedStates = { 1: false, 2: false, 3: false, 4: false, 5: false, 6: false, 7: false, 8: false, 9: false, 10: false, 11: false, 12: false, 13: false, 14: false };
     saveProgress();
     updateUIProgress();
     renderAcademicMenu();
@@ -782,7 +1070,17 @@ const renderAcademicMenu = () => {
     { id: 1, name: "Pilar 1: Mentalidad Ganadora", icon: "brain" },
     { id: 2, name: "Pilar 2: Gestión y Disciplina", icon: "shield-check" },
     { id: 3, name: "Pilar 3: Estrategia de Valor", icon: "trending-up" },
-    { id: 4, name: "Pilar 4: Ejecución y Auditoría", icon: "activity" }
+    { id: 4, name: "Pilar 4: Ejecución y Auditoría", icon: "activity" },
+    { id: 5, name: "Pilar 5: Bloques de Órdenes", icon: "box" },
+    { id: 6, name: "Pilar 6: Liquidez del Mercado", icon: "target" },
+    { id: 7, name: "Pilar 7: Fair Value Gaps", icon: "split" },
+    { id: 8, name: "Pilar 8: Fractalidad HTF/LTF", icon: "layers" },
+    { id: 9, name: "Pilar 9: Rangos de Descuento", icon: "percent" },
+    { id: 10, name: "Pilar 10: Mitigación & Breakers", icon: "repeat" },
+    { id: 11, name: "Pilar 11: Perfil de Volumen", icon: "bar-chart-2" },
+    { id: 12, name: "Pilar 12: Especulación de Fondos", icon: "award" },
+    { id: 13, name: "Pilar 13: Drawdown & Cierres", icon: "shield" },
+    { id: 14, name: "Pilar 14: Plan de Trading Final", icon: "check-square" }
   ];
 
   pilares.forEach(pilar => {
@@ -793,7 +1091,7 @@ const renderAcademicMenu = () => {
       <div class="pilar-group ${isOpen ? 'open' : ''}" id="pilar-group-${pilar.id}">
         <div class="pilar-header" onclick="window.togglePilarAccordion(${pilar.id})">
           <span style="display:flex; align-items:center; gap:8px;">
-            <i data-lucide="${pilar.id === 1 ? 'brain' : pilar.id === 2 ? 'shield-check' : pilar.id === 3 ? 'trending-up' : 'activity'}" style="width:14px; height:14px; color: ${isOpen ? 'var(--color-accent)' : 'var(--text-secondary)'}"></i>
+            <i data-lucide="${pilar.icon}" style="width:14px; height:14px; color: ${isOpen ? 'var(--color-accent)' : 'var(--text-secondary)'}"></i>
             ${pilar.name}
           </span>
           <i data-lucide="${isOpen ? 'chevron-down' : 'chevron-right'}" style="width: 14px; height: 14px; color: var(--text-muted);"></i>
@@ -866,11 +1164,22 @@ window.loadDay = (dayId) => {
   const dayNum = parseInt(dayId.replace("day", ""));
   const quizCard = document.getElementById("academy-quiz-card");
   
-  if ([7, 15, 22, 30].includes(dayNum)) {
+  if ([7, 15, 22, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40].includes(dayNum)) {
     quizCard.style.display = "block";
     renderPilarQuiz(day.pilar);
   } else {
     quizCard.style.display = "none";
+  }
+
+  // Toggle Next Lesson button
+  const nextBtn = document.getElementById("btn-next-lesson-audio");
+  if (nextBtn) {
+    const nextDayId = `day${dayNum + 1}`;
+    if (courseData[nextDayId]) {
+      nextBtn.style.display = "inline-flex";
+    } else {
+      nextBtn.style.display = "none";
+    }
   }
 
   activePilarAccordion = day.pilar;
@@ -1612,3 +1921,60 @@ document.addEventListener("DOMContentLoaded", () => {
   renderAcademicMenu();
   renderGlossary();
 });
+
+// Global Function to navigate to the next lesson and trigger audio narration automatically
+window.goToNextLesson = (autoPlayAudio) => {
+  const currentDayNum = parseInt(activeDayId.replace("day", ""));
+  const nextDayId = `day${currentDayNum + 1}`;
+
+  if (!courseData[nextDayId]) {
+    alert("Has completado todo el curso. ¡Felicidades, Trader Soberano!");
+    return;
+  }
+
+  // Save current challenge response automatically if they wrote something
+  const responseField = document.getElementById("challenge-response");
+  const responseText = responseField ? responseField.value.trim() : "";
+
+  if (responseText) {
+    localStorage.setItem(`vision_challenge_${activeDayId}`, responseText);
+    const dayNum = parseInt(activeDayId.replace("day", ""));
+    const isExamDay = [7, 15, 22, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40].includes(dayNum);
+
+    if (!isExamDay) {
+      courseData[activeDayId].completed = true;
+      courseData[nextDayId].unlocked = true;
+      saveProgress();
+      updateUIProgress();
+      renderAcademicMenu();
+    } else {
+      const pilarId = courseData[activeDayId].pilar;
+      if (pilarPassedStates[pilarId]) {
+        courseData[activeDayId].completed = true;
+        courseData[nextDayId].unlocked = true;
+        saveProgress();
+        updateUIProgress();
+        renderAcademicMenu();
+      } else {
+        alert("Desafío guardado. Recuerda que para avanzar de pilar debes aprobar la evaluación semanal de abajo.");
+        return;
+      }
+    }
+  } else if (!courseData[nextDayId].unlocked) {
+    alert("Debes escribir y registrar tu respuesta al desafío de hoy antes de avanzar.");
+    return;
+  }
+
+  // Load next day
+  window.loadDay(nextDayId);
+
+  // Auto-play audio if requested
+  if (autoPlayAudio) {
+    setTimeout(() => {
+      const btnNarrate = document.getElementById("btn-narrate-day");
+      if (btnNarrate) {
+        handleNarrateClick(nextDayId, btnNarrate);
+      }
+    }, 450);
+  }
+};
