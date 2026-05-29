@@ -5,20 +5,20 @@ const courseData = {
   day1: {
     id: "day1",
     pilar: 1,
-    title: "El Precio es lo Único que Importa",
+    title: "El Precio es la Única Realidad",
     unlocked: true,
     completed: false,
     challenge: "Identifica y documenta un sesgo de falsas expectativas que hayas tenido en tu operativa reciente o en tu fase de aprendizaje.",
     content: `
-      <p>Comenzamos el <strong>Módulo 1: Mentalidad Ganadora</strong>. Como trader estoico, debes grabarte esta regla de oro: <strong>el precio es lo único que importa</strong>. El mercado no sabe quién eres, cuánto dinero necesitas, ni qué opinas sobre la economía mundial.</p>
-      <h3>Desmitificando Sesgos y Expectativas</h3>
-      <p>El principal enemigo del operador novato es su propia mente. Las falsas expectativas de dinero fácil y rápido deforman la realidad. Creer que el mercado se mueve de forma injusta o que el precio \"debe\" rebotar en un soporte es un error cognitivo destructivo.</p>
+      <p>Comenzamos el <strong>Módulo 1: Mentalidad Ganadora</strong>. Como trader pragmático, debes grabar en tu mente esta ley fundamental: <strong>el precio es la única realidad objetiva del mercado</strong>. El mercado es un mecanismo de subasta doble continua diseñado para emparejar compradores y vendedores. No sabe quién eres, cuánto dinero necesitas para pagar tus facturas, ni qué opinas sobre la economía global.</p>
+      <h3>Desmitificando Sesgos y Proyecciones Subjetivas</h3>
+      <p>El principal error del operador novato es proyectar deseos y opiniones subjetivas sobre el gráfico. Creer que el precio \"debe\" subir porque ha bajado mucho, o que una noticia económica \"debe\" impulsar la cotización, es una fantasía destructiva. El precio de cotización en cada segundo es el único consenso de valor real en ese instante.</p>
       <ul>
-        <li><strong>Aceptación del Precio:</strong> El precio actual es la verdad objetiva del mercado. Si el precio sube contra tu posición corta, tu opinión es errónea, no el precio.</li>
-        <li><strong>Desapego de Opiniones:</strong> No intentes tener la razón; busca ser rentable operando lo que ves, no lo que crees.</li>
+        <li><strong>Aceptación Objetiva del Precio:</strong> Si tu análisis indicaba compras pero el precio cruza tu stop loss a la baja, el mercado no está equivocado; tu hipótesis lo estaba. Acepta el precio tal como es, de forma neutral.</li>
+        <li><strong>Desapego y Operativa Pragmática:</strong> Un trader profesional no busca tener razón; busca fluir con el flujo de capitales real en lugar de luchar contra él con sesgos de opinión.</li>
       </ul>
       <div class="alert-box">
-        <strong>📈 Regla Estoica:</strong> Controla tus reacciones internas. El mercado es un reflejo de flujos de capital, no una entidad que conspira contra ti.
+        <strong>📈 Regla Estoica:</strong> Controla tus reacciones y tu exposición. El mercado se mueve por desequilibrios entre oferta y demanda transaccional, no por tus deseos de éxito.
       </div>
     `
   },
@@ -30,13 +30,14 @@ const courseData = {
     completed: false,
     challenge: "Identifica y documenta un sesgo cognitivo propio (como el sesgo de confirmación o de aversión a la pérdida) durante tu análisis de mercado.",
     content: `
-      <p>Hoy analizaremos los <strong>sesgos cognitivos</strong>. Son atajos mentales que nuestro cerebro utiliza de forma automática, pero que en el trading resultan fatales para el capital operativo.</p>
-      <h3>Sesgos Principales</h3>
+      <p>Hoy analizaremos en profundidad los <strong>sesgos cognitivos</strong>. Estos son atajos mentales que el cerebro evolutivo utiliza de forma automática para ahorrar energía y protegernos del peligro, pero que en el entorno probabilístico del trading resultan letales para tu capital de trabajo.</p>
+      <h3>Sesgos Principales que Destruyen Cuentas</h3>
       <ul>
-        <li><strong>Sesgo de Aversión a la Pérdida:</strong> Dolor desproporcionado ante una pérdida que te lleva a mover tu Stop Loss esperando un milagro.</li>
-        <li><strong>Sesgo de Reciente:</strong> Darle más importancia a los resultados de las últimas operaciones, modificando tu estrategia tras solo 2 fallos consecutivos.</li>
+        <li><strong>Sesgo de Aversión a la Pérdida:</strong> El dolor psicológico de perder es dos veces más intenso que el placer de ganar. Esto te lleva a mover tu Stop Loss alejándolo del precio con la esperanza irracional de un rebote, transformando una pérdida pequeña y controlada en una catástrofe financiera.</li>
+        <li><strong>Sesgo de Confirmación:</strong> Consiste en buscar de forma selectiva cualquier indicador o análisis que apoye tu posición abierta, mientras ignoras deliberadamente las señales obvias que indican que tu trade ha fallado.</li>
+        <li><strong>Sesgo de Reciente:</strong> Evaluar tu sistema o tu habilidad basándote únicamente en los resultados de las últimas 2 o 3 operaciones, lo que te incita a cambiar de estrategia constantemente.</li>
       </ul>
-      <p>Un trader pragmático neutraliza los sesgos utilizando reglas escritas y una bitácora objetiva.</p>
+      <p>Un trader profesional anula estas trampas mentales aplicando reglas de ejecución innegociables y auditando su comportamiento mediante una bitácora científica.</p>
     `
   },
   day3: {
@@ -47,9 +48,12 @@ const courseData = {
     completed: false,
     challenge: "Escribe en tu bitácora por qué una operación individual con setup perfecto puede ser perdedora y cómo afecta esto a tu mentalidad.",
     content: `
-      <p>El mercado es un <strong>entorno de probabilidades, no de certezas</strong>. Cada operación individual tiene un resultado aleatorio e independiente de las anteriores.</p>
-      <h3>La Distribución de Resultados</h3>
-      <p>Incluso con un sistema de trading que tenga un 60% de acierto estadístico a largo plazo, es matemáticamente posible (y normal) experimentar rachas de 4 o 5 operaciones perdedoras consecutivas sin que el sistema esté roto.</p>
+      <p>El mercado es un <strong>entorno de probabilidades puras, no de certezas</strong>. Cada operación que ejecutas es un evento único, independiente y estadísticamente aislado de las operaciones anteriores y posteriores.</p>
+      <h3>La Ley de la Distribución Aleatoria</h3>
+      <p>Incluso con un sistema de trading validado que tenga un 60% de acierto estadístico a largo plazo, la distribución de operaciones ganadoras (W) y perdedoras (L) a corto plazo es completamente aleatoria. En una muestra de 100 operaciones, es matemáticamente normal experimentar rachas de 5 o 6 pérdidas consecutivas.</p>
+      <div class="highlight-box">
+        <strong>Pauta Probabilística:</strong> Si tu mente asocia un \"setup perfecto\" con una \"ganancia segura\", sufrirás un colapso psicológico al perder. Piensa en muestras de 100 operaciones, no en el resultado del trade individual actual.
+      </div>
     `
   },
   day4: {
@@ -60,9 +64,10 @@ const courseData = {
     completed: false,
     challenge: "Busca en tu gráfico un caso de rompimiento falso (caza de stops) y documenta cómo reaccionó el precio tras atrapar a los operadores ansiosos.",
     content: `
-      <p>Para no ser la presa, debes entender cómo opera el cazador. La manipulación de mercado no es una conspiración, sino la necesidad de <strong>liquidez institucional</strong>.</p>
-      <h3>Trampas Técnicas y Caza de Liquidez</h3>
-      <p>Los grandes participantes (bancos, fondos de cobertura) necesitan contrapartida para llenar sus órdenes masivas. Para comprar barato, inducen a los traders minoristas a vender rompiendo soportes de manera temporal para activar sus stops (que son órdenes de venta de mercado), absorbiendo toda esa liquidez para iniciar el movimiento alcista real.</p>
+      <p>Para no ser la presa en el mercado de futuros, debes comprender los incentivos y necesidades del cazador: **las grandes instituciones financieras**.</p>
+      <h3>Mecánica de la Liquidez y Contrapartida</h3>
+      <p>Los bancos de inversión y fondos de cobertura operan con volúmenes masivos de contratos. Si intentan comprar 5,000 contratos de golpe en un soporte obvio, desplazarían el precio al alza de inmediato, auto-perjudicándose con precios caros. Necesitan que haya vendedores masivos en esa zona para emparejar sus compras de forma barata.</p>
+      <p>Para lograrlo, el algoritmo interbancario empuja temporalmente el precio por debajo de los soportes retail para activar los Stop Losses de los compradores (que son órdenes de venta de mercado). Al ejecutarse esas ventas, las instituciones absorben la contrapartida a precios de descuento y lanzan la inyección alcista real.</p>
     `
   },
   day5: {
@@ -73,9 +78,10 @@ const courseData = {
     completed: false,
     challenge: "Explica en tus palabras la mecánica de un Short Squeeze y por qué está prohibido intentar adivinar el techo de un movimiento parabólico.",
     content: `
-      <p>El <strong>Short Squeeze</strong> es un ejemplo clásico de manipulación y pánico técnico. Ocurre cuando un gran número de vendedores en corto se ven obligados a cerrar sus posiciones de manera simultánea.</p>
-      <h3>La Cascada de Compras Forzadas</h3>
-      <p>Dado que cerrar una posición en corto requiere una orden de compra, el pánico de los vendedores y la ejecución de sus Stop Losses empujan el precio exponencialmente al alza, barriendo a cualquiera que intente buscar techos sin confluencias estructurales.</p>
+      <p>El <strong>Short Squeeze</strong> es una cascada de compras forzadas que ilustra el pánico técnico y los desequilibrios graves de las subastas.</p>
+      <h3>La Cascada de Cierre de Posiciones Cortas</h3>
+      <p>Cuando muchos operadores minoristas e institucionales se posicionan en venta en corto esperando que un activo caiga, colocan sus órdenes de protección (Buy Stops) justo por encima de máximos relativos. Si el precio sube y activa esos Buy Stops, estos se ejecutan como órdenes de compra a mercado para cerrar la posición.</p>
+      <p>Esto genera una reacción en cadena: cada stop de venta activado inyecta más compras al mercado, acelerando el movimiento vertical al alza. Intentar buscar techos vendiendo en medio de este pánico es suicidio financiero, ya que estás luchando contra compras forzosas sin límite de volumen.</p>
     `
   },
   day6: {
@@ -86,9 +92,10 @@ const courseData = {
     completed: false,
     challenge: "Describe la diferencia visual en un gráfico entre una vela de ruptura institucional limpia y una vela que solo cazó liquidez (fakeout).",
     content: `
-      <p>Los <strong>Fakeouts</strong> (falsos rompimientos) ocurren constantemente en zonas obvias de soporte y resistencia. Aprender a identificarlos evita entrar tarde al mercado.</p>
-      <h3>Mecánica de la Trampa</h3>
-      <p>Si el precio perfora un nivel clave pero cierra rápidamente dentro del rango previo dejando una mecha larga, estamos ante un rechazo por absorción institucional. Los operadores profesionales esperan la vela de confirmación en lugar de comprar o vender impulsivamente la ruptura de la línea.</p>
+      <p>Los <strong>Fakeouts</strong> (falsos rompimientos) ocurren de manera repetida en zonas obvias de soporte y resistencia. Aprender a identificarlos te evitará entrar tarde y quedar atrapado en el lado equivocado.</p>
+      <h3>Confirmación frente a Absorción</h3>
+      <p>Si el precio rompe un nivel de resistencia clave pero inmediatamente regresa al rango y cierra por debajo de él en la vela de 1 o 5 minutos, dejando una mecha larga superior, estamos ante un barrido de liquidez (*sweep*). El volumen institucional absorbió la demanda y no tiene intención de continuar al alza.</p>
+      <p>Para validar una ruptura real (BOS), buscamos ver una vela con cuerpo completo cerrando por encima de la zona y con un desplazamiento fuerte en el volumen transaccional.</p>
     `
   },
   day7: {
@@ -99,9 +106,10 @@ const courseData = {
     completed: false,
     challenge: "Escribe tu compromiso mental: declara que aceptas el resultado probabilístico del mercado y define qué sesgo vas a monitorizar esta semana.",
     content: `
-      <p>Felicidades por completar el Módulo 1. Has aprendido que el precio es lo único real y has analizado los mecanismos de manipulación y sesgos que destruyen al trader aficionado.</p>
+      <p>Felicidades por completar el Módulo 1. Has aprendido que el precio es la única realidad del mercado y has expuesto los mecanismos de manipulación, liquidez y sesgos que destruyen al trader aficionado.</p>
+      <p>A partir de hoy, adoptas la **Dicotomía del Control Estoica** en tu operativa: te enfocas al 100% en la calidad de tu proceso, el cálculo de riesgo y tu disciplina mental, aceptando de forma neutral y sin emociones el resultado financiero que el mercado decida entregarte en cada operación.</p>
       <div class="alert-box" style="border-left-color: var(--color-accent); background: rgba(59, 130, 246, 0.03);">
-        <strong>📝 Evaluación del Módulo 1:</strong> Responde correctamente el cuestionario de abajo para certificar tu comprensión y desbloquear el Módulo de Gestión y Disciplina.
+        <strong>📝 Evaluación del Módulo 1:</strong> Responde correctamente el cuestionario de abajo para certificar tu nivel de comprensión técnica y desbloquear el Módulo de Gestión y Disciplina.
       </div>
     `
   },
@@ -113,9 +121,15 @@ const courseData = {
     completed: false,
     challenge: "Calcula la ruina matemática de una cuenta de $10,000 arriesgando el 10% por operación frente al 1% en una racha de 10 operaciones fallidas.",
     content: `
-      <p>Iniciamos el <strong>Módulo 2: Gestión y Disciplina</strong>. El trading no es un arte; es un negocio de <strong>estadística y matemáticas aplicadas</strong>.</p>
-      <h3>La Preservación del Capital</h3>
-      <p>Tu capital es tu inventario de trabajo. Si arriesgas el 1% por operación, necesitas 100 operaciones perdedoras consecutivas para quebrar. Si arriesgas el 10%, con solo 10 operaciones perdedoras (un suceso estadísticamente probable en cualquier sistema) estarás fuera del negocio de forma permanente.</p>
+      <p>Iniciamos el <strong>Módulo 2: Gestión y Disciplina</strong>. El trading no es un arte místico; es un negocio estricto de **gestión del capital de trabajo y estadísticas aplicadas**.</p>
+      <h3>La Tabla de Recuperación del Drawdown</h3>
+      <p>Cuando pierdes capital operativo, tu capacidad matemática de recuperación se deteriora exponencialmente:</p>
+      <ul>
+        <li>Una pérdida del 10% requiere una ganancia del 11% para volver al punto inicial (Breakeven).</li>
+        <li>Una pérdida del 30% requiere una ganancia del 43% para recuperarse.</li>
+        <li>Una pérdida del 50% requiere duplicar la cuenta (100% de rentabilidad) solo para recuperar lo perdido.</li>
+      </ul>
+      <p>Arriesgar un porcentaje pequeño (máximo el 1% por operación) es la única vía matemática que garantiza que sobrevivirás a las rachas de pérdidas inevitables durante tu fase de aprendizaje.</p>
     `
   },
   day9: {
@@ -126,9 +140,16 @@ const courseData = {
     completed: false,
     challenge: "Si realizas 20 operaciones arriesgando $100 por trade con un R:R 1:2, y ganas 8 operaciones (40% acierto) y pierdes 12, calcula tu beneficio neto.",
     content: `
-      <p>No necesitas acertar el 90% de tus operaciones para ser rentable. La clave está en la <strong>asimetría de los ratios de Riesgo/Beneficio (R:R)</strong>.</p>
-      <h3>La ventaja de un R:R 1:2</h3>
-      <p>Con un ratio de 1:2, cada acierto paga el doble de lo que cuesta cada pérdida. Esto te permite tener un balance positivo a largo plazo incluso ganando menos de la mitad de tus operaciones.</p>
+      <p>Una de las mayores revelaciones para un trader consistente es entender que **no necesitas una alta tasa de acierto para ganar dinero** de forma consistente.</p>
+      <h3>La Ventaja del Ratio Riesgo/Beneficio (R:R) de 1:2</h3>
+      <p>Si arriesgas $100 en cada operación para buscar un beneficio de $200 (R:R 1:2), las matemáticas de la asimetría te protegen:</p>
+      <ul>
+        <li>Incluso si pierdes el 60% de tus operaciones (ganas sólo 4 de cada 10), tu resultado final es positivo.</li>
+        <li>4 operaciones ganadas x $200 = +$800</li>
+        <li>6 operaciones perdidas x $100 = -$600</li>
+        <li><strong>Resultado Neto: +$200</strong></li>
+      </ul>
+      <p>Buscar ratios de riesgo beneficio asimétricos te quita la presión psicológica de tener que \"adivinar\" o \"acertar\" siempre en tus análisis.</p>
     `
   },
   day10: {
@@ -139,9 +160,10 @@ const courseData = {
     completed: false,
     challenge: "Establece tu regla inquebrantable de Drawdown diario: define en dinero cuánto es tu límite diario y escribe tu protocolo de apagado inmediato.",
     content: `
-      <p>El <strong>Daily Drawdown</strong> o Límite de Pérdida Diaria es el sistema de seguridad de tu cuenta. Evita que un día de frustración o falta de sincronización destruya tu capital de meses.</p>
-      <h3>La Regla de las Dos Pérdidas</h3>
-      <p>Si ejecutas dos operaciones fallidas en la misma sesión, la regla estoica dicta que debes cerrar la plataforma inmediatamente. El mercado estará ahí mañana; tu capital, si continúas operando con sesgos emocionales, probablemente no.</p>
+      <p>El <strong>Daily Drawdown</strong> o Límite de Pérdida Diaria es el cinturón de seguridad que protege tu cuenta del peor enemigo que tienes: **tú mismo en un estado de secuestro emocional**.</p>
+      <h3>La Neurobiología de las Pérdidas y la Revancha</h3>
+      <p>Cuando experimentas pérdidas consecutivas en una sesión, tu cerebro activa la amígdala, la región responsable de las respuestas al miedo y al peligro. Esto nubla tu córtex prefrontal (la zona del cerebro encargada del análisis lógico y la planificación), llevándote a cometer locuras como aumentar el riesgo o sobreoperar buscando \"venganza\" contra el mercado.</p>
+      <p>Establece un límite diario estricto (ej. 2 pérdidas en la sesión o el 2% de la cuenta). Al alcanzar este límite, tu única tarea es apagar el ordenador e irte. No intentes recuperar tu dinero bajo el efecto de la frustración.</p>
     `
   },
   day11: {
@@ -152,9 +174,16 @@ const courseData = {
     completed: false,
     challenge: "Documenta en tu bitácora una operación simulada (o real) reciente siguiendo estrictamente tus reglas de gestión: capital, riesgo exacto y R:R.",
     content: `
-      <p>Lo que no se mide no se puede mejorar. La <strong>Bitácora de Trading</strong> es el registro histórico de tu comportamiento frente al mercado.</p>
-      <h3>El Espejo del Trader</h3>
-      <p>Un sistema repetible se construye documentando cada entrada, salida, emociones sentidas y el cumplimiento o violación de las reglas. Esto transforma un pasatiempo en una profesión auditable.</p>
+      <p>Lo que no se mide no se puede optimizar. La <strong>Bitácora de Trading</strong> no es una simple hoja de contabilidad financiera; es el registro de auditoría de tu comportamiento.</p>
+      <h3>Los Datos que Debes Auditar</h3>
+      <p>Una buena bitácora debe responder de forma objetiva a estas preguntas tras cada trade:</p>
+      <ul>
+        <li>¿Operé respetando el checklist de confluencias de mi sistema?</li>
+        <li>¿Calculé el tamaño de la posición matemáticamente o por impulso?</li>
+        <li>¿Mantuve el Stop Loss en su sitio o lo moví durante la operación?</li>
+        <li>¿Qué emociones sentí antes, durante y después de la ejecución?</li>
+      </ul>
+      <p>Analizar estos patrones al final de cada mes te permitirá identificar de forma científica tus fugas de capital y corregirlas.</p>
     `
   },
   day12: {
@@ -165,13 +194,10 @@ const courseData = {
     completed: false,
     challenge: "Registra en tu diario de trading los costos de comisiones y el deslizamiento (slippage) estimado de tu última operación simulada.",
     content: `
-      <p>Una bitácora técnica no solo registra si ganaste o perdiste dinero; registra la calidad de tu <strong>proceso de toma de decisiones</strong>.</p>
-      <h3>Parámetros de Auditoría</h3>
-      <ul>
-        <li><strong>Desviación del Plan:</strong> ¿Operaste por impulso o por setup?</li>
-        <li><strong>Ejecución del Stop:</strong> ¿Respetaste el Stop Loss original o lo moviste en contra?</li>
-        <li><strong>Comisiones y Slippage:</strong> El costo de comisiones es el costo de hacer negocios; debes medirlo para evaluar tu rentabilidad neta real.</li>
-      </ul>
+      <p>Un trader profesional evalúa su rendimiento basándose en la **calidad de su proceso de toma de decisiones**, no únicamente en los resultados financieros de corto plazo.</p>
+      <h3>Evaluación de Procesos</h3>
+      <p>Un trade que viola todas las reglas de tu sistema pero que resulta ganador por pura suerte es un **mal trade** y representa una amenaza para tu cuenta a largo plazo. Por el contrario, un trade que respeta tus reglas pero toca el Stop Loss debido a la naturaleza probabilística del mercado es un **excelente trade**.</p>
+      <p>Aprende a valorar y celebrar tu disciplina para seguir las reglas, y documenta rigurosamente costos operativos como comisiones y deslizamientos (*slippage*) de ejecución.</p>
     `
   },
   day13: {
@@ -182,9 +208,9 @@ const courseData = {
     completed: false,
     challenge: "Describe por qué operar de forma aleatoria (cambiando reglas cada día) impide obtener una ventaja estadística válida.",
     content: `
-      <p>La consistencia no proviene de predecir el futuro; proviene de <strong>ejecutar un proceso repetible</strong> con disciplina de máquina.</p>
-      <h3>La Consistencia Operativa</h3>
-      <p>Un sistema repetible requiere que las condiciones de entrada y de salida sean idénticas en cada trade. Si cambias de indicadores o de reglas de riesgo cada vez que pierdes, nunca sabrás si tu ventaja estadística realmente funciona a lo largo de una muestra representativa de operaciones.</p>
+      <p>La consistencia en los mercados financieros no se logra prediciendo el futuro; se logra **ejecutando un proceso idéntico** frente a una muestra amplia de operaciones.</p>
+      <h3>La Ventaja Estadística (Edge)</h3>
+      <p>Para saber si tu sistema tiene esperanza matemática positiva, necesitas ejecutar el mismo setup con las mismas reglas de riesgo y los mismos parámetros de entrada y salida al menos 100 veces. Si cambias de indicadores o de reglas cada vez que pierdes dos trades, estarás operando con un sistema aleatorio que destruirá tu capital a largo plazo.</p>
     `
   },
   day14: {
@@ -195,12 +221,14 @@ const courseData = {
     completed: false,
     challenge: "Si tu cuenta tiene $5,000, arriesgas el 1% ($50) y tu Stop Loss en MES está a 10 puntos ($5 por punto por contrato), ¿cuántos contratos debes operar?",
     content: `
-      <p>El tamaño de tu posición nunca debe ser al azar o basarse en el sentimiento. Se calcula matemáticamente antes de cada trade.</p>
-      <h3>Fórmula de Posición</h3>
+      <p>El tamaño de tu posición nunca debe ser estimado o dejarse a la intuición. Se calcula matemáticamente antes de cada operación basándote en la volatilidad y la distancia de tu Stop Loss técnico.</p>
+      <h3>La Fórmula Inquebrantable de Gestión de Riesgo</h3>
       <div class="highlight-box">
-        <strong>Contratos = Riesgo en Dólares / (Distancia de Stop Loss en Puntos x Valor del Punto del Contrato)</strong>
+        <strong>Contratos = Riesgo Monetario Máximo / (Distancia de Stop Loss en Puntos x Valor de Punto por Contrato)</strong>
       </div>
-      <p>Si la distancia de tu Stop Loss técnico es mayor, debes reducir el número de contratos para que el riesgo financiero siga siendo exactamente el mismo.</p>
+      <p>Por ejemplo, si arriesgas el 1% de una cuenta de $10,000 ($100) y tu stop loss técnico está a 20 puntos en el Micro E-mini S&P 500 (MES, valor del punto = $5), debes operar exactamente 1 contrato:</p>
+      <p><strong>$100 / (20 ptos x $5) = 1 Contrato.</strong></p>
+      <p>Si la volatilidad del mercado te obliga a ampliar el Stop Loss a 40 puntos para que la operación respire, debes reducir la posición para que tu pérdida máxima siga siendo de exactamente $100.</p>
     `
   },
   day15: {
@@ -211,7 +239,8 @@ const courseData = {
     completed: false,
     challenge: "Firma tu manifiesto de riesgo y define tu riesgo máximo por operación (%) y tu límite de pérdida diario en dólares.",
     content: `
-      <p>Has finalizado el Módulo 2. Ahora comprendes la naturaleza matemática del trading, el cálculo de posición, la asimetría R:R y la bitácora técnica de procesos.</p>
+      <p>Has finalizado con éxito el Módulo 2. Ahora comprendes las matemáticas de la ruina, los ratios asimétricos R:R, el cálculo científico del tamaño de posición y el control del drawdown diario.</p>
+      <p>Con estas herramientas de gestión listas y tu mente disciplinada, estás preparado para pasar al **Módulo de Lectura Técnica Limpia y Estructuras de Alta Probabilidad**.</p>
       <div class="alert-box" style="border-left-color: var(--color-accent); background: rgba(59, 130, 246, 0.03);">
         <strong>📝 Evaluación del Módulo 2:</strong> Aprueba el cuestionario de gestión de riesgo abajo para desbloquear el Módulo de Estrategia Técnica.
       </div>
@@ -225,9 +254,14 @@ const courseData = {
     completed: false,
     challenge: "Dibuja o identifica en tu simulador una serie de Máximos más Altos (HH) y Mínimos más Altos (HL) en una tendencia alcista.",
     content: `
-      <p>Comenzamos el <strong>Módulo 3: Estrategia de Alta Probabilidad</strong>. Aprenderemos a leer el mercado de forma limpia, directa y <strong>sin indicadores de ruido</strong>.</p>
-      <h3>La Subasta Continua</h3>
-      <p>El mercado es una subasta. La estructura nos muestra quién tiene el control: si la tendencia hace máximos y mínimos ascendentes, los compradores dominan la subasta; si hace máximos y mínimos descendentes, los vendedores tienen el control.</p>
+      <p>Comenzamos el <strong>Módulo 3: Estrategia de Alta Probabilidad</strong>. Aprenderemos a leer el mercado de forma limpia, directa y **sin el ruido rezagado de los indicadores retail**.</p>
+      <h3>La Subasta Continua del Mercado</h3>
+      <p>El precio se mueve en una estructura de ondas determinadas por el flujo de órdenes en tiempo real. La estructura nos indica la dirección dominante de la subasta:</p>
+      <ul>
+        <li><strong>Estructura Alcista:</strong> Caracterizada por una serie consecutiva de Máximos más Altos (*Higher Highs* - HH) y Mínimos más Altos (*Higher Lows* - HL).</li>
+        <li><strong>Estructura Bajista:</strong> Caracterizada por una serie de Máximos más Bajos (*Lower Highs* - LH) y Mínimos más Bajos (*Lower Lows* - LL).</li>
+      </ul>
+      <p>Alinear tus operaciones con la dirección de la estructura del mercado es la base fundamental de todo setup de alta probabilidad.</p>
     `
   },
   day17: {
@@ -238,9 +272,12 @@ const courseData = {
     completed: false,
     challenge: "Busca en el gráfico en vivo un cambio de tendencia marcado por un quiebre de estructura (BOS) y documenta los precios de los niveles rotos.",
     content: `
-      <p>El <strong>BOS (Break of Structure)</strong> es el primer indicio de un cambio en la dirección de la subasta de precios.</p>
-      <h3>Mecánica del BOS</h3>
-      <p>En una tendencia alcista, el último Mínimo Ascendente (HL) es el nivel de defensa de los compradores. Si el precio rompe y cierra por debajo de este nivel, la estructura alcista se invalida, dando paso a una probable estructura bajista (BOS bajista).</p>
+      <p>El <strong>BOS (Break of Structure)</strong> o ruptura de estructura es el primer indicio técnico real de que los participantes institucionales están cambiando la dirección del flujo de órdenes.</p>
+      <h3>Confirmación del Cambio de Dirección</h3>
+      <p>En una tendencia alcista, el último Mínimo Ascendente (HL) es el punto clave defendido por los compradores institucionales. Si el precio rompe y **cierra con cuerpo de vela** por debajo de este HL, la estructura alcista se anula de forma oficial (BOS Bajista), abriendo paso a una nueva secuencia estructural de ventas.</p>
+      <div class="highlight-box">
+        <strong>⚠️ Detalle Técnico:</strong> Un BOS real requiere que la vela cierre con su cuerpo fuera del nivel. Si la vela sólo lo cruza con una mecha y regresa rápido, se trata de un barrido de liquidez (*sweep*), no de una ruptura de estructura.
+      </div>
     `
   },
   day18: {
@@ -251,9 +288,9 @@ const courseData = {
     completed: false,
     challenge: "Identifica en el gráfico de futuros una zona donde el precio haya rebotado al menos dos veces con fuerte volumen y márcala como zona de valor.",
     content: `
-      <p>Los soportes y resistencias no son líneas delgadas en el gráfico; son <strong>zonas de acumulación de órdenes</strong> institucionales pendientes por ejecutar.</p>
+      <p>Los soportes y resistencias no son líneas delgadas en el gráfico; son **zonas de acumulación de órdenes pendientes** que las instituciones defienden activamente.</p>
       <h3>Zonas de Oferta y Demanda</h3>
-      <p>Un soporte de valor se localiza en el origen de un fuerte movimiento alcista previo. Buscamos operar en estas zonas porque la probabilidad de que los grandes participantes defiendan sus posiciones es altamente favorable.</p>
+      <p>Una zona de demanda de valor se sitúa en el origen de un fuerte movimiento impulsivo alcista previo que rompió estructura. Al regresar el precio a este bloque por primera vez (retesteo), buscamos incorporarnos en compras porque la probabilidad de que los creadores de mercado defiendan e inyecten capital en sus posiciones originales es altamente favorable.</p>
     `
   },
   day19: {
@@ -264,9 +301,9 @@ const courseData = {
     completed: false,
     challenge: "Realiza un análisis completo del activo actual en el simulador basándote únicamente en la estructura y la acción del precio actual sin indicadores.",
     content: `
-      <p>Llenar tu pantalla de indicadores como Bandas de Bollinger, MACD o Estocásticos solo añade retraso y parálisis por análisis. El precio es el único indicador líder en tiempo real.</p>
-      <h3>La Lectura Limpia</h3>
-      <p>Operar con el precio puro consiste en observar la interacción entre impulsos, retrocesos, velocidad de las velas y zonas de liquidez para tomar decisiones rápidas y precisas.</p>
+      <p>Llenar tu pantalla de indicadores retrasados como el MACD, Bandas de Bollinger o cruces de medias móviles solo añade parálisis por análisis y retrasa tu toma de decisiones bajo presión.</p>
+      <h3>Lectura de la Acción del Precio</h3>
+      <p>Operar con el precio puro consiste en observar e interpretar la interacción de impulsos y retrocesos, el tamaño y la velocidad de los cuerpos de las velas, y la longitud de las mechas de rechazo de mínimos y máximos. Esta lectura en tiempo real te da una ventaja de velocidad decisiva frente a los operadores que esperan señales tardías de sus indicadores.</p>
     `
   },
   day20: {
@@ -277,9 +314,9 @@ const courseData = {
     completed: false,
     challenge: "Encuentra en el simulador un ejemplo de resistencia que, tras ser rota con intención, haya actuado como soporte. Anota los precios del testeo.",
     content: `
-      <p>La <strong>Ley de Polaridad</strong> demuestra la memoria del mercado y el comportamiento del flujo de órdenes.</p>
-      <h3>Soporte convertido en Resistencia</h3>
-      <p>Cuando un soporte fuerte es perforado, los compradores atrapados esperan a que el precio regrese a su nivel de entrada para cerrar sus posiciones con pérdidas nulas (breakeven). Ese cierre de posiciones vendedoras, sumado a nuevos vendedores, transforma el antiguo soporte en resistencia.</p>
+      <p>La <strong>Ley de Polaridad</strong> demuestra la memoria transaccional del mercado y la mecánica detrás del flujo de órdenes institucionales.</p>
+      <h3>Soporte convertido en Resistencia (y viceversa)</h3>
+      <p>Cuando una resistencia técnica fuerte es perforada al alza con volumen, los vendedores atrapados en esa zona se encuentran en pérdidas. Al regresar el precio a ese mismo nivel de precios, estos operadores cierran sus ventas a precio de entrada (Breakeven), lo que genera una oleada de compras del mercado. Esta fuerza de compra combinada con nuevos compradores transforma la antigua resistencia en un nuevo soporte.</p>
     `
   },
   day21: {
@@ -290,10 +327,10 @@ const courseData = {
     completed: false,
     challenge: "Utilizando la EMA 200 y el RSI 14, identifica si el precio cotiza en zona de compras o ventas y anota la señal del oscilador de momentum.",
     content: `
-      <p>Aunque operamos basados en acción de precio, el Setup de confluencia Visión Pro utiliza dos filtros complementarios para validar el momentum.</p>
+      <p>Aunque nuestra estrategia se basa en la estructura pura y la acción del precio, el Setup Visión Pro utiliza dos filtros objetivos para añadir confluencia estadística y evitar falsas entradas:</p>
       <ul>
-        <li><strong>Filtro de Tendencia (EMA 200):</strong> Si el precio está sobre la EMA 200, la subasta es alcista (solo buscamos compras). Si está bajo ella, es bajista (solo cortos).</li>
-        <li><strong>Filtro de Momentum (RSI 14):</strong> Confirmamos el impulso cuando el RSI cruza la línea central de 50 a favor de la tendencia.</li>
+        <li><strong>Filtro de Tendencia (EMA 200):</strong> Actúa como nuestra brújula direccional. Si el precio cotiza por encima de la Media Móvil Exponencial de 200 periodos, la tendencia mayor es alcista y sólo buscaremos compras. Si cotiza por debajo, buscaremos ventas en corto.</li>
+        <li><strong>Filtro de Momentum (RSI 14):</strong> Confirmamos la fuerza del impulso cuando el Relative Strength Index de 14 períodos cruza el nivel neutral de 50 en la misma dirección de nuestra tendencia de fondo.</li>
       </ul>
     `
   },
@@ -305,7 +342,8 @@ const courseData = {
     completed: false,
     challenge: "Explica detalladamente en tu bitácora por qué un gráfico sin indicadores de ruido mejora la toma de decisiones bajo presión.",
     content: `
-      <p>Has finalizado el Módulo 3. Conoces las estructuras de mercado, los quiebres (BOS), la polaridad y los filtros de confluencia técnica para una lectura limpia de precios.</p>
+      <p>Has finalizado con éxito el Módulo 3. Ahora sabes cómo identificar estructuras, rupturas BOS, zonas de polaridad y confluir filtros de momentum de forma profesional.</p>
+      <p>Estás listo para pasar al **Módulo de Ejecución y Protocolos Operativos**, donde aprenderás las rutinas de un operador profesional y la gestión psicológica bajo presión de mercado real.</p>
       <div class="alert-box" style="border-left-color: var(--color-accent); background: rgba(59, 130, 246, 0.03);">
         <strong>📝 Evaluación del Módulo 3:</strong> Completa y aprueba el cuestionario técnico de abajo para desbloquear el Módulo de Ejecución y Autocontrol Mental.
       </div>
@@ -319,9 +357,9 @@ const courseData = {
     completed: false,
     challenge: "Diseña por escrito tu rutina diaria antes de la sesión de trading: horas de sueño, preparación física, revisión de noticias y análisis técnico previo.",
     content: `
-      <p>Comenzamos el <strong>Módulo 4: Ejecución y Evaluación</strong>. Un trader profesional se comporta como un atleta de alto rendimiento: tiene una rutina rígida antes, durante y después de operar.</p>
-      <h3>La Disciplina del Protocolo</h3>
-      <p>Operar de manera profesional requiere estar en un estado mental calmado y descansado. Improvisar la sesión o abrir gráficos minutos antes de la apertura del mercado invita al desastre operativo.</p>
+      <p>Comenzamos el <strong>Módulo 4: Ejecución y Evaluación</strong>. Un trader rentable no improvisa; se comporta como un deportista olímpico de alto rendimiento y sigue una rutina rigurosa.</p>
+      <h3>La Rutina del Éxito Operativo</h3>
+      <p>El trading requiere un enfoque y una claridad mental absoluta. Dormir las horas necesarias, realizar actividad física básica y mantener un estado mental de calma estoica antes de sentarse frente a las pantallas reduce drásticamente las decisiones irracionales y las entradas fuera del plan impulsadas por el estrés.</p>
     `
   },
   day24: {
@@ -332,14 +370,16 @@ const courseData = {
     completed: false,
     challenge: "Escribe una lista de comprobación (checklist) de 5 puntos obligatorios que debes marcar de manera positiva antes de abrir cualquier operación en real.",
     content: `
-      <p>Antes de que un piloto despegue, revisa una checklist exhaustiva. En el trading de futuros, debes hacer exactamente lo mismo.</p>
-      <h3>Checklist de Confluencias</h3>
+      <p>Antes de despegar, un piloto de aviación revisa minuciosamente un checklist exhaustivo. En el trading de futuros, debes operar con la misma seriedad.</p>
+      <h3>Checklist de Confluencias Operativas</h3>
       <ul>
-        <li>¿El precio está alineado con la EMA 200?</li>
-        <li>¿El RSI cruzó la línea central de 50 en vela cerrada?</li>
-        <li>¿El Stop Loss está colocado en un nivel estructural válido?</li>
-        <li>¿El tamaño de posición respeta el 1% de riesgo máximo?</li>
+        <li>¿El precio está cotizando a favor de la tendencia marcada por la EMA 200?</li>
+        <li>¿El RSI 14 cruza o se mantiene a favor del impulso en vela cerrada?</li>
+        <li>¿Tenemos un quiebre de estructura (BOS) claro a favor del trade?</li>
+        <li>¿El Stop Loss está situado por debajo de un mínimo o máximo estructural real?</li>
+        <li>¿El tamaño de los contratos ha sido calculado para arriesgar exactamente el 1%?</li>
       </ul>
+      <p>Si alguna de estas preguntas es negativa, no hay operación. Respetar el checklist es tu escudo contra la aleatoriedad emocional.</p>
     `
   },
   day25: {
@@ -350,9 +390,9 @@ const courseData = {
     completed: false,
     challenge: "Realiza 5 operaciones en el simulador y documenta tu nivel de calma del 1 al 10 antes de hacer clic en los botones de COMPRAR o VENDER.",
     content: `
-      <p>Cuando el precio oscila rápido, tu cerebro entra en modo de alerta. El control emocional bajo presión consiste en <strong>confiar en el proceso matemático</strong> y no en el resultado del trade actual.</p>
-      <h3>Aceptación del Riesgo</h3>
-      <p>Si has calculado tu tamaño de posición correctamente y has colocado tu stop loss técnico, ya sabes exactamente cuánto vas a perder si falla. Una vez que aceptas esa pérdida como el costo de tu negocio, la ansiedad de la ejecución desaparece.</p>
+      <p>Cuando la sesión abre y el precio oscila con fuerza y velocidad, el cerebro reptil percibe el riesgo financiero como una amenaza física, inyectando cortisol y adrenalina a tu torrente sanguíneo.</p>
+      <h3>El Autocontrol ante la Incertidumbre</h3>
+      <p>La consistencia operativa consiste en ejecutar tu plan independientemente del miedo o de la avaricia momentáneos. Si has calculado correctamente tu riesgo monetario unitario y aceptas la pérdida potencial como el costo operativo de tu negocio de probabilidades, la ansiedad de apretar el gatillo disminuye notablemente y ejecutas con la frialdad de un algoritmo.</p>
     `
   },
   day26: {
@@ -363,9 +403,9 @@ const courseData = {
     completed: false,
     challenge: "Describe tu protocolo de cierre: ¿qué haces inmediatamente después de terminar tu sesión de trading para desconectar mentalmente?",
     content: `
-      <p>El día de trading no termina cuando cierras tu última posición. Termina con tu protocolo de cierre estoico.</p>
-      <h3>Desconexión Mental</h3>
-      <p>Guarda tus resultados, documenta la sesión en tu bitácora, cierra la plataforma y aléjate de los gráficos. Analizar pantallas constantemente fuera de tu horario operativo fomenta la obsesión y el sobreoperar.</p>
+      <p>Tu sesión de trading no finaliza cuando cierras la última posición abierta; finaliza cuando ejecutas tu **protocolo estoico de apagado**.</p>
+      <h3>Evitar la Fatiga de Pantalla</h3>
+      <p>Una vez terminado tu horario operativo programado, tu única tarea es guardar los datos en tu bitácora, guardar las capturas de tus operaciones y apagar por completo las plataformas. Quedarte horas observando los gráficos genera fatiga mental, fomenta la sobreoperación por aburrimiento y destruye la disciplina de tu rutina.</p>
     `
   },
   day27: {
@@ -376,11 +416,11 @@ const courseData = {
     completed: false,
     challenge: "Revisa tu bitácora de la semana pasada, analiza tu tasa de acierto y tu ratio R:R real. Anota cualquier desviación de tu plan de trading.",
     content: `
-      <p>La auditoría es el análisis racional y frío de tus estadísticas operativas. Nos permite identificar si nuestra rentabilidad está alineada con la ventaja estadística del sistema.</p>
-      <h3>Estadísticas de Valor</h3>
+      <p>La auditoría crítica es el análisis racional e imparcial de tu historial operativo para asegurarte de que tu ejecución sigue alineada con la ventaja de tu sistema.</p>
+      <h3>Métricas de Auditoría Crítica</h3>
       <ul>
-        <li><strong>Profit Factor:</strong> Suma de ganancias dividida por la suma de pérdidas.</li>
-        <li><strong>R:R Promedio:</strong> Determina si de verdad estás dejando correr las operaciones ganadoras a 1:2.</li>
+        <li><strong>Profit Factor:</strong> Suma de ganancias brutas dividida por la suma de pérdidas brutas. Debe ser mayor a 1.2.</li>
+        <li><strong>Tasa de Desviación del Plan:</strong> Número de operaciones operadas por impulso o miedo frente a operaciones que siguieron el checklist de confluencia. Debe ser cero.</li>
       </ul>
     `
   },
@@ -392,9 +432,13 @@ const courseData = {
     completed: false,
     challenge: "Clasifica los últimos 5 errores cometidos en tu simulador como \"técnico\" (romper reglas del setup) o \"emocional\" (entrar por impaciencia o venganza).",
     content: `
-      <p>Errar es humano, pero repetir el mismo error operativo por falta de autoanálisis es inaceptable en un trader profesional.</p>
-      <h3>El Registro de Desviaciones</h3>
-      <p>Mantén un diario específico de errores. Al clasificarlos de manera honesta y objetiva, sabrás con precisión si tu problema actual es la lectura del mercado (error técnico) o la falta de autodisciplina (error emocional).</p>
+      <p>Cometer errores es inevitable en el proceso de aprendizaje, pero repetir los mismos fallos operativos por falta de autoanálisis representa una negligencia grave de tu parte.</p>
+      <h3>Clasificación Rigurosa de Errores</h3>
+      <p>Registra de forma honesta cada error cometido en una sección específica de tu diario:</p>
+      <ul>
+        <li><strong>Error Técnico:</strong> Mala lectura de la estructura, error al trazar zonas o al calcular el tamaño de posición. Se corrige con estudio técnico.</li>
+        <li><strong>Error Emocional:</strong> Entrar antes del cierre de vela por ansiedad (FOMO), ampliar el Stop Loss, o sobreoperar tras una pérdida. Se corrige con disciplina y protocolos rígidos.</li>
+      </ul>
     `
   },
   day29: {
@@ -405,9 +449,9 @@ const courseData = {
     completed: false,
     challenge: "Define una medida correctiva específica y procesable para el error más frecuente (técnico o emocional) que hayas detectado en tu diario de errores.",
     content: `
-      <p>El estoicismo es pragmatismo puro. No nos lamentamos por los errores pasados; los analizamos científicamente para diseñar <strong>acciones correctivas concretas</strong>.</p>
-      <h3>El Plan de Mejora</h3>
-      <p>Si tu error más común es entrar por FOMO antes del cierre de vela, tu regla correctiva debe ser: \"Sólo puedo abrir una posición si pongo una alarma al cierre de la vela actual y mis manos están fuera del ratón hasta entonces\".</p>
+      <p>El estoicismo no es una filosofía teórica; es una guía de acción pragmática. No te lamentes por los errores del pasado; utilízalos de forma científica para diseñar **acciones correctivas procesables**.</p>
+      <h3>El Ciclo de Mejora Kaizen</h3>
+      <p>Si tu auditoría revela que tu error principal es entrar de forma impulsiva antes del cierre de vela, tu regla correctiva obligatoria debe ser: \"No puedo tocar el ratón hasta que el temporizador de la vela actual en curso llegue a cero\". Automatiza tus barreras de comportamiento.</p>
     `
   },
   day30: {
@@ -418,9 +462,10 @@ const courseData = {
     completed: false,
     challenge: "Completa y aprueba el examen final del Módulo 4 con 100%. Genera y descarga tu Diploma de Maestría en Trading Profesional.",
     content: `
-      <p>Has alcanzado el último día de este riguroso programa de transformación de 30 días. Has progresado desde desmitificar tus sesgos mentales hasta consolidar una rutina operativa inquebrantable de gestión de riesgo y lectura técnica limpia.</p>
+      <p>Has completado el riguroso programa de formación de 30 días del Ecosistema-AS. Has progresado desde desmitificar tus sesgos cognitivos hasta dominar las matemáticas de gestión y las estructuras de mercado.</p>
+      <p>A partir de hoy, estás preparado para avanzar hacia los pilares avanzados de **Trading Institucional (Smart Money Concepts) y Especulación Algorítmica (Pilares 5 al 14)**.</p>
       <div class="alert-box" style="border-left-color: gold; background: rgba(245, 158, 11, 0.03);">
-        <strong>🏆 Examen de Certificación Final:</strong> Aprueba el examen técnico-práctico final de 5 preguntas para desbloquear la generación de tu Diploma de Maestría firmado por Albert Sierra.
+        <strong>🏆 Examen de Certificación Final:</strong> Aprueba la evaluación final de 5 preguntas técnicas para desbloquear la descarga de tu Diploma de Maestría firmado por Albert Sierra.
       </div>
     `
   },
@@ -432,16 +477,14 @@ const courseData = {
     completed: false,
     challenge: "Identifica en tu gráfico del simulador una vela de fuerte intención que haya roto un nivel estructural (BOS) y marca el origen de esa vela como un Bloque de Órdenes (OB) institucional.",
     content: `
-      <p>Comenzamos el <strong>Módulo 5: Bloques de Órdenes</strong>. En el trading institucional, entendemos que el mercado no es movido por traders minoristas, sino por algoritmos interbancarios que inyectan volumen masivo en zonas de precios específicas.</p>
-      <h3>¿Qué es un Order Block (OB)?</h3>
-      <p>Un Order Block es la última vela en sentido contrario antes de un movimiento fuerte e impulsivo que rompe la estructura del mercado (BOS). Esta vela representa la zona exacta donde las instituciones financieras acumularon un volumen masivo de órdenes de compra o venta en el pasado. Dado que las instituciones no pueden inyectar todas sus órdenes a la vez para no colapsar la cotización, dejan órdenes pendientes (límite). Cuando el precio regresa a esta zona (proceso de mitigación), estas órdenes se activan, provocando una reacción fuerte y predecible en el precio.</p>
+      <p>Comenzamos el <strong>Módulo 5: Bloques de Órdenes</strong>. En el trading institucional avanzado, entendemos que el mercado de futuros es conducido por algoritmos interbancarios avanzados de entrega de precios (como el IPDA).</p>
+      <h3>Mecánica de un Order Block (OB)</h3>
+      <p>Un Order Block es la última vela en sentido opuesto antes de una expansión impulsiva de fuerte volumen que rompe la estructura del mercado (BOS). Esta zona representa el rastro donde las grandes instituciones acumularon y distribuyeron sus órdenes límite.</p>
+      <p>Dado que su volumen es demasiado grande para rellenarse al instante, dejan órdenes pendientes en esa zona de origen. Al regresar el precio a mitigar este nivel, estas órdenes se activan, provocando una reacción fuerte y predecible a favor del movimiento original.</p>
       <ul>
-        <li><strong>OB Alcista (Bullish Order Block):</strong> La última vela bajista antes del impulso alcista que rompe un máximo estructural.</li>
-        <li><strong>OB Bajista (Bearish Order Block):</strong> La última vela alcista antes del impulso bajista que rompe un mínimo estructural.</li>
+        <li><strong>Bullish OB:</strong> Última vela bajista previa a un impulso fuerte que quiebra un máximo estructural.</li>
+        <li><strong>Bearish OB:</strong> Última vela alcista previa a una caída fuerte que quiebra un mínimo estructural.</li>
       </ul>
-      <div class="highlight-box">
-        <strong>💡 Clave Institucional:</strong> Un Order Block solo es válido si genera un BOS real en el precio y deja ineficiencias de volumen (Fair Value Gaps) en su expansión. Si no rompe estructura, es solo ruido del mercado.
-      </div>
     `
   },
   day32: {
@@ -452,16 +495,14 @@ const courseData = {
     completed: false,
     challenge: "Encuentra una mecha larga que haya barrido un soporte o resistencia previa para luego darse la vuelta inmediatamente. Anota el precio del barrido de liquidez.",
     content: `
-      <p>Comenzamos el <strong>Módulo 6: Liquidez del Mercado</strong>. Los traders minoristas ven los soportes y resistencias como barreras impenetrables donde el precio debe rebotar. Las instituciones los ven como **piscinas de liquidez masivas** (Liquidity Pools).</p>
-      <h3>La Caza de Stops (Liquidity Sweeps)</h3>
-      <p>Para abrir una posición de compra gigante, una institución necesita contrapartida: necesita que otros vendan en esa misma zona. ¿Dónde se concentran las órdenes de venta? Justo debajo de los soportes obvios (los Stop Loss de los compradores minoristas, que se ejecutan como órdenes de venta de mercado). El algoritmo interbancario empuja temporalmente el precio por debajo del soporte para activar estas órdenes de venta masivas, absorbiéndolas como órdenes de compra baratas para iniciar el movimiento alcista real.</p>
+      <p>Comenzamos el <strong>Módulo 6: Liquidez del Mercado</strong>. Los operadores retail ven los soportes y resistencias como barreras impenetrables donde comprar o vender; las instituciones los ven como **piscinas de liquidez llenas de dinero** (Liquidity Pools).</p>
+      <h3>La Caza de Stops (Stops Sweeps)</h3>
+      <p>Para que una institución pueda acumular una posición de compra gigante, necesita que otros participantes le vendan en esa zona. Los Stop Losses de los compradores retail se sitúan justo por debajo de los soportes obvios, y se ejecutan como órdenes de venta a mercado.</p>
+      <p>El algoritmo institucional empuja el precio temporalmente por debajo del soporte para activar estos stops (inyección forzosa de ventas minoristas), absorbiéndolos como compras baratas a precios de descuento para iniciar el movimiento alcista real.</p>
       <ul>
-        <li><strong>BSL (Buy Stop Liquidity):</strong> Liquidez de compras por encima de máximos relativos (stops de vendedores).</li>
-        <li><strong>SSL (Sell Stop Liquidity):</strong> Liquidez de ventas por debajo de mínimos relativos (stops de compradores).</li>
+        <li><strong>SSL (Sell Stop Liquidity):</strong> Zonas de stops de compra por debajo de mínimos relativos.</li>
+        <li><strong>BSL (Buy Stop Liquidity):</strong> Zonas de stops de venta por encima de máximos relativos.</li>
       </ul>
-      <div class="highlight-box">
-        <strong>👁️ Regla de Oro:</strong> Si no sabes dónde está la liquidez en el gráfico, tú eres la liquidez. Espera a que ocurra el barrido de liquidez (*sweep*) antes de buscar una entrada.
-      </div>
     `
   },
   day33: {
@@ -472,12 +513,10 @@ const courseData = {
     completed: false,
     challenge: "Localiza un desequilibrio de 3 velas en el simulador donde la primera y la tercera vela no se solapen, dejando un vacío o Fair Value Gap (FVG). Anota el precio del rebalanceo.",
     content: `
-      <p>Comenzamos el <strong>Módulo 7: Fair Value Gaps</strong>. Cuando el volumen institucional entra al mercado de forma agresiva, crea un desequilibrio de precios llamado **Fair Value Gap (FVG)** o ineficiencia de entrega.</p>
-      <h3>Anatomía del FVG</h3>
-      <p>Un FVG se compone de un patrón de 3 velas consecutivas. Ocurre cuando el movimiento de la segunda vela es tan rápido y agresivo que la mecha de la primera vela y la mecha de la tercera vela no logran solaparse, dejando un vacío de precios donde solo hubo participación de un lado del mercado (compras o ventas). El algoritmo interbancario tiende a regresar en el futuro a rebalancear esta ineficiencia para entregar el precio de manera eficiente.</p>
-      <div class="highlight-box">
-        <strong>📈 Confluencia Avanzada:</strong> La combinación de un Order Block con un Fair Value Gap justo en su expansión constituye uno de los setups de mayor probabilidad de acierto del trading institucional.
-      </div>
+      <p>Comenzamos el <strong>Módulo 7: Fair Value Gaps</strong>. Cuando el capital institucional entra de golpe al mercado con fuerza, crea un desequilibrio drástico en el flujo de órdenes llamado **Fair Value Gap (FVG)** o ineficiencia de precios.</p>
+      <h3>Anatomía del FVG (Desequilibrio de Velas)</h3>
+      <p>Un FVG se compone de un patrón secuencial de 3 velas consecutivas. Ocurre cuando el movimiento de la segunda vela es tan rápido y voluminoso que la mecha de la primera vela y la de la tercera no logran tocarse, dejando un vacío intermedio donde el precio se entregó de forma ineficiente de un solo lado (compras o ventas).</p>
+      <p>El algoritmo de precios interbancario tiene el mandato de regresar en el futuro a rellenar este vacío de precios para entregar el mercado de forma eficiente. Esto convierte a los FVG en excelentes imanes de precio y zonas de entrada confluentes.</p>
     `
   },
   day34: {
@@ -488,12 +527,12 @@ const courseData = {
     completed: false,
     challenge: "Describe por escrito cómo utilizarías un gráfico de 1 hora para determinar la dirección general y un gráfico de 1 o 5 minutos para afinar tu stop loss de entrada.",
     content: `
-      <p>Comenzamos el <strong>Módulo 8: Fractalidad del Mercado</strong>. El mercado financiero es fractal: los mismos patrones estructurales se repiten desde gráficos semanales hasta gráficos de 1 minuto.</p>
-      <h3>Alineación de Marcos Temporales</h3>
-      <p>Un error mortal es operar setups en 1 minuto en dirección opuesta a la tendencia mayor. El trader profesional utiliza marcos temporales altos (HTF) para determinar la dirección y encontrar zonas de interés (POIs), y marcos temporales bajos (LTF) para esperar la confirmación de la entrada mediante quiebres locales de estructura (BOS) y mitigar el riesgo.</p>
+      <p>Comenzamos el <strong>Módulo 8: Fractalidad del Mercado</strong>. Los mercados financieros se mueven de manera fractal; los mismos patrones se repiten de forma idéntica en marcos de 4 horas, 1 hora, 5 minutos o 1 minuto.</p>
+      <h3>Análisis Top-Down (De Mayor a Menor)</h3>
+      <p>El trader institucional consistente utiliza la fractalidad a su favor para refinar el riesgo y maximizar el ratio R:R:</p>
       <ul>
-        <li><strong>HTF (High Timeframe):</strong> Gráfico de 1 Hora o 4 Horas (Determina el sesgo direccional).</li>
-        <li><strong>LTF (Low Timeframe):</strong> Gráfico de 1 Minuto o 5 Minutos (Determina el gatillo de entrada y sitúa el Stop Loss).</li>
+        <li><strong>Gráfico HTF (1H o 4H):</strong> Identifica la tendencia mayor, los flujos de órdenes dominantes y las zonas de interés de valor (POIs como Order Blocks o FVG de 1H).</li>
+        <li><strong>Gráfico LTF (1m o 5m):</strong> Espera a que el precio llegue a la zona HTF y busca un cambio de carácter local (CHoCH / BOS local) para entrar al mercado con un Stop Loss de pocos puntos, multiplicando el ratio R:R.</li>
       </ul>
     `
   },
@@ -505,12 +544,12 @@ const courseData = {
     completed: false,
     challenge: "Traza un rango operativo desde el inicio del impulso hasta el final del retroceso en tu simulador. Identifica si el precio actual cotiza por encima (Premium) o por debajo (Descuento) del 50%.",
     content: `
-      <p>Comenzamos el <strong>Módulo 9: Rangos de Descuento</strong>. Los profesionales operan bajo las mismas reglas de un negocio comercial de inventarios: **comprar barato y vender caro**.</p>
-      <h3>Premium vs Descuento</h3>
-      <p>Utilizando el 50% de un rango operativo como frontera de equilibrio:</p>
+      <p>Comenzamos el <strong>Módulo 9: Rangos de Descuento</strong>. Las instituciones financieras operan bajo las leyes más básicas del comercio mayorista: **comprar al por mayor a precio de descuento y vender en zonas de precios premium**.</p>
+      <h3>Determinación del Rango Operativo</h3>
+      <p>Al trazar un rango desde el origen de un impulso hasta su extremo final, usamos la línea media del 50% (Equilibrio) como frontera técnica ineludible:</p>
       <ul>
-        <li><strong>Zona Premium (Mitad Superior):</strong> Zona costosa. Solo buscamos ventas y descartamos compras de alto riesgo.</li>
-        <li><strong>Zona de Descuento (Mitad Inferior):</strong> Zona barata. Solo buscamos compras en confluencia con OB y FVG institucionales.</li>
+        <li><strong>Zona Premium (Por encima del 50%):</strong> Zona cara. Únicamente buscamos confluencias de venta y descartamos cualquier compra de alto riesgo.</li>
+        <li><strong>Zona de Descuento (Por debajo del 50%):</strong> Zona barata de rebaja. Aquí es donde buscamos incorporarnos en compras de alta probabilidad en confluencia con OBs y FVG de descuento.</li>
       </ul>
     `
   },
@@ -522,9 +561,9 @@ const courseData = {
     completed: false,
     challenge: "Describe la diferencia entre un Order Block normal y un Breaker Block (OB roto que cambia de función). Encuentra un ejemplo en tu simulador.",
     content: `
-      <p>Comenzamos el <strong>Módulo 10: Mitigación & Breakers</strong>. ¿Qué ocurre cuando un bloque de órdenes falla y es roto con fuerza? Se transforma en una zona de alta probabilidad operativa llamada **Breaker Block**.</p>
-      <h3>Mecánica del Breaker Block</h3>
-      <p>El Breaker Block es un bloque de órdenes que fue sobrepasado por un movimiento impulsivo que barrió liquidez previa y luego rompió estructura. Al regresar el precio a este nivel, actúa con el principio de polaridad: un OB bajista roto se convierte en soporte de alta probabilidad para compras, permitiendo a las instituciones mitigar y cerrar en pérdidas nulas sus posiciones contrarias.</p>
+      <p>Comenzamos el <strong>Módulo 10: Mitigación & Breakers</strong>. ¿Qué ocurre cuando un bloque de órdenes institucional falla y es sobrepasado con fuerza? Se transforma en una zona operativa de alta fiabilidad llamada **Breaker Block**.</p>
+      <h3>Mecánica de un Breaker Block</h3>
+      <p>Un Breaker es un bloque de órdenes que fue roto con fuerza debido a una inyección masiva de volumen que barrió liquidez previa en sentido contrario. Cuando el precio regresa a testear este bloque roto, el algoritmo interbancario utiliza este nivel como soporte/resistencia dinámico para mitigar y cerrar a precio de equilibrio (Breakeven) las posiciones perdedoras acumuladas por las instituciones en la manipulación previa.</p>
     `
   },
   day37: {
@@ -535,11 +574,12 @@ const courseData = {
     completed: false,
     challenge: "Identifica el Punto de Control de Volumen (POC) en una consolidación lateral y explica cómo usar las áreas de bajo volumen (LVN) para colocar tu Stop Loss técnico.",
     content: `
-      <p>Comenzamos el <strong>Módulo 11: Perfil de Volumen</strong>. La acción del precio describe el movimiento; el perfil de volumen nos revela **dónde se negociaron realmente los contratos interbancarios**.</p>
-      <h3>Zonas de Interés de Perfil</h3>
+      <p>Comenzamos el <strong>Módulo 11: Perfil de Volumen</strong>. Mientras que la acción de precio nos describe el movimiento del precio en el tiempo, el perfil de volumen nos indica **dónde se ha acumulado el verdadero volumen transaccional de contratos**.</p>
+      <h3>Zonas Clave de Subasta de Volumen</h3>
       <ul>
-        <li><strong>POC (Point of Control):</strong> El precio exacto donde se negoció el mayor volumen de la sesión. Actúa como un imán para el precio.</li>
-        <li><strong>VAL/VAH (Value Area High/Low):</strong> Los límites del área de valor que concentran el 70% de la actividad transaccional.</li>
+        <li><strong>POC (Point of Control):</strong> El nivel de precios donde se negoció la mayor cantidad de contratos de futuros. Actúa como el centro de gravedad del precio y zona de alta aceptación.</li>
+        <li><strong>Value Area (VA):</strong> La zona de precios que concentra el 70% del volumen total transaccionado de la sesión.</li>
+        <li><strong>LVN (Low Volume Nodes):</strong> Áreas de precios donde hubo poca negociación. Representan rechazo y velocidad, ideales para colocar Stop Losses detrás de ellas.</li>
       </ul>
     `
   },
@@ -551,9 +591,9 @@ const courseData = {
     completed: false,
     challenge: "Diseña tu plan de Drawdown Máximo Diario específico para una cuenta financiada simulada de $50,000, respetando el límite del 2% diario.",
     content: `
-      <p>Comenzamos el <strong>Módulo 12: Especulación de Fondos</strong>. Operar de forma institucional hoy en día implica trabajar con capital de terceros a través de empresas de fondeo (Prop Firms).</p>
-      <h3>La Disciplina del Drawdown</h3>
-      <p>Los traders institucionales no operan sin límites estrictos. En las cuentas fondeadas, la violación del límite de pérdida diario o el límite total (drawdown máximo) conlleva la cancelación inmediata de la cuenta. El autocontrol estoico es la única herramienta que te permite navegar estas reglas corporativas sin entrar en pánico.</p>
+      <p>Comenzamos el <strong>Módulo 12: Especulación de Fondos</strong>. Operar de forma profesional en la actualidad implica la gran ventaja de trabajar con capital de terceros a través de empresas de fondeo de futuros (*Prop Firms*).</p>
+      <h3>Las Reglas de Supervivencia de las Prop Firms</h3>
+      <p>Operar el capital de una firma de fondeo exige el máximo rigor y control de drawdown. Las reglas de consistencia de beneficios y límites estrictos de pérdida diaria (DLL) están diseñadas para forzar el comportamiento estoico del trader. Un solo día de indisciplina o venganza operativa se traduce en la cancelación inmediata de tu cuenta. La gestión emocional y el apego al riesgo son tus únicas armas de éxito.</p>
     `
   },
   day39: {
@@ -564,9 +604,14 @@ const courseData = {
     completed: false,
     challenge: "Simula una operación con 2 contratos en el simulador. Al alcanzar un R:R 1:1, cierra 1 contrato (toma de parcial) y mueve el Stop Loss del segundo contrato a Breakeven.",
     content: `
-      <p>Comenzamos el <strong>Módulo 13: Drawdown & Cierres</strong>. El objetivo de un trader no es tener un 100% de acierto, sino **gestionar el riesgo de forma activa** para que la esperanza matemática haga su trabajo.</p>
-      <h3>Tomas de Parciales y Breakeven</h3>
-      <p>Los ricos no arriesgan su dinero tontamente. Cuando tu operación alcanza un R:R 1:1, cerrar el 50% de la posición (parcial) asegura ganancias en tu saldo y te permite colocar el Stop Loss de la posición restante a tu precio de entrada (Breakeven), eliminando el riesgo financiero del trade actual por completo.</p>
+      <p>Comenzamos el <strong>Módulo 13: Drawdown & Cierres</strong>. El objetivo final de un operador rentable no es acertar todas las operaciones, sino **extraer capital del mercado activamente y minimizar la varianza de pérdidas**.</p>
+      <h3>Gestión Activa del Riesgo</h3>
+      <p>La regla inquebrantable de la preservación de capital dictamina:</p>
+      <ul>
+        <li>Cuando tu trade avanza a un ratio R:R de 1:1, cierras el 50% de la posición (toma de beneficio parcial).</li>
+        <li>Inmediatamente desplazas el Stop Loss del contrato restante a tu precio de entrada (Breakeven).</li>
+      </ul>
+      <p>Al hacer esto, has garantizado ganancias en tu saldo y has transformado la posición restante en una operación libre de riesgo financiero (*free trade*), liberándote de toda presión psicológica para dejar correr el beneficio al target final 1:2.</p>
     `
   },
   day40: {
@@ -577,24 +622,23 @@ const courseData = {
     completed: false,
     challenge: "Redacta tu Checklist final de 5 confluencias institucionales antes de cada trade y aprueba la evaluación final de Maestría del Ecosistema.",
     content: `
-      <p>Comenzamos el <strong>Módulo 14: Plan de Trading Final</strong>. Has culminado tu formación en la especulación de futuros interbancarios. En este último módulo unificamos todos los conocimientos en un Checklist operativo innegociable.</p>
-      <h3>Tu Checklist de Confluencia</h3>
-      <p>Antes de pulsar los botones de compra o venta en el simulador, debes marcar positivamente:</p>
+      <p>Comenzamos el <strong>Módulo 14: Plan de Trading Final</strong>. Has completado con éxito tu formación en la especulación de futuros interbancarios. En este último módulo unificamos todo tu conocimiento en una rutina innegociable.</p>
+      <h3>El Checklist Maestro de Confluencias de Albert Sierra</h3>
+      <p>Antes de pulsar los botones de compra o venta en el simulador de futuros, debes marcar positivamente y sin excepciones:</p>
       <ol>
-        <li>¿El precio está mitigando una zona de interés HTF (OB / FVG)?</li>
-        <li>¿Hubo un barrido de liquidez obvio antes del quiebre?</li>
-        <li>¿Se generó un BOS en temporalidad menor (LTF)?</li>
-        <li>¿Cotizamos en zona de Descuento (para largos) o Premium (para cortos)?</li>
-        <li>¿El tamaño de la posición respeta estrictamente el 1% de riesgo?</li>
+        <li>¿El precio está reaccionando a una zona de interés o POI en marco temporal alto (OB / FVG en 1H)?</li>
+        <li>¿Se ha barrido de forma obvia la liquidez en máximos o mínimos previos (Sweep de SSL o BSL)?</li>
+        <li>¿Ha ocurrido un quiebre de estructura local con cuerpo de vela en temporalidad de entrada (BOS en 1m o 5m)?</li>
+        <li>¿Cotizamos a precios de descuento para compras (barato) o premium para ventas (caro)?</li>
+        <li>¿El tamaño de los contratos ha sido recalculado con precisión para no exponer más del 1% del capital?</li>
       </ol>
       <div class="alert-box" style="border-left-color: gold; background: rgba(245, 158, 11, 0.03);">
-        <strong>🏆 Examen de Maestría Final del Ecosistema:</strong> Aprueba la evaluación técnica de abajo para certificar tu maestría definitiva y completar el Ecosistema AS.
+        <strong>🏆 Examen de Maestría Final del Ecosistema:</strong> Responde y aprueba la evaluación final técnica abajo para certificar tu maestría y completar tu formación en el Ecosistema AS.
       </div>
     `
   }
 };
 
-// Weekly Pillar Quizzes
 const pilarQuizzes = {
   1: [
     {
