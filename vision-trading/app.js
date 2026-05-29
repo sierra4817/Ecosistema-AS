@@ -1133,7 +1133,7 @@ window.togglePilarAccordion = (pilarId) => {
   renderAcademicMenu();
 };
 
-// Dynamic support chart generator for the 40 days of the course
+// Dynamic support chart generator for the 40 days of the course (TradingView-like style)
 const getGraphicForDay = (dayNum) => {
   const width = 500;
   const height = 220;
@@ -1141,10 +1141,41 @@ const getGraphicForDay = (dayNum) => {
   let title = "";
 
   const grid = () => `
-    <rect width="${width}" height="${height}" fill="#080a0f" rx="8"/>
-    <line x1="0" y1="${height * 0.25}" x2="${width}" y2="${height * 0.25}" stroke="rgba(255,255,255,0.03)" stroke-width="1" />
-    <line x1="0" y1="${height * 0.5}" x2="${width}" y2="${height * 0.5}" stroke="rgba(255,255,255,0.03)" stroke-width="1" />
-    <line x1="0" y1="${height * 0.75}" x2="${width}" y2="${height * 0.75}" stroke="rgba(255,255,255,0.03)" stroke-width="1" />
+    <rect width="${width}" height="${height}" fill="#080a0f" rx="8" stroke="rgba(255,255,255,0.05)" stroke-width="1" />
+    
+    <!-- Grid Lines (Horizontal) -->
+    <line x1="10" y1="60" x2="440" y2="60" stroke="rgba(255,255,255,0.03)" stroke-width="0.75" />
+    <line x1="10" y1="100" x2="440" y2="100" stroke="rgba(255,255,255,0.03)" stroke-width="0.75" />
+    <line x1="10" y1="140" x2="440" y2="140" stroke="rgba(255,255,255,0.03)" stroke-width="0.75" />
+    <line x1="10" y1="180" x2="440" y2="180" stroke="rgba(255,255,255,0.06)" stroke-width="1" />
+
+    <!-- Grid Lines (Vertical) -->
+    <line x1="60" y1="25" x2="60" y2="180" stroke="rgba(255,255,255,0.02)" stroke-width="0.75" />
+    <line x1="140" y1="25" x2="140" y2="180" stroke="rgba(255,255,255,0.02)" stroke-width="0.75" />
+    <line x1="220" y1="25" x2="220" y2="180" stroke="rgba(255,255,255,0.02)" stroke-width="0.75" />
+    <line x1="300" y1="25" x2="300" y2="180" stroke="rgba(255,255,255,0.02)" stroke-width="0.75" />
+    <line x1="380" y1="25" x2="380" y2="180" stroke="rgba(255,255,255,0.02)" stroke-width="0.75" />
+    <line x1="440" y1="25" x2="440" y2="180" stroke="rgba(255,255,255,0.06)" stroke-width="1" />
+
+    <!-- Y-Axis (Price Scale) -->
+    <text x="448" y="63" fill="var(--text-muted)" font-size="7.5" font-family="monospace">4530.00</text>
+    <text x="448" y="103" fill="var(--text-muted)" font-size="7.5" font-family="monospace">4518.50</text>
+    <text x="448" y="143" fill="var(--text-muted)" font-size="7.5" font-family="monospace">4312.00</text>
+    <text x="448" y="178" fill="var(--text-muted)" font-size="7.5" font-family="monospace">4305.50</text>
+
+    <!-- X-Axis (Time Scale) -->
+    <text x="60" y="197" fill="var(--text-muted)" font-size="7.5" font-family="monospace" text-anchor="middle">09:30</text>
+    <text x="140" y="197" fill="var(--text-muted)" font-size="7.5" font-family="monospace" text-anchor="middle">10:00</text>
+    <text x="220" y="197" fill="var(--text-muted)" font-size="7.5" font-family="monospace" text-anchor="middle">10:30</text>
+    <text x="300" y="197" fill="var(--text-muted)" font-size="7.5" font-family="monospace" text-anchor="middle">11:00</text>
+    <text x="380" y="197" fill="var(--text-muted)" font-size="7.5" font-family="monospace" text-anchor="middle">11:30</text>
+  `;
+
+  const header = (ticker = "ES1! (S&P 500 Futures)") => `
+    <!-- TradingView Ticker Widget Info Header -->
+    <text x="12" y="17" fill="#00d2ff" font-size="8.5" font-family="var(--font-sans), sans-serif" font-weight="bold">${ticker}</text>
+    <text x="115" y="17" fill="var(--text-secondary)" font-size="7.5" font-family="var(--font-sans), sans-serif">5m • CME Group</text>
+    <text x="185" y="17" fill="var(--text-muted)" font-size="7.5" font-family="monospace">O:4312.50 H:4319.75 L:4311.00 C:4315.25</text>
   `;
 
   const candle = (x, open, close, high, low, color) => {
@@ -1154,9 +1185,14 @@ const getGraphicForDay = (dayNum) => {
     const h = Math.abs(open - close) || 2;
     return `
       <line x1="${x}" y1="${high}" x2="${x}" y2="${low}" stroke="${fill}" stroke-width="1.5" />
-      <rect x="${x - 6}" y="${top}" width="12" height="${h}" fill="${fill}" rx="1" />
+      <rect x="${x - 6}" y="${top}" width="12" height="${h}" fill="${fill}" rx="1.5" stroke="${fill}" stroke-width="0.5" />
     `;
   };
+
+  const volume = (x, hVal, isUp) => `
+    <!-- Translucent Volume Bars at Bottom -->
+    <rect x="${x - 5}" y="${180 - hVal}" width="10" height="${hVal}" fill="${isUp ? 'rgba(16, 185, 129, 0.14)' : 'rgba(239, 68, 68, 0.14)'}" stroke="${isUp ? 'rgba(16, 185, 129, 0.25)' : 'rgba(239, 68, 68, 0.25)'}" stroke-width="0.5" />
+  `;
 
   const trendLine = (pts, color = '#3b82f6', w = 2.5) => {
     let d = "";
@@ -1193,9 +1229,20 @@ const getGraphicForDay = (dayNum) => {
 
   elementsHtml += grid();
 
+  // Render TV Ticker header dynamically unless it's a diploma or dashboard layout
+  if (![3, 7, 11, 12, 13, 15, 22, 23, 24, 26, 27, 28, 29, 30, 38, 40].includes(dayNum)) {
+    elementsHtml += header();
+  }
+
   switch (dayNum) {
     case 1:
       title = "El Precio Objetivamente";
+      elementsHtml += volume(80, 15, true);
+      elementsHtml += volume(140, 8, false);
+      elementsHtml += volume(200, 25, true);
+      elementsHtml += volume(260, 12, false);
+      elementsHtml += volume(320, 30, true);
+      elementsHtml += volume(380, 35, true);
       elementsHtml += candle(80, 150, 130, 120, 160);
       elementsHtml += candle(140, 135, 145, 125, 155);
       elementsHtml += candle(200, 140, 110, 100, 150);
@@ -1210,7 +1257,7 @@ const getGraphicForDay = (dayNum) => {
       title = "Pánico y FOMO en el Gráfico";
       elementsHtml += trendLine([[40, 140], [100, 150], [180, 60], [220, 45], [300, 160], [380, 175], [440, 100]], 'rgba(255,255,255,0.15)');
       elementsHtml += circle(220, 45, 6, '#ef4444');
-      elementsHtml += text(220, 30, "FOMO (Comprar el Techo)", 10, '#ef4444', 'middle', 'bold');
+      elementsHtml += text(220, 35, "FOMO (Comprar el Techo)", 10, '#ef4444', 'middle', 'bold');
       elementsHtml += circle(380, 175, 6, '#ef4444');
       elementsHtml += text(380, 195, "PÁNICO (Vender el Suelo)", 10, '#ef4444', 'middle', 'bold');
       break;
@@ -1230,8 +1277,13 @@ const getGraphicForDay = (dayNum) => {
       break;
     case 4:
       title = "SSL Sweep (Caza de Stops)";
+      elementsHtml += volume(100, 10, true);
+      elementsHtml += volume(160, 18, false);
+      elementsHtml += volume(200, 8, true);
+      elementsHtml += volume(250, 15, false);
+      elementsHtml += volume(280, 35, true);
       elementsHtml += line(40, 130, 460, 130, 'rgba(239, 68, 68, 0.4)', 1.5, '3,3');
-      elementsHtml += text(50, 120, "Soporte Obvio Minorista", 10, '#9ca3af');
+      elementsHtml += text(50, 122, "Soporte Obvio Minorista", 10, '#9ca3af');
       elementsHtml += trendLine([[40, 90], [100, 100], [160, 130], [200, 100], [260, 130], [280, 155], [320, 70], [380, 50]], '#3b82f6');
       elementsHtml += circle(280, 155, 5, '#10b981');
       elementsHtml += arrow(280, 185, 280, 162, '#10b981');
@@ -1239,6 +1291,10 @@ const getGraphicForDay = (dayNum) => {
       break;
     case 5:
       title = "Cascada de Compras Forzadas (Squeeze)";
+      elementsHtml += volume(80, 12, true);
+      elementsHtml += volume(140, 10, false);
+      elementsHtml += volume(200, 6, true);
+      elementsHtml += volume(260, 42, true);
       elementsHtml += line(40, 100, 460, 100, 'rgba(239, 68, 68, 0.4)', 1.5, '3,3');
       elementsHtml += text(50, 90, "Resistencia Minorista (Buy Stops)", 10, '#9ca3af');
       elementsHtml += candle(80, 120, 130, 115, 140);
@@ -1250,6 +1306,11 @@ const getGraphicForDay = (dayNum) => {
       break;
     case 6:
       title = "Rechazo de Falso Rompimiento (Fakeout)";
+      elementsHtml += volume(120, 15, true);
+      elementsHtml += volume(180, 22, true);
+      elementsHtml += volume(240, 35, false);
+      elementsHtml += volume(300, 28, false);
+      elementsHtml += volume(360, 20, false);
       elementsHtml += line(40, 90, 460, 90, 'rgba(255, 255, 255, 0.15)', 1.5, '3,3');
       elementsHtml += text(50, 80, "Línea de Resistencia", 10, '#9ca3af');
       elementsHtml += candle(120, 130, 110, 100, 140);
@@ -1378,6 +1439,12 @@ const getGraphicForDay = (dayNum) => {
       break;
     case 16:
       title = "Tendencia Saludable (Estructura)";
+      elementsHtml += volume(100, 18, true);
+      elementsHtml += volume(140, 8, false);
+      elementsHtml += volume(210, 25, true);
+      elementsHtml += volume(250, 12, false);
+      elementsHtml += volume(330, 30, true);
+      elementsHtml += volume(370, 10, false);
       elementsHtml += trendLine([[40, 170], [100, 110], [140, 130], [210, 70], [250, 95], [330, 40], [370, 60], [440, 15]], 'rgba(255,255,255,0.15)', 1.5);
       elementsHtml += circle(100, 110, 4, '#3b82f6'); elementsHtml += text(100, 95, "HH", 10, '#3b82f6', 'middle', 'bold');
       elementsHtml += circle(210, 70, 4, '#3b82f6'); elementsHtml += text(210, 55, "HH", 10, '#3b82f6', 'middle', 'bold');
@@ -1388,6 +1455,11 @@ const getGraphicForDay = (dayNum) => {
       break;
     case 17:
       title = "Quiebre Estructural Defensivo";
+      elementsHtml += volume(110, 22, true);
+      elementsHtml += volume(160, 14, false);
+      elementsHtml += volume(230, 28, true);
+      elementsHtml += volume(290, 38, false);
+      elementsHtml += volume(330, 42, false);
       elementsHtml += trendLine([[50, 130], [110, 80], [160, 110], [230, 50], [290, 120], [330, 140], [390, 160]], 'rgba(255,255,255,0.15)', 1.5);
       elementsHtml += circle(290, 120, 5, '#ef4444');
       elementsHtml += line(260, 120, 360, 120, '#ef4444', 1.5, '3,3');
@@ -1537,6 +1609,12 @@ const getGraphicForDay = (dayNum) => {
       break;
     case 31:
       title = "Estructura de Order Block (OB)";
+      elementsHtml += volume(80, 25, false);
+      elementsHtml += volume(140, 30, true);
+      elementsHtml += volume(200, 42, true);
+      elementsHtml += volume(260, 12, false);
+      elementsHtml += volume(320, 18, false);
+      elementsHtml += volume(380, 35, true);
       elementsHtml += candle(80, 120, 135, 110, 140, 'bear');
       elementsHtml += zone(70, 115, 20, 25, 'rgba(239, 68, 68, 0.08)', '#ef4444');
       elementsHtml += text(80, 155, "OB", 10, '#ef4444', 'middle', 'bold');
@@ -1552,6 +1630,10 @@ const getGraphicForDay = (dayNum) => {
       break;
     case 32:
       title = "Sweeping Liquidity Pool";
+      elementsHtml += volume(140, 25, false);
+      elementsHtml += volume(200, 15, true);
+      elementsHtml += volume(260, 28, false);
+      elementsHtml += volume(290, 45, true);
       elementsHtml += line(60, 130, 440, 130, '#ef4444', 1.5, '4,4');
       elementsHtml += text(70, 120, "Soporte (Liquidez Minorista)", 10, '#9ca3af');
       elementsHtml += trendLine([[80,90], [140,130], [200,100], [260,130], [290,155], [340,70]], 'rgba(255,255,255,0.15)', 1.5);
@@ -1561,6 +1643,9 @@ const getGraphicForDay = (dayNum) => {
       break;
     case 33:
       title = "Vacío de Ineficiencia FVG (3 Velas)";
+      elementsHtml += volume(120, 18, true);
+      elementsHtml += volume(200, 45, true);
+      elementsHtml += volume(280, 25, true);
       elementsHtml += candle(120, 160, 140, 150, 170, 'bull'); // Vela 1
       elementsHtml += candle(200, 140, 60, 50, 150, 'bull');  // Vela 2 (Expansión)
       elementsHtml += candle(280, 60, 40, 30, 70, 'bull');   // Vela 3
@@ -1591,6 +1676,10 @@ const getGraphicForDay = (dayNum) => {
       break;
     case 36:
       title = "Transición de OB Bajista Roto a Breaker Block";
+      elementsHtml += volume(120, 28, true);
+      elementsHtml += volume(180, 12, false);
+      elementsHtml += volume(250, 38, true);
+      elementsHtml += volume(320, 22, false);
       elementsHtml += zone(100, 70, 40, 40, 'rgba(239, 68, 68, 0.08)', '#ef4444');
       elementsHtml += text(120, 60, "OB Roto", 9, '#ef4444', 'middle');
       elementsHtml += trendLine([[60, 150], [120, 90], [180, 110], [250, 40], [320, 90], [390, 30]], '#3b82f6', 2.5);
@@ -1628,6 +1717,9 @@ const getGraphicForDay = (dayNum) => {
       break;
     case 39:
       title = "Riesgo Cero tras Parciales";
+      elementsHtml += volume(100, 22, true);
+      elementsHtml += volume(180, 15, false);
+      elementsHtml += volume(260, 35, true);
       elementsHtml += line(60, 130, 440, 130, '#3b82f6', 2);
       elementsHtml += text(70, 120, "Entrada (2 lotes)", 9, '#3b82f6');
       elementsHtml += line(60, 170, 440, 170, '#ef4444', 1.5, '2,2');
@@ -1666,6 +1758,7 @@ const getGraphicForDay = (dayNum) => {
     </div>
   `;
 };
+
 
 // Load Day details dynamically
 window.loadDay = (dayId) => {
@@ -1724,7 +1817,6 @@ window.loadDay = (dayId) => {
   lucide.createIcons();
 };
 
-// Render Pilar Quiz questions
 const renderPilarQuiz = (pilarId) => {
   activeQuizAnswers = {};
   const container = document.getElementById("academy-quiz-container");
