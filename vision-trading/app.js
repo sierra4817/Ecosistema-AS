@@ -2198,10 +2198,15 @@ const handleNarrateClick = async (dayId, button) => {
   const day = courseData[dayId];
   if (!day) return;
 
-  const container = document.getElementById("academy-day-content");
-  if (!container) return;
+  // Read only the educational content, stripping HTML tags
+  const tempDiv = document.createElement("div");
+  tempDiv.innerHTML = day.content;
+  let textToRead = tempDiv.innerText || tempDiv.textContent || "";
 
-  const textToRead = container.innerText || container.textContent;
+  // Replace $ followed by number with "[number] dólares" and other currency references to avoid TTS pronouncing $ as "pesos"
+  textToRead = textToRead.replace(/\$(\d+(?:[.,]\d+)?)/g, "$1 dólares");
+  textToRead = textToRead.replace(/\$/g, " dólares ");
+  textToRead = textToRead.replace(/USD/gi, " dólares ");
   const apiKey = getApiKey();
   const voiceId = getVoiceId();
 
