@@ -1140,1106 +1140,704 @@ const getGraphicForDay = (dayNum) => {
   let elementsHtml = "";
   let title = "";
 
-  // MetaTrader 5 Ticker settings
-  let ticker = "EURUSD,M5";
-  let timeframe = "1.08250 1.08285 1.08220 1.08260";
-  let minPrice = 4300;
-  let maxPrice = 4350;
-  let timeLabels = ["09:30", "10:00", "10:30", "11:00", "11:30"];
-  let watermarkText = "METATRADER 5";
-
-  // Predefined realistic datasets
-  const uptrend = [
-    {o: 4302, c: 4308, h: 4310, l: 4300, v: 120},
-    {o: 4308, c: 4305, h: 4311, l: 4304, v: 80},
-    {o: 4305, c: 4312, h: 4314, l: 4303, v: 150},
-    {o: 4312, c: 4310, h: 4315, l: 4308, v: 95},
-    {o: 4310, c: 4318, h: 4320, l: 4309, v: 165},
-    {o: 4318, c: 4315, h: 4319, l: 4312, v: 110},
-    {o: 4315, c: 4326, h: 4328, l: 4314, v: 240},
-    {o: 4326, c: 4322, h: 4327, l: 4320, v: 130},
-    {o: 4322, c: 4332, h: 4334, l: 4321, v: 280},
-    {o: 4332, c: 4328, h: 4333, l: 4326, v: 140},
-    {o: 4328, c: 4338, h: 4340, l: 4327, v: 310},
-    {o: 4338, c: 4334, h: 4339, l: 4332, v: 150},
-    {o: 4334, c: 4344, h: 4347, l: 4333, v: 350},
-    {o: 4344, c: 4340, h: 4346, l: 4339, v: 160},
-    {o: 4340, c: 4348, h: 4350, l: 4338, v: 390}
-  ];
-
-  const downtrend = [
-    {o: 4348, c: 4342, h: 4350, l: 4340, v: 110},
-    {o: 4342, c: 4345, h: 4347, l: 4341, v: 80},
-    {o: 4345, c: 4338, h: 4346, l: 4336, v: 140},
-    {o: 4338, c: 4340, h: 4342, l: 4337, v: 90},
-    {o: 4340, c: 4332, h: 4341, l: 4330, v: 170},
-    {o: 4332, c: 4335, h: 4337, l: 4331, v: 100},
-    {o: 4335, c: 4325, h: 4336, l: 4323, v: 210},
-    {o: 4325, c: 4328, h: 4330, l: 4324, v: 120},
-    {o: 4328, c: 4318, h: 4329, l: 4316, v: 240},
-    {o: 4318, c: 4321, h: 4323, l: 4317, v: 115},
-    {o: 4321, c: 4310, h: 4322, l: 4308, v: 280},
-    {o: 4310, c: 4313, h: 4315, l: 4309, v: 130},
-    {o: 4313, c: 4302, h: 4314, l: 4300, v: 330},
-    {o: 4302, c: 4305, h: 4307, l: 4301, v: 145},
-    {o: 4305, c: 4295, h: 4306, l: 4292, v: 370}
-  ];
-
-  const range = [
-    {o: 4320, c: 4324, h: 4327, l: 4318, v: 100},
-    {o: 4324, c: 4318, h: 4326, l: 4316, v: 80},
-    {o: 4318, c: 4326, h: 4328, l: 4317, v: 130},
-    {o: 4326, c: 4322, h: 4328, l: 4320, v: 90},
-    {o: 4322, c: 4316, h: 4324, l: 4315, v: 110},
-    {o: 4316, c: 4323, h: 4325, l: 4315, v: 95},
-    {o: 4323, c: 4327, h: 4329, l: 4321, v: 140},
-    {o: 4327, c: 4320, h: 4328, l: 4318, v: 105},
-    {o: 4320, c: 4325, h: 4327, l: 4319, v: 115},
-    {o: 4325, c: 4317, h: 4326, l: 4315, v: 125},
-    {o: 4317, c: 4324, h: 4326, l: 4316, v: 100},
-    {o: 4324, c: 4321, h: 4326, l: 4319, v: 85},
-    {o: 4321, c: 4328, h: 4330, l: 4320, v: 150},
-    {o: 4328, c: 4319, h: 4329, l: 4318, v: 110},
-    {o: 4319, c: 4325, h: 4327, l: 4317, v: 130}
-  ];
-
-  const sslSweep = [
-    {o: 4320, c: 4324, h: 4327, l: 4318, v: 90},
-    {o: 4324, c: 4318, h: 4326, l: 4316, v: 80},
-    {o: 4318, c: 4325, h: 4327, l: 4317, v: 110},
-    {o: 4325, c: 4321, h: 4326, l: 4320, v: 95},
-    {o: 4321, c: 4315, h: 4323, l: 4314, v: 120},
-    {o: 4315, c: 4322, h: 4324, l: 4314, v: 85},
-    {o: 4322, c: 4315, h: 4324, l: 4314, v: 105},
-    {o: 4315, c: 4296, h: 4316, l: 4292, v: 450}, // sweep
-    {o: 4296, c: 4316, h: 4318, l: 4294, v: 380},
-    {o: 4316, c: 4328, h: 4330, l: 4315, v: 290},
-    {o: 4328, c: 4325, h: 4330, l: 4323, v: 140},
-    {o: 4325, c: 4335, h: 4338, l: 4324, v: 240},
-    {o: 4335, c: 4342, h: 4344, l: 4333, v: 280}
-  ];
-
-  const squeeze = [
-    {o: 4310, c: 4312, h: 4315, l: 4308, v: 85},
-    {o: 4312, c: 4309, h: 4314, l: 4307, v: 70},
-    {o: 4309, c: 4315, h: 4317, l: 4308, v: 110},
-    {o: 4315, c: 4311, h: 4316, l: 4310, v: 75},
-    {o: 4311, c: 4315, h: 4317, l: 4310, v: 95},
-    {o: 4315, c: 4313, h: 4316, l: 4311, v: 60},
-    {o: 4313, c: 4330, h: 4332, l: 4312, v: 390},
-    {o: 4330, c: 4348, h: 4350, l: 4329, v: 490}, // breakout
-    {o: 4348, c: 4354, h: 4356, l: 4345, v: 410},
-    {o: 4354, c: 4350, h: 4356, l: 4348, v: 180},
-    {o: 4350, c: 4362, h: 4364, l: 4349, v: 340}
-  ];
-
-  const fakeout = [
-    {o: 4315, c: 4320, h: 4322, l: 4313, v: 100},
-    {o: 4320, c: 4316, h: 4322, l: 4314, v: 80},
-    {o: 4316, c: 4324, h: 4326, l: 4315, v: 110},
-    {o: 4324, c: 4320, h: 4325, l: 4318, v: 75},
-    {o: 4320, c: 4325, h: 4327, l: 4319, v: 90},
-    {o: 4325, c: 4322, h: 4326, l: 4320, v: 65},
-    {o: 4322, c: 4335, h: 4337, l: 4321, v: 280}, // breakout
-    {o: 4335, c: 4322, h: 4338, l: 4320, v: 395}, // fakeout wick
-    {o: 4322, c: 4310, h: 4323, l: 4308, v: 310},
-    {o: 4310, c: 4302, h: 4312, l: 4298, v: 250},
-    {o: 4302, c: 4306, h: 4308, l: 4300, v: 115}
-  ];
-
-  const ob = [
-    {o: 4325, c: 4328, h: 4330, l: 4323, v: 90},
-    {o: 4328, c: 4322, h: 4329, l: 4320, v: 105},
-    {o: 4322, c: 4314, h: 4323, l: 4312, v: 140}, // Bearish OB
-    {o: 4314, c: 4332, h: 4334, l: 4313, v: 380}, // BOS breakout
-    {o: 4332, c: 4338, h: 4340, l: 4330, v: 290},
-    {o: 4338, c: 4334, h: 4339, l: 4332, v: 150},
-    {o: 4334, c: 4326, h: 4335, l: 4325, v: 180},
-    {o: 4326, c: 4315, h: 4328, l: 4313, v: 220}, // Mitigation
-    {o: 4315, c: 4329, h: 4331, l: 4314, v: 295},
-    {o: 4329, c: 4337, h: 4339, l: 4327, v: 215},
-    {o: 4337, c: 4345, h: 4348, l: 4335, v: 310}
-  ];
-
-  const fvg = [
-    {o: 4300, c: 4302, h: 4304, l: 4298, v: 80},
-    {o: 4302, c: 4308, h: 4310, l: 4301, v: 140}, // C1
-    {o: 4308, c: 4328, h: 4330, l: 4307, v: 480}, // C2
-    {o: 4328, c: 4334, h: 4336, l: 4324, v: 250}, // C3
-    {o: 4334, c: 4328, h: 4335, l: 4326, v: 130},
-    {o: 4328, c: 4318, h: 4329, l: 4316, v: 190}, // Mitigates FVG
-    {o: 4318, c: 4332, h: 4335, l: 4317, v: 315},
-    {o: 4332, c: 4339, h: 4341, l: 4330, v: 230}
-  ];
-
-  // Select appropriate dataset and boundaries for dayNum
-  let candles = range;
-  if ([1, 7, 13, 16, 19, 21, 22, 34].includes(dayNum)) {
-    candles = uptrend;
-    minPrice = 4295; maxPrice = 4355;
-    ticker = "XAUUSD,H1";
-    timeframe = "Gold Spot vs US Dollar";
-    watermarkText = "XAUUSD";
-  } else if ([8, 10, 17, 38].includes(dayNum)) {
-    candles = downtrend;
-    minPrice = 4290; maxPrice = 4355;
-    ticker = "GBPUSD,H4";
-    timeframe = "Great Britain Pound vs US Dollar";
-    watermarkText = "GBPUSD";
-  } else if ([4, 32].includes(dayNum)) {
-    candles = sslSweep;
-    minPrice = 4285; maxPrice = 4350;
-    ticker = "EURUSD,M5";
-    timeframe = "Euro vs US Dollar";
-    watermarkText = "EURUSD";
-  } else if (dayNum === 5) {
-    candles = squeeze;
-    minPrice = 4300; maxPrice = 4370;
-    ticker = "XAUUSD,M15";
-    timeframe = "Gold Spot";
-    watermarkText = "XAUUSD";
-  } else if (dayNum === 6) {
-    candles = fakeout;
-    minPrice = 4295; maxPrice = 4345;
-    ticker = "EURUSD,M15";
-    timeframe = "Euro Spot";
-    watermarkText = "EURUSD";
-  } else if ([31, 36].includes(dayNum)) {
-    candles = ob;
-    minPrice = 4308; maxPrice = 4355;
-    ticker = "XAUUSD,M5";
-    watermarkText = "XAUUSD";
-  } else if (dayNum === 33) {
-    candles = fvg;
-    minPrice = 4290; maxPrice = 4345;
-    ticker = "EURUSD,H1";
-    watermarkText = "EURUSD";
-  } else {
-    candles = range;
-    minPrice = 4310; maxPrice = 4335;
-    ticker = "EURUSD,M5";
-    watermarkText = "EURUSD";
-  }
-
-  // Coordinate mapping for MT5 borderless layout
-  // Plot extends to 445 on X, and 170 on Y. Ejes are drawn directly on black.
-  const getX = (idx) => 25 + (idx * (400 / (candles.length - 1 || 1)));
-  const getY = (price) => 155 - ((price - minPrice) / (maxPrice - minPrice || 1)) * 130;
-
-  // 1. Draw MT5 Pure Black Layout and Dotted Grid
-  elementsHtml += `
-    <!-- MT5 Pure Black Background -->
-    <rect width="500" height="220" fill="#000000" rx="0" />
-    
-    <!-- Axis separation lines -->
-    <line x1="445" y1="0" x2="445" y2="170" stroke="#444444" stroke-width="0.8" />
-    <line x1="0" y1="170" x2="445" y2="170" stroke="#444444" stroke-width="0.8" />
-    <line x1="445" y1="170" x2="500" y2="170" stroke="#444444" stroke-width="0.8" />
-    
-    <!-- Outer Widget Border -->
-    <rect width="500" height="220" fill="none" stroke="#2c2c2c" stroke-width="1.5" rx="4" />
-    
-    <!-- MT5 Classic Dotted Grid Lines (dasharray 1,3) -->
-    <g stroke="#2c2c2c" stroke-dasharray="1,3" stroke-width="0.8">
-      <line x1="0" y1="45" x2="445" y2="45" />
-      <line x1="0" y1="85" x2="445" y2="85" />
-      <line x1="0" y1="125" x2="445" y2="125" />
-      
-      <line x1="100" y1="0" x2="100" y2="170" />
-      <line x1="200" y1="0" x2="200" y2="170" />
-      <line x1="300" y1="0" x2="300" y2="170" />
-      <line x1="400" y1="0" x2="400" y2="170" />
-    </g>
-
-    <!-- Translucent background watermark (MT5 symbol) -->
-    <text x="222" y="95" fill="rgba(255, 255, 255, 0.015)" font-size="36" font-family="Tahoma" font-weight="bold" text-anchor="middle" letter-spacing="4">${watermarkText}</text>
+  // Common SVG Helpers for clean educational diagrams
+  const cardBackground = () => `
+    <rect width="${width}" height="${height}" fill="#080a0f" rx="10" stroke="#242f3d" stroke-width="1.5" />
   `;
 
-  // Draw header unless special screen
-  const hasHeader = ![3, 7, 8, 10, 11, 12, 13, 14, 15, 22, 23, 24, 25, 26, 27, 28, 29, 30, 38, 40].includes(dayNum);
-  if (hasHeader) {
-    elementsHtml += `
-      <!-- MT5 Ticker Label (Tahoma font, top left) -->
-      <text x="12" y="16" fill="#ffffff" font-size="8.5" font-family="Tahoma" font-weight="bold">${ticker}</text>
-      <text x="75" y="16" fill="#a0a0a0" font-size="7.5" font-family="Tahoma">${timeframe}</text>
-    `;
-  }
+  const text = (x, y, str, size = 11, color = "#f3f4f6", anchor = "start", weight = "normal") => `
+    <text x="${x}" y="${y}" fill="${color}" font-size="${size}" font-family="system-ui, -apple-system, sans-serif" font-weight="${weight}" text-anchor="${anchor}">${str}</text>
+  `;
 
-  // Helper: Draw MT5 deal execution arrows (Blue buy arrow, Red sell arrow)
-  const drawExecutionMT5 = (entryIdx, entryPrice, exitIdx, exitPrice, isLong) => {
-    const x1 = getX(entryIdx);
-    const x2 = getX(exitIdx);
-    const y1 = getY(entryPrice);
-    const y2 = getY(exitPrice);
-    const buyColor = "#0055ff"; // MT5 Buy Blue
-    const sellColor = "#ff3333"; // MT5 Sell Red
-    
-    let buyY = y1 + 8;
-    let sellY = y2 - 8;
-    
-    if (isLong) {
-      return `
-        <!-- Entry Buy Arrow -->
-        <polygon points="${x1},${buyY} ${x1-4},${buyY+6} ${x1+4},${buyY+6}" fill="${buyColor}" />
-        <text x="${x1}" y="${buyY + 13}" fill="${buyColor}" font-size="6" font-family="Tahoma" font-weight="bold" text-anchor="middle">Buy @ ${entryPrice.toFixed(2)}</text>
-        
-        <!-- Exit Sell Arrow -->
-        <polygon points="${x2},${sellY} ${x2-4},${sellY-6} ${x2+4},${sellY-6}" fill="${sellColor}" />
-        <text x="${x2}" y="${sellY - 9}" fill="${sellColor}" font-size="6" font-family="Tahoma" font-weight="bold" text-anchor="middle">Sell @ ${exitPrice.toFixed(2)}</text>
-        
-        <!-- Connection Line -->
-        <line x1="${x1}" y1="${buyY + 3}" x2="${x2}" y2="${sellY - 3}" stroke="${buyColor}" stroke-dasharray="1,2" stroke-width="1" opacity="0.75" />
-      `;
-    } else {
-      return `
-        <!-- Entry Sell (Short) Arrow -->
-        <polygon points="${x1},${sellY} ${x1-4},${sellY-6} ${x1+4},${sellY-6}" fill="${sellColor}" />
-        <text x="${x1}" y="${sellY - 9}" fill="${sellColor}" font-size="6" font-family="Tahoma" font-weight="bold" text-anchor="middle">Short @ ${entryPrice.toFixed(2)}</text>
-        
-        <!-- Exit Buy (Cover) Arrow -->
-        <polygon points="${x2},${buyY} ${x2-4},${buyY+6} ${x2+4},${buyY+6}" fill="${buyColor}" />
-        <text x="${x2}" y="${buyY + 13}" fill="${buyColor}" font-size="6" font-family="Tahoma" font-weight="bold" text-anchor="middle">Cover @ ${exitPrice.toFixed(2)}</text>
-        
-        <!-- Connection Line -->
-        <line x1="${x1}" y1="${sellY - 3}" x2="${x2}" y2="${buyY + 3}" stroke="${sellColor}" stroke-dasharray="1,2" stroke-width="1" opacity="0.75" />
-      `;
-    }
-  };
+  const line = (x1, y1, x2, y2, color = "#242f3d", w = 1.5, dash = "") => `
+    <line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${color}" stroke-width="${w}" ${dash ? `stroke-dasharray="${dash}"` : ""} />
+  `;
 
-  // Helper: Draw MT5 price tracker line and label tag on Y-Axis
-  const drawCurrentPriceMT5 = (candles) => {
-    const lastC = candles[candles.length - 1].c;
-    const y = getY(lastC);
-    const isUp = lastC >= candles[candles.length - 2].c;
-    const color = isUp ? '#00ff00' : '#ff0000';
-    return `
-      <!-- Price line -->
-      <line x1="0" y1="${y}" x2="445" y2="${y}" stroke="${color}" stroke-dasharray="3,3" stroke-width="1" opacity="0.8" />
-      
-      <!-- Right Y-Axis Tag -->
-      <g transform="translate(445, ${y - 5.5})">
-        <rect x="0" y="0" width="50" height="11" fill="#000000" stroke="${color}" stroke-width="0.8" />
-        <text x="25" y="8.5" fill="${color}" font-size="7.5" font-family="monospace" text-anchor="middle" font-weight="bold">${lastC.toFixed(2)}</text>
-      </g>
-    `;
-  };
+  const rect = (x, y, w, h, fill = "none", stroke = "none", strokeW = 1, dash = "") => `
+    <rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${fill}" stroke="${stroke}" stroke-width="${strokeW}" ${dash ? `stroke-dasharray="${dash}"` : ""} rx="4" />
+  `;
 
-  // 2. Draw candles and volumes (if not special vector screen)
-  const isSpecialMT5 = [3, 7, 8, 10, 11, 12, 13, 14, 15, 23, 24, 25, 26, 27, 28, 29, 30, 38, 40].includes(dayNum);
-  if (!isSpecialMT5) {
-    const maxVol = Math.max(...candles.map(c => c.v));
-    
-    candles.forEach((c, i) => {
-      const x = getX(i);
-      const yOpen = getY(c.o);
-      const yClose = getY(c.c);
-      const yHigh = getY(c.h);
-      const yLow = getY(c.l);
-      const isBull = c.c >= c.o;
-      // MT5 crisp outlines and filled bodies
-      const strokeColor = isBull ? '#00ff00' : '#ff0000';
-      const fillColor = isBull ? '#00ff00' : '#ff0000';
+  const circle = (x, y, r, fill = "#3b82f6", stroke = "none", strokeW = 1) => `
+    <circle cx="${x}" cy="${y}" r="${r}" fill="${fill}" stroke="${stroke}" stroke-width="${strokeW}" />
+  `;
 
-      // Wick
-      elementsHtml += `<line x1="${x}" y1="${yHigh}" x2="${x}" y2="${yLow}" stroke="${strokeColor}" stroke-width="1" />`;
-      // Body
-      elementsHtml += `<rect x="${x - 4}" y="${Math.min(yOpen, yClose)}" width="8" height="${Math.abs(yOpen - yClose) || 1.2}" fill="${fillColor}" stroke="${strokeColor}" stroke-width="0.5" />`;
-      
-      // MT5 volume pane overlay
-      const volHeight = (c.v / maxVol) * 20;
-      elementsHtml += `<rect x="${x - 3}" y="${170 - volHeight}" width="6" height="${volHeight}" fill="${isBull ? 'rgba(0, 255, 0, 0.14)' : 'rgba(255, 0, 0, 0.14)'}" stroke="none" />`;
+  const arrow = (x1, y1, x2, y2, color = "#f59e0b", w = 2) => `
+    <defs>
+      <marker id="arr-${dayNum}" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+        <polygon points="0 0, 6 3, 0 6" fill="${color}" />
+      </marker>
+    </defs>
+    <line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${color}" stroke-width="${w}" marker-end="url(#arr-${dayNum})" />
+  `;
+
+  const wave = (points, color = "#3b82f6", w = 3) => {
+    let d = "";
+    points.forEach((p, idx) => {
+      d += (idx === 0 ? "M " : "L ") + `${p[0]},${p[1]}`;
     });
+    return `<path d="${d}" fill="none" stroke="${color}" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round" />`;
+  };
 
-    // Draw MT Price Axis tick labels directly on black Y-axis
-    elementsHtml += `
-      <g fill="#c0c0c0" font-size="7.5" font-family="Tahoma" text-anchor="middle">
-        <text x="472" y="48">${maxPrice.toFixed(2)}</text>
-        <text x="472" y="88">${((maxPrice + minPrice) / 2 + (maxPrice - minPrice) * 0.15).toFixed(2)}</text>
-        <text x="472" y="128">${((maxPrice + minPrice) / 2 - (maxPrice - minPrice) * 0.15).toFixed(2)}</text>
-        <text x="472" y="162">${minPrice.toFixed(2)}</text>
-      </g>
-      
-      <!-- Time axis X ticks -->
-      <g fill="#c0c0c0" font-size="7.5" font-family="Tahoma" text-anchor="middle">
-        <text x="100" y="184">${timeLabels[0]}</text>
-        <text x="200" y="184">${timeLabels[1]}</text>
-        <text x="300" y="184">${timeLabels[2]}</text>
-        <text x="400" y="184">${timeLabels[3]}</text>
-      </g>
-    `;
-  }
+  // Draw base background card
+  elementsHtml += cardBackground();
 
-  // Switch-case for day-specific decorations & MT5 labels
   switch (dayNum) {
     case 1:
-      title = "El Precio Objetivamente";
-      // Draw MT5 Indicator: Moving Average 50 (Blue line)
-      let emaPts = [];
-      let lastVal = candles[0].c;
-      for(let i=0; i<candles.length; i++) {
-        lastVal = candles[i].c * 0.3 + lastVal * 0.7;
-        emaPts.push(`${getX(i)},${getY(lastVal)}`);
-      }
-      elementsHtml += `<path d="M ${emaPts.join(' L ')}" fill="none" stroke="#0055ff" stroke-width="1.2" opacity="0.9" />`;
-      elementsHtml += `<text x="100" y="${getY(lastVal) - 15}" fill="#0055ff" font-size="7" font-family="Tahoma">MA(50)</text>`;
-
-      // Dashed price tracking line with MT5 Price Marker tag
-      const lastC = candles[candles.length - 1].c;
-      const lastY = getY(lastC);
-      elementsHtml += `
-        <line x1="0" y1="${lastY}" x2="445" y2="${lastY}" stroke="#00ff00" stroke-dasharray="3,3" stroke-width="1" />
-        
-        <!-- MT5 Text Annotation -->
-        <rect x="230" y="95" width="120" height="26" fill="#000000" stroke="#0055ff" stroke-width="0.8" />
-        <text x="290" y="106" fill="#f3f4f6" font-size="7.5" font-family="Tahoma" font-weight="bold" text-anchor="middle">PRECIO ACTUAL: LA ÚNICA</text>
-        <text x="290" y="117" fill="#0055ff" font-size="7.5" font-family="Tahoma" font-weight="bold" text-anchor="middle">VERDAD OBJETIVA</text>
-      `;
+      title = "El Precio es la Única Realidad";
+      elementsHtml += wave([[40, 160], [100, 120], [160, 140], [220, 90], [280, 110], [360, 60], [420, 80]], "rgba(59, 130, 246, 0.4)", 2);
+      elementsHtml += wave([[40, 160], [100, 120], [160, 140], [220, 90], [280, 110], [360, 60]], "#3b82f6", 3.5);
+      
+      elementsHtml += circle(360, 60, 6, "#10b981");
+      elementsHtml += line(360, 60, 460, 60, "#10b981", 1.5, "3,3");
+      elementsHtml += text(420, 52, "Precio Actual", 9, "#10b981", "middle", "bold");
+      
+      elementsHtml += arrow(330, 130, 355, 75, "#f59e0b");
+      elementsHtml += rect(220, 130, 210, 26, "#1b222c", "#f59e0b", 1);
+      elementsHtml += text(325, 146, "Aceptación Objetiva del Precio", 9.5, "#f3f4f6", "middle", "bold");
       break;
 
     case 2:
-      title = "Pánico y FOMO en el Gráfico";
-      const fX = getX(6);
-      const fY = getY(4335);
-      const pX = getX(9);
-      const pY = getY(4302);
+      title = "FOMO y Pánico en la Curva de Precios";
+      elementsHtml += wave([[40, 150], [100, 140], [180, 60], [220, 45], [260, 120], [320, 165], [380, 175], [440, 110]], "#3b82f6", 3);
+      
+      // Peak FOMO
+      elementsHtml += circle(220, 45, 6, "#ef4444");
+      elementsHtml += line(220, 45, 220, 90, "#ef4444", 1, "2,2");
+      elementsHtml += rect(170, 90, 100, 22, "#1b222c", "#ef4444", 1);
+      elementsHtml += text(220, 104, "FOMO (Comprar Techo)", 8.5, "#ef4444", "middle", "bold");
 
-      elementsHtml += `
-        <!-- Highlighting FOMO peak MT5 style -->
-        <circle cx="${fX}" cy="${fY}" r="8" fill="none" stroke="#ff0000" stroke-width="1" />
-        <path d="M ${fX - 25},${fY - 20} L ${fX},${fY}" stroke="#ff0000" stroke-width="0.8" />
-        <rect x="${fX - 85}" y="${fY - 32}" width="70" height="15" fill="#000000" stroke="#ff0000" stroke-width="0.8" />
-        <text x="${fX - 50}" y="${fY - 22}" fill="#ff0000" font-size="7" font-weight="bold" font-family="Tahoma" text-anchor="middle">FOMO (Comprar Techo)</text>
-
-        <!-- Highlighting Panic bottom -->
-        <circle cx="${pX}" cy="${pY}" r="8" fill="none" stroke="#ff0000" stroke-width="1" />
-        <path d="M ${pX + 25},${pY + 20} L ${pX},${pY}" stroke="#ff0000" stroke-width="0.8" />
-        <rect x="${pX + 5}" y="${pY + 15}" width="80" height="15" fill="#000000" stroke="#ff0000" stroke-width="0.8" />
-        <text x="${pX + 45}" y="${pY + 25}" fill="#ff0000" font-size="7" font-weight="bold" font-family="Tahoma" text-anchor="middle">PÁNICO (Vender Suelo)</text>
-      `;
+      // Panic Bottom
+      elementsHtml += circle(380, 175, 6, "#ef4444");
+      elementsHtml += line(380, 175, 380, 130, "#ef4444", 1, "2,2");
+      elementsHtml += rect(330, 100, 100, 22, "#1b222c", "#ef4444", 1);
+      elementsHtml += text(380, 114, "PÁNICO (Vender Suelo)", 8.5, "#ef4444", "middle", "bold");
       break;
 
     case 3:
       title = "Distribución Aleatoria de Resultados";
-      const outs = ['W', 'L', 'L', 'W', 'W', 'L', 'W', 'L', 'W', 'W'];
-      outs.forEach((t, i) => {
+      const outcomes = ["W", "L", "L", "W", "W", "L", "W", "L", "W", "W"];
+      outcomes.forEach((t, i) => {
         const x = 50 + i * 40;
-        const color = t === 'W' ? '#00ff00' : '#ff0000';
+        const color = t === "W" ? "#10b981" : "#ef4444";
         elementsHtml += `
-          <rect x="${x}" y="85" width="28" height="28" fill="#111111" stroke="${color}" stroke-width="1.5" />
-          <text x="${x + 14}" y="103" fill="${color}" font-size="12" font-family="Tahoma" text-anchor="middle" font-weight="bold">${t}</text>
+          <rect x="${x}" y="85" width="28" height="28" fill="${color}15" stroke="${color}" stroke-width="2" rx="4" />
+          <text x="${x + 14}" y="103" fill="${color}" font-size="12" font-family="system-ui" text-anchor="middle" font-weight="bold">${t}</text>
         `;
       });
-      elementsHtml += `
-        <text x="250" y="150" fill="#f3f4f6" font-size="11" font-family="Tahoma" text-anchor="middle" font-weight="bold">60% de Probabilidad a Largo Plazo</text>
-        <text x="250" y="168" fill="#a0a0a0" font-size="8.5" font-family="Tahoma" text-anchor="middle">Cualquier operación individual tiene resultado aleatorio</text>
-      `;
+      elementsHtml += text(250, 150, "Muestra de 10 Operaciones (60% Acierto)", 11, "#f3f4f6", "middle", "bold");
+      elementsHtml += text(250, 168, "El resultado de cada operación individual es 100% aleatorio", 9, "#9ca3af", "middle");
       break;
 
     case 4:
-      title = "SSL Sweep (Caza de Stops)";
-      const supY = getY(4312);
-      elementsHtml += `
-        <!-- Horizontal Support Line -->
-        <line x1="0" y1="${supY}" x2="445" y2="${supY}" stroke="#ff0000" stroke-width="1" stroke-dasharray="3,3" />
-        <text x="12" y="${supY - 6}" fill="#ff0000" font-size="8.5" font-family="Tahoma">Soporte Obvio (Sell Stops acumulados)</text>
-        
-        <!-- Execution entry Buy arrow -->
-        ${drawExecutionMT5(7, 4312, 11, 4335, true)}
-      `;
+      title = "SSL Sweep (Barrido de Liquidez)";
+      elementsHtml += line(40, 120, 460, 120, "#ef4444", 1.5, "4,4");
+      elementsHtml += text(50, 112, "Soporte Obvio Minorista (Zonas de Stops acumulados)", 9.5, "#ef4444");
+      
+      elementsHtml += wave([[40, 90], [120, 110], [200, 90], [280, 120], [300, 150], [330, 80], [420, 60]], "#3b82f6", 3.5);
+      
+      // Sweep indicator
+      elementsHtml += circle(300, 150, 6, "#10b981");
+      elementsHtml += arrow(300, 190, 300, 160, "#10b981");
+      elementsHtml += text(300, 203, "Caza de Liquidez e Inyección Alcista", 9.5, "#10b981", "middle", "bold");
       break;
 
     case 5:
-      title = "Cascada de Compras Forzadas (Squeeze)";
-      const resY = getY(4316);
-      elementsHtml += `
-        <!-- Resistance Line -->
-        <line x1="0" y1="${resY}" x2="445" y2="${resY}" stroke="#ff0000" stroke-width="1" stroke-dasharray="3,3" />
-        <text x="12" y="${resY - 6}" fill="#ff0000" font-size="8.5" font-family="Tahoma">Resistencia (Buy Stops Vendedores)</text>
-        
-        <!-- Short Cover Entry Buy arrow -->
-        ${drawExecutionMT5(6, 4316, 9, 4350, true)}
-      `;
+      title = "Short Squeeze (Compras Forzadas)";
+      elementsHtml += line(40, 110, 460, 110, "#ef4444", 1.5, "4,4");
+      elementsHtml += text(50, 102, "Resistencia Minorista (Buy Stops de vendedores)", 9.5, "#ef4444");
+      
+      elementsHtml += wave([[40, 130], [120, 120], [200, 125], [260, 110], [280, 45], [340, 35]], "#3b82f6", 3.5);
+      
+      // Breakout arrow
+      elementsHtml += circle(280, 45, 5, "#10b981");
+      elementsHtml += arrow(250, 85, 275, 55, "#10b981");
+      elementsHtml += text(240, 98, "Cascada de Compras (Squeeze)", 9.5, "#10b981", "middle", "bold");
       break;
 
     case 6:
-      title = "Rechazo de Falso Rompimiento (Fakeout)";
-      const fkResY = getY(4325);
-      const fkWickX = getX(7);
-      const fkWickY = getY(4338);
-
+      title = "Falso Rompimiento (Fakeout)";
+      elementsHtml += line(40, 100, 460, 100, "rgba(255, 255, 255, 0.2)", 1.5, "3,3");
+      elementsHtml += text(50, 92, "Resistencia de Valor", 9, "#9ca3af");
+      
+      // Stylized candle structure showing rejection
       elementsHtml += `
-        <line x1="0" y1="${fkResY}" x2="445" y2="${fkResY}" stroke="#ffffff" stroke-width="0.8" stroke-dasharray="3,3" opacity="0.4" />
-        <text x="12" y="${fkResY - 6}" fill="#a0a0a0" font-size="8" font-family="Tahoma">Línea de Resistencia</text>
+        <!-- Left candle (bull) -->
+        <rect x="180" y="110" width="16" height="40" fill="#10b981" rx="2" />
+        <line x1="188" y1="95" x2="188" y2="160" stroke="#10b981" stroke-width="1.5" />
         
-        <circle cx="${fkWickX}" cy="${fkWickY}" r="7" fill="none" stroke="#ff0000" stroke-width="1" />
-        <text x="${fkWickX + 15}" y="${fkWickY + 3}" fill="#ff0000" font-size="7.5" font-family="Tahoma" font-weight="bold">Fakeout (Ruptura Falsa)</text>
+        <!-- Fakeout candle (long upper wick, close inside) -->
+        <rect x="240" y="105" width="16" height="15" fill="#ef4444" rx="2" />
+        <line x1="248" y1="55" x2="248" y2="135" stroke="#ef4444" stroke-width="2" />
       `;
+      
+      elementsHtml += circle(248, 55, 5, "#ef4444");
+      elementsHtml += arrow(330, 60, 260, 65, "#ef4444");
+      elementsHtml += text(340, 64, "Rompimiento Falso", 9.5, "#ef4444", "start", "bold");
       break;
 
     case 7:
-      title = "El Escudo Mental Estoico";
+      title = "Escudo de Control Mental Estoico";
       elementsHtml += `
-        <rect x="50" y="30" width="400" height="150" fill="#000000" stroke="#333333" stroke-width="1.5" />
-        <path d="M 250,55 C 275,55 295,65 295,95 C 295,130 250,155 250,155 C 250,155 205,130 205,95 C 205,65 225,55 250,55 Z" fill="rgba(0, 85, 255, 0.04)" stroke="#0055ff" stroke-width="2.5" />
-        <path d="M 250,68 L 250,135 M 225,90 L 275,90" stroke="#0055ff" stroke-width="2.5" />
-        <text x="250" y="42" fill="#f3f4f6" font-size="11.5" font-family="Tahoma" font-weight="bold" text-anchor="middle">CONTROL ESTOICO - METATRADER 5</text>
-        <text x="140" y="95" fill="#ff0000" font-size="9" font-family="Tahoma" text-anchor="end" font-weight="bold">FOMO / PÁNICO</text>
-        <text x="360" y="95" fill="#00ff00" font-size="9" font-family="Tahoma" text-anchor="start" font-weight="bold">DISCIPLINA OPERATIVA</text>
+        <path d="M 250,45 C 280,45 305,55 305,90 C 305,135 250,165 250,165 C 250,165 195,135 195,90 C 195,55 220,45 250,45 Z" fill="rgba(59, 130, 246, 0.08)" stroke="#3b82f6" stroke-width="3" />
+        <path d="M 250,60 L 250,145 M 220,90 L 280,90" stroke="#3b82f6" stroke-width="2.5" />
+        <text x="250" y="32" fill="#f3f4f6" font-size="12" font-weight="bold" text-anchor="middle">MANIFIESTO ESTOICO</text>
+        <text x="120" y="95" fill="#ef4444" font-size="9.5" font-weight="bold" text-anchor="end">EMOCIÓN / FOMO</text>
+        <text x="380" y="95" fill="#10b981" font-size="9.5" font-weight="bold" text-anchor="start">DISCIPLINA / RIESGO</text>
       `;
       break;
 
     case 8:
-      title = "Preservación del Capital de Trabajo";
-      let sfPoints = [];
-      let rnPoints = [];
-      let sfVal = 10000;
-      let rnVal = 10000;
+      title = "Matemáticas de Gestión de Capital";
+      // Equity curves
+      let safePts = [];
+      let ruinPts = [];
+      let sVal = 100;
+      let rVal = 100;
       for(let i=0; i<12; i++) {
         let x = 60 + i * 32;
-        sfVal = sfVal - 100;
-        rnVal = rnVal - (rnVal * 0.10);
-        sfPoints.push(`${x},${160 - (sfVal / 10000) * 110}`);
-        rnPoints.push(`${x},${160 - (rnVal / 10000) * 110}`);
+        sVal -= 1;
+        rVal = rVal * 0.90;
+        safePts.push(`${x},${170 - sVal * 1.1}`);
+        ruinPts.push(`${x},${170 - rVal * 1.1}`);
       }
 
       elementsHtml += `
-        <rect x="50" y="30" width="400" height="150" fill="#000000" stroke="#333333" stroke-width="1.5" />
-        <line x1="50" y1="160" x2="450" y2="160" stroke="#444444" stroke-width="1" />
-        <text x="60" y="46" fill="#a0a0a0" font-size="8" font-family="Tahoma">MetaTrader Equity Curve - $10,000</text>
-        
-        <path d="M 60,50 L ${sfPoints.join(' L ')}" fill="none" stroke="#00ff00" stroke-width="2" />
-        <path d="M 60,50 L ${rnPoints.join(' L ')}" fill="none" stroke="#ff0000" stroke-width="2" />
-        
-        <text x="250" y="152" fill="#a0a0a0" font-size="8" font-family="Tahoma" text-anchor="middle">Rachas perdedoras: Riesgo 1% vs Riesgo 10% (Ruina)</text>
+        <path d="M 60,60 L ${safePts.join(' L ')}" fill="none" stroke="#10b981" stroke-width="3" />
+        <path d="M 60,60 L ${ruinPts.join(' L ')}" fill="none" stroke="#ef4444" stroke-width="3" />
+        <text x="60" y="45" fill="#9ca3af" font-size="9">Capital de Trabajo Inicial: $10,000</text>
+        <text x="420" y="${170 - sVal * 1.1 + 3}" fill="#10b981" font-size="9" font-weight="bold">Riesgo 1% (Seguro)</text>
+        <text x="420" y="${170 - rVal * 1.1 + 3}" fill="#ef4444" font-size="9" font-weight="bold">Riesgo 10% (Ruina)</text>
       `;
       break;
 
     case 9:
-      title = "Relación Riesgo Beneficio (R:R)";
-      const eY = getY(4320);
-      const sY = getY(4310);
-      const tY = getY(4340);
-      const bx = getX(6);
-
+      title = "Asimetría Matemática R:R 1:2";
+      elementsHtml += line(60, 110, 440, 110, "#3b82f6", 2);
+      elementsHtml += text(70, 100, "Nivel de Entrada", 9.5, "#3b82f6", "start", "bold");
+      
+      // TP and SL boxes
       elementsHtml += `
-        <!-- Entry line -->
-        <line x1="0" y1="${eY}" x2="445" y2="${eY}" stroke="#0055ff" stroke-width="1" stroke-dasharray="2,2" />
-        <text x="12" y="${eY - 4}" fill="#0055ff" font-size="8.5" font-family="Tahoma" font-weight="bold">Entry price level: 4320.00</text>
+        <rect x="140" y="40" width="220" height="70" fill="rgba(16, 185, 129, 0.08)" stroke="#10b981" stroke-width="1.2" rx="4" />
+        <text x="250" y="78" fill="#10b981" font-size="10" font-weight="bold" text-anchor="middle">BENEFICIO (TP 1:2) +$200</text>
         
-        <!-- TP Box (MT5 green) -->
-        <rect x="${bx}" y="${tY}" width="200" height="${eY - tY}" fill="rgba(0, 255, 0, 0.05)" stroke="#00ff00" stroke-width="0.8" />
-        <text x="${bx + 10}" y="${(eY + tY)/2 + 4}" fill="#00ff00" font-size="9" font-weight="bold" font-family="Tahoma">TAKE PROFIT (R:R 1:2) +$200</text>
-        
-        <!-- SL Box (MT5 red) -->
-        <rect x="${bx}" y="${eY}" width="200" height="${sY - eY}" fill="rgba(255, 0, 0, 0.05)" stroke="#ff0000" stroke-width="0.8" />
-        <text x="${bx + 10}" y="${(eY + sY)/2 + 4}" fill="#ff0000" font-size="9" font-weight="bold" font-family="Tahoma">STOP LOSS (Riesgo 1%) -$100</text>
+        <rect x="140" y="110" width="220" height="35" fill="rgba(239, 68, 68, 0.08)" stroke="#ef4444" stroke-width="1.2" rx="4" />
+        <text x="250" y="132" fill="#ef4444" font-size="10" font-weight="bold" text-anchor="middle">RIESGO (SL 1:1) -$100</text>
       `;
       break;
 
     case 10:
-      title = "Daily Drawdown Cut-off";
-      elementsHtml += `
-        <rect x="50" y="30" width="400" height="150" fill="#000000" stroke="#ff0000" stroke-width="1.5" rx="2" />
-        <circle cx="250" cy="80" r="28" fill="rgba(255, 0, 0, 0.05)" stroke="#ff0000" stroke-width="2" />
-        <line x1="250" y1="65" x2="250" y2="85" stroke="#ff0000" stroke-width="4.5" stroke-linecap="round" />
-        <circle cx="250" cy="95" r="2" fill="#ff0000" />
-        
-        <text x="250" y="130" fill="#ff0000" font-size="12" font-family="Tahoma" font-weight="bold" text-anchor="middle">LÍMITE DE DRAWDOWN DIARIO (2%) ALCANZADO</text>
-        <text x="250" y="148" fill="#f3f4f6" font-size="10" font-family="Tahoma" text-anchor="middle" font-weight="bold">PLATAFORMA BLOQUEADA AUTOMÁTICAMENTE</text>
-      `;
+      title = "Límite Diario de Pérdida (Drawdown)";
+      elementsHtml += wave([[40, 60], [120, 80], [200, 130], [280, 150]], "#ef4444", 3);
+      elementsHtml += line(40, 140, 460, 140, "#ef4444", 1.5, "4,4");
+      elementsHtml += text(50, 132, "Límite Máximo de Pérdida Diaria (2%)", 9.5, "#ef4444");
+      
+      elementsHtml += circle(280, 150, 6, "#ef4444");
+      elementsHtml += rect(190, 168, 120, 24, "#1b222c", "#ef4444", 1.2);
+      elementsHtml += text(250, 184, "DETENER OPERATIVA", 9.5, "#ef4444", "middle", "bold");
       break;
 
     case 11:
-      title = "El Diario de Operaciones del Profesional";
+      title = "Parámetros de la Bitácora";
       elementsHtml += `
-        <rect x="35" y="30" width="430" height="150" fill="#000000" stroke="#333333" rx="0"/>
-        <rect x="35" y="30" width="430" height="25" fill="#111111" rx="0"/>
-        
-        <!-- Table columns -->
-        <text x="45" y="46" fill="#a0a0a0" font-size="7.5" font-family="Tahoma" font-weight="bold">ID</text>
-        <text x="80" y="46" fill="#a0a0a0" font-size="7.5" font-family="Tahoma" font-weight="bold">FECHA</text>
-        <text x="140" y="46" fill="#a0a0a0" font-size="7.5" font-family="Tahoma" font-weight="bold">ACTIVO</text>
-        <text x="200" y="46" fill="#a0a0a0" font-size="7.5" font-family="Tahoma" font-weight="bold">DIRECCIÓN</text>
-        <text x="270" y="46" fill="#a0a0a0" font-size="7.5" font-family="Tahoma" font-weight="bold">RIESGO</text>
-        <text x="330" y="46" fill="#a0a0a0" font-size="7.5" font-family="Tahoma" font-weight="bold">R:R</text>
-        <text x="380" y="46" fill="#a0a0a0" font-size="7.5" font-family="Tahoma" font-weight="bold">P&L NETO</text>
-        
-        <line x1="35" y1="55" x2="465" y2="55" stroke="#333333" />
-
-        <!-- Row 1 -->
-        <text x="45" y="75" fill="#f3f4f6" font-size="7.5" font-family="Tahoma">#28</text>
-        <text x="80" y="75" fill="#f3f4f6" font-size="7.5" font-family="Tahoma">30 May 09:35</text>
-        <text x="140" y="75" fill="#f3f4f6" font-size="7.5" font-family="Tahoma">EURUSD Spot</text>
-        <text x="200" y="75" fill="#00ff00" font-size="7.5" font-family="Tahoma" font-weight="bold">LARGO (BUY)</text>
-        <text x="270" y="75" fill="#f3f4f6" font-size="7.5" font-family="Tahoma">$100 (1%)</text>
-        <text x="330" y="75" fill="#f3f4f6" font-size="7.5" font-family="Tahoma">1:2</text>
-        <text x="380" y="75" fill="#00ff00" font-size="7.5" font-family="Tahoma" font-weight="bold">+$200.00</text>
-        <line x1="35" y1="88" x2="465" y2="88" stroke="#333333" />
-
-        <!-- Row 2 -->
-        <text x="45" y="108" fill="#f3f4f6" font-size="7.5" font-family="Tahoma">#27</text>
-        <text x="80" y="108" fill="#f3f4f6" font-size="7.5" font-family="Tahoma">29 May 10:12</text>
-        <text x="140" y="108" fill="#f3f4f6" font-size="7.5" font-family="Tahoma">GBPUSD Spot</text>
-        <text x="200" y="108" fill="#ff0000" font-size="7.5" font-family="Tahoma" font-weight="bold">CORTO (SELL)</text>
-        <text x="270" y="108" fill="#f3f4f6" font-size="7.5" font-family="Tahoma">$100 (1%)</text>
-        <text x="330" y="108" fill="#f3f4f6" font-size="7.5" font-family="Tahoma">1:2</text>
-        <text x="380" y="108" fill="#ff0000" font-size="7.5" font-family="Tahoma" font-weight="bold">-$100.00</text>
+        <rect x="40" y="40" width="420" height="135" fill="#131a22" stroke="#242f3d" rx="6"/>
+        <line x1="40" y1="75" x2="460" y2="75" stroke="#242f3d" />
+        <text x="250" y="60" fill="#f3f4f6" font-size="11" font-weight="bold" text-anchor="middle">Registro de Auditoría de Procesos</text>
+        <g fill="#9ca3af" font-size="9" transform="translate(60, 95)">
+          <text x="0" y="0">1. SETUP OPERADO:</text>
+          <text x="140" y="0" fill="#f3f4f6">Confluencia Visión Pro</text>
+          <text x="0" y="22">2. CAPITAL EXPUESTO:</text>
+          <text x="140" y="22" fill="#3b82f6" font-weight="bold">1% de la Cuenta ($100)</text>
+          <text x="0" y="44">3. ESTADO MENTAL:</text>
+          <text x="140" y="44" fill="#10b981" font-weight="bold">Cuidado y Enfoque Estoico</text>
+        </g>
       `;
       break;
 
     case 12:
       title = "Proceso Operativo Real";
       elementsHtml += `
-        <rect x="50" y="30" width="400" height="150" fill="#000000" stroke="#333333" rx="2" />
-        <text x="250" y="55" fill="#f3f4f6" font-size="11" font-weight="bold" font-family="Tahoma" text-anchor="middle">MetaTrader 5 Trade Report - Forex</text>
-        
-        <g fill="#a0a0a0" font-size="8.5" font-family="Tahoma" transform="translate(80, 80)">
-          <text x="0" y="0">P&L Bruto en Pantalla:</text>
-          <text x="240" y="0" fill="#00ff00" font-weight="bold" text-anchor="end">+$250.00 USD</text>
-          
-          <text x="0" y="20">Slippage (Deslizamiento de Orden):</text>
-          <text x="240" y="20" fill="#f59e0b" font-weight="bold" text-anchor="end">-$20.00 USD</text>
-
-          <text x="0" y="40">Comisiones de Brokerage (MT5):</text>
-          <text x="240" y="40" fill="#ff0000" font-weight="bold" text-anchor="end">-$5.00 USD</text>
+        <rect x="60" y="40" width="380" height="135" fill="#131a22" stroke="#242f3d" rx="6" />
+        <g fill="#9ca3af" font-size="9" transform="translate(80, 70)">
+          <text x="0" y="0">Resultado Bruto:</text>
+          <text x="240" y="0" fill="#10b981" font-weight="bold" text-anchor="end">+$250.00</text>
+          <text x="0" y="22">Deslizamiento (Slippage):</text>
+          <text x="240" y="22" fill="#ef4444" font-weight="bold" text-anchor="end">-$20.00</text>
+          <text x="0" y="44">Comisión Operativa:</text>
+          <text x="240" y="44" fill="#ef4444" font-weight="bold" text-anchor="end">-$5.00</text>
         </g>
-        
-        <line x1="80" y1="140" x2="320" y2="140" stroke="#333333" />
-        <text x="80" y="160" fill="#f3f4f6" font-size="11" font-weight="bold" font-family="Tahoma">BENEFICIO NETO REAL EN CUENTA:</text>
-        <text x="320" y="160" fill="#00ff00" font-size="12" font-weight="bold" font-family="Tahoma" text-anchor="end">+$225.00 USD</text>
+        <line x1="80" y1="140" x2="320" y2="140" stroke="#242f3d" />
+        <text x="80" y="160" fill="#f3f4f6" font-size="10" font-weight="bold">Resultado Neto Real:</text>
+        <text x="320" y="160" fill="#10b981" font-size="11.5" font-weight="bold" text-anchor="end">+$225.00</text>
       `;
       break;
 
     case 13:
-      title = "El Método Repetible de la Esperanza";
+      title = "Construcción de un Sistema Repetible";
       elementsHtml += `
-        <g font-family="Tahoma" font-weight="bold" font-size="9.5" text-anchor="middle">
-          <rect x="40" y="80" width="80" height="35" fill="#111111" stroke="#333333" rx="2" />
-          <text x="80" y="101" fill="#f3f4f6">1. Setup Fijo</text>
-          
-          <rect x="150" y="80" width="90" height="35" fill="rgba(0, 85, 255, 0.08)" stroke="#0055ff" rx="2" />
-          <text x="195" y="101" fill="#0055ff">2. Ejecución Fija</text>
-          
-          <rect x="270" y="80" width="85" height="35" fill="#111111" stroke="#333333" rx="2" />
-          <text x="312.5" y="101" fill="#f3f4f6">3. Muestra 100</text>
-          
-          <rect x="380" y="80" width="80" height="35" fill="rgba(0, 255, 0, 0.08)" stroke="#00ff00" rx="2" />
-          <text x="420" y="101" fill="#00ff00">4. Esperanza</text>
+        <g font-weight="bold" font-size="10" text-anchor="middle">
+          <rect x="40" y="85" width="80" height="35" fill="#131a22" stroke="#242f3d" rx="4" />
+          <text x="80" y="106" fill="#f3f4f6">1. Reglas</text>
+          <rect x="150" y="85" width="90" height="35" fill="rgba(59, 130, 246, 0.08)" stroke="#3b82f6" rx="4" />
+          <text x="195" y="106" fill="#3b82f6">2. Ejecución</text>
+          <rect x="270" y="85" width="85" height="35" fill="#131a22" stroke="#242f3d" rx="4" />
+          <text x="312.5" y="106" fill="#f3f4f6">3. Muestra 100</text>
+          <rect x="380" y="85" width="80" height="35" fill="rgba(16, 185, 129, 0.08)" stroke="#10b981" rx="4" />
+          <text x="420" y="106" fill="#10b981">4. Esperanza</text>
         </g>
       `;
-      elementsHtml += arrow(120, 97, 150, 97, '#0055ff');
-      elementsHtml += arrow(240, 97, 270, 97, '#0055ff');
-      elementsHtml += arrow(355, 97, 380, 97, '#00ff00');
-      elementsHtml += `
-        <text x="250" y="155" fill="#a0a0a0" font-size="8.5" font-family="Tahoma" text-anchor="middle">Consistencia es repetir el mismo proceso bajo un R:R asimétrico</text>
-      `;
+      elementsHtml += arrow(120, 102, 150, 102, "#3b82f6");
+      elementsHtml += arrow(240, 102, 270, 102, "#3b82f6");
+      elementsHtml += arrow(355, 102, 380, 102, "#10b981");
       break;
 
     case 14:
-      title = "Ajuste de Lotes según Distancia de Stop Loss";
+      title = "Cálculo Dinámico de Contratos";
       elementsHtml += `
-        <rect x="40" y="30" width="420" height="150" fill="#000000" stroke="#333333" rx="2" />
+        <rect x="60" y="50" width="150" height="60" fill="rgba(16, 185, 129, 0.04)" stroke="#10b981" stroke-width="1.2" rx="4" />
+        <text x="135" y="72" fill="#f3f4f6" font-size="9.5" font-weight="bold" text-anchor="middle">Stop Loss Estrecho (10 pts)</text>
+        <text x="135" y="92" fill="#10b981" font-size="11.5" font-weight="bold" text-anchor="middle">2 Contratos MES</text>
         
-        <rect x="60" y="50" width="150" height="60" fill="rgba(0, 255, 0, 0.05)" stroke="#00ff00" stroke-width="1" rx="2" />
-        <text x="135" y="70" fill="#f3f4f6" font-size="9" font-family="Tahoma" font-weight="bold" text-anchor="middle">Stop Loss Estrecho (10 pts)</text>
-        <text x="135" y="88" fill="#00ff00" font-size="11" font-family="Tahoma" font-weight="bold" text-anchor="middle">2 Contratos MES</text>
-        
-        <rect x="290" y="50" width="150" height="60" fill="rgba(255, 0, 0, 0.05)" stroke="#ff0000" stroke-width="1" rx="2" />
-        <text x="365" y="70" fill="#f3f4f6" font-size="9" font-family="Tahoma" font-weight="bold" text-anchor="middle">Stop Loss Amplio (20 pts)</text>
-        <text x="365" y="88" fill="#ff0000" font-size="11" font-family="Tahoma" font-weight="bold" text-anchor="middle">1 Contrato MES</text>
+        <rect x="290" y="50" width="150" height="60" fill="rgba(239, 68, 68, 0.04)" stroke="#ef4444" stroke-width="1.2" rx="4" />
+        <text x="365" y="72" fill="#f3f4f6" font-size="9.5" font-weight="bold" text-anchor="middle">Stop Loss Amplio (20 pts)</text>
+        <text x="365" y="92" fill="#ef4444" font-size="11.5" font-weight="bold" text-anchor="middle">1 Contrato MES</text>
 
         <path d="M 220,80 L 280,80" stroke="#f59e0b" stroke-dasharray="2,2" stroke-width="1.2" marker-end="url(#arr-14)" />
-        <text x="250" y="72" fill="#f59e0b" font-size="7.5" font-family="Tahoma" font-weight="bold" text-anchor="middle">Distancia x2</text>
-        <text x="250" y="94" fill="#f59e0b" font-size="7.5" font-family="Tahoma" font-weight="bold" text-anchor="middle">Contratos /2</text>
-        
-        <text x="250" y="155" fill="#f3f4f6" font-size="9.5" font-family="Tahoma" font-weight="bold" text-anchor="middle">Riesgo monetario idéntico ($100.00 USD)</text>
+        <text x="250" y="135" fill="#f3f4f6" font-size="10" font-weight="bold" text-anchor="middle">El riesgo monetario total es el mismo en ambos setups ($100)</text>
       `;
       break;
 
     case 15:
-      title = "Ancla Metodológica Contra el Ruido";
+      title = "Ancla Metodológica";
       elementsHtml += `
-        <rect x="50" y="30" width="400" height="150" fill="#000000" stroke="#f59e0b" stroke-width="1.5" rx="2" />
-        <path d="M 250,55 L 250,140 M 210,75 L 290,75 M 190,110 C 190,165 310,165 310,110 M 175,100 L 192,110 M 325,100 L 308,110" fill="none" stroke="#f59e0b" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M 250,55 L 250,140 M 210,75 L 290,75 M 190,110 C 190,165 310,165 310,110" fill="none" stroke="#f59e0b" stroke-width="4.5" stroke-linecap="round" />
         <circle cx="250" cy="55" r="10" stroke="#f59e0b" stroke-width="3" fill="none" />
-        
-        <text x="250" y="42" fill="#f3f4f6" font-size="11.5" font-family="Tahoma" font-weight="bold" text-anchor="middle">ANCLA DE GESTIÓN DE RIESGO MT5</text>
+        <text x="250" y="165" fill="#f3f4f6" font-size="11" font-weight="bold" text-anchor="middle">PRESERVACIÓN DEL CAPITAL DE TRABAJO</text>
       `;
       break;
 
     case 16:
-      title = "Tendencia Saludable (Estructura)";
-      const hl1 = [getX(0), getY(4302)];
-      const hh1 = [getX(4), getY(4320)];
-      const hl2 = [getX(5), getY(4315)];
-      const hh2 = [getX(8), getY(4334)];
-      const hl3 = [getX(9), getY(4328)];
-      const hh3 = [getX(12), getY(4347)];
-
-      elementsHtml += `
-        <path d="M ${hl1.join(',')} L ${hh1.join(',')} L ${hl2.join(',')} L ${hh2.join(',')} L ${hl3.join(',')} L ${hh3.join(',')}" fill="none" stroke="#0055ff" stroke-width="2" stroke-dasharray="2,2" opacity="0.8" />
-        
-        <circle cx="${hl1[0]}" cy="${hl1[1]}" r="4" fill="#00ff00" />
-        <text x="${hl1[0]}" y="${hl1[1] + 12}" fill="#00ff00" font-size="8" font-family="Tahoma" font-weight="bold" text-anchor="middle">HL</text>
-
-        <circle cx="${hh1[0]}" cy="${hh1[1]}" r="4" fill="#ff0000" />
-        <text x="${hh1[0]}" y="${hh1[1] - 8}" fill="#ff0000" font-size="8" font-family="Tahoma" font-weight="bold" text-anchor="middle">HH</text>
-
-        <circle cx="${hl2[0]}" cy="${hl2[1]}" r="4" fill="#00ff00" />
-        <text x="${hl2[0]}" y="${hl2[1] + 12}" fill="#00ff00" font-size="8" font-family="Tahoma" font-weight="bold" text-anchor="middle">HL</text>
-
-        <circle cx="${hh2[0]}" cy="${hh2[1]}" r="4" fill="#ff0000" />
-        <text x="${hh2[0]}" y="${hh2[1] - 8}" fill="#ff0000" font-size="8" font-family="Tahoma" font-weight="bold" text-anchor="middle">HH</text>
-
-        <circle cx="${hl3[0]}" cy="${hl3[1]}" r="4" fill="#00ff00" />
-        <text x="${hl3[0]}" y="${hl3[1] + 12}" fill="#00ff00" font-size="8" font-family="Tahoma" font-weight="bold" text-anchor="middle">HL</text>
-      `;
+      title = "Estructura de Mercado (Tendencia Alcista)";
+      elementsHtml += wave([[40, 160], [100, 100], [140, 120], [210, 60], [250, 85], [320, 30], [360, 50], [420, 15]], "#3b82f6", 3.5);
+      
+      elementsHtml += circle(100, 100, 4, "#3b82f6"); elementsHtml += text(100, 85, "HH", 9.5, "#3b82f6", "middle", "bold");
+      elementsHtml += circle(210, 60, 4, "#3b82f6"); elementsHtml += text(210, 45, "HH", 9.5, "#3b82f6", "middle", "bold");
+      elementsHtml += circle(320, 30, 4, "#3b82f6"); elementsHtml += text(320, 15, "HH", 9.5, "#3b82f6", "middle", "bold");
+      
+      elementsHtml += circle(140, 120, 4, "#10b981"); elementsHtml += text(140, 136, "HL", 9.5, "#10b981", "middle", "bold");
+      elementsHtml += circle(250, 85, 4, "#10b981"); elementsHtml += text(250, 101, "HL", 9.5, "#10b981", "middle", "bold");
+      elementsHtml += circle(360, 50, 4, "#10b981"); elementsHtml += text(360, 66, "HL", 9.5, "#10b981", "middle", "bold");
       break;
 
     case 17:
-      title = "Quiebre Estructural Defensivo";
-      const pivotY = getY(4335);
-      const startX = getX(4);
-      const endX = getX(10);
+      title = "Quiebre de Estructura (BOS Bajista)";
+      elementsHtml += wave([[40, 140], [100, 80], [160, 110], [220, 50], [280, 125], [320, 140]], "#3b82f6", 3.5);
       
-      elementsHtml += `
-        <line x1="${startX}" y1="${pivotY}" x2="${endX}" y2="${pivotY}" stroke="#ff0000" stroke-width="1.2" stroke-dasharray="3,3" />
-        <circle cx="${getX(6)}" cy="${pivotY}" r="4" fill="#ff0000" />
-        
-        <g transform="translate(${(startX + endX)/2}, ${pivotY - 4})">
-          <rect x="-24" y="-4" width="48" height="9" fill="#000000" stroke="#ff0000" stroke-width="0.8" />
-          <text x="0" y="3" fill="#ff0000" font-size="6.5" font-family="Tahoma" font-weight="bold" text-anchor="middle">BOS Bajista</text>
-        </g>
-        
-        <text x="${getX(4)}" y="${getY(4335) - 15}" fill="#f3f4f6" font-size="7.5" font-family="Tahoma" text-anchor="middle">Mínimo HL de Defensa</text>
-      `;
+      elementsHtml += line(160, 110, 340, 110, "#ef4444", 1.2, "3,3");
+      elementsHtml += circle(280, 125, 5, "#ef4444");
+      elementsHtml += text(345, 114, "BOS Bajista (Quiebre)", 9.5, "#ef4444", "start", "bold");
       break;
 
     case 18:
-      title = "Zonas Clave de Oferta y Demanda";
+      title = "Zonas de Oferta y Demanda";
       elementsHtml += `
-        <rect x="0" y="20" width="445" height="35" fill="rgba(255, 0, 0, 0.05)" stroke="#ff0000" stroke-width="0.8" stroke-dasharray="2,2" />
-        <text x="12" y="40" fill="#ff0000" font-size="8.5" font-family="Tahoma" font-weight="bold">ZONA DE OFERTA INSTITUCIONAL (Supply Zone)</text>
+        <rect x="40" y="30" width="420" height="35" fill="rgba(239, 68, 68, 0.05)" stroke="#ef4444" stroke-width="1.2" stroke-dasharray="2,2" rx="4" />
+        <text x="250" y="52" fill="#ef4444" font-size="10" font-weight="bold" text-anchor="middle">ZONA DE OFERTA INSTITUCIONAL (Ventas)</text>
         
-        <rect x="0" y="130" width="445" height="35" fill="rgba(0, 255, 0, 0.05)" stroke="#00ff00" stroke-width="0.8" stroke-dasharray="2,2" />
-        <text x="12" y="150" fill="#00ff00" font-size="8.5" font-family="Tahoma" font-weight="bold">ZONA DE DEMANDA INSTITUCIONAL (Demand Zone)</text>
+        <rect x="40" y="135" width="420" height="35" fill="rgba(16, 185, 129, 0.05)" stroke="#10b981" stroke-width="1.2" stroke-dasharray="2,2" rx="4" />
+        <text x="250" y="157" fill="#10b981" font-size="10" font-weight="bold" text-anchor="middle">ZONA DE DEMANDA INSTITUCIONAL (Compras)</text>
       `;
       break;
 
     case 19:
-      title = "Lectura Limpia de Estructura";
-      const engX = getX(6.5);
-      const engY = getY(4320);
-
+      title = "Acción del Precio Pura";
       elementsHtml += `
-        <circle cx="${engX}" cy="${engY}" r="22" fill="none" stroke="#0055ff" stroke-width="1.2" stroke-dasharray="2,2" />
-        <text x="${engX}" y="${engY - 26}" fill="#0055ff" font-size="8" font-family="Tahoma" font-weight="bold" text-anchor="middle">Patrón de Engolfing</text>
+        <!-- Stylized pinbar pattern -->
+        <line x1="250" y1="50" x2="250" y2="150" stroke="#10b981" stroke-width="3" />
+        <rect x="242" y="50" width="16" height="25" fill="#10b981" rx="2" />
+        <circle cx="250" cy="150" r="6" fill="#10b981" />
+        <text x="250" y="172" fill="#10b981" font-size="11" font-weight="bold" text-anchor="middle">Pinbar Alcista (Rechazo de Mínimos)</text>
       `;
       break;
 
     case 20:
-      title = "La Ley de Polaridad S/R";
-      const polY = getY(4324);
-      elementsHtml += `
-        <line x1="0" y1="${polY}" x2="445" y2="${polY}" stroke="#f59e0b" stroke-width="1.5" />
-        <text x="12" y="${polY - 5}" fill="#f59e0b" font-size="8" font-family="Tahoma" font-weight="bold">Resistencia Antigua</text>
-        <text x="12" y="${polY + 11}" fill="#f59e0b" font-size="8" font-family="Tahoma" font-weight="bold">Soporte Nuevo (Polaridad)</text>
-
-        <!-- Test point highlight -->
-        <circle cx="${getX(9)}" cy="${polY}" r="6" fill="none" stroke="#00ff00" stroke-width="2" />
-        <path d="M ${getX(9)},${polY + 25} L ${getX(9)},${polY + 8}" stroke="#00ff00" stroke-width="1" marker-end="url(#arr-20)" />
-      `;
+      title = "La Ley de Polaridad";
+      elementsHtml += line(40, 110, 460, 110, "#f59e0b", 2);
+      elementsHtml += text(45, 100, "Resistencia Antigua", 9, "#f59e0b");
+      elementsHtml += text(45, 125, "Soporte Nuevo (Polaridad)", 9, "#10b981", "start", "bold");
+      
+      elementsHtml += wave([[60, 160], [130, 130], [200, 140], [270, 80], [330, 110], [410, 50]], "#3b82f6", 3);
+      elementsHtml += circle(330, 110, 6, "#10b981");
       break;
 
     case 21:
       title = "EMA 200 y Momentum RSI";
-      // Draw EMA 200 curve on MT5
-      let e200Pts = [];
-      let cVal = candles[0].c;
-      for(let i=0; i<candles.length; i++) {
-        cVal = candles[i].c * 0.15 + cVal * 0.85;
-        e200Pts.push(`${getX(i)},${getY(cVal)}`);
-      }
-      elementsHtml += `<path d="M ${e200Pts.join(' L ')}" fill="none" stroke="#f59e0b" stroke-width="1.8" opacity="0.8" />`;
-      elementsHtml += `<text x="350" y="${getY(cVal) - 6}" fill="#f59e0b" font-size="7.5" font-family="Tahoma">EMA (200)</text>`;
-
-      // Draw RSI sub-pane
+      elementsHtml += wave([[40, 80], [120, 110], [200, 90], [280, 60], [360, 80], [440, 40]], "#3b82f6", 3.5);
+      elementsHtml += wave([[40, 120], [120, 115], [200, 105], [280, 95], [360, 90], [440, 80]], "#f59e0b", 2);
+      elementsHtml += text(440, 70, "EMA 200 (Filtro)", 9, "#f59e0b", "end");
+      
+      // RSI panel
       elementsHtml += `
-        <rect x="0" y="170" width="445" height="50" fill="#000000" stroke="#333333" stroke-width="0.8" />
-        <line x1="0" y1="195" x2="445" y2="195" stroke="rgba(0, 85, 255, 0.4)" stroke-width="0.8" stroke-dasharray="2,2" />
-        <text x="10" y="182" fill="#a0a0a0" font-size="7" font-family="Tahoma">RSI 14 (Momentum Index)</text>
-
-        <path d="M 0,210 L 100,205 L 200,197 L 300,188 L 400,182 L 445,180" fill="none" stroke="#0055ff" stroke-width="1.5" />
-        
-        <circle cx="300" cy="188" r="3" fill="#00ff00" />
+        <rect x="40" y="145" width="420" height="40" fill="#131a22" stroke="#242f3d" rx="4" />
+        <line x1="40" y1="165" x2="460" y2="165" stroke="rgba(255, 255, 255, 0.15)" stroke-dasharray="2,2" />
+        <text x="50" y="157" fill="#9ca3af" font-size="7.5">RSI 14 (Línea 50)</text>
+        <path d="M 50,180 L 150,170 L 250,162 L 350,152 L 450,150" fill="none" stroke="#10b981" stroke-width="1.8" />
+        <circle cx="250" cy="162" r="3.5" fill="#10b981" />
       `;
       break;
 
     case 22:
-      title = "Faro de Dirección (Estructura)";
+      title = "Faro de Dirección";
       elementsHtml += `
-        <rect x="50" y="30" width="400" height="150" fill="#000000" stroke="#333333" stroke-width="1.5" rx="2" />
-        <path d="M 235,160 L 245,65 L 255,65 L 265,160 Z" fill="#111111" stroke="#0055ff" stroke-width="2" />
-        <rect x="242" y="52" width="16" height="13" fill="#f59e0b" rx="1" />
+        <rect x="50" y="30" width="400" height="150" fill="#131a22" stroke="#242f3d" rx="8" />
+        <path d="M 235,160 L 245,65 L 255,65 L 265,160 Z" fill="#1b222c" stroke="#3b82f6" stroke-width="2" />
+        <rect x="242" y="52" width="16" height="13" fill="#f59e0b" rx="1.5" />
         <polygon points="250,58 100,20 100,120" fill="rgba(245, 158, 11, 0.05)" />
         <polygon points="250,58 400,20 400,120" fill="rgba(245, 158, 11, 0.05)" />
-        
-        <text x="250" y="45" fill="#f3f4f6" font-size="11" font-family="Tahoma" font-weight="bold" text-anchor="middle">ESTRUCTURA DE MERCADO = TU BRÚJULA</text>
+        <text x="250" y="45" fill="#f3f4f6" font-size="11" font-weight="bold" text-anchor="middle">ESTRUCTURA = EL FARO DE DIRECCIÓN</text>
       `;
       break;
 
     case 23:
       title = "Cronograma Diario del Operador";
       elementsHtml += `
-        <rect x="40" y="30" width="420" height="150" fill="#000000" stroke="#333333" rx="2" />
-        <line x1="60" y1="100" x2="440" y2="100" stroke="#444444" stroke-width="3" />
+        <rect x="40" y="40" width="420" height="135" fill="#131a22" stroke="#242f3d" rx="8" />
+        <line x1="60" y1="100" x2="440" y2="100" stroke="#242f3d" stroke-width="4" />
         
-        <circle cx="100" cy="100" r="8" fill="#0055ff" />
-        <text x="100" y="85" fill="#f3f4f6" font-size="7.5" font-family="Tahoma" font-weight="bold" text-anchor="middle">08:00 AM</text>
-        <text x="100" y="117" fill="#a0a0a0" font-size="8" font-family="Tahoma" text-anchor="middle">Análisis Pre-market</text>
+        <circle cx="100" cy="100" r="8" fill="#3b82f6" />
+        <text x="100" y="85" fill="#f3f4f6" font-size="7.5" font-weight="bold" text-anchor="middle">08:00 AM</text>
+        <text x="100" y="120" fill="#9ca3af" font-size="8.5" text-anchor="middle">Pre-market</text>
 
-        <circle cx="250" cy="100" r="8" fill="#00ff00" />
-        <text x="250" y="85" fill="#f3f4f6" font-size="7.5" font-family="Tahoma" font-weight="bold" text-anchor="middle">09:30 AM</text>
-        <text x="250" y="117" fill="#00ff00" font-size="8" font-family="Tahoma" font-weight="bold" text-anchor="middle">Sesión Activa</text>
+        <circle cx="250" cy="100" r="8" fill="#10b981" />
+        <text x="250" y="85" fill="#f3f4f6" font-size="7.5" font-weight="bold" text-anchor="middle">09:30 AM</text>
+        <text x="250" y="120" fill="#10b981" font-size="8.5" font-weight="bold" text-anchor="middle">Sesión Abierta</text>
 
         <circle cx="400" cy="100" r="8" fill="#f59e0b" />
-        <text x="400" y="85" fill="#f3f4f6" font-size="7.5" font-family="Tahoma" font-weight="bold" text-anchor="middle">12:00 PM</text>
-        <text x="400" y="117" fill="#a0a0a0" font-size="8" font-family="Tahoma" text-anchor="middle">Bitácora & Cierre</text>
+        <text x="400" y="85" fill="#f3f4f6" font-size="7.5" font-weight="bold" text-anchor="middle">12:00 PM</text>
+        <text x="400" y="120" fill="#9ca3af" font-size="8.5" text-anchor="middle">Cierre & Bitácora</text>
       `;
       break;
 
     case 24:
       title = "Checklist pre-market Visión Pro";
       elementsHtml += `
-        <rect x="50" y="30" width="400" height="150" fill="#000000" stroke="#333333" rx="2" />
-        <text x="250" y="48" fill="#f3f4f6" font-size="11" font-family="Tahoma" font-weight="bold" text-anchor="middle">Checklist de Ejecución Pre-market</text>
+        <rect x="50" y="30" width="400" height="150" fill="#131a22" stroke="#242f3d" rx="8" />
+        <text x="250" y="48" fill="#f3f4f6" font-size="11" font-weight="bold" text-anchor="middle">Lista de Confluencias de Entrada</text>
       `;
-      const checklistLines = [
-        "1. ¿Tendencia de fondo EMA 200 de 5m confirmada?",
-        "2. ¿Ausencia de noticias de impacto de la Fed o IPC?",
-        "3. ¿Zona operativa de soporte/demanda (OB) tocada?",
-        "4. ¿Tamaño de lote calculado con riesgo de cuenta del 1%?"
+      const checklist = [
+        "1. ¿Filtro direccional de tendencia EMA 200 verificado?",
+        "2. ¿Filtro de momentum RSI 14 cruzado y confirmado?",
+        "3. ¿Entrada en zona de soporte/resistencia estructural?",
+        "4. ¿Gestión de riesgo asignada exactamente en el 1%?"
       ];
-      checklistLines.forEach((str, i) => {
+      checklist.forEach((str, i) => {
         const y = 68 + i * 26;
         elementsHtml += `
-          <rect x="80" y="${y}" width="14" height="14" fill="none" stroke="#00ff00" stroke-width="1.5" rx="2" />
-          <polyline points="83 ${y+7}, 86 ${y+10}, 91 ${y+4}" fill="none" stroke="#00ff00" stroke-width="2" />
-          <text x="105" y="${y + 11}" fill="#f3f4f6" font-size="9" font-family="Tahoma">${str}</text>
+          <rect x="80" y="${y}" width="14" height="14" fill="none" stroke="#10b981" stroke-width="1.5" rx="3" />
+          <polyline points="83 ${y+7}, 86 ${y+10}, 91 ${y+4}" fill="none" stroke="#10b981" stroke-width="2" />
+          <text x="105" y="${y + 11}" fill="#f3f4f6" font-size="9.5">${str}</text>
         `;
       });
       break;
 
     case 25:
       title = "Pulsaciones vs Enfoque Estoico";
-      let panPts = [];
-      for(let i=0; i<20; i++) {
-        let x = 60 + i * 8;
-        let y = 110 + Math.sin(i * 1.5) * 35 + (Math.random() * 8);
-        panPts.push(`${x},${y}`);
-      }
-      let cPoints = [];
-      for(let i=0; i<20; i++) {
-        let x = 270 + i * 8;
-        let y = 110 + Math.sin(i * 0.4) * 8;
-        cPoints.push(`${x},${y}`);
-      }
-
       elementsHtml += `
-        <rect x="40" y="30" width="420" height="150" fill="#000000" stroke="#333333" rx="2" />
+        <rect x="40" y="30" width="420" height="150" fill="#131a22" stroke="#242f3d" rx="8" />
         
-        <rect x="50" y="50" width="165" height="110" fill="rgba(255,0,0,0.01)" stroke="rgba(255,0,0,0.1)" />
-        <path d="M ${panPts.join(' L ')}" fill="none" stroke="#ff0000" stroke-width="1.5" />
-        <text x="132.5" y="70" fill="#ff0000" font-size="9" font-family="Tahoma" font-weight="bold" text-anchor="middle">Estrés Emocional (120 BPM)</text>
+        <rect x="50" y="50" width="165" height="110" fill="rgba(239, 68, 68, 0.02)" stroke="rgba(239, 68, 68, 0.15)" />
+        <text x="132.5" y="70" fill="#ef4444" font-size="9.5" font-weight="bold" text-anchor="middle">Operativa por Impulso (Reactividad)</text>
+        <text x="132.5" y="110" fill="#9ca3af" font-size="8.5" text-anchor="middle">Miedo a perder, FOMO, sobreoperar</text>
 
-        <rect x="260" y="50" width="185" height="110" fill="rgba(0,255,0,0.01)" stroke="rgba(0,255,0,0.1)" />
-        <path d="M ${cPoints.join(' L ')}" fill="none" stroke="#00ff00" stroke-width="2.2" />
-        <text x="352.5" y="70" fill="#00ff00" font-size="9" font-family="Tahoma" font-weight="bold" text-anchor="middle">Control Estoico (65 BPM)</text>
+        <rect x="260" y="50" width="185" height="110" fill="rgba(16, 185, 129, 0.02)" stroke="rgba(16, 185, 129, 0.15)" />
+        <text x="352.5" y="70" fill="#10b981" font-size="9.5" font-weight="bold" text-anchor="middle">Ejecución Estoica (Neutralidad)</text>
+        <text x="352.5" y="110" fill="#9ca3af" font-size="8.5" text-anchor="middle">Acepta el riesgo y la probabilidad</text>
       `;
       break;
 
     case 26:
       title = "Apagado y Cierre Operativo";
       elementsHtml += `
-        <rect x="50" y="30" width="400" height="150" fill="#000000" stroke="#ff0000" stroke-width="1.5" rx="2" />
-        <circle cx="250" cy="90" r="30" fill="rgba(255, 0, 0, 0.05)" stroke="#ff0000" stroke-width="3" />
-        <line x1="250" y1="72" x2="250" y2="92" stroke="#ff0000" stroke-width="5" stroke-linecap="round" />
-        
-        <text x="250" y="145" fill="#f3f4f6" font-size="12" font-weight="bold" font-family="Tahoma" text-anchor="middle">SESIÓN TERMINADA - APAGADO</text>
+        <rect x="50" y="30" width="400" height="150" fill="#131a22" stroke="#ef4444" stroke-width="1.5" rx="8" />
+        <circle cx="250" cy="90" r="30" fill="rgba(239, 68, 68, 0.05)" stroke="#ef4444" stroke-width="3" />
+        <line x1="250" y1="72" x2="250" y2="92" stroke="#ef4444" stroke-width="5" stroke-linecap="round" />
+        <text x="250" y="145" fill="#f3f4f6" font-size="12" font-weight="bold" text-anchor="middle">SISTEMA APAGADO</text>
       `;
       break;
 
     case 27:
       title = "Métricas Reales vs Planificadas";
       elementsHtml += `
-        <rect x="50" y="30" width="400" height="150" fill="#000000" stroke="#333333" rx="2" />
+        <rect x="50" y="30" width="400" height="150" fill="#131a22" stroke="#242f3d" rx="8" />
         
-        <rect x="320" y="48" width="10" height="10" fill="#0055ff" />
-        <text x="335" y="56" fill="#a0a0a0" font-size="8" font-family="Tahoma">Objetivo</text>
-        <rect x="380" y="48" width="10" height="10" fill="#00ff00" />
-        <text x="395" y="56" fill="#a0a0a0" font-size="8" font-family="Tahoma">Logrado</text>
+        <rect x="320" y="48" width="10" height="10" fill="#3b82f6" />
+        <text x="335" y="56" fill="#9ca3af" font-size="8.5" font-family="Arial">Objetivo</text>
+        <rect x="380" y="48" width="10" height="10" fill="#10b981" />
+        <text x="395" y="56" fill="#9ca3af" font-size="8.5" font-family="Arial">Logrado</text>
 
-        <rect x="90" y="70" width="20" height="70" fill="#0055ff" />
-        <rect x="112" y="80" width="20" height="60" fill="#00ff00" />
-        <text x="111" y="152" fill="#f3f4f6" font-size="8" font-family="Tahoma" text-anchor="middle">Acierto (50% vs 43%)</text>
+        <rect x="90" y="70" width="20" height="70" fill="#3b82f6" />
+        <rect x="112" y="80" width="20" height="60" fill="#10b981" />
+        <text x="111" y="152" fill="#f3f4f6" font-size="8.5" text-anchor="middle">Acierto (50% vs 43%)</text>
 
-        <rect x="230" y="80" width="20" height="60" fill="#0055ff" />
-        <rect x="252" y="60" width="20" height="80" fill="#00ff00" />
-        <text x="251" y="152" fill="#f3f4f6" font-size="8" font-family="Tahoma" text-anchor="middle">Ratio R:R (1:2 vs 1:2.4)</text>
+        <rect x="230" y="80" width="20" height="60" fill="#3b82f6" />
+        <rect x="252" y="60" width="20" height="80" fill="#10b981" />
+        <text x="251" y="152" fill="#f3f4f6" font-size="8.5" text-anchor="middle">Ratio R:R (1:2 vs 1:2.4)</text>
       `;
       break;
 
     case 28:
       title = "Agrupación de Errores Operativos";
       elementsHtml += `
-        <rect x="50" y="30" width="400" height="150" fill="#000000" stroke="#333333" rx="2" />
+        <rect x="50" y="30" width="400" height="150" fill="#131a22" stroke="#242f3d" rx="8" />
         
         <circle cx="160" cy="105" r="50" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="20" />
         <circle cx="160" cy="105" r="30" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="15" />
         <circle cx="160" cy="105" r="10" fill="#f59e0b" />
         
-        <circle cx="150" cy="100" r="4" fill="#0055ff" />
-        <circle cx="162" cy="112" r="4" fill="#0055ff" />
-        <text x="230" y="85" fill="#0055ff" font-size="9" font-family="Tahoma" font-weight="bold">Errores de Setup (Técnicos)</text>
+        <circle cx="150" cy="100" r="4" fill="#3b82f6" />
+        <circle cx="162" cy="112" r="4" fill="#3b82f6" />
+        <text x="230" y="85" fill="#3b82f6" font-size="9.5" font-weight="bold">Errores Técnicos (En el setup)</text>
 
-        <circle cx="130" cy="75" r="4" fill="#ff0000" />
-        <circle cx="190" cy="130" r="4" fill="#ff0000" />
-        <text x="230" y="125" fill="#ff0000" font-size="9" font-family="Tahoma" font-weight="bold">Errores de Disciplina (FOMO)</text>
+        <circle cx="130" cy="75" r="4" fill="#ef4444" />
+        <circle cx="190" cy="130" r="4" fill="#ef4444" />
+        <text x="230" y="125" fill="#ef4444" font-size="9.5" font-weight="bold">Errores de Disciplina (FOMO)</text>
       `;
       break;
 
     case 29:
       title = "Bucle de Mejora Continua Estoica";
       elementsHtml += `
-        <rect x="50" y="30" width="400" height="150" fill="#000000" stroke="#333333" rx="2" />
+        <rect x="50" y="30" width="400" height="150" fill="#131a22" stroke="#242f3d" rx="8" />
         
-        <path d="M 250,55 A 45,45 0 1,1 205,100" fill="none" stroke="#0055ff" stroke-width="3" marker-end="url(#arr-29)" />
-        <path d="M 205,100 A 45,45 0 0,1 250,145" fill="none" stroke="#00ff00" stroke-width="3" marker-end="url(#arr-29)" />
+        <path d="M 250,55 A 45,45 0 1,1 205,100" fill="none" stroke="#3b82f6" stroke-width="3" marker-end="url(#arr-29)" />
+        <path d="M 205,100 A 45,45 0 0,1 250,145" fill="none" stroke="#10b981" stroke-width="3" marker-end="url(#arr-29)" />
         <path d="M 250,145 A 45,45 0 0,1 250,55" fill="none" stroke="#f59e0b" stroke-width="3" marker-end="url(#arr-29)" />
         
-        <text x="250" y="80" fill="#0055ff" font-size="8" font-family="Tahoma" font-weight="bold" text-anchor="middle">1. AUDITAR</text>
-        <text x="180" y="115" fill="#00ff00" font-size="8" font-family="Tahoma" font-weight="bold" text-anchor="middle">2. MEDIR</text>
-        <text x="320" y="115" fill="#f59e0b" font-size="8" font-family="Tahoma" font-weight="bold" text-anchor="middle">3. MEJORAR</text>
+        <text x="250" y="80" fill="#3b82f6" font-size="8.5" font-weight="bold" text-anchor="middle">1. AUDITAR</text>
+        <text x="180" y="115" fill="#10b981" font-size="8.5" font-weight="bold" text-anchor="middle">2. MEDIR</text>
+        <text x="320" y="115" fill="#f59e0b" font-size="8.5" font-weight="bold" text-anchor="middle">3. CORREGIR</text>
       `;
       break;
 
     case 30:
-      title = "Diploma de Maestría en Trading Profesional";
+      title = "Diploma de Certificación Final";
       elementsHtml += `
-        <rect x="80" y="30" width="340" height="150" fill="#000000" stroke="#d4af37" stroke-width="3" rx="4" />
+        <rect x="80" y="30" width="340" height="150" fill="#131a22" stroke="#d4af37" stroke-width="3" rx="4" />
         <rect x="88" y="38" width="324" height="134" fill="none" stroke="rgba(212,175,55,0.2)" stroke-width="1.2" />
         
-        <text x="250" y="65" fill="#d4af37" font-size="13" font-family="Tahoma" font-weight="bold" text-anchor="middle" letter-spacing="2">METATRADER 5 CERTIFICATION</text>
-        <text x="250" y="85" fill="#a0a0a0" font-size="7.5" font-family="Tahoma" text-anchor="middle">OTORGADO POR COMPLETAR EXPOSITIVAMENTE LA MASTERCLASS</text>
-        <text x="250" y="110" fill="#f3f4f6" font-size="14" font-family="Tahoma" font-weight="bold" text-anchor="middle">VISIÓN TRADING PRO (40 DÍAS)</text>
+        <text x="250" y="65" fill="#d4af37" font-size="13" font-weight="bold" text-anchor="middle" letter-spacing="2">DIPLOMA DE CERTIFICACIÓN</text>
+        <text x="250" y="85" fill="#9ca3af" font-size="7.5" text-anchor="middle">OTORGADO POR COMPLETAR EXPOSITIVAMENTE LA MASTERCLASS</text>
+        <text x="250" y="110" fill="#f3f4f6" font-size="14" font-weight="bold" text-anchor="middle">MAESTRÍA EN TRADING PROFESIONAL</text>
         
-        <text x="350" y="142" fill="#d4af37" font-size="6.5" font-family="Tahoma" font-weight="bold" text-anchor="middle">Firma: Albert Sierra</text>
+        <text x="350" y="142" fill="#d4af37" font-size="7" font-weight="bold" text-anchor="middle">Firma: Albert Sierra</text>
       `;
       break;
 
     case 31:
-      title = "Estructura de Order Block (OB)";
-      const obH = 4322;
-      const obL = 4312;
-      
+      title = "Order Block (OB) e Intervención Algorítmica";
+      // Stylized candles
       elementsHtml += `
-        <!-- OB Box with MT5 solid dashed green -->
-        <rect x="${getX(2)}" y="${getY(obH)}" width="${getX(7) - getX(2)}" height="${getY(obL) - getY(obH)}" fill="rgba(0, 255, 0, 0.05)" stroke="#00ff00" stroke-width="0.8" stroke-dasharray="3,3" />
-        <text x="${getX(2) + 5}" y="${getY(obH) + 11}" fill="#00ff00" font-size="7.5" font-family="Tahoma" font-weight="bold">Bullish Order Block (OB)</text>
+        <!-- OB candle (bear) -->
+        <rect x="80" y="110" width="20" height="40" fill="rgba(239, 68, 68, 0.15)" stroke="#ef4444" stroke-width="1.5" />
+        <line x1="90" y1="90" x2="90" y2="160" stroke="#ef4444" stroke-width="1.2" />
         
-        <!-- BOS Line label -->
-        <line x1="${getX(3)}" y1="${getY(4330)}" x2="${getX(6)}" y2="${getY(4330)}" stroke="#0055ff" stroke-dasharray="2,2" stroke-width="1.2" />
-        <text x="${getX(4.5)}" y="${getY(4330) - 4}" fill="#0055ff" font-size="7" font-family="Tahoma" font-weight="bold" text-anchor="middle">BOS</text>
+        <!-- Big bull candle (breakout) -->
+        <rect x="130" y="50" width="22" height="100" fill="#10b981" stroke="#10b981" />
+        <line x1="141" y1="30" x2="141" y2="160" stroke="#10b981" stroke-width="1.5" />
+        
+        <!-- Pullback mitigation candle -->
+        <rect x="240" y="110" width="20" height="25" fill="#ef4444" stroke="#ef4444" />
+        <line x1="250" y1="95" x2="250" y2="145" stroke="#ef4444" />
 
-        <!-- Execution Buy entry inside the OB mitigation candle -->
-        ${drawExecutionMT5(7, 4315, 10, 4345, true)}
+        <!-- OB Area marker -->
+        <rect x="80" y="110" width="180" height="40" fill="rgba(16, 185, 129, 0.04)" stroke="#10b981" stroke-width="1" stroke-dasharray="3,3" />
+        <text x="170" y="125" fill="#10b981" font-size="8" font-weight="bold">Zona de Mitigación (Order Block)</text>
+
+        <circle cx="250" cy="120" r="5" fill="#10b981" />
+        <text x="250" y="85" fill="#10b981" font-size="9" font-weight="bold" text-anchor="middle">Mitigación (Entrada)</text>
       `;
       break;
 
     case 32:
-      title = "Caza de Liquidez y la Ilusión de Soportes/Resistencias";
-      const supportY = getY(4314);
+      title = " sweeps de Liquidez (SSL / BSL)";
       elementsHtml += `
-        <!-- Support level line -->
-        <line x1="0" y1="${supportY}" x2="445" y2="${supportY}" stroke="#ff0000" stroke-width="1.2" stroke-dasharray="3,3" />
-        <text x="12" y="${supportY - 5}" fill="#ff0000" font-size="8.5" font-family="Tahoma">SSL Support Pool (Soporte Minorista)</text>
+        <line x1="40" y1="120" x2="460" y2="120" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="3,3" />
+        <text x="50" y="112" fill="#ef4444" font-size="9">Sell Stops Pool (Soporte Obvio Minorista)</text>
+
+        <!-- Wave sweeping -->
+        <path d="M 60,80 L 150,120 L 220,90 L 290,120 L 310,155 L 350,60" fill="none" stroke="#3b82f6" stroke-width="3" />
         
-        <!-- MT5 Execution marker at the sweep candle -->
-        ${drawExecutionMT5(7, 4314, 11, 4340, true)}
-        <text x="${getX(7)}" y="${getY(4292) + 38}" fill="#e91e63" font-size="7.5" font-family="Tahoma" font-weight="bold" text-anchor="middle">SSL Sweep (Caza de Stops)</text>
+        <circle cx="310" cy="155" r="5" fill="#10b981" />
+        <arrow x1="310" y1="190" x2="310" y2="162" color="#10b981" />
+        <text x="310" y="202" fill="#10b981" font-size="9" font-weight="bold" text-anchor="middle">Barrido de Stops (SSL Sweep)</text>
       `;
       break;
 
     case 33:
-      title = "Desequilibrios Algorítmicos e Ineficiencias (FVG)";
-      // FVG is from candle 1 high (4310) to candle 3 low (4324)
-      const fvgTop = getY(4324);
-      const fvgBot = getY(4310);
-      
+      title = "Fair Value Gap (Ineficiencias)";
       elementsHtml += `
-        <!-- FVG box -->
-        <rect x="${getX(1)}" y="${fvgTop}" width="${getX(3) - getX(1)}" height="${fvgBot - fvgTop}" fill="rgba(245, 158, 11, 0.06)" stroke="#f59e0b" stroke-width="0.8" stroke-dasharray="3,3" />
-        <text x="${getX(1) + 5}" y="${fvgTop + 10}" fill="#f59e0b" font-size="7.5" font-family="Tahoma" font-weight="bold">Fair Value Gap (FVG)</text>
+        <!-- Candle 1 -->
+        <rect x="80" y="120" width="18" height="30" fill="#10b981" />
+        <line x1="89" y1="100" x2="89" y2="160" stroke="#10b981" />
         
-        <circle cx="${getX(5)}" cy="${getY(4318)}" r="5" fill="none" stroke="#f59e0b" stroke-width="1.5" />
-        <text x="${getX(5) + 30}" y="${getY(4318) + 26}" fill="#f59e0b" font-size="7.5" font-family="Tahoma" font-weight="bold">Rebalanceo Parcial</text>
+        <!-- Candle 2 (aggressive expansion) -->
+        <rect x="140" y="40" width="18" height="110" fill="#10b981" />
+        <line x1="149" y1="20" x2="149" y2="160" stroke="#10b981" />
+
+        <!-- Candle 3 -->
+        <rect x="200" y="20" width="18" height="40" fill="#10b981" />
+        <line x1="209" y1="10" x2="209" y2="80" stroke="#10b981" />
+
+        <!-- FVG box between C1 high and C3 low -->
+        <rect x="89" y="80" width="120" height="20" fill="rgba(245, 158, 11, 0.08)" stroke="#f59e0b" stroke-width="1.2" stroke-dasharray="3,3" />
+        <text x="149" y="93" fill="#f59e0b" font-size="8.5" font-weight="bold" text-anchor="middle">Fair Value Gap (FVG)</text>
       `;
       break;
 
     case 34:
-      title = "Fractalidad y Alineación Temporal (HTF/LTF)";
+      title = "Fractalidad del Mercado";
       elementsHtml += `
         <!-- Left Panel: HTF Bias -->
-        <rect x="25" y="30" width="180" height="130" fill="#000000" stroke="#333333" stroke-width="1" />
-        <rect x="25" y="30" width="180" height="15" fill="#111111" stroke="#333333" stroke-width="0.8" />
-        <text x="115" y="41" fill="#0055ff" font-size="7.5" font-family="Tahoma" font-weight="bold" text-anchor="middle">HTF BIAS (1 Hora)</text>
-        <path d="M 35,140 L 80,110 L 120,120 L 190,60" fill="none" stroke="#0055ff" stroke-width="2" />
-        <circle cx="190" cy="60" r="4.5" fill="#f59e0b" />
+        <rect x="35" y="40" width="180" height="130" fill="#131a22" stroke="#242f3d" stroke-width="1.5" rx="6" />
+        <text x="125" y="55" fill="#3b82f6" font-size="9" font-weight="bold" text-anchor="middle">HTF BIAS (Marco 1H)</text>
+        <path d="M 50,150 L 100,110 L 140,120 L 200,60" fill="none" stroke="#3b82f6" stroke-width="2.5" />
+        <circle cx="200" cy="60" r="4.5" fill="#f59e0b" />
 
         <!-- Right Panel: LTF Gatillo -->
-        <rect x="240" y="30" width="180" height="130" fill="#000000" stroke="#333333" stroke-width="1" />
-        <rect x="240" y="30" width="180" height="15" fill="#111111" stroke="#333333" stroke-width="0.8" />
-        <text x="330" y="41" fill="#00ff00" font-size="7.5" font-family="Tahoma" font-weight="bold" text-anchor="middle">LTF GATILLO (1 Minuto)</text>
-        <path d="M 250,130 L 275,110 L 290,118 L 320,90 L 335,98 L 380,55" fill="none" stroke="#00ff00" stroke-width="1.5" />
-        <circle cx="320" cy="90" r="3.5" fill="#ff0000" />
+        <rect x="285" y="40" width="180" height="130" fill="#131a22" stroke="#242f3d" stroke-width="1.5" rx="6" />
+        <text x="375" y="55" fill="#10b981" font-size="9" font-weight="bold" text-anchor="middle">LTF GATILLO (Marco 1m)</text>
+        <path d="M 295,130 L 320,110 L 335,118 L 365,90 L 380,98 L 420,55" fill="none" stroke="#10b981" stroke-width="1.8" />
+        
+        <!-- Connection Arrow -->
+        <path d="M 225,105 L 275,105" stroke="#f59e0b" stroke-width="1.5" marker-end="url(#arr-34)" />
       `;
       break;
 
     case 35:
       title = "Zonas Premium y Descuento";
-      const midY = getY(4322.5);
       elementsHtml += `
         <!-- Equilibrium line -->
-        <line x1="0" y1="${midY}" x2="445" y2="${midY}" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="4,4" />
-        <text x="435" y="${midY - 5}" fill="#f59e0b" font-size="8" font-family="Tahoma" text-anchor="end">Precio de Equilibrio (50%)</text>
+        <line x1="40" y1="100" x2="460" y2="100" stroke="#f59e0b" stroke-width="2" stroke-dasharray="4,4" />
+        <text x="450" y="93" fill="#f59e0b" font-size="8.5" text-anchor="end">Precio de Equilibrio (50%)</text>
         
         <!-- Premium Box (Red) -->
-        <rect x="0" y="20" width="445" height="${midY - 20}" fill="rgba(255,0,0,0.03)" stroke="none" />
-        <text x="12" y="42" fill="#ff0000" font-size="8.5" font-family="Tahoma" font-weight="bold">ZONA PREMIUM: CARO (Solo Ventas)</text>
+        <rect x="40" y="30" width="420" height="70" fill="rgba(239, 68, 68, 0.04)" stroke="#ef4444" stroke-width="0.8" />
+        <text x="50" y="52" fill="#ef4444" font-size="9.5" font-weight="bold">ZONA PREMIUM: CARO (Solo Ventas)</text>
         
         <!-- Discount Box (Green) -->
-        <rect x="0" y="${midY}" width="445" height="${170 - midY}" fill="rgba(0,255,0,0.03)" stroke="none" />
-        <text x="12" y="155" fill="#00ff00" font-size="8.5" font-family="Tahoma" font-weight="bold">ZONA DE DESCUENTO: BARATO (Solo Compras)</text>
+        <rect x="40" y="100" width="420" height="70" fill="rgba(16, 185, 129, 0.04)" stroke="#10b981" stroke-width="0.8" />
+        <text x="50" y="160" fill="#10b981" font-size="9.5" font-weight="bold">ZONA DE DESCUENTO: BARATO (Solo Compras)</text>
       `;
       break;
 
     case 36:
-      title = "El Poder de los Breaker Blocks (OB Roto)";
-      const brHigh = 4322;
-      const brLow = 4312;
-      
+      title = "Mitigación y Breaker Blocks";
+      const brY = 110;
       elementsHtml += `
         <!-- Original OB box that was broken -->
-        <rect x="${getX(2)}" y="${getY(brHigh)}" width="${getX(7) - getX(2)}" height="${getY(brLow) - getY(brHigh)}" fill="rgba(0, 85, 255, 0.05)" stroke="#0055ff" stroke-width="0.8" stroke-dasharray="3,3" />
-        <text x="${getX(2) + 5}" y="${getY(brHigh) + 11}" fill="#0055ff" font-size="7.5" font-family="Tahoma" font-weight="bold">OB Roto</text>
+        <rect x="60" y="${brY}" width="160" height="40" fill="rgba(59, 130, 246, 0.05)" stroke="#3b82f6" stroke-width="1" stroke-dasharray="3,3" />
+        <text x="70" y="${brY + 15}" fill="#3b82f6" font-size="8" font-weight="bold">OB Bajista Roto</text>
         
-        <!-- Retest purchase execution -->
-        ${drawExecutionMT5(7, 4315, 10, 4345, true)}
-        <text x="${getX(7)}" y="${getY(4315) + 36}" fill="#f59e0b" font-size="8" font-family="Tahoma" font-weight="bold" text-anchor="middle">Test Breaker (Compra)</text>
+        <!-- Wave retest -->
+        <path d="M 40,150 L 140,80 L 180,95 L 260,40 L 320,110 L 380,50" fill="none" stroke="#f3f4f6" stroke-width="3" />
+        
+        <!-- Retest circle and label -->
+        <circle cx="320" cy="110" r="6" fill="#f59e0b" />
+        <text x="320" y="135" fill="#f59e0b" font-size="9.5" font-weight="bold" text-anchor="middle">Breaker Block (Test de Soporte)</text>
       `;
       break;
 
     case 37:
-      title = "Subasta de Volumen: POC y Zonas de Alta Liquidez";
-      // Draw horizontal Volume Profile histogram on right side
-      const drawHBar = (y, w, isPOC) => {
-        const color = isPOC ? '#ff0000' : '#0055ff';
+      title = "POC y Subasta de Perfil de Volumen";
+      const drawHorizontalVolumeBar = (y, w, isPOC) => {
+        const color = isPOC ? "#ef4444" : "#3b82f6";
         return `
-          <rect x="${445 - w}" y="${y}" width="${w}" height="8" fill="${color}" fill-opacity="${isPOC ? 0.35 : 0.12}" stroke="${color}" stroke-opacity="0.3" stroke-width="0.5" rx="1" />
+          <rect x="${440 - w}" y="${y}" width="${w}" height="8" fill="${color}" fill-opacity="${isPOC ? 0.35 : 0.15}" stroke="${color}" stroke-opacity="0.3" stroke-width="0.5" rx="1" />
         `;
       };
       
       elementsHtml += `
         <!-- Profile bars -->
-        ${drawHBar(35, 45, false)}
-        ${drawHBar(50, 60, false)}
-        ${drawHBar(65, 85, false)}
-        ${drawHBar(80, 110, false)}
-        ${drawHBar(95, 175, true)} // POC peak
-        ${drawHBar(110, 130, false)}
-        ${drawHBar(125, 95, false)}
-        ${drawHBar(140, 55, false)}
-        ${drawHBar(155, 30, false)}
+        ${drawHorizontalVolumeBar(35, 45, false)}
+        ${drawHorizontalVolumeBar(50, 60, false)}
+        ${drawHorizontalVolumeBar(65, 85, false)}
+        ${drawHorizontalVolumeBar(80, 110, false)}
+        ${drawHorizontalVolumeBar(95, 175, true)} // POC peak
+        ${drawHorizontalVolumeBar(110, 130, false)}
+        ${drawHorizontalVolumeBar(125, 95, false)}
+        ${drawHorizontalVolumeBar(140, 55, false)}
+        ${drawHorizontalVolumeBar(155, 30, false)}
 
         <!-- POC horizontal line -->
-        <line x1="0" y1="99" x2="445" y2="99" stroke="#ff0000" stroke-width="1.5" />
-        <rect x="250" y="85" width="130" height="12" fill="#000000" rx="0" stroke="#ff0000" stroke-width="0.8" />
-        <text x="315" y="94" fill="#ff0000" font-size="7.5" font-family="Tahoma" font-weight="bold" text-anchor="middle">POC (Punto de Control Máximo)</text>
+        <line x1="40" y1="99" x2="440" y2="99" stroke="#ef4444" stroke-width="1.8" />
+        <rect x="150" y="85" width="150" height="15" fill="#0c1017" rx="2" stroke="#ef4444" stroke-width="0.8" />
+        <text x="225" y="96" fill="#ef4444" font-size="8" font-weight="bold" text-anchor="middle">POC (Punto de Control de Volumen Máximo)</text>
       `;
       break;
 
     case 38:
-      title = "Reglas de Fondeo y Control de drawdown Institucional";
+      title = "Reglas de Drawdown Institucional";
       elementsHtml += `
-        <rect x="50" y="30" width="400" height="150" fill="#000000" stroke="#333333" rx="2" />
-        <text x="250" y="55" fill="#f3f4f6" font-size="11" font-family="Tahoma" font-weight="bold" text-anchor="middle">MetaTrader Prop Account Limit Check</text>
+        <rect x="50" y="40" width="400" height="130" fill="#131a22" stroke="#242f3d" rx="8" />
+        <text x="250" y="62" fill="#f3f4f6" font-size="11.5" font-weight="bold" text-anchor="middle">Límites de Preservación de Cuentas Fondeadas</text>
         
-        <g font-family="Tahoma" font-size="9" fill="#a0a0a0">
-          <text x="80" y="90">LÍMITE DIARIO (Drawdown):</text>
-          <text x="330" y="90" fill="#ff0000" font-weight="bold" text-anchor="end">-$1,000.00 USD (2.0%)</text>
+        <g font-size="9.5" fill="#9ca3af" transform="translate(80, 92)">
+          <text x="0" y="0">Límite Diario (2%):</text>
+          <text x="240" y="0" fill="#ef4444" font-weight="bold" text-anchor="end">-$1,000.00 USD</text>
 
-          <text x="80" y="115">LÍMITE TOTAL (Drawdown):</text>
-          <text x="330" y="115" fill="#ff0000" font-weight="bold" text-anchor="end">-$2,500.00 USD (5.0%)</text>
+          <text x="0" y="24">Límite Total (5%):</text>
+          <text x="240" y="24" fill="#ef4444" font-weight="bold" text-anchor="end">-$2,500.00 USD</text>
 
-          <text x="80" y="140">OBJETIVO DE BENEFICIO:</text>
-          <text x="330" y="140" fill="#00ff00" font-weight="bold" text-anchor="end">+$3,000.00 USD (6.0%)</text>
+          <text x="0" y="48">Target de Beneficio:</text>
+          <text x="240" y="48" fill="#10b981" font-weight="bold" text-anchor="end">+$3,000.00 USD</text>
         </g>
       `;
       break;
 
     case 39:
-      title = "Gestión Activa de Posición: Tomar Parciales y Riesgo Cero";
-      const stopP = 4310;
-      const t1Y = getY(4330);
+      title = "Cierres Parciales y Riesgo Cero";
+      const entryY = 110;
+      const stopY = 145;
+      const targetY = 75;
       
       elementsHtml += `
         <!-- Entry line -->
-        <line x1="0" y1="${getY(entryP)}" x2="445" y2="${getY(entryP)}" stroke="#0055ff" stroke-width="1.2" />
-        <text x="12" y="${getY(entryP) - 4}" fill="#0055ff" font-size="7.5" font-family="Tahoma">Entrada (2 Contratos)</text>
+        <line x1="40" y1="${entryY}" x2="440" y2="${entryY}" stroke="#3b82f6" stroke-width="1.5" />
+        <text x="45" y="${entryY - 5}" fill="#3b82f6" font-size="8.5">Nivel de Entrada (2 Contratos)</text>
 
         <!-- SL line original -->
-        <line x1="0" y1="${getY(stopP)}" x2="445" y2="${getY(stopP)}" stroke="#ff0000" stroke-dasharray="2,2" stroke-width="1" opacity="0.4" />
-        <text x="12" y="${getY(stopP) + 10}" fill="#ff0000" font-size="7.5" font-family="Tahoma" opacity="0.5">SL Original (-$100)</text>
+        <line x1="40" y1="${stopY}" x2="440" y2="${stopY}" stroke="#ef4444" stroke-dasharray="2,2" stroke-width="1" opacity="0.5" />
+        <text x="45" y="${stopY + 11}" fill="#ef4444" font-size="8.5" opacity="0.6">SL Original (-$100)</text>
 
         <!-- 1:1 Target met -->
-        <line x1="0" y1="${t1Y}" x2="445" y2="${t1Y}" stroke="#00ff00" stroke-width="1" stroke-dasharray="2,2" />
-        <text x="12" y="${t1Y - 4}" fill="#00ff00" font-size="7.5" font-family="Tahoma">R:R 1:1 Met (Cierra 1 Contrato +$50)</text>
-
-        <!-- SL moved to breakeven -->
-        ${drawExecutionMT5(9, 4320, 12, 4345, true)}
-        <text x="${getX(9) + 8}" y="${getY(entryP) + 26}" fill="#00ff00" font-size="7.5" font-family="Tahoma" font-weight="bold">SL Movido a Entrada (Riesgo Cero)</text>
+        <line x1="40" y1="${targetY}" x2="440" y2="${targetY}" stroke="#10b981" stroke-width="1.5" stroke-dasharray="2,2" />
+        <text x="45" y="${targetY - 5}" fill="#10b981" font-size="8.5">R:R 1:1 Met (Cierre del 50% +$50 y SL a Entrada/Riesgo Cero)</text>
       `;
       break;
 
     case 40:
-      title = "El Checklist Institucional de Albert Sierra";
+      title = "El Checklist de Albert Sierra";
       elementsHtml += `
-        <rect x="50" y="30" width="400" height="150" fill="#000000" stroke="#d4af37" stroke-width="1.5" rx="2" />
-        <text x="250" y="48" fill="#d4af37" font-size="11" font-family="Tahoma" font-weight="bold" text-anchor="middle">Checklist Institucional - MetaTrader 5</text>
+        <rect x="50" y="30" width="400" height="150" fill="#131a22" stroke="#d4af37" stroke-width="1.5" rx="8" />
+        <text x="250" y="48" fill="#d4af37" font-size="11.5" font-weight="bold" text-anchor="middle">Checklist Institucional de Confluencias</text>
       `;
-      const finalChecklist = [
-        "1. Contexto HTF: ¿Precio mitigando OB o FVG mayor?",
-        "2. Sweep de Liquidez: ¿Barrido previo de SSL/BSL?",
-        "3. Estructura LTF: ¿Quiebre de estructura BOS en 1m?",
-        "4. Zona Operativa: ¿Operamos en Descuento (largos) o Premium?"
+      const finalRules = [
+        "1. Contexto HTF: ¿Identificamos Order Block / FVG de 1H?",
+        "2. Caza de Stops: ¿Ocurrió barrido de liquidez previo (SSL/BSL)?",
+        "3. Gatillo Estructural: ¿Ocurrió BOS de confirmación local en 1m?",
+        "4. Zona de Rango: ¿Buscamos operar en Descuento (largos) o Premium?"
       ];
-      finalChecklist.forEach((str, i) => {
-        const y = 65 + i * 26;
+      finalRules.forEach((str, i) => {
+        const y = 66 + i * 26;
         elementsHtml += `
           <circle cx="75" cy="${y}" r="8" fill="rgba(212,175,55,0.1)" stroke="#d4af37" stroke-width="1.5" />
           <polyline points="72 ${y}, 74 ${y+3}, 78 ${y-3}" fill="none" stroke="#d4af37" stroke-width="2" />
-          <text x="95" y="${y + 3}" fill="#f3f4f6" font-size="9" font-family="Tahoma" font-weight="bold">${str}</text>
+          <text x="95" y="${y + 3}" fill="#f3f4f6" font-size="9.5" font-weight="bold">${str}</text>
         `;
       });
       break;
 
     default:
       return "";
-  }
-
-  // Draw Price tracker for MT5 if plotting candles
-  if (!isSpecialMT5) {
-    elementsHtml += drawCurrentPriceMT5(candles);
   }
 
   return `
@@ -2249,7 +1847,7 @@ const getGraphicForDay = (dayNum) => {
       </svg>
       <div class="lesson-chart-title">
         <i data-lucide="bar-chart-2" style="width: 14px; height: 14px; color: var(--color-accent);"></i>
-        <span>Gráfico de Apoyo (MetaTrader 5): ${title}</span>
+        <span>Diagrama de Apoyo: ${title}</span>
       </div>
     </div>
   `;
