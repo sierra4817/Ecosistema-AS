@@ -2207,6 +2207,10 @@ const handleNarrateClick = async (dayId, button) => {
   textToRead = textToRead.replace(/\$(\d+(?:[.,]\d+)?)/g, "$1 dólares");
   textToRead = textToRead.replace(/\$/g, " dólares ");
   textToRead = textToRead.replace(/USD/gi, " dólares ");
+
+  // Strip Markdown symbols like * or _ to make it read like a natural human voice (no pronouncing "asterisco", etc.)
+  textToRead = textToRead.replace(/[*_#`~]/g, "");
+  textToRead = textToRead.replace(/\s+/g, " "); // collapse whitespace
   const apiKey = getApiKey();
   const voiceId = getVoiceId();
 

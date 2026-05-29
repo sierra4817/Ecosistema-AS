@@ -2,10 +2,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;700&display=swap');
 
 :root {
-  --bg-primary: #0b0e14;
-  --bg-secondary: #131a22;
-  --bg-tertiary: #1b222c;
-  --border-color: #242f3d;
+  --bg-primary: #000000;
+  --bg-secondary: #0a0a0a;
+  --bg-tertiary: #121212;
+  --border-color: #1f1f1f;
   --border-focus: #3b82f6;
   
   --text-primary: #f3f4f6;
@@ -930,7 +930,7 @@ main {
 /* Home / Welcome Section */
 .welcome-grid {
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 1fr;
   gap: 24px;
   margin-bottom: 24px;
 }
@@ -1318,11 +1318,26 @@ main {
 }
 .cert-signature-draw {
   font-family: 'Brush Script MT', 'Great Vibes', 'Apple Chancery', cursive;
-  font-size: 1.6rem;
-  color: #3b82f6;
-  margin-bottom: 6px;
+  font-size: 2.1rem;
+  color: #d4af37; /* Gold signature color for a more professional finish */
+  margin-bottom: 2px;
   user-select: none;
-  transform: rotate(-3deg);
+  transform: rotate(-2deg);
+  height: 2.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cert-date-display {
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+  height: 2.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .cert-sig-line {
   width: 100%;
