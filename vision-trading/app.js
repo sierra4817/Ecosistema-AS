@@ -1140,13 +1140,13 @@ const getGraphicForDay = (dayNum) => {
   let elementsHtml = "";
   let title = "";
 
-  // NinjaTrader 8 Standard Header settings
-  let ticker = "ES 09-26 (5 Min)";
-  let timeframe = "CME - Futures";
+  // MetaTrader 5 Ticker settings
+  let ticker = "EURUSD,M5";
+  let timeframe = "1.08250 1.08285 1.08220 1.08260";
   let minPrice = 4300;
   let maxPrice = 4350;
   let timeLabels = ["09:30", "10:00", "10:30", "11:00", "11:30"];
-  let watermarkText = "NINJATRADER 8";
+  let watermarkText = "METATRADER 5";
 
   // Predefined realistic datasets
   const uptrend = [
@@ -1277,57 +1277,70 @@ const getGraphicForDay = (dayNum) => {
   if ([1, 7, 13, 16, 19, 21, 22, 34].includes(dayNum)) {
     candles = uptrend;
     minPrice = 4295; maxPrice = 4355;
-    ticker = "MNQ 09-26 (5 Min)";
-    timeframe = "CME - Micro Nasdaq";
-    watermarkText = "NINJATRADER 8";
+    ticker = "XAUUSD,H1";
+    timeframe = "Gold Spot vs US Dollar";
+    watermarkText = "XAUUSD";
   } else if ([8, 10, 17, 38].includes(dayNum)) {
     candles = downtrend;
     minPrice = 4290; maxPrice = 4355;
-    ticker = "NQ 09-26 (15 Min)";
-    timeframe = "CME - E-mini Nasdaq";
-    watermarkText = "NINJATRADER 8";
+    ticker = "GBPUSD,H4";
+    timeframe = "Great Britain Pound vs US Dollar";
+    watermarkText = "GBPUSD";
   } else if ([4, 32].includes(dayNum)) {
     candles = sslSweep;
     minPrice = 4285; maxPrice = 4350;
+    ticker = "EURUSD,M5";
+    timeframe = "Euro vs US Dollar";
+    watermarkText = "EURUSD";
   } else if (dayNum === 5) {
     candles = squeeze;
     minPrice = 4300; maxPrice = 4370;
+    ticker = "XAUUSD,M15";
+    timeframe = "Gold Spot";
+    watermarkText = "XAUUSD";
   } else if (dayNum === 6) {
     candles = fakeout;
     minPrice = 4295; maxPrice = 4345;
+    ticker = "EURUSD,M15";
+    timeframe = "Euro Spot";
+    watermarkText = "EURUSD";
   } else if ([31, 36].includes(dayNum)) {
     candles = ob;
     minPrice = 4308; maxPrice = 4355;
+    ticker = "XAUUSD,M5";
+    watermarkText = "XAUUSD";
   } else if (dayNum === 33) {
     candles = fvg;
     minPrice = 4290; maxPrice = 4345;
+    ticker = "EURUSD,H1";
+    watermarkText = "EURUSD";
   } else {
     candles = range;
     minPrice = 4310; maxPrice = 4335;
+    ticker = "EURUSD,M5";
+    watermarkText = "EURUSD";
   }
 
-  // Coordinate mapping for NinjaTrader 8 panel layouts
-  // The plotting area is x: 0 to 445, y: 0 to 170.
-  // The price axis is a bar on x: 445 to 500.
-  // The time axis is a bar on y: 170 to 220.
+  // Coordinate mapping for MT5 borderless layout
+  // Plot extends to 445 on X, and 170 on Y. Ejes are drawn directly on black.
   const getX = (idx) => 25 + (idx * (400 / (candles.length - 1 || 1)));
   const getY = (price) => 155 - ((price - minPrice) / (maxPrice - minPrice || 1)) * 130;
 
-  // 1. Draw NinjaTrader 8 Gray/Dark Plot Frame and Grid
+  // 1. Draw MT5 Pure Black Layout and Dotted Grid
   elementsHtml += `
-    <!-- NT8 Dark Plotting Area Background -->
-    <rect width="445" height="170" fill="#181818" rx="0" />
+    <!-- MT5 Pure Black Background -->
+    <rect width="500" height="220" fill="#000000" rx="0" />
     
-    <!-- NT8 Axis Panels -->
-    <rect x="445" y="0" width="55" height="170" fill="#252525" stroke="#333333" stroke-width="0.8" />
-    <rect x="0" y="170" width="445" height="50" fill="#252525" stroke="#333333" stroke-width="0.8" />
-    <rect x="445" y="170" width="55" height="50" fill="#252525" stroke="#333333" stroke-width="0.8" />
+    <!-- Axis separation lines -->
+    <line x1="445" y1="0" x2="445" y2="170" stroke="#444444" stroke-width="0.8" />
+    <line x1="0" y1="170" x2="445" y2="170" stroke="#444444" stroke-width="0.8" />
+    <line x1="445" y1="170" x2="500" y2="170" stroke="#444444" stroke-width="0.8" />
     
     <!-- Outer Widget Border -->
-    <rect width="500" height="220" fill="none" stroke="#444444" stroke-width="1.5" rx="4" />
+    <rect width="500" height="220" fill="none" stroke="#2c2c2c" stroke-width="1.5" rx="4" />
     
-    <!-- NT8 Solid Thin Grid Lines inside plotting area -->
-    <g stroke="#2d2d2d" stroke-width="0.8">
+    <!-- MT5 Classic Dotted Grid Lines (dasharray 1,3) -->
+    <g stroke="#2c2c2c" stroke-dasharray="1,3" stroke-width="0.8">
       <line x1="0" y1="45" x2="445" y2="45" />
       <line x1="0" y1="85" x2="445" y2="85" />
       <line x1="0" y1="125" x2="445" y2="125" />
@@ -1337,61 +1350,83 @@ const getGraphicForDay = (dayNum) => {
       <line x1="300" y1="0" x2="300" y2="170" />
       <line x1="400" y1="0" x2="400" y2="170" />
     </g>
+
+    <!-- Translucent background watermark (MT5 symbol) -->
+    <text x="222" y="95" fill="rgba(255, 255, 255, 0.015)" font-size="36" font-family="Tahoma" font-weight="bold" text-anchor="middle" letter-spacing="4">${watermarkText}</text>
   `;
 
   // Draw header unless special screen
   const hasHeader = ![3, 7, 8, 10, 11, 12, 13, 14, 15, 22, 23, 24, 25, 26, 27, 28, 29, 30, 38, 40].includes(dayNum);
   if (hasHeader) {
     elementsHtml += `
-      <!-- NinjaTrader 8 Ticker Label (Arial font, top left) -->
-      <text x="12" y="16" fill="#a0a0a0" font-size="8.5" font-family="Arial" font-weight="bold">${ticker} - ${timeframe}</text>
+      <!-- MT5 Ticker Label (Tahoma font, top left) -->
+      <text x="12" y="16" fill="#ffffff" font-size="8.5" font-family="Tahoma" font-weight="bold">${ticker}</text>
+      <text x="75" y="16" fill="#a0a0a0" font-size="7.5" font-family="Tahoma">${timeframe}</text>
     `;
   }
 
-  // Helper: Draw execution triangles and dotted lines (NT8 classic style)
-  const drawExecutionNT8 = (entryIdx, entryPrice, exitIdx, exitPrice, isLong) => {
+  // Helper: Draw MT5 deal execution arrows (Blue buy arrow, Red sell arrow)
+  const drawExecutionMT5 = (entryIdx, entryPrice, exitIdx, exitPrice, isLong) => {
     const x1 = getX(entryIdx);
     const x2 = getX(exitIdx);
     const y1 = getY(entryPrice);
     const y2 = getY(exitPrice);
-    const buyColor = "#00ffff"; // Cyan
-    const sellColor = "#ff00ff"; // Magenta
+    const buyColor = "#0055ff"; // MT5 Buy Blue
+    const sellColor = "#ff3333"; // MT5 Sell Red
     
-    let buyY = y1 + 9;
-    let sellY = y2 - 9;
+    let buyY = y1 + 8;
+    let sellY = y2 - 8;
     
     if (isLong) {
       return `
-        <!-- Entry Buy Triangle -->
-        <polygon points="${x1},${buyY} ${x1-5},${buyY+7} ${x1+5},${buyY+7}" fill="${buyColor}" />
-        <text x="${x1}" y="${buyY + 14}" fill="${buyColor}" font-size="6" font-family="Arial" font-weight="bold" text-anchor="middle">Buy @ ${entryPrice.toFixed(2)}</text>
+        <!-- Entry Buy Arrow -->
+        <polygon points="${x1},${buyY} ${x1-4},${buyY+6} ${x1+4},${buyY+6}" fill="${buyColor}" />
+        <text x="${x1}" y="${buyY + 13}" fill="${buyColor}" font-size="6" font-family="Tahoma" font-weight="bold" text-anchor="middle">Buy @ ${entryPrice.toFixed(2)}</text>
         
-        <!-- Exit Sell Triangle -->
-        <polygon points="${x2},${sellY} ${x2-5},${sellY-7} ${x2+5},${sellY-7}" fill="${sellColor}" />
-        <text x="${x2}" y="${sellY - 10}" fill="${sellColor}" font-size="6" font-family="Arial" font-weight="bold" text-anchor="middle">Sell @ ${exitPrice.toFixed(2)}</text>
+        <!-- Exit Sell Arrow -->
+        <polygon points="${x2},${sellY} ${x2-4},${sellY-6} ${x2+4},${sellY-6}" fill="${sellColor}" />
+        <text x="${x2}" y="${sellY - 9}" fill="${sellColor}" font-size="6" font-family="Tahoma" font-weight="bold" text-anchor="middle">Sell @ ${exitPrice.toFixed(2)}</text>
         
-        <!-- Execution line -->
-        <line x1="${x1}" y1="${buyY + 4}" x2="${x2}" y2="${sellY - 4}" stroke="#ffffff" stroke-dasharray="2,2" stroke-width="1.2" opacity="0.65" />
+        <!-- Connection Line -->
+        <line x1="${x1}" y1="${buyY + 3}" x2="${x2}" y2="${sellY - 3}" stroke="${buyColor}" stroke-dasharray="1,2" stroke-width="1" opacity="0.75" />
       `;
     } else {
       return `
-        <!-- Entry Sell (Short) Triangle -->
-        <polygon points="${x1},${sellY} ${x1-5},${sellY-7} ${x1+5},${sellY-7}" fill="${sellColor}" />
-        <text x="${x1}" y="${sellY - 10}" fill="${sellColor}" font-size="6" font-family="Arial" font-weight="bold" text-anchor="middle">Short @ ${entryPrice.toFixed(2)}</text>
+        <!-- Entry Sell (Short) Arrow -->
+        <polygon points="${x1},${sellY} ${x1-4},${sellY-6} ${x1+4},${sellY-6}" fill="${sellColor}" />
+        <text x="${x1}" y="${sellY - 9}" fill="${sellColor}" font-size="6" font-family="Tahoma" font-weight="bold" text-anchor="middle">Short @ ${entryPrice.toFixed(2)}</text>
         
-        <!-- Exit Buy (Cover) Triangle -->
-        <polygon points="${x2},${buyY} ${x2-5},${buyY+7} ${x2+5},${buyY+7}" fill="${buyColor}" />
-        <text x="${x2}" y="${buyY + 14}" fill="${buyColor}" font-size="6" font-family="Arial" font-weight="bold" text-anchor="middle">Cover @ ${exitPrice.toFixed(2)}</text>
+        <!-- Exit Buy (Cover) Arrow -->
+        <polygon points="${x2},${buyY} ${x2-4},${buyY+6} ${x2+4},${buyY+6}" fill="${buyColor}" />
+        <text x="${x2}" y="${buyY + 13}" fill="${buyColor}" font-size="6" font-family="Tahoma" font-weight="bold" text-anchor="middle">Cover @ ${exitPrice.toFixed(2)}</text>
         
-        <!-- Execution line -->
-        <line x1="${x1}" y1="${sellY - 4}" x2="${x2}" y2="${buyY + 4}" stroke="#ffffff" stroke-dasharray="2,2" stroke-width="1.2" opacity="0.65" />
+        <!-- Connection Line -->
+        <line x1="${x1}" y1="${sellY - 3}" x2="${x2}" y2="${buyY + 3}" stroke="${sellColor}" stroke-dasharray="1,2" stroke-width="1" opacity="0.75" />
       `;
     }
   };
 
+  // Helper: Draw MT5 price tracker line and label tag on Y-Axis
+  const drawCurrentPriceMT5 = (candles) => {
+    const lastC = candles[candles.length - 1].c;
+    const y = getY(lastC);
+    const isUp = lastC >= candles[candles.length - 2].c;
+    const color = isUp ? '#00ff00' : '#ff0000';
+    return `
+      <!-- Price line -->
+      <line x1="0" y1="${y}" x2="445" y2="${y}" stroke="${color}" stroke-dasharray="3,3" stroke-width="1" opacity="0.8" />
+      
+      <!-- Right Y-Axis Tag -->
+      <g transform="translate(445, ${y - 5.5})">
+        <rect x="0" y="0" width="50" height="11" fill="#000000" stroke="${color}" stroke-width="0.8" />
+        <text x="25" y="8.5" fill="${color}" font-size="7.5" font-family="monospace" text-anchor="middle" font-weight="bold">${lastC.toFixed(2)}</text>
+      </g>
+    `;
+  };
+
   // 2. Draw candles and volumes (if not special vector screen)
-  const isSpecialNT8 = [3, 7, 8, 10, 11, 12, 13, 14, 15, 23, 24, 25, 26, 27, 28, 29, 30, 38, 40].includes(dayNum);
-  if (!isSpecialNT8) {
+  const isSpecialMT5 = [3, 7, 8, 10, 11, 12, 13, 14, 15, 23, 24, 25, 26, 27, 28, 29, 30, 38, 40].includes(dayNum);
+  if (!isSpecialMT5) {
     const maxVol = Math.max(...candles.map(c => c.v));
     
     candles.forEach((c, i) => {
@@ -1401,23 +1436,23 @@ const getGraphicForDay = (dayNum) => {
       const yHigh = getY(c.h);
       const yLow = getY(c.l);
       const isBull = c.c >= c.o;
-      // NT8 High-Contrast colors
-      const strokeColor = isBull ? '#00cc00' : '#cc0000';
+      // MT5 crisp outlines and filled bodies
+      const strokeColor = isBull ? '#00ff00' : '#ff0000';
       const fillColor = isBull ? '#00ff00' : '#ff0000';
 
       // Wick
-      elementsHtml += `<line x1="${x}" y1="${yHigh}" x2="${x}" y2="${yLow}" stroke="${strokeColor}" stroke-width="1.2" />`;
+      elementsHtml += `<line x1="${x}" y1="${yHigh}" x2="${x}" y2="${yLow}" stroke="${strokeColor}" stroke-width="1" />`;
       // Body
-      elementsHtml += `<rect x="${x - 4.5}" y="${Math.min(yOpen, yClose)}" width="9" height="${Math.abs(yOpen - yClose) || 1.5}" fill="${fillColor}" stroke="${strokeColor}" stroke-width="0.6" rx="0.5" />`;
+      elementsHtml += `<rect x="${x - 4}" y="${Math.min(yOpen, yClose)}" width="8" height="${Math.abs(yOpen - yClose) || 1.2}" fill="${fillColor}" stroke="${strokeColor}" stroke-width="0.5" />`;
       
-      // NT8 Volume pane overlay
+      // MT5 volume pane overlay
       const volHeight = (c.v / maxVol) * 20;
-      elementsHtml += `<rect x="${x - 3.5}" y="${170 - volHeight}" width="7" height="${volHeight}" fill="${isBull ? 'rgba(0, 255, 0, 0.16)' : 'rgba(255, 0, 0, 0.16)'}" stroke="${isBull ? 'rgba(0, 200, 0, 0.25)' : 'rgba(200, 0, 0, 0.25)'}" stroke-width="0.4" />`;
+      elementsHtml += `<rect x="${x - 3}" y="${170 - volHeight}" width="6" height="${volHeight}" fill="${isBull ? 'rgba(0, 255, 0, 0.14)' : 'rgba(255, 0, 0, 0.14)'}" stroke="none" />`;
     });
 
-    // Draw NT Price Axis tick labels (Segoe UI/Arial)
+    // Draw MT Price Axis tick labels directly on black Y-axis
     elementsHtml += `
-      <g fill="#A0A0A0" font-size="7.5" font-family="Arial" text-anchor="middle">
+      <g fill="#c0c0c0" font-size="7.5" font-family="Tahoma" text-anchor="middle">
         <text x="472" y="48">${maxPrice.toFixed(2)}</text>
         <text x="472" y="88">${((maxPrice + minPrice) / 2 + (maxPrice - minPrice) * 0.15).toFixed(2)}</text>
         <text x="472" y="128">${((maxPrice + minPrice) / 2 - (maxPrice - minPrice) * 0.15).toFixed(2)}</text>
@@ -1425,7 +1460,7 @@ const getGraphicForDay = (dayNum) => {
       </g>
       
       <!-- Time axis X ticks -->
-      <g fill="#A0A0A0" font-size="7.5" font-family="Arial" text-anchor="middle">
+      <g fill="#c0c0c0" font-size="7.5" font-family="Tahoma" text-anchor="middle">
         <text x="100" y="184">${timeLabels[0]}</text>
         <text x="200" y="184">${timeLabels[1]}</text>
         <text x="300" y="184">${timeLabels[2]}</text>
@@ -1434,34 +1469,30 @@ const getGraphicForDay = (dayNum) => {
     `;
   }
 
-  // Switch-case for day-specific decorations & NT8 labels
+  // Switch-case for day-specific decorations & MT5 labels
   switch (dayNum) {
     case 1:
       title = "El Precio Objetivamente";
-      // Draw NT8 indicator (EMA 50 in light blue)
+      // Draw MT5 Indicator: Moving Average 50 (Blue line)
       let emaPts = [];
       let lastVal = candles[0].c;
       for(let i=0; i<candles.length; i++) {
         lastVal = candles[i].c * 0.3 + lastVal * 0.7;
         emaPts.push(`${getX(i)},${getY(lastVal)}`);
       }
-      elementsHtml += `<path d="M ${emaPts.join(' L ')}" fill="none" stroke="#00ffff" stroke-width="1.5" opacity="0.9" />`;
-      elementsHtml += `<text x="100" y="${getY(lastVal) - 15}" fill="#00ffff" font-size="7" font-family="Arial">EMA (50) - Price Filter</text>`;
+      elementsHtml += `<path d="M ${emaPts.join(' L ')}" fill="none" stroke="#0055ff" stroke-width="1.2" opacity="0.9" />`;
+      elementsHtml += `<text x="100" y="${getY(lastVal) - 15}" fill="#0055ff" font-size="7" font-family="Tahoma">MA(50)</text>`;
 
-      // Dashed price tracking line with NT8 Price Marker tag
+      // Dashed price tracking line with MT5 Price Marker tag
       const lastC = candles[candles.length - 1].c;
       const lastY = getY(lastC);
       elementsHtml += `
-        <line x1="0" y1="${lastY}" x2="445" y2="${lastY}" stroke="#00ff00" stroke-dasharray="3,3" stroke-width="1.2" />
-        <g transform="translate(445, ${lastY - 6})">
-          <rect x="0" y="0" width="50" height="12" fill="#00ff00" stroke="#ffffff" stroke-width="0.5" rx="1" />
-          <text x="25" y="9" fill="#ffffff" font-size="7" font-family="monospace" text-anchor="middle" font-weight="bold">${lastC.toFixed(2)}</text>
-        </g>
+        <line x1="0" y1="${lastY}" x2="445" y2="${lastY}" stroke="#00ff00" stroke-dasharray="3,3" stroke-width="1" />
         
-        <!-- NT8 Text Annotation -->
-        <rect x="230" y="95" width="120" height="26" fill="#202020" stroke="#00ffff" stroke-width="0.8" />
-        <text x="290" y="106" fill="#f3f4f6" font-size="7.5" font-family="Arial" font-weight="bold" text-anchor="middle">PRECIO ACTUAL: LA ÚNICA</text>
-        <text x="290" y="117" fill="#00ffff" font-size="7.5" font-family="Arial" font-weight="bold" text-anchor="middle">VERDAD OBJETIVA</text>
+        <!-- MT5 Text Annotation -->
+        <rect x="230" y="95" width="120" height="26" fill="#000000" stroke="#0055ff" stroke-width="0.8" />
+        <text x="290" y="106" fill="#f3f4f6" font-size="7.5" font-family="Tahoma" font-weight="bold" text-anchor="middle">PRECIO ACTUAL: LA ÚNICA</text>
+        <text x="290" y="117" fill="#0055ff" font-size="7.5" font-family="Tahoma" font-weight="bold" text-anchor="middle">VERDAD OBJETIVA</text>
       `;
       break;
 
@@ -1473,17 +1504,17 @@ const getGraphicForDay = (dayNum) => {
       const pY = getY(4302);
 
       elementsHtml += `
-        <!-- Highlighting FOMO peak NT8 style -->
-        <circle cx="${fX}" cy="${fY}" r="8" fill="none" stroke="#ff0000" stroke-width="1.5" />
-        <path d="M ${fX - 25},${fY - 20} L ${fX},${fY}" stroke="#ff0000" stroke-width="1" />
-        <rect x="${fX - 85}" y="${fY - 32}" width="70" height="15" fill="#202020" stroke="#ff0000" stroke-width="0.8" />
-        <text x="${fX - 50}" y="${fY - 22}" fill="#ff0000" font-size="7" font-weight="bold" font-family="Arial" text-anchor="middle">FOMO (Comprar Techo)</text>
+        <!-- Highlighting FOMO peak MT5 style -->
+        <circle cx="${fX}" cy="${fY}" r="8" fill="none" stroke="#ff0000" stroke-width="1" />
+        <path d="M ${fX - 25},${fY - 20} L ${fX},${fY}" stroke="#ff0000" stroke-width="0.8" />
+        <rect x="${fX - 85}" y="${fY - 32}" width="70" height="15" fill="#000000" stroke="#ff0000" stroke-width="0.8" />
+        <text x="${fX - 50}" y="${fY - 22}" fill="#ff0000" font-size="7" font-weight="bold" font-family="Tahoma" text-anchor="middle">FOMO (Comprar Techo)</text>
 
         <!-- Highlighting Panic bottom -->
-        <circle cx="${pX}" cy="${pY}" r="8" fill="none" stroke="#ff0000" stroke-width="1.5" />
-        <path d="M ${pX + 25},${pY + 20} L ${pX},${pY}" stroke="#ff0000" stroke-width="1" />
-        <rect x="${pX + 5}" y="${pY + 15}" width="80" height="15" fill="#202020" stroke="#ff0000" stroke-width="0.8" />
-        <text x="${pX + 45}" y="${pY + 25}" fill="#ff0000" font-size="7" font-weight="bold" font-family="Arial" text-anchor="middle">PÁNICO (Vender Suelo)</text>
+        <circle cx="${pX}" cy="${pY}" r="8" fill="none" stroke="#ff0000" stroke-width="1" />
+        <path d="M ${pX + 25},${pY + 20} L ${pX},${pY}" stroke="#ff0000" stroke-width="0.8" />
+        <rect x="${pX + 5}" y="${pY + 15}" width="80" height="15" fill="#000000" stroke="#ff0000" stroke-width="0.8" />
+        <text x="${pX + 45}" y="${pY + 25}" fill="#ff0000" font-size="7" font-weight="bold" font-family="Tahoma" text-anchor="middle">PÁNICO (Vender Suelo)</text>
       `;
       break;
 
@@ -1494,27 +1525,26 @@ const getGraphicForDay = (dayNum) => {
         const x = 50 + i * 40;
         const color = t === 'W' ? '#00ff00' : '#ff0000';
         elementsHtml += `
-          <rect x="${x}" y="85" width="28" height="28" fill="#252525" stroke="${color}" stroke-width="2" />
-          <text x="${x + 14}" y="103" fill="${color}" font-size="12" font-family="Arial" text-anchor="middle" font-weight="bold">${t}</text>
+          <rect x="${x}" y="85" width="28" height="28" fill="#111111" stroke="${color}" stroke-width="1.5" />
+          <text x="${x + 14}" y="103" fill="${color}" font-size="12" font-family="Tahoma" text-anchor="middle" font-weight="bold">${t}</text>
         `;
       });
       elementsHtml += `
-        <text x="250" y="150" fill="#f3f4f6" font-size="11" font-family="Arial" text-anchor="middle" font-weight="bold">60% de Probabilidad a Largo Plazo</text>
-        <text x="250" y="168" fill="#a0a0a0" font-size="8.5" font-family="Arial" text-anchor="middle">Cualquier operación individual tiene resultado aleatorio</text>
+        <text x="250" y="150" fill="#f3f4f6" font-size="11" font-family="Tahoma" text-anchor="middle" font-weight="bold">60% de Probabilidad a Largo Plazo</text>
+        <text x="250" y="168" fill="#a0a0a0" font-size="8.5" font-family="Tahoma" text-anchor="middle">Cualquier operación individual tiene resultado aleatorio</text>
       `;
       break;
 
     case 4:
       title = "SSL Sweep (Caza de Stops)";
       const supY = getY(4312);
-      // Swept low wick at index 7. Add NT8 execution marker
       elementsHtml += `
         <!-- Horizontal Support Line -->
-        <line x1="0" y1="${supY}" x2="445" y2="${supY}" stroke="#ff0000" stroke-width="1.2" stroke-dasharray="3,3" />
-        <text x="12" y="${supY - 6}" fill="#ff0000" font-size="8.5" font-family="Arial">Soporte Obvio (Sell Stops acumulados)</text>
+        <line x1="0" y1="${supY}" x2="445" y2="${supY}" stroke="#ff0000" stroke-width="1" stroke-dasharray="3,3" />
+        <text x="12" y="${supY - 6}" fill="#ff0000" font-size="8.5" font-family="Tahoma">Soporte Obvio (Sell Stops acumulados)</text>
         
-        <!-- Execution entry Buy triangle -->
-        ${drawExecutionNT8(7, 4312, 11, 4335, true)}
+        <!-- Execution entry Buy arrow -->
+        ${drawExecutionMT5(7, 4312, 11, 4335, true)}
       `;
       break;
 
@@ -1523,11 +1553,11 @@ const getGraphicForDay = (dayNum) => {
       const resY = getY(4316);
       elementsHtml += `
         <!-- Resistance Line -->
-        <line x1="0" y1="${resY}" x2="445" y2="${resY}" stroke="#ff0000" stroke-width="1.2" stroke-dasharray="3,3" />
-        <text x="12" y="${resY - 6}" fill="#ff0000" font-size="8.5" font-family="Arial">Resistencia (Buy Stops Vendedores)</text>
+        <line x1="0" y1="${resY}" x2="445" y2="${resY}" stroke="#ff0000" stroke-width="1" stroke-dasharray="3,3" />
+        <text x="12" y="${resY - 6}" fill="#ff0000" font-size="8.5" font-family="Tahoma">Resistencia (Buy Stops Vendedores)</text>
         
-        <!-- Short Cover Entry Buy triangle -->
-        ${drawExecutionNT8(6, 4316, 9, 4350, true)}
+        <!-- Short Cover Entry Buy arrow -->
+        ${drawExecutionMT5(6, 4316, 9, 4350, true)}
       `;
       break;
 
@@ -1538,202 +1568,202 @@ const getGraphicForDay = (dayNum) => {
       const fkWickY = getY(4338);
 
       elementsHtml += `
-        <line x1="0" y1="${fkResY}" x2="445" y2="${fkResY}" stroke="#ffffff" stroke-width="0.8" stroke-dasharray="3,3" opacity="0.5" />
-        <text x="12" y="${fkResY - 6}" fill="#a0a0a0" font-size="8" font-family="Arial">Línea de Resistencia</text>
+        <line x1="0" y1="${fkResY}" x2="445" y2="${fkResY}" stroke="#ffffff" stroke-width="0.8" stroke-dasharray="3,3" opacity="0.4" />
+        <text x="12" y="${fkResY - 6}" fill="#a0a0a0" font-size="8" font-family="Tahoma">Línea de Resistencia</text>
         
-        <circle cx="${fkWickX}" cy="${fkWickY}" r="7" fill="none" stroke="#ff0000" stroke-width="1.5" />
-        <text x="${fkWickX + 15}" y="${fkWickY + 3}" fill="#ff0000" font-size="7.5" font-family="Arial" font-weight="bold">Fakeout (Ruptura Falsa)</text>
+        <circle cx="${fkWickX}" cy="${fkWickY}" r="7" fill="none" stroke="#ff0000" stroke-width="1" />
+        <text x="${fkWickX + 15}" y="${fkWickY + 3}" fill="#ff0000" font-size="7.5" font-family="Tahoma" font-weight="bold">Fakeout (Ruptura Falsa)</text>
       `;
       break;
 
     case 7:
       title = "El Escudo Mental Estoico";
       elementsHtml += `
-        <rect x="50" y="30" width="400" height="150" fill="#181818" stroke="#333333" stroke-width="1.5" />
-        <path d="M 250,55 C 275,55 295,65 295,95 C 295,130 250,155 250,155 C 250,155 205,130 205,95 C 205,65 225,55 250,55 Z" fill="rgba(0, 255, 255, 0.04)" stroke="#00ffff" stroke-width="2.5" />
-        <path d="M 250,68 L 250,135 M 225,90 L 275,90" stroke="#00ffff" stroke-width="2.5" />
-        <text x="250" y="42" fill="#f3f4f6" font-size="11.5" font-family="Arial" font-weight="bold" text-anchor="middle">CONTROL ESTOICO - NINJATRADER 8</text>
-        <text x="140" y="95" fill="#ff0000" font-size="9" font-family="Arial" text-anchor="end" font-weight="bold">FOMO / PÁNICO</text>
-        <text x="360" y="95" fill="#00ff00" font-size="9" font-family="Arial" text-anchor="start" font-weight="bold">DISCIPLINA OPERATIVA</text>
+        <rect x="50" y="30" width="400" height="150" fill="#000000" stroke="#333333" stroke-width="1.5" />
+        <path d="M 250,55 C 275,55 295,65 295,95 C 295,130 250,155 250,155 C 250,155 205,130 205,95 C 205,65 225,55 250,55 Z" fill="rgba(0, 85, 255, 0.04)" stroke="#0055ff" stroke-width="2.5" />
+        <path d="M 250,68 L 250,135 M 225,90 L 275,90" stroke="#0055ff" stroke-width="2.5" />
+        <text x="250" y="42" fill="#f3f4f6" font-size="11.5" font-family="Tahoma" font-weight="bold" text-anchor="middle">CONTROL ESTOICO - METATRADER 5</text>
+        <text x="140" y="95" fill="#ff0000" font-size="9" font-family="Tahoma" text-anchor="end" font-weight="bold">FOMO / PÁNICO</text>
+        <text x="360" y="95" fill="#00ff00" font-size="9" font-family="Tahoma" text-anchor="start" font-weight="bold">DISCIPLINA OPERATIVA</text>
       `;
       break;
 
     case 8:
       title = "Preservación del Capital de Trabajo";
-      let safePoints = [];
-      let ruinPoints = [];
-      let safeVal = 10000;
-      let ruinVal = 10000;
+      let sfPoints = [];
+      let rnPoints = [];
+      let sfVal = 10000;
+      let rnVal = 10000;
       for(let i=0; i<12; i++) {
         let x = 60 + i * 32;
-        safeVal = safeVal - 100;
-        ruinVal = ruinVal - (ruinVal * 0.10);
-        safePoints.push(`${x},${160 - (safeVal / 10000) * 110}`);
-        ruinPoints.push(`${x},${160 - (ruinVal / 10000) * 110}`);
+        sfVal = sfVal - 100;
+        rnVal = rnVal - (rnVal * 0.10);
+        sfPoints.push(`${x},${160 - (sfVal / 10000) * 110}`);
+        rnPoints.push(`${x},${160 - (rnVal / 10000) * 110}`);
       }
 
       elementsHtml += `
-        <rect x="50" y="30" width="400" height="150" fill="#181818" stroke="#333333" stroke-width="1.5" />
+        <rect x="50" y="30" width="400" height="150" fill="#000000" stroke="#333333" stroke-width="1.5" />
         <line x1="50" y1="160" x2="450" y2="160" stroke="#444444" stroke-width="1" />
-        <text x="60" y="46" fill="#a0a0a0" font-size="8" font-family="Arial">NinjaTrader Equity Curve - $10,000</text>
+        <text x="60" y="46" fill="#a0a0a0" font-size="8" font-family="Tahoma">MetaTrader Equity Curve - $10,000</text>
         
-        <path d="M 60,50 L ${safePoints.join(' L ')}" fill="none" stroke="#00ff00" stroke-width="2.5" />
-        <path d="M 60,50 L ${ruinPoints.join(' L ')}" fill="none" stroke="#ff0000" stroke-width="2.5" />
+        <path d="M 60,50 L ${sfPoints.join(' L ')}" fill="none" stroke="#00ff00" stroke-width="2" />
+        <path d="M 60,50 L ${rnPoints.join(' L ')}" fill="none" stroke="#ff0000" stroke-width="2" />
         
-        <text x="250" y="152" fill="#a0a0a0" font-size="8" font-family="Arial" text-anchor="middle">Rachas perdedoras: Riesgo 1% (Conservado) vs Riesgo 10% (Ruina)</text>
+        <text x="250" y="152" fill="#a0a0a0" font-size="8" font-family="Tahoma" text-anchor="middle">Rachas perdedoras: Riesgo 1% vs Riesgo 10% (Ruina)</text>
       `;
       break;
 
     case 9:
       title = "Relación Riesgo Beneficio (R:R)";
-      const entY = getY(4320);
-      const slY = getY(4310);
-      const tpY = getY(4340);
+      const eY = getY(4320);
+      const sY = getY(4310);
+      const tY = getY(4340);
       const bx = getX(6);
 
       elementsHtml += `
         <!-- Entry line -->
-        <line x1="0" y1="${entY}" x2="445" y2="${entY}" stroke="#00ffff" stroke-width="1.2" stroke-dasharray="2,2" />
-        <text x="12" y="${entY - 4}" fill="#00ffff" font-size="8.5" font-family="Arial" font-weight="bold">Entry price level: 4320.00</text>
+        <line x1="0" y1="${eY}" x2="445" y2="${eY}" stroke="#0055ff" stroke-width="1" stroke-dasharray="2,2" />
+        <text x="12" y="${eY - 4}" fill="#0055ff" font-size="8.5" font-family="Tahoma" font-weight="bold">Entry price level: 4320.00</text>
         
-        <!-- TP Box (NT8 green) -->
-        <rect x="${bx}" y="${tpY}" width="200" height="${entY - tpY}" fill="rgba(0, 255, 0, 0.06)" stroke="#00ff00" stroke-width="1" />
-        <text x="${bx + 10}" y="${(entY + tpY)/2 + 4}" fill="#00ff00" font-size="9" font-weight="bold" font-family="Arial">TAKE PROFIT (R:R 1:2) +$200</text>
+        <!-- TP Box (MT5 green) -->
+        <rect x="${bx}" y="${tY}" width="200" height="${eY - tY}" fill="rgba(0, 255, 0, 0.05)" stroke="#00ff00" stroke-width="0.8" />
+        <text x="${bx + 10}" y="${(eY + tY)/2 + 4}" fill="#00ff00" font-size="9" font-weight="bold" font-family="Tahoma">TAKE PROFIT (R:R 1:2) +$200</text>
         
-        <!-- SL Box (NT8 red) -->
-        <rect x="${bx}" y="${entY}" width="200" height="${slY - entY}" fill="rgba(255, 0, 0, 0.06)" stroke="#ff0000" stroke-width="1" />
-        <text x="${bx + 10}" y="${(entY + slY)/2 + 4}" fill="#ff0000" font-size="9" font-weight="bold" font-family="Arial">STOP LOSS (Riesgo 1%) -$100</text>
+        <!-- SL Box (MT5 red) -->
+        <rect x="${bx}" y="${eY}" width="200" height="${sY - eY}" fill="rgba(255, 0, 0, 0.05)" stroke="#ff0000" stroke-width="0.8" />
+        <text x="${bx + 10}" y="${(eY + sY)/2 + 4}" fill="#ff0000" font-size="9" font-weight="bold" font-family="Tahoma">STOP LOSS (Riesgo 1%) -$100</text>
       `;
       break;
 
     case 10:
       title = "Daily Drawdown Cut-off";
       elementsHtml += `
-        <rect x="50" y="30" width="400" height="150" fill="#181818" stroke="#ff0000" stroke-width="1.5" rx="4" />
-        <circle cx="250" cy="80" r="28" fill="rgba(255, 0, 0, 0.08)" stroke="#ff0000" stroke-width="2" />
+        <rect x="50" y="30" width="400" height="150" fill="#000000" stroke="#ff0000" stroke-width="1.5" rx="2" />
+        <circle cx="250" cy="80" r="28" fill="rgba(255, 0, 0, 0.05)" stroke="#ff0000" stroke-width="2" />
         <line x1="250" y1="65" x2="250" y2="85" stroke="#ff0000" stroke-width="4.5" stroke-linecap="round" />
         <circle cx="250" cy="95" r="2" fill="#ff0000" />
         
-        <text x="250" y="130" fill="#ff0000" font-size="12" font-family="Arial" font-weight="bold" text-anchor="middle">LÍMITE DE DRAWDOWN DIARIO (2%) ALCANZADO</text>
-        <text x="250" y="148" fill="#f3f4f6" font-size="10" font-family="Arial" text-anchor="middle" font-weight="bold">PLATAFORMA BLOQUEADA AUTOMÁTICAMENTE</text>
+        <text x="250" y="130" fill="#ff0000" font-size="12" font-family="Tahoma" font-weight="bold" text-anchor="middle">LÍMITE DE DRAWDOWN DIARIO (2%) ALCANZADO</text>
+        <text x="250" y="148" fill="#f3f4f6" font-size="10" font-family="Tahoma" text-anchor="middle" font-weight="bold">PLATAFORMA BLOQUEADA AUTOMÁTICAMENTE</text>
       `;
       break;
 
     case 11:
       title = "El Diario de Operaciones del Profesional";
       elementsHtml += `
-        <rect x="35" y="30" width="430" height="150" fill="#181818" stroke="#333333" rx="0"/>
-        <rect x="35" y="30" width="430" height="25" fill="#252525" rx="0"/>
+        <rect x="35" y="30" width="430" height="150" fill="#000000" stroke="#333333" rx="0"/>
+        <rect x="35" y="30" width="430" height="25" fill="#111111" rx="0"/>
         
         <!-- Table columns -->
-        <text x="45" y="46" fill="#a0a0a0" font-size="7.5" font-family="Arial" font-weight="bold">ID</text>
-        <text x="80" y="46" fill="#a0a0a0" font-size="7.5" font-family="Arial" font-weight="bold">FECHA</text>
-        <text x="140" y="46" fill="#a0a0a0" font-size="7.5" font-family="Arial" font-weight="bold">ACTIVO</text>
-        <text x="200" y="46" fill="#a0a0a0" font-size="7.5" font-family="Arial" font-weight="bold">DIRECCIÓN</text>
-        <text x="270" y="46" fill="#a0a0a0" font-size="7.5" font-family="Arial" font-weight="bold">RIESGO</text>
-        <text x="330" y="46" fill="#a0a0a0" font-size="7.5" font-family="Arial" font-weight="bold">R:R</text>
-        <text x="380" y="46" fill="#a0a0a0" font-size="7.5" font-family="Arial" font-weight="bold">P&L NETO</text>
+        <text x="45" y="46" fill="#a0a0a0" font-size="7.5" font-family="Tahoma" font-weight="bold">ID</text>
+        <text x="80" y="46" fill="#a0a0a0" font-size="7.5" font-family="Tahoma" font-weight="bold">FECHA</text>
+        <text x="140" y="46" fill="#a0a0a0" font-size="7.5" font-family="Tahoma" font-weight="bold">ACTIVO</text>
+        <text x="200" y="46" fill="#a0a0a0" font-size="7.5" font-family="Tahoma" font-weight="bold">DIRECCIÓN</text>
+        <text x="270" y="46" fill="#a0a0a0" font-size="7.5" font-family="Tahoma" font-weight="bold">RIESGO</text>
+        <text x="330" y="46" fill="#a0a0a0" font-size="7.5" font-family="Tahoma" font-weight="bold">R:R</text>
+        <text x="380" y="46" fill="#a0a0a0" font-size="7.5" font-family="Tahoma" font-weight="bold">P&L NETO</text>
         
         <line x1="35" y1="55" x2="465" y2="55" stroke="#333333" />
 
         <!-- Row 1 -->
-        <text x="45" y="75" fill="#f3f4f6" font-size="7.5" font-family="Arial">#28</text>
-        <text x="80" y="75" fill="#f3f4f6" font-size="7.5" font-family="Arial">30 May 09:35</text>
-        <text x="140" y="75" fill="#f3f4f6" font-size="7.5" font-family="Arial">ES Futures</text>
-        <text x="200" y="75" fill="#00ff00" font-size="7.5" font-family="Arial" font-weight="bold">LARGO (BUY)</text>
-        <text x="270" y="75" fill="#f3f4f6" font-size="7.5" font-family="Arial">$100 (1%)</text>
-        <text x="330" y="75" fill="#f3f4f6" font-size="7.5" font-family="Arial">1:2</text>
-        <text x="380" y="75" fill="#00ff00" font-size="7.5" font-family="Arial" font-weight="bold">+$200.00</text>
+        <text x="45" y="75" fill="#f3f4f6" font-size="7.5" font-family="Tahoma">#28</text>
+        <text x="80" y="75" fill="#f3f4f6" font-size="7.5" font-family="Tahoma">30 May 09:35</text>
+        <text x="140" y="75" fill="#f3f4f6" font-size="7.5" font-family="Tahoma">EURUSD Spot</text>
+        <text x="200" y="75" fill="#00ff00" font-size="7.5" font-family="Tahoma" font-weight="bold">LARGO (BUY)</text>
+        <text x="270" y="75" fill="#f3f4f6" font-size="7.5" font-family="Tahoma">$100 (1%)</text>
+        <text x="330" y="75" fill="#f3f4f6" font-size="7.5" font-family="Tahoma">1:2</text>
+        <text x="380" y="75" fill="#00ff00" font-size="7.5" font-family="Tahoma" font-weight="bold">+$200.00</text>
         <line x1="35" y1="88" x2="465" y2="88" stroke="#333333" />
 
         <!-- Row 2 -->
-        <text x="45" y="108" fill="#f3f4f6" font-size="7.5" font-family="Arial">#27</text>
-        <text x="80" y="108" fill="#f3f4f6" font-size="7.5" font-family="Arial">29 May 10:12</text>
-        <text x="140" y="108" fill="#f3f4f6" font-size="7.5" font-family="Arial">NQ Futures</text>
-        <text x="200" y="108" fill="#ff0000" font-size="7.5" font-family="Arial" font-weight="bold">CORTO (SELL)</text>
-        <text x="270" y="108" fill="#f3f4f6" font-size="7.5" font-family="Arial">$100 (1%)</text>
-        <text x="330" y="108" fill="#f3f4f6" font-size="7.5" font-family="Arial">1:2</text>
-        <text x="380" y="108" fill="#ff0000" font-size="7.5" font-family="Arial" font-weight="bold">-$100.00</text>
+        <text x="45" y="108" fill="#f3f4f6" font-size="7.5" font-family="Tahoma">#27</text>
+        <text x="80" y="108" fill="#f3f4f6" font-size="7.5" font-family="Tahoma">29 May 10:12</text>
+        <text x="140" y="108" fill="#f3f4f6" font-size="7.5" font-family="Tahoma">GBPUSD Spot</text>
+        <text x="200" y="108" fill="#ff0000" font-size="7.5" font-family="Tahoma" font-weight="bold">CORTO (SELL)</text>
+        <text x="270" y="108" fill="#f3f4f6" font-size="7.5" font-family="Tahoma">$100 (1%)</text>
+        <text x="330" y="108" fill="#f3f4f6" font-size="7.5" font-family="Tahoma">1:2</text>
+        <text x="380" y="108" fill="#ff0000" font-size="7.5" font-family="Tahoma" font-weight="bold">-$100.00</text>
       `;
       break;
 
     case 12:
       title = "Proceso Operativo Real";
       elementsHtml += `
-        <rect x="50" y="30" width="400" height="150" fill="#181818" stroke="#333333" rx="4" />
-        <text x="250" y="55" fill="#f3f4f6" font-size="11" font-weight="bold" font-family="Arial" text-anchor="middle">NinjaTrader Trade Report - Futures</text>
+        <rect x="50" y="30" width="400" height="150" fill="#000000" stroke="#333333" rx="2" />
+        <text x="250" y="55" fill="#f3f4f6" font-size="11" font-weight="bold" font-family="Tahoma" text-anchor="middle">MetaTrader 5 Trade Report - Forex</text>
         
-        <g fill="#a0a0a0" font-size="8.5" font-family="Arial" transform="translate(80, 80)">
+        <g fill="#a0a0a0" font-size="8.5" font-family="Tahoma" transform="translate(80, 80)">
           <text x="0" y="0">P&L Bruto en Pantalla:</text>
           <text x="240" y="0" fill="#00ff00" font-weight="bold" text-anchor="end">+$250.00 USD</text>
           
           <text x="0" y="20">Slippage (Deslizamiento de Orden):</text>
           <text x="240" y="20" fill="#f59e0b" font-weight="bold" text-anchor="end">-$20.00 USD</text>
 
-          <text x="0" y="40">Comisiones de Brokerage (NT8):</text>
+          <text x="0" y="40">Comisiones de Brokerage (MT5):</text>
           <text x="240" y="40" fill="#ff0000" font-weight="bold" text-anchor="end">-$5.00 USD</text>
         </g>
         
         <line x1="80" y1="140" x2="320" y2="140" stroke="#333333" />
-        <text x="80" y="160" fill="#f3f4f6" font-size="11" font-weight="bold" font-family="Arial">BENEFICIO NETO REAL EN CUENTA:</text>
-        <text x="320" y="160" fill="#00ff00" font-size="12" font-weight="bold" font-family="Arial" text-anchor="end">+$225.00 USD</text>
+        <text x="80" y="160" fill="#f3f4f6" font-size="11" font-weight="bold" font-family="Tahoma">BENEFICIO NETO REAL EN CUENTA:</text>
+        <text x="320" y="160" fill="#00ff00" font-size="12" font-weight="bold" font-family="Tahoma" text-anchor="end">+$225.00 USD</text>
       `;
       break;
 
     case 13:
       title = "El Método Repetible de la Esperanza";
       elementsHtml += `
-        <g font-family="Arial" font-weight="bold" font-size="9.5" text-anchor="middle">
-          <rect x="40" y="80" width="80" height="35" fill="#252525" stroke="#333333" rx="2" />
+        <g font-family="Tahoma" font-weight="bold" font-size="9.5" text-anchor="middle">
+          <rect x="40" y="80" width="80" height="35" fill="#111111" stroke="#333333" rx="2" />
           <text x="80" y="101" fill="#f3f4f6">1. Setup Fijo</text>
           
-          <rect x="150" y="80" width="90" height="35" fill="rgba(0, 255, 255, 0.08)" stroke="#00ffff" rx="2" />
-          <text x="195" y="101" fill="#00ffff">2. Ejecución Fija</text>
+          <rect x="150" y="80" width="90" height="35" fill="rgba(0, 85, 255, 0.08)" stroke="#0055ff" rx="2" />
+          <text x="195" y="101" fill="#0055ff">2. Ejecución Fija</text>
           
-          <rect x="270" y="80" width="85" height="35" fill="#252525" stroke="#333333" rx="2" />
+          <rect x="270" y="80" width="85" height="35" fill="#111111" stroke="#333333" rx="2" />
           <text x="312.5" y="101" fill="#f3f4f6">3. Muestra 100</text>
           
           <rect x="380" y="80" width="80" height="35" fill="rgba(0, 255, 0, 0.08)" stroke="#00ff00" rx="2" />
           <text x="420" y="101" fill="#00ff00">4. Esperanza</text>
         </g>
       `;
-      elementsHtml += arrow(120, 97, 150, 97, '#00ffff');
-      elementsHtml += arrow(240, 97, 270, 97, '#00ffff');
+      elementsHtml += arrow(120, 97, 150, 97, '#0055ff');
+      elementsHtml += arrow(240, 97, 270, 97, '#0055ff');
       elementsHtml += arrow(355, 97, 380, 97, '#00ff00');
       elementsHtml += `
-        <text x="250" y="155" fill="#a0a0a0" font-size="8.5" font-family="Arial" text-anchor="middle">Consistencia es repetir el mismo proceso bajo un R:R asimétrico</text>
+        <text x="250" y="155" fill="#a0a0a0" font-size="8.5" font-family="Tahoma" text-anchor="middle">Consistencia es repetir el mismo proceso bajo un R:R asimétrico</text>
       `;
       break;
 
     case 14:
       title = "Ajuste de Lotes según Distancia de Stop Loss";
       elementsHtml += `
-        <rect x="40" y="30" width="420" height="150" fill="#181818" stroke="#333333" rx="4" />
+        <rect x="40" y="30" width="420" height="150" fill="#000000" stroke="#333333" rx="2" />
         
         <rect x="60" y="50" width="150" height="60" fill="rgba(0, 255, 0, 0.05)" stroke="#00ff00" stroke-width="1" rx="2" />
-        <text x="135" y="70" fill="#f3f4f6" font-size="9" font-family="Arial" font-weight="bold" text-anchor="middle">Stop Loss Estrecho (10 pts)</text>
-        <text x="135" y="88" fill="#00ff00" font-size="11" font-family="Arial" font-weight="bold" text-anchor="middle">2 Contratos MES</text>
+        <text x="135" y="70" fill="#f3f4f6" font-size="9" font-family="Tahoma" font-weight="bold" text-anchor="middle">Stop Loss Estrecho (10 pts)</text>
+        <text x="135" y="88" fill="#00ff00" font-size="11" font-family="Tahoma" font-weight="bold" text-anchor="middle">2 Contratos MES</text>
         
         <rect x="290" y="50" width="150" height="60" fill="rgba(255, 0, 0, 0.05)" stroke="#ff0000" stroke-width="1" rx="2" />
-        <text x="365" y="70" fill="#f3f4f6" font-size="9" font-family="Arial" font-weight="bold" text-anchor="middle">Stop Loss Amplio (20 pts)</text>
-        <text x="365" y="88" fill="#ff0000" font-size="11" font-family="Arial" font-weight="bold" text-anchor="middle">1 Contrato MES</text>
+        <text x="365" y="70" fill="#f3f4f6" font-size="9" font-family="Tahoma" font-weight="bold" text-anchor="middle">Stop Loss Amplio (20 pts)</text>
+        <text x="365" y="88" fill="#ff0000" font-size="11" font-family="Tahoma" font-weight="bold" text-anchor="middle">1 Contrato MES</text>
 
         <path d="M 220,80 L 280,80" stroke="#f59e0b" stroke-dasharray="2,2" stroke-width="1.2" marker-end="url(#arr-14)" />
-        <text x="250" y="72" fill="#f59e0b" font-size="7.5" font-family="Arial" font-weight="bold" text-anchor="middle">Distancia x2</text>
-        <text x="250" y="94" fill="#f59e0b" font-size="7.5" font-family="Arial" font-weight="bold" text-anchor="middle">Contratos /2</text>
+        <text x="250" y="72" fill="#f59e0b" font-size="7.5" font-family="Tahoma" font-weight="bold" text-anchor="middle">Distancia x2</text>
+        <text x="250" y="94" fill="#f59e0b" font-size="7.5" font-family="Tahoma" font-weight="bold" text-anchor="middle">Contratos /2</text>
         
-        <text x="250" y="155" fill="#f3f4f6" font-size="9.5" font-family="Arial" font-weight="bold" text-anchor="middle">Riesgo monetario idéntico ($100.00 USD)</text>
+        <text x="250" y="155" fill="#f3f4f6" font-size="9.5" font-family="Tahoma" font-weight="bold" text-anchor="middle">Riesgo monetario idéntico ($100.00 USD)</text>
       `;
       break;
 
     case 15:
       title = "Ancla Metodológica Contra el Ruido";
       elementsHtml += `
-        <rect x="50" y="30" width="400" height="150" fill="#181818" stroke="#f59e0b" stroke-width="1.5" rx="4" />
+        <rect x="50" y="30" width="400" height="150" fill="#000000" stroke="#f59e0b" stroke-width="1.5" rx="2" />
         <path d="M 250,55 L 250,140 M 210,75 L 290,75 M 190,110 C 190,165 310,165 310,110 M 175,100 L 192,110 M 325,100 L 308,110" fill="none" stroke="#f59e0b" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
         <circle cx="250" cy="55" r="10" stroke="#f59e0b" stroke-width="3" fill="none" />
         
-        <text x="250" y="42" fill="#f3f4f6" font-size="11.5" font-family="Arial" font-weight="bold" text-anchor="middle">ANCLA DE GESTIÓN DE RIESGO NT8</text>
+        <text x="250" y="42" fill="#f3f4f6" font-size="11.5" font-family="Tahoma" font-weight="bold" text-anchor="middle">ANCLA DE GESTIÓN DE RIESGO MT5</text>
       `;
       break;
 
@@ -1747,22 +1777,22 @@ const getGraphicForDay = (dayNum) => {
       const hh3 = [getX(12), getY(4347)];
 
       elementsHtml += `
-        <path d="M ${hl1.join(',')} L ${hh1.join(',')} L ${hl2.join(',')} L ${hh2.join(',')} L ${hl3.join(',')} L ${hh3.join(',')}" fill="none" stroke="#00ffff" stroke-width="2" stroke-dasharray="2,2" opacity="0.8" />
+        <path d="M ${hl1.join(',')} L ${hh1.join(',')} L ${hl2.join(',')} L ${hh2.join(',')} L ${hl3.join(',')} L ${hh3.join(',')}" fill="none" stroke="#0055ff" stroke-width="2" stroke-dasharray="2,2" opacity="0.8" />
         
         <circle cx="${hl1[0]}" cy="${hl1[1]}" r="4" fill="#00ff00" />
-        <text x="${hl1[0]}" y="${hl1[1] + 12}" fill="#00ff00" font-size="8" font-family="Arial" font-weight="bold" text-anchor="middle">HL</text>
+        <text x="${hl1[0]}" y="${hl1[1] + 12}" fill="#00ff00" font-size="8" font-family="Tahoma" font-weight="bold" text-anchor="middle">HL</text>
 
         <circle cx="${hh1[0]}" cy="${hh1[1]}" r="4" fill="#ff0000" />
-        <text x="${hh1[0]}" y="${hh1[1] - 8}" fill="#ff0000" font-size="8" font-family="Arial" font-weight="bold" text-anchor="middle">HH</text>
+        <text x="${hh1[0]}" y="${hh1[1] - 8}" fill="#ff0000" font-size="8" font-family="Tahoma" font-weight="bold" text-anchor="middle">HH</text>
 
         <circle cx="${hl2[0]}" cy="${hl2[1]}" r="4" fill="#00ff00" />
-        <text x="${hl2[0]}" y="${hl2[1] + 12}" fill="#00ff00" font-size="8" font-family="Arial" font-weight="bold" text-anchor="middle">HL</text>
+        <text x="${hl2[0]}" y="${hl2[1] + 12}" fill="#00ff00" font-size="8" font-family="Tahoma" font-weight="bold" text-anchor="middle">HL</text>
 
         <circle cx="${hh2[0]}" cy="${hh2[1]}" r="4" fill="#ff0000" />
-        <text x="${hh2[0]}" y="${hh2[1] - 8}" fill="#ff0000" font-size="8" font-family="Arial" font-weight="bold" text-anchor="middle">HH</text>
+        <text x="${hh2[0]}" y="${hh2[1] - 8}" fill="#ff0000" font-size="8" font-family="Tahoma" font-weight="bold" text-anchor="middle">HH</text>
 
         <circle cx="${hl3[0]}" cy="${hl3[1]}" r="4" fill="#00ff00" />
-        <text x="${hl3[0]}" y="${hl3[1] + 12}" fill="#00ff00" font-size="8" font-family="Arial" font-weight="bold" text-anchor="middle">HL</text>
+        <text x="${hl3[0]}" y="${hl3[1] + 12}" fill="#00ff00" font-size="8" font-family="Tahoma" font-weight="bold" text-anchor="middle">HL</text>
       `;
       break;
 
@@ -1777,11 +1807,11 @@ const getGraphicForDay = (dayNum) => {
         <circle cx="${getX(6)}" cy="${pivotY}" r="4" fill="#ff0000" />
         
         <g transform="translate(${(startX + endX)/2}, ${pivotY - 4})">
-          <rect x="-24" y="-4" width="48" height="9" fill="#181818" stroke="#ff0000" stroke-width="0.8" />
-          <text x="0" y="3" fill="#ff0000" font-size="6.5" font-family="Arial" font-weight="bold" text-anchor="middle">BOS Bajista</text>
+          <rect x="-24" y="-4" width="48" height="9" fill="#000000" stroke="#ff0000" stroke-width="0.8" />
+          <text x="0" y="3" fill="#ff0000" font-size="6.5" font-family="Tahoma" font-weight="bold" text-anchor="middle">BOS Bajista</text>
         </g>
         
-        <text x="${getX(4)}" y="${getY(4335) - 15}" fill="#f3f4f6" font-size="7.5" font-family="Arial" text-anchor="middle">Mínimo HL de Defensa</text>
+        <text x="${getX(4)}" y="${getY(4335) - 15}" fill="#f3f4f6" font-size="7.5" font-family="Tahoma" text-anchor="middle">Mínimo HL de Defensa</text>
       `;
       break;
 
@@ -1789,10 +1819,10 @@ const getGraphicForDay = (dayNum) => {
       title = "Zonas Clave de Oferta y Demanda";
       elementsHtml += `
         <rect x="0" y="20" width="445" height="35" fill="rgba(255, 0, 0, 0.05)" stroke="#ff0000" stroke-width="0.8" stroke-dasharray="2,2" />
-        <text x="12" y="40" fill="#ff0000" font-size="8.5" font-family="Arial" font-weight="bold">ZONA DE OFERTA INSTITUCIONAL (Supply Zone)</text>
+        <text x="12" y="40" fill="#ff0000" font-size="8.5" font-family="Tahoma" font-weight="bold">ZONA DE OFERTA INSTITUCIONAL (Supply Zone)</text>
         
         <rect x="0" y="130" width="445" height="35" fill="rgba(0, 255, 0, 0.05)" stroke="#00ff00" stroke-width="0.8" stroke-dasharray="2,2" />
-        <text x="12" y="150" fill="#00ff00" font-size="8.5" font-family="Arial" font-weight="bold">ZONA DE DEMANDA INSTITUCIONAL (Demand Zone)</text>
+        <text x="12" y="150" fill="#00ff00" font-size="8.5" font-family="Tahoma" font-weight="bold">ZONA DE DEMANDA INSTITUCIONAL (Demand Zone)</text>
       `;
       break;
 
@@ -1802,8 +1832,8 @@ const getGraphicForDay = (dayNum) => {
       const engY = getY(4320);
 
       elementsHtml += `
-        <circle cx="${engX}" cy="${engY}" r="22" fill="none" stroke="#00ffff" stroke-width="1.2" stroke-dasharray="2,2" />
-        <text x="${engX}" y="${engY - 26}" fill="#00ffff" font-size="8" font-family="Arial" font-weight="bold" text-anchor="middle">Patrón de Engolfing</text>
+        <circle cx="${engX}" cy="${engY}" r="22" fill="none" stroke="#0055ff" stroke-width="1.2" stroke-dasharray="2,2" />
+        <text x="${engX}" y="${engY - 26}" fill="#0055ff" font-size="8" font-family="Tahoma" font-weight="bold" text-anchor="middle">Patrón de Engolfing</text>
       `;
       break;
 
@@ -1812,8 +1842,8 @@ const getGraphicForDay = (dayNum) => {
       const polY = getY(4324);
       elementsHtml += `
         <line x1="0" y1="${polY}" x2="445" y2="${polY}" stroke="#f59e0b" stroke-width="1.5" />
-        <text x="12" y="${polY - 5}" fill="#f59e0b" font-size="8" font-family="Arial" font-weight="bold">Resistencia Antigua</text>
-        <text x="12" y="${polY + 11}" fill="#f59e0b" font-size="8" font-family="Arial" font-weight="bold">Soporte Nuevo (Polaridad)</text>
+        <text x="12" y="${polY - 5}" fill="#f59e0b" font-size="8" font-family="Tahoma" font-weight="bold">Resistencia Antigua</text>
+        <text x="12" y="${polY + 11}" fill="#f59e0b" font-size="8" font-family="Tahoma" font-weight="bold">Soporte Nuevo (Polaridad)</text>
 
         <!-- Test point highlight -->
         <circle cx="${getX(9)}" cy="${polY}" r="6" fill="none" stroke="#00ff00" stroke-width="2" />
@@ -1823,7 +1853,7 @@ const getGraphicForDay = (dayNum) => {
 
     case 21:
       title = "EMA 200 y Momentum RSI";
-      // Draw EMA 200 curve on NT8
+      // Draw EMA 200 curve on MT5
       let e200Pts = [];
       let cVal = candles[0].c;
       for(let i=0; i<candles.length; i++) {
@@ -1831,15 +1861,15 @@ const getGraphicForDay = (dayNum) => {
         e200Pts.push(`${getX(i)},${getY(cVal)}`);
       }
       elementsHtml += `<path d="M ${e200Pts.join(' L ')}" fill="none" stroke="#f59e0b" stroke-width="1.8" opacity="0.8" />`;
-      elementsHtml += `<text x="350" y="${getY(cVal) - 6}" fill="#f59e0b" font-size="7.5" font-family="Arial">EMA (200)</text>`;
+      elementsHtml += `<text x="350" y="${getY(cVal) - 6}" fill="#f59e0b" font-size="7.5" font-family="Tahoma">EMA (200)</text>`;
 
       // Draw RSI sub-pane
       elementsHtml += `
-        <rect x="0" y="170" width="445" height="50" fill="#252525" stroke="#333333" stroke-width="0.8" />
-        <line x1="0" y1="195" x2="445" y2="195" stroke="rgba(0, 255, 255, 0.4)" stroke-width="0.8" stroke-dasharray="2,2" />
-        <text x="10" y="182" fill="#a0a0a0" font-size="7" font-family="Arial">RSI 14 (Oscillador de Momentum)</text>
+        <rect x="0" y="170" width="445" height="50" fill="#000000" stroke="#333333" stroke-width="0.8" />
+        <line x1="0" y1="195" x2="445" y2="195" stroke="rgba(0, 85, 255, 0.4)" stroke-width="0.8" stroke-dasharray="2,2" />
+        <text x="10" y="182" fill="#a0a0a0" font-size="7" font-family="Tahoma">RSI 14 (Momentum Index)</text>
 
-        <path d="M 0,210 L 100,205 L 200,197 L 300,188 L 400,182 L 445,180" fill="none" stroke="#00ffff" stroke-width="1.5" />
+        <path d="M 0,210 L 100,205 L 200,197 L 300,188 L 400,182 L 445,180" fill="none" stroke="#0055ff" stroke-width="1.5" />
         
         <circle cx="300" cy="188" r="3" fill="#00ff00" />
       `;
@@ -1848,54 +1878,54 @@ const getGraphicForDay = (dayNum) => {
     case 22:
       title = "Faro de Dirección (Estructura)";
       elementsHtml += `
-        <rect x="50" y="30" width="400" height="150" fill="#181818" stroke="#333333" stroke-width="1.5" rx="4" />
-        <path d="M 235,160 L 245,65 L 255,65 L 265,160 Z" fill="#252525" stroke="#00ffff" stroke-width="2" />
+        <rect x="50" y="30" width="400" height="150" fill="#000000" stroke="#333333" stroke-width="1.5" rx="2" />
+        <path d="M 235,160 L 245,65 L 255,65 L 265,160 Z" fill="#111111" stroke="#0055ff" stroke-width="2" />
         <rect x="242" y="52" width="16" height="13" fill="#f59e0b" rx="1" />
         <polygon points="250,58 100,20 100,120" fill="rgba(245, 158, 11, 0.05)" />
         <polygon points="250,58 400,20 400,120" fill="rgba(245, 158, 11, 0.05)" />
         
-        <text x="250" y="45" fill="#f3f4f6" font-size="11" font-family="Arial" font-weight="bold" text-anchor="middle">ESTRUCTURA DE MERCADO = TU BRÚJULA</text>
+        <text x="250" y="45" fill="#f3f4f6" font-size="11" font-family="Tahoma" font-weight="bold" text-anchor="middle">ESTRUCTURA DE MERCADO = TU BRÚJULA</text>
       `;
       break;
 
     case 23:
       title = "Cronograma Diario del Operador";
       elementsHtml += `
-        <rect x="40" y="30" width="420" height="150" fill="#181818" stroke="#333333" rx="4" />
+        <rect x="40" y="30" width="420" height="150" fill="#000000" stroke="#333333" rx="2" />
         <line x1="60" y1="100" x2="440" y2="100" stroke="#444444" stroke-width="3" />
         
-        <circle cx="100" cy="100" r="8" fill="#00ffff" />
-        <text x="100" y="85" fill="#f3f4f6" font-size="7.5" font-family="Arial" font-weight="bold" text-anchor="middle">08:00 AM</text>
-        <text x="100" y="117" fill="#a0a0a0" font-size="8" font-family="Arial" text-anchor="middle">Análisis Pre-market</text>
+        <circle cx="100" cy="100" r="8" fill="#0055ff" />
+        <text x="100" y="85" fill="#f3f4f6" font-size="7.5" font-family="Tahoma" font-weight="bold" text-anchor="middle">08:00 AM</text>
+        <text x="100" y="117" fill="#a0a0a0" font-size="8" font-family="Tahoma" text-anchor="middle">Análisis Pre-market</text>
 
         <circle cx="250" cy="100" r="8" fill="#00ff00" />
-        <text x="250" y="85" fill="#f3f4f6" font-size="7.5" font-family="Arial" font-weight="bold" text-anchor="middle">09:30 AM</text>
-        <text x="250" y="117" fill="#00ff00" font-size="8" font-family="Arial" font-weight="bold" text-anchor="middle">Sesión Activa</text>
+        <text x="250" y="85" fill="#f3f4f6" font-size="7.5" font-family="Tahoma" font-weight="bold" text-anchor="middle">09:30 AM</text>
+        <text x="250" y="117" fill="#00ff00" font-size="8" font-family="Tahoma" font-weight="bold" text-anchor="middle">Sesión Activa</text>
 
         <circle cx="400" cy="100" r="8" fill="#f59e0b" />
-        <text x="400" y="85" fill="#f3f4f6" font-size="7.5" font-family="Arial" font-weight="bold" text-anchor="middle">12:00 PM</text>
-        <text x="400" y="117" fill="#a0a0a0" font-size="8" font-family="Arial" text-anchor="middle">Bitácora & Cierre</text>
+        <text x="400" y="85" fill="#f3f4f6" font-size="7.5" font-family="Tahoma" font-weight="bold" text-anchor="middle">12:00 PM</text>
+        <text x="400" y="117" fill="#a0a0a0" font-size="8" font-family="Tahoma" text-anchor="middle">Bitácora & Cierre</text>
       `;
       break;
 
     case 24:
       title = "Checklist pre-market Visión Pro";
       elementsHtml += `
-        <rect x="50" y="30" width="400" height="150" fill="#181818" stroke="#333333" rx="4" />
-        <text x="250" y="48" fill="#f3f4f6" font-size="11" font-family="Arial" font-weight="bold" text-anchor="middle">Checklist de Ejecución Pre-market</text>
+        <rect x="50" y="30" width="400" height="150" fill="#000000" stroke="#333333" rx="2" />
+        <text x="250" y="48" fill="#f3f4f6" font-size="11" font-family="Tahoma" font-weight="bold" text-anchor="middle">Checklist de Ejecución Pre-market</text>
       `;
-      const finalItems = [
+      const checklistLines = [
         "1. ¿Tendencia de fondo EMA 200 de 5m confirmada?",
         "2. ¿Ausencia de noticias de impacto de la Fed o IPC?",
         "3. ¿Zona operativa de soporte/demanda (OB) tocada?",
         "4. ¿Tamaño de lote calculado con riesgo de cuenta del 1%?"
       ];
-      finalItems.forEach((str, i) => {
+      checklistLines.forEach((str, i) => {
         const y = 68 + i * 26;
         elementsHtml += `
           <rect x="80" y="${y}" width="14" height="14" fill="none" stroke="#00ff00" stroke-width="1.5" rx="2" />
           <polyline points="83 ${y+7}, 86 ${y+10}, 91 ${y+4}" fill="none" stroke="#00ff00" stroke-width="2" />
-          <text x="105" y="${y + 11}" fill="#f3f4f6" font-size="9" font-family="Arial">${str}</text>
+          <text x="105" y="${y + 11}" fill="#f3f4f6" font-size="9" font-family="Tahoma">${str}</text>
         `;
       });
       break;
@@ -1916,94 +1946,94 @@ const getGraphicForDay = (dayNum) => {
       }
 
       elementsHtml += `
-        <rect x="40" y="30" width="420" height="150" fill="#181818" stroke="#333333" rx="4" />
+        <rect x="40" y="30" width="420" height="150" fill="#000000" stroke="#333333" rx="2" />
         
         <rect x="50" y="50" width="165" height="110" fill="rgba(255,0,0,0.01)" stroke="rgba(255,0,0,0.1)" />
         <path d="M ${panPts.join(' L ')}" fill="none" stroke="#ff0000" stroke-width="1.5" />
-        <text x="132.5" y="70" fill="#ff0000" font-size="9" font-family="Arial" font-weight="bold" text-anchor="middle">Estrés Emocional (120 BPM)</text>
+        <text x="132.5" y="70" fill="#ff0000" font-size="9" font-family="Tahoma" font-weight="bold" text-anchor="middle">Estrés Emocional (120 BPM)</text>
 
         <rect x="260" y="50" width="185" height="110" fill="rgba(0,255,0,0.01)" stroke="rgba(0,255,0,0.1)" />
         <path d="M ${cPoints.join(' L ')}" fill="none" stroke="#00ff00" stroke-width="2.2" />
-        <text x="352.5" y="70" fill="#00ff00" font-size="9" font-family="Arial" font-weight="bold" text-anchor="middle">Control Estoico (65 BPM)</text>
+        <text x="352.5" y="70" fill="#00ff00" font-size="9" font-family="Tahoma" font-weight="bold" text-anchor="middle">Control Estoico (65 BPM)</text>
       `;
       break;
 
     case 26:
       title = "Apagado y Cierre Operativo";
       elementsHtml += `
-        <rect x="50" y="30" width="400" height="150" fill="#181818" stroke="#ff0000" stroke-width="1.5" rx="4" />
+        <rect x="50" y="30" width="400" height="150" fill="#000000" stroke="#ff0000" stroke-width="1.5" rx="2" />
         <circle cx="250" cy="90" r="30" fill="rgba(255, 0, 0, 0.05)" stroke="#ff0000" stroke-width="3" />
         <line x1="250" y1="72" x2="250" y2="92" stroke="#ff0000" stroke-width="5" stroke-linecap="round" />
         
-        <text x="250" y="145" fill="#f3f4f6" font-size="12" font-weight="bold" font-family="Arial" text-anchor="middle">SESIÓN TERMINADA - APAGADO</text>
+        <text x="250" y="145" fill="#f3f4f6" font-size="12" font-weight="bold" font-family="Tahoma" text-anchor="middle">SESIÓN TERMINADA - APAGADO</text>
       `;
       break;
 
     case 27:
       title = "Métricas Reales vs Planificadas";
       elementsHtml += `
-        <rect x="50" y="30" width="400" height="150" fill="#181818" stroke="#333333" rx="4" />
+        <rect x="50" y="30" width="400" height="150" fill="#000000" stroke="#333333" rx="2" />
         
-        <rect x="320" y="48" width="10" height="10" fill="#00ffff" />
-        <text x="335" y="56" fill="#a0a0a0" font-size="8" font-family="Arial">Objetivo</text>
+        <rect x="320" y="48" width="10" height="10" fill="#0055ff" />
+        <text x="335" y="56" fill="#a0a0a0" font-size="8" font-family="Tahoma">Objetivo</text>
         <rect x="380" y="48" width="10" height="10" fill="#00ff00" />
-        <text x="395" y="56" fill="#a0a0a0" font-size="8" font-family="Arial">Logrado</text>
+        <text x="395" y="56" fill="#a0a0a0" font-size="8" font-family="Tahoma">Logrado</text>
 
-        <rect x="90" y="70" width="20" height="70" fill="#00ffff" />
+        <rect x="90" y="70" width="20" height="70" fill="#0055ff" />
         <rect x="112" y="80" width="20" height="60" fill="#00ff00" />
-        <text x="111" y="152" fill="#f3f4f6" font-size="8" font-family="Arial" text-anchor="middle">Acierto (50% vs 43%)</text>
+        <text x="111" y="152" fill="#f3f4f6" font-size="8" font-family="Tahoma" text-anchor="middle">Acierto (50% vs 43%)</text>
 
-        <rect x="230" y="80" width="20" height="60" fill="#00ffff" />
+        <rect x="230" y="80" width="20" height="60" fill="#0055ff" />
         <rect x="252" y="60" width="20" height="80" fill="#00ff00" />
-        <text x="251" y="152" fill="#f3f4f6" font-size="8" font-family="Arial" text-anchor="middle">Ratio R:R (1:2 vs 1:2.4)</text>
+        <text x="251" y="152" fill="#f3f4f6" font-size="8" font-family="Tahoma" text-anchor="middle">Ratio R:R (1:2 vs 1:2.4)</text>
       `;
       break;
 
     case 28:
       title = "Agrupación de Errores Operativos";
       elementsHtml += `
-        <rect x="50" y="30" width="400" height="150" fill="#181818" stroke="#333333" rx="4" />
+        <rect x="50" y="30" width="400" height="150" fill="#000000" stroke="#333333" rx="2" />
         
         <circle cx="160" cy="105" r="50" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="20" />
         <circle cx="160" cy="105" r="30" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="15" />
         <circle cx="160" cy="105" r="10" fill="#f59e0b" />
         
-        <circle cx="150" cy="100" r="4" fill="#00ffff" />
-        <circle cx="162" cy="112" r="4" fill="#00ffff" />
-        <text x="230" y="85" fill="#00ffff" font-size="9" font-family="Arial" font-weight="bold">Errores de Setup (Técnicos)</text>
+        <circle cx="150" cy="100" r="4" fill="#0055ff" />
+        <circle cx="162" cy="112" r="4" fill="#0055ff" />
+        <text x="230" y="85" fill="#0055ff" font-size="9" font-family="Tahoma" font-weight="bold">Errores de Setup (Técnicos)</text>
 
         <circle cx="130" cy="75" r="4" fill="#ff0000" />
         <circle cx="190" cy="130" r="4" fill="#ff0000" />
-        <text x="230" y="125" fill="#ff0000" font-size="9" font-family="Arial" font-weight="bold">Errores de Disciplina (FOMO)</text>
+        <text x="230" y="125" fill="#ff0000" font-size="9" font-family="Tahoma" font-weight="bold">Errores de Disciplina (FOMO)</text>
       `;
       break;
 
     case 29:
       title = "Bucle de Mejora Continua Estoica";
       elementsHtml += `
-        <rect x="50" y="30" width="400" height="150" fill="#181818" stroke="#333333" rx="4" />
+        <rect x="50" y="30" width="400" height="150" fill="#000000" stroke="#333333" rx="2" />
         
-        <path d="M 250,55 A 45,45 0 1,1 205,100" fill="none" stroke="#00ffff" stroke-width="3" marker-end="url(#arr-29)" />
+        <path d="M 250,55 A 45,45 0 1,1 205,100" fill="none" stroke="#0055ff" stroke-width="3" marker-end="url(#arr-29)" />
         <path d="M 205,100 A 45,45 0 0,1 250,145" fill="none" stroke="#00ff00" stroke-width="3" marker-end="url(#arr-29)" />
         <path d="M 250,145 A 45,45 0 0,1 250,55" fill="none" stroke="#f59e0b" stroke-width="3" marker-end="url(#arr-29)" />
         
-        <text x="250" y="80" fill="#00ffff" font-size="8" font-family="Arial" font-weight="bold" text-anchor="middle">1. AUDITAR</text>
-        <text x="180" y="115" fill="#00ff00" font-size="8" font-family="Arial" font-weight="bold" text-anchor="middle">2. MEDIR</text>
-        <text x="320" y="115" fill="#f59e0b" font-size="8" font-family="Arial" font-weight="bold" text-anchor="middle">3. MEJORAR</text>
+        <text x="250" y="80" fill="#0055ff" font-size="8" font-family="Tahoma" font-weight="bold" text-anchor="middle">1. AUDITAR</text>
+        <text x="180" y="115" fill="#00ff00" font-size="8" font-family="Tahoma" font-weight="bold" text-anchor="middle">2. MEDIR</text>
+        <text x="320" y="115" fill="#f59e0b" font-size="8" font-family="Tahoma" font-weight="bold" text-anchor="middle">3. MEJORAR</text>
       `;
       break;
 
     case 30:
       title = "Diploma de Maestría en Trading Profesional";
       elementsHtml += `
-        <rect x="80" y="30" width="340" height="150" fill="#181818" stroke="#d4af37" stroke-width="3" rx="4" />
+        <rect x="80" y="30" width="340" height="150" fill="#000000" stroke="#d4af37" stroke-width="3" rx="4" />
         <rect x="88" y="38" width="324" height="134" fill="none" stroke="rgba(212,175,55,0.2)" stroke-width="1.2" />
         
-        <text x="250" y="65" fill="#d4af37" font-size="13" font-family="Arial" font-weight="bold" text-anchor="middle" letter-spacing="2">NINJATRADER 8 CERTIFICATION</text>
-        <text x="250" y="85" fill="#a0a0a0" font-size="7.5" font-family="Arial" text-anchor="middle">OTORGADO POR COMPLETAR EXPOSITIVAMENTE LA MASTERCLASS</text>
-        <text x="250" y="110" fill="#f3f4f6" font-size="14" font-family="Arial" font-weight="bold" text-anchor="middle">VISIÓN TRADING PRO (40 DÍAS)</text>
+        <text x="250" y="65" fill="#d4af37" font-size="13" font-family="Tahoma" font-weight="bold" text-anchor="middle" letter-spacing="2">METATRADER 5 CERTIFICATION</text>
+        <text x="250" y="85" fill="#a0a0a0" font-size="7.5" font-family="Tahoma" text-anchor="middle">OTORGADO POR COMPLETAR EXPOSITIVAMENTE LA MASTERCLASS</text>
+        <text x="250" y="110" fill="#f3f4f6" font-size="14" font-family="Tahoma" font-weight="bold" text-anchor="middle">VISIÓN TRADING PRO (40 DÍAS)</text>
         
-        <text x="350" y="142" fill="#d4af37" font-size="6.5" font-family="Arial" font-weight="bold" text-anchor="middle">Firma: Albert Sierra</text>
+        <text x="350" y="142" fill="#d4af37" font-size="6.5" font-family="Tahoma" font-weight="bold" text-anchor="middle">Firma: Albert Sierra</text>
       `;
       break;
 
@@ -2013,16 +2043,16 @@ const getGraphicForDay = (dayNum) => {
       const obL = 4312;
       
       elementsHtml += `
-        <!-- OB Box with NT8 solid dashed green -->
+        <!-- OB Box with MT5 solid dashed green -->
         <rect x="${getX(2)}" y="${getY(obH)}" width="${getX(7) - getX(2)}" height="${getY(obL) - getY(obH)}" fill="rgba(0, 255, 0, 0.05)" stroke="#00ff00" stroke-width="0.8" stroke-dasharray="3,3" />
-        <text x="${getX(2) + 5}" y="${getY(obH) + 11}" fill="#00ff00" font-size="7" font-family="Arial" font-weight="bold">Bullish Order Block (OB)</text>
+        <text x="${getX(2) + 5}" y="${getY(obH) + 11}" fill="#00ff00" font-size="7.5" font-family="Tahoma" font-weight="bold">Bullish Order Block (OB)</text>
         
         <!-- BOS Line label -->
-        <line x1="${getX(3)}" y1="${getY(4330)}" x2="${getX(6)}" y2="${getY(4330)}" stroke="#00ffff" stroke-dasharray="2,2" stroke-width="1.2" />
-        <text x="${getX(4.5)}" y="${getY(4330) - 4}" fill="#00ffff" font-size="7" font-family="Arial" font-weight="bold" text-anchor="middle">BOS</text>
+        <line x1="${getX(3)}" y1="${getY(4330)}" x2="${getX(6)}" y2="${getY(4330)}" stroke="#0055ff" stroke-dasharray="2,2" stroke-width="1.2" />
+        <text x="${getX(4.5)}" y="${getY(4330) - 4}" fill="#0055ff" font-size="7" font-family="Tahoma" font-weight="bold" text-anchor="middle">BOS</text>
 
         <!-- Execution Buy entry inside the OB mitigation candle -->
-        ${drawExecutionNT8(7, 4315, 10, 4345, true)}
+        ${drawExecutionMT5(7, 4315, 10, 4345, true)}
       `;
       break;
 
@@ -2032,11 +2062,11 @@ const getGraphicForDay = (dayNum) => {
       elementsHtml += `
         <!-- Support level line -->
         <line x1="0" y1="${supportY}" x2="445" y2="${supportY}" stroke="#ff0000" stroke-width="1.2" stroke-dasharray="3,3" />
-        <text x="12" y="${supportY - 5}" fill="#ff0000" font-size="8.5" font-family="Arial">SSL Support Pool (Soporte Minorista)</text>
+        <text x="12" y="${supportY - 5}" fill="#ff0000" font-size="8.5" font-family="Tahoma">SSL Support Pool (Soporte Minorista)</text>
         
-        <!-- NT8 Execution marker at the sweep candle -->
-        ${drawExecutionNT8(7, 4314, 11, 4340, true)}
-        <text x="${getX(7)}" y="${getY(4292) + 38}" fill="#e91e63" font-size="7.5" font-family="Arial" font-weight="bold" text-anchor="middle">SSL Sweep (Caza de Stops)</text>
+        <!-- MT5 Execution marker at the sweep candle -->
+        ${drawExecutionMT5(7, 4314, 11, 4340, true)}
+        <text x="${getX(7)}" y="${getY(4292) + 38}" fill="#e91e63" font-size="7.5" font-family="Tahoma" font-weight="bold" text-anchor="middle">SSL Sweep (Caza de Stops)</text>
       `;
       break;
 
@@ -2049,10 +2079,10 @@ const getGraphicForDay = (dayNum) => {
       elementsHtml += `
         <!-- FVG box -->
         <rect x="${getX(1)}" y="${fvgTop}" width="${getX(3) - getX(1)}" height="${fvgBot - fvgTop}" fill="rgba(245, 158, 11, 0.06)" stroke="#f59e0b" stroke-width="0.8" stroke-dasharray="3,3" />
-        <text x="${getX(1) + 5}" y="${fvgTop + 10}" fill="#f59e0b" font-size="7.5" font-family="Arial" font-weight="bold">Fair Value Gap (FVG)</text>
+        <text x="${getX(1) + 5}" y="${fvgTop + 10}" fill="#f59e0b" font-size="7.5" font-family="Tahoma" font-weight="bold">Fair Value Gap (FVG)</text>
         
         <circle cx="${getX(5)}" cy="${getY(4318)}" r="5" fill="none" stroke="#f59e0b" stroke-width="1.5" />
-        <text x="${getX(5) + 30}" y="${getY(4318) + 26}" fill="#f59e0b" font-size="7.5" font-family="Arial" font-weight="bold">Rebalanceo Parcial</text>
+        <text x="${getX(5) + 30}" y="${getY(4318) + 26}" fill="#f59e0b" font-size="7.5" font-family="Tahoma" font-weight="bold">Rebalanceo Parcial</text>
       `;
       break;
 
@@ -2060,16 +2090,16 @@ const getGraphicForDay = (dayNum) => {
       title = "Fractalidad y Alineación Temporal (HTF/LTF)";
       elementsHtml += `
         <!-- Left Panel: HTF Bias -->
-        <rect x="25" y="30" width="180" height="130" fill="#181818" stroke="#333333" stroke-width="1" />
-        <rect x="25" y="30" width="180" height="15" fill="#252525" stroke="#333333" stroke-width="0.8" />
-        <text x="115" y="41" fill="#00ffff" font-size="7.5" font-family="Arial" font-weight="bold" text-anchor="middle">HTF BIAS (1 Hora)</text>
-        <path d="M 35,140 L 80,110 L 120,120 L 190,60" fill="none" stroke="#00ffff" stroke-width="2" />
+        <rect x="25" y="30" width="180" height="130" fill="#000000" stroke="#333333" stroke-width="1" />
+        <rect x="25" y="30" width="180" height="15" fill="#111111" stroke="#333333" stroke-width="0.8" />
+        <text x="115" y="41" fill="#0055ff" font-size="7.5" font-family="Tahoma" font-weight="bold" text-anchor="middle">HTF BIAS (1 Hora)</text>
+        <path d="M 35,140 L 80,110 L 120,120 L 190,60" fill="none" stroke="#0055ff" stroke-width="2" />
         <circle cx="190" cy="60" r="4.5" fill="#f59e0b" />
 
         <!-- Right Panel: LTF Gatillo -->
-        <rect x="240" y="30" width="180" height="130" fill="#181818" stroke="#333333" stroke-width="1" />
-        <rect x="240" y="30" width="180" height="15" fill="#252525" stroke="#333333" stroke-width="0.8" />
-        <text x="330" y="41" fill="#00ff00" font-size="7.5" font-family="Arial" font-weight="bold" text-anchor="middle">LTF GATILLO (1 Minuto)</text>
+        <rect x="240" y="30" width="180" height="130" fill="#000000" stroke="#333333" stroke-width="1" />
+        <rect x="240" y="30" width="180" height="15" fill="#111111" stroke="#333333" stroke-width="0.8" />
+        <text x="330" y="41" fill="#00ff00" font-size="7.5" font-family="Tahoma" font-weight="bold" text-anchor="middle">LTF GATILLO (1 Minuto)</text>
         <path d="M 250,130 L 275,110 L 290,118 L 320,90 L 335,98 L 380,55" fill="none" stroke="#00ff00" stroke-width="1.5" />
         <circle cx="320" cy="90" r="3.5" fill="#ff0000" />
       `;
@@ -2081,15 +2111,15 @@ const getGraphicForDay = (dayNum) => {
       elementsHtml += `
         <!-- Equilibrium line -->
         <line x1="0" y1="${midY}" x2="445" y2="${midY}" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="4,4" />
-        <text x="435" y="${midY - 5}" fill="#f59e0b" font-size="8" font-family="Arial" text-anchor="end">Precio de Equilibrio (50%)</text>
+        <text x="435" y="${midY - 5}" fill="#f59e0b" font-size="8" font-family="Tahoma" text-anchor="end">Precio de Equilibrio (50%)</text>
         
         <!-- Premium Box (Red) -->
         <rect x="0" y="20" width="445" height="${midY - 20}" fill="rgba(255,0,0,0.03)" stroke="none" />
-        <text x="12" y="42" fill="#ff0000" font-size="8.5" font-family="Arial" font-weight="bold">ZONA PREMIUM: CARO (Solo Ventas)</text>
+        <text x="12" y="42" fill="#ff0000" font-size="8.5" font-family="Tahoma" font-weight="bold">ZONA PREMIUM: CARO (Solo Ventas)</text>
         
         <!-- Discount Box (Green) -->
         <rect x="0" y="${midY}" width="445" height="${170 - midY}" fill="rgba(0,255,0,0.03)" stroke="none" />
-        <text x="12" y="155" fill="#00ff00" font-size="8.5" font-family="Arial" font-weight="bold">ZONA DE DESCUENTO: BARATO (Solo Compras)</text>
+        <text x="12" y="155" fill="#00ff00" font-size="8.5" font-family="Tahoma" font-weight="bold">ZONA DE DESCUENTO: BARATO (Solo Compras)</text>
       `;
       break;
 
@@ -2100,12 +2130,12 @@ const getGraphicForDay = (dayNum) => {
       
       elementsHtml += `
         <!-- Original OB box that was broken -->
-        <rect x="${getX(2)}" y="${getY(brHigh)}" width="${getX(7) - getX(2)}" height="${getY(brLow) - getY(brHigh)}" fill="rgba(0, 255, 255, 0.05)" stroke="#00ffff" stroke-width="0.8" stroke-dasharray="3,3" />
-        <text x="${getX(2) + 5}" y="${getY(brHigh) + 11}" fill="#00ffff" font-size="7.5" font-family="Arial" font-weight="bold">OB Roto</text>
+        <rect x="${getX(2)}" y="${getY(brHigh)}" width="${getX(7) - getX(2)}" height="${getY(brLow) - getY(brHigh)}" fill="rgba(0, 85, 255, 0.05)" stroke="#0055ff" stroke-width="0.8" stroke-dasharray="3,3" />
+        <text x="${getX(2) + 5}" y="${getY(brHigh) + 11}" fill="#0055ff" font-size="7.5" font-family="Tahoma" font-weight="bold">OB Roto</text>
         
         <!-- Retest purchase execution -->
-        ${drawExecutionNT8(7, 4315, 10, 4345, true)}
-        <text x="${getX(7)}" y="${getY(4315) + 36}" fill="#f59e0b" font-size="8" font-family="Arial" font-weight="bold" text-anchor="middle">Test Breaker (Compra)</text>
+        ${drawExecutionMT5(7, 4315, 10, 4345, true)}
+        <text x="${getX(7)}" y="${getY(4315) + 36}" fill="#f59e0b" font-size="8" font-family="Tahoma" font-weight="bold" text-anchor="middle">Test Breaker (Compra)</text>
       `;
       break;
 
@@ -2113,7 +2143,7 @@ const getGraphicForDay = (dayNum) => {
       title = "Subasta de Volumen: POC y Zonas de Alta Liquidez";
       // Draw horizontal Volume Profile histogram on right side
       const drawHBar = (y, w, isPOC) => {
-        const color = isPOC ? '#ff0000' : '#00ffff';
+        const color = isPOC ? '#ff0000' : '#0055ff';
         return `
           <rect x="${445 - w}" y="${y}" width="${w}" height="8" fill="${color}" fill-opacity="${isPOC ? 0.35 : 0.12}" stroke="${color}" stroke-opacity="0.3" stroke-width="0.5" rx="1" />
         `;
@@ -2133,18 +2163,18 @@ const getGraphicForDay = (dayNum) => {
 
         <!-- POC horizontal line -->
         <line x1="0" y1="99" x2="445" y2="99" stroke="#ff0000" stroke-width="1.5" />
-        <rect x="250" y="85" width="130" height="12" fill="#181818" rx="0" stroke="#ff0000" stroke-width="0.8" />
-        <text x="315" y="94" fill="#ff0000" font-size="7.5" font-family="Arial" font-weight="bold" text-anchor="middle">POC (Punto de Control Máximo)</text>
+        <rect x="250" y="85" width="130" height="12" fill="#000000" rx="0" stroke="#ff0000" stroke-width="0.8" />
+        <text x="315" y="94" fill="#ff0000" font-size="7.5" font-family="Tahoma" font-weight="bold" text-anchor="middle">POC (Punto de Control Máximo)</text>
       `;
       break;
 
     case 38:
       title = "Reglas de Fondeo y Control de drawdown Institucional";
       elementsHtml += `
-        <rect x="50" y="30" width="400" height="150" fill="#181818" stroke="#333333" rx="4" />
-        <text x="250" y="55" fill="#f3f4f6" font-size="11" font-family="Arial" font-weight="bold" text-anchor="middle">NinjaTrader Prop Account Limit Check</text>
+        <rect x="50" y="30" width="400" height="150" fill="#000000" stroke="#333333" rx="2" />
+        <text x="250" y="55" fill="#f3f4f6" font-size="11" font-family="Tahoma" font-weight="bold" text-anchor="middle">MetaTrader Prop Account Limit Check</text>
         
-        <g font-family="Arial" font-size="9" fill="#a0a0a0">
+        <g font-family="Tahoma" font-size="9" fill="#a0a0a0">
           <text x="80" y="90">LÍMITE DIARIO (Drawdown):</text>
           <text x="330" y="90" fill="#ff0000" font-weight="bold" text-anchor="end">-$1,000.00 USD (2.0%)</text>
 
@@ -2159,34 +2189,33 @@ const getGraphicForDay = (dayNum) => {
 
     case 39:
       title = "Gestión Activa de Posición: Tomar Parciales y Riesgo Cero";
-      const entryP = 4320;
       const stopP = 4310;
       const t1Y = getY(4330);
       
       elementsHtml += `
         <!-- Entry line -->
-        <line x1="0" y1="${getY(entryP)}" x2="445" y2="${getY(entryP)}" stroke="#00ffff" stroke-width="1.2" />
-        <text x="12" y="${getY(entryP) - 4}" fill="#00ffff" font-size="7.5" font-family="Arial">Entrada (2 Contratos)</text>
+        <line x1="0" y1="${getY(entryP)}" x2="445" y2="${getY(entryP)}" stroke="#0055ff" stroke-width="1.2" />
+        <text x="12" y="${getY(entryP) - 4}" fill="#0055ff" font-size="7.5" font-family="Tahoma">Entrada (2 Contratos)</text>
 
         <!-- SL line original -->
         <line x1="0" y1="${getY(stopP)}" x2="445" y2="${getY(stopP)}" stroke="#ff0000" stroke-dasharray="2,2" stroke-width="1" opacity="0.4" />
-        <text x="12" y="${getY(stopP) + 10}" fill="#ff0000" font-size="7.5" font-family="Arial" opacity="0.5">SL Original (-$100)</text>
+        <text x="12" y="${getY(stopP) + 10}" fill="#ff0000" font-size="7.5" font-family="Tahoma" opacity="0.5">SL Original (-$100)</text>
 
         <!-- 1:1 Target met -->
         <line x1="0" y1="${t1Y}" x2="445" y2="${t1Y}" stroke="#00ff00" stroke-width="1" stroke-dasharray="2,2" />
-        <text x="12" y="${t1Y - 4}" fill="#00ff00" font-size="7.5" font-family="Arial">R:R 1:1 Met (Cierra 1 Contrato +$50)</text>
+        <text x="12" y="${t1Y - 4}" fill="#00ff00" font-size="7.5" font-family="Tahoma">R:R 1:1 Met (Cierra 1 Contrato +$50)</text>
 
         <!-- SL moved to breakeven -->
-        ${drawExecutionNT8(9, 4320, 12, 4345, true)}
-        <text x="${getX(9) + 8}" y="${getY(entryP) + 26}" fill="#00ff00" font-size="7.5" font-family="Arial" font-weight="bold">SL Movido a Entrada (Riesgo Cero)</text>
+        ${drawExecutionMT5(9, 4320, 12, 4345, true)}
+        <text x="${getX(9) + 8}" y="${getY(entryP) + 26}" fill="#00ff00" font-size="7.5" font-family="Tahoma" font-weight="bold">SL Movido a Entrada (Riesgo Cero)</text>
       `;
       break;
 
     case 40:
       title = "El Checklist Institucional de Albert Sierra";
       elementsHtml += `
-        <rect x="50" y="30" width="400" height="150" fill="#181818" stroke="#d4af37" stroke-width="1.5" rx="4" />
-        <text x="250" y="48" fill="#d4af37" font-size="11" font-family="Arial" font-weight="bold" text-anchor="middle">Checklist Institucional - NinjaTrader 8</text>
+        <rect x="50" y="30" width="400" height="150" fill="#000000" stroke="#d4af37" stroke-width="1.5" rx="2" />
+        <text x="250" y="48" fill="#d4af37" font-size="11" font-family="Tahoma" font-weight="bold" text-anchor="middle">Checklist Institucional - MetaTrader 5</text>
       `;
       const finalChecklist = [
         "1. Contexto HTF: ¿Precio mitigando OB o FVG mayor?",
@@ -2199,7 +2228,7 @@ const getGraphicForDay = (dayNum) => {
         elementsHtml += `
           <circle cx="75" cy="${y}" r="8" fill="rgba(212,175,55,0.1)" stroke="#d4af37" stroke-width="1.5" />
           <polyline points="72 ${y}, 74 ${y+3}, 78 ${y-3}" fill="none" stroke="#d4af37" stroke-width="2" />
-          <text x="95" y="${y + 3}" fill="#f3f4f6" font-size="9" font-family="Arial" font-weight="bold">${str}</text>
+          <text x="95" y="${y + 3}" fill="#f3f4f6" font-size="9" font-family="Tahoma" font-weight="bold">${str}</text>
         `;
       });
       break;
@@ -2208,9 +2237,9 @@ const getGraphicForDay = (dayNum) => {
       return "";
   }
 
-  // Draw Price tracker for NinjaTrader 8 if plotting candles
-  if (!isSpecialNT8) {
-    elementsHtml += drawCurrentPriceNT8(candles, minPrice, maxPrice);
+  // Draw Price tracker for MT5 if plotting candles
+  if (!isSpecialMT5) {
+    elementsHtml += drawCurrentPriceMT5(candles);
   }
 
   return `
@@ -2220,7 +2249,7 @@ const getGraphicForDay = (dayNum) => {
       </svg>
       <div class="lesson-chart-title">
         <i data-lucide="bar-chart-2" style="width: 14px; height: 14px; color: var(--color-accent);"></i>
-        <span>Gráfico de Apoyo (NinjaTrader 8): ${title}</span>
+        <span>Gráfico de Apoyo (MetaTrader 5): ${title}</span>
       </div>
     </div>
   `;
