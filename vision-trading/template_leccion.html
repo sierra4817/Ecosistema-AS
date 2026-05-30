@@ -317,12 +317,13 @@
         }
       });
 
-      // Stop speech
-      if (window.speechSynthesis) window.speechSynthesis.cancel();
-      const narrateBtn = document.getElementById("btn-audio-narrate");
-      narrateBtn.querySelector("span").textContent = "Narrar Lección";
-      narrateBtn.querySelector("i").setAttribute("data-lucide", "volume-2");
-      lucide.createIcons();
+      // Automatically trigger voice narrator for this lesson
+      setTimeout(() => {
+        const btn = document.getElementById("btn-audio-narrate");
+        if (btn && typeof handleNarrateClick === "function") {
+          handleNarrateClick(dayId, btn);
+        }
+      }, 150);
     }
 
     // Render 10 Pilares Accordion
@@ -555,13 +556,6 @@
         updateUIProgress();
         renderSidebarMenu();
         loadLesson(nextId);
-        // Automatically start narration of the next lesson
-        setTimeout(() => {
-          const btn = document.getElementById("btn-audio-narrate");
-          if (btn) {
-            handleNarrateClick(nextId, btn);
-          }
-        }, 150);
       } else {
         saveProgress();
         updateUIProgress();
