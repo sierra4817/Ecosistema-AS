@@ -769,91 +769,321 @@
       handleNarrateClick(currentDayId, this);
     });
 
-    // Technical SVG Drawing library for 70 Days conceptual graphics
+    // Technical SVG Drawing library for 70 Days conceptual graphics (Stunning conceptual charts)
+    function addDefs(canvas) {
+      const defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
+      
+      // Blue/Cyan Glow filter
+      const glowFilter = document.createElementNS("http://www.w3.org/2000/svg", "filter");
+      glowFilter.setAttribute("id", "glow");
+      glowFilter.setAttribute("x", "-20%");
+      glowFilter.setAttribute("y", "-20%");
+      glowFilter.setAttribute("width", "140%");
+      glowFilter.setAttribute("height", "140%");
+      glowFilter.innerHTML = `
+        <feGaussianBlur stdDeviation="3.5" result="coloredBlur"/>
+        <feMerge>
+          <feMergeNode in="coloredBlur"/>
+          <feMergeNode in="coloredBlur"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      `;
+      defs.appendChild(glowFilter);
+
+      // Gold Glow filter
+      const goldGlowFilter = document.createElementNS("http://www.w3.org/2000/svg", "filter");
+      goldGlowFilter.setAttribute("id", "gold-glow");
+      goldGlowFilter.setAttribute("x", "-20%");
+      goldGlowFilter.setAttribute("y", "-20%");
+      goldGlowFilter.setAttribute("width", "140%");
+      goldGlowFilter.setAttribute("height", "140%");
+      goldGlowFilter.innerHTML = `
+        <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
+        <feMerge>
+          <feMergeNode in="coloredBlur"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      `;
+      defs.appendChild(goldGlowFilter);
+
+      // Cyan to transparent gradient
+      const cyanGrad = document.createElementNS("http://www.w3.org/2000/svg", "linearGradient");
+      cyanGrad.setAttribute("id", "cyan-grad");
+      cyanGrad.setAttribute("x1", "0%");
+      cyanGrad.setAttribute("y1", "0%");
+      cyanGrad.setAttribute("x2", "0%");
+      cyanGrad.setAttribute("y2", "100%");
+      cyanGrad.innerHTML = `
+        <stop offset="0%" stop-color="rgba(0, 255, 255, 0.15)"/>
+        <stop offset="100%" stop-color="rgba(0, 255, 255, 0.0)"/>
+      `;
+      defs.appendChild(cyanGrad);
+
+      // Gold to transparent gradient
+      const goldGrad = document.createElementNS("http://www.w3.org/2000/svg", "linearGradient");
+      goldGrad.setAttribute("id", "gold-grad");
+      goldGrad.setAttribute("x1", "0%");
+      goldGrad.setAttribute("y1", "0%");
+      goldGrad.setAttribute("x2", "0%");
+      goldGrad.setAttribute("y2", "100%");
+      goldGrad.innerHTML = `
+        <stop offset="0%" stop-color="rgba(212, 175, 55, 0.2)"/>
+        <stop offset="100%" stop-color="rgba(212, 175, 55, 0.0)"/>
+      `;
+      defs.appendChild(goldGrad);
+
+      canvas.appendChild(defs);
+    }
+
+    function drawCandle(canvas, x, openY, closeY, highY, lowY, width = 7) {
+      const isBullish = closeY < openY;
+      const color = isBullish ? "#10b981" : "#ef4444";
+      
+      // Wick
+      drawLine(canvas, x, highY, x, lowY, color, 1.2);
+      
+      // Body
+      const bodyY = Math.min(openY, closeY);
+      const bodyH = Math.max(Math.abs(closeY - openY), 1.5);
+      drawRect(canvas, x - width / 2, bodyY, width, bodyH, color, "none", 0, 1);
+    }
+
     function drawSVGGraphic(type, dayNum) {
       const canvas = document.getElementById("academic-svg-canvas");
       if (!canvas) return;
       canvas.innerHTML = ""; // Clear canvas
 
+      addDefs(canvas);
+
       // Draw background
       const bg = document.createElementNS("http://www.w3.org/2000/svg", "rect");
       bg.setAttribute("width", "500");
       bg.setAttribute("height", "220");
-      bg.setAttribute("fill", "#080a0f");
-      bg.setAttribute("rx", "6");
-      bg.setAttribute("stroke", "#242f3d");
-      bg.setAttribute("stroke-width", "1");
+      bg.setAttribute("fill", "#05070a");
+      bg.setAttribute("rx", "10");
+      bg.setAttribute("stroke", "#1e293b");
+      bg.setAttribute("stroke-width", "1.5");
       canvas.appendChild(bg);
 
       // Label day
       const label = document.createElementNS("http://www.w3.org/2000/svg", "text");
-      label.setAttribute("x", "20");
-      label.setAttribute("y", "25");
-      label.setAttribute("fill", "#6b7280");
+      label.setAttribute("x", "25");
+      label.setAttribute("y", "28");
+      label.setAttribute("fill", "#475569");
       label.setAttribute("font-size", "9.5");
       label.setAttribute("font-family", "Space Grotesk, sans-serif");
-      label.setAttribute("font-weight", "600");
-      label.textContent = `DIAGRAMA CONCEPTUAL • DÍA ${dayNum}`;
+      label.setAttribute("font-weight", "700");
+      label.setAttribute("letter-spacing", "1px");
+      label.textContent = `DIAGRAMA TÉCNICO PROFESIONAL • LECCIÓN DÍA ${dayNum}`;
       canvas.appendChild(label);
 
       // Draw specific vector elements based on type
       if (type.includes("reality") || type.includes("biases") || type.includes("probability")) {
-        // Double auction curve
-        drawPath(canvas, "M 50,160 L 150,110 L 250,130 L 350,70 L 450,90", "#00ffff", 3);
-        drawCircle(canvas, 350, 70, 5, "#dfb750");
-        drawText(canvas, 350, 55, "Punto de Subasta de Consenso", "#dfb750", 9, "middle");
+        // Grid lines
+        for (let y = 60; y <= 180; y += 40) {
+          drawLine(canvas, 30, y, 470, y, "rgba(255,255,255,0.03)", 1, "4,4");
+        }
+        // Price Curve
+        drawPath(canvas, "M 50,165 Q 150,110 250,135 T 450,75", "#00ffff", 2.5, "", "url(#glow)");
+        
+        // Buy/Sell Limits Order Book Blocks on the right side
+        drawRect(canvas, 410, 45, 65, 22, "rgba(239, 68, 68, 0.12)", "#ef4444", 0.5, 3);
+        drawText(canvas, 442.5, 59, "#ef4444", 8.5, "LÍMITES VENTA", "middle", "700");
+        drawRect(canvas, 410, 145, 65, 22, "rgba(16, 185, 129, 0.12)", "#10b981", 0.5, 3);
+        drawText(canvas, 442.5, 159, "#10b981", 8.5, "LÍMITES COMPRA", "middle", "700");
+        
+        // Consensual Spread midpoint indicator
+        drawCircle(canvas, 350, 105, 5, "#dfb750", "url(#gold-glow)");
+        drawText(canvas, 350, 90, "#dfb750", 9, "Consenso de Valor (Precio)", "middle", "600");
       }
       else if (type.includes("manipulation") || type.includes("fakeout") || type.includes("ssl") || type.includes("bsl") || type.includes("retail")) {
-        // Liquidity hunt support sweep
-        drawLine(canvas, 40, 120, 460, 120, "#ef4444", 1.5, "4,4");
-        drawText(canvas, 45, 110, "Sell Stops Pool (Soporte Retail)", "#ef4444", 8.5);
-        drawPath(canvas, "M 60,80 L 150,120 L 220,90 L 290,120 L 310,150 L 360,60", "#3b82f6", 3);
-        drawCircle(canvas, 310, 150, 5, "#10b981");
-        drawText(canvas, 310, 175, "Absorción Institucional (Sweep)", "#10b981", 9, "middle");
+        // Retail support line
+        drawLine(canvas, 40, 135, 460, 135, "#ef4444", 1, "3,3");
+        drawText(canvas, 45, 126, "Sell Stops Pool (Soporte Retail)", "#ef4444", 8, "500");
+        
+        // Candlesticks (Red and Green) showing a sweep
+        drawCandle(canvas, 80, 85, 105, 75, 115); // Red
+        drawCandle(canvas, 120, 105, 125, 95, 135); // Red
+        drawCandle(canvas, 160, 125, 115, 110, 130); // Green
+        drawCandle(canvas, 200, 115, 132, 110, 135); // Red
+        
+        // SWEEP CANDLE: huge wick extending deep below support (liquidity hunt)
+        drawCandle(canvas, 240, 132, 115, 110, 175, 9); // Red body, low wick to 175
+        drawCircle(canvas, 240, 175, 4.5, "#10b981", "url(#glow)");
+        drawText(canvas, 240, 192, "SSL SWEEP (Barrido de Stops)", "#10b981", 8.5, "middle", "bold");
+        
+        // Massive institutional bullish expansion
+        drawCandle(canvas, 280, 115, 75, 70, 120); // Big Green
+        drawCandle(canvas, 320, 75, 45, 40, 80); // Big Green
+        drawCandle(canvas, 360, 45, 25, 20, 50); // Big Green
+        
+        // Sweep curve trace arrow
+        drawPath(canvas, "M 200,140 Q 240,185 280,135", "#10b981", 1, "3,3");
       }
       else if (type.includes("ob_")) {
-        // Order block mitigation
-        drawRect(canvas, 100, 70, 120, 50, "rgba(0, 255, 255, 0.08)", "#00ffff", 1);
-        drawText(canvas, 160, 98, "Order Block (Zona)", "#00ffff", 9, "middle");
-        drawPath(canvas, "M 50,160 L 160,95 L 300,95 L 420,50", "#3b82f6", 2.5);
-        drawCircle(canvas, 160, 95, 4, "#dfb750");
-        drawText(canvas, 160, 135, "Mitigación Exacta", "#dfb750", 8.5, "middle");
+        // POI Order Block zone shading (semi-translucent cyan)
+        drawRect(canvas, 85, 105, 325, 45, "rgba(0, 255, 255, 0.07)", "#00ffff", 0.8, 3);
+        drawText(canvas, 170, 118, "ZONA DE INTERÉS (POI) / ORDER BLOCK", "#00ffff", 8, "middle", "700");
+        
+        // Bearish Order Block candle (Red)
+        drawCandle(canvas, 90, 105, 135, 95, 145); 
+        
+        // Institutional expansion (Green)
+        drawCandle(canvas, 130, 115, 65, 60, 125); 
+        drawCandle(canvas, 170, 65, 35, 30, 70); 
+        
+        // Price retracing back to mitigate
+        drawCandle(canvas, 250, 45, 75, 40, 85); // Red
+        drawCandle(canvas, 290, 75, 110, 70, 120); // Red
+        
+        // TOUCH/MITIGATION CANDLE
+        drawCandle(canvas, 330, 110, 118, 105, 130); // Touch inside FVG/OB at 118
+        drawCircle(canvas, 330, 118, 4.5, "#dfb750", "url(#gold-glow)");
+        drawText(canvas, 330, 142, "Mitigación Exacta (Entrada)", "#dfb750", 8.5, "middle", "bold");
+        
+        // Reversal expansion
+        drawCandle(canvas, 370, 118, 70, 65, 120); // Green
+        drawCandle(canvas, 410, 70, 35, 30, 75); // Green
       }
       else if (type.includes("fvg_")) {
-        // Fair value gap
-        drawRect(canvas, 150, 60, 180, 80, "rgba(255, 255, 255, 0.04)", "#6b7280", 1);
-        drawText(canvas, 240, 105, "Fair Value Gap (FVG)", "#9ca3af", 9.5, "middle");
-        drawPath(canvas, "M 60,180 L 150,140 L 240,100 L 330,60 L 440,30", "#00ffff", 2.5);
+        // Candle 1 (Bullish, creates lower boundary of gap at its high wick)
+        drawCandle(canvas, 130, 155, 115, 105, 165); // High wick at 105
+        
+        // Candle 2 (Large impulsive expansion candle, creates FVG)
+        drawCandle(canvas, 170, 115, 55, 45, 125, 10); // Big Green Body
+        
+        // Candle 3 (Bullish, creates upper boundary of gap at its low wick)
+        drawCandle(canvas, 210, 55, 35, 75, 65); // Low wick at 75
+        
+        // Shading FVG gap between High 1 (105) and Low 3 (75)
+        drawRect(canvas, 130, 75, 230, 30, "rgba(212, 175, 55, 0.12)", "#d4af37", 0.8, 3);
+        drawText(canvas, 245, 93, "FAIR VALUE GAP (FVG INEFICIENCIA)", "#d4af37", 8.5, "middle", "bold");
+        
+        // Visual boundaries
+        drawLine(canvas, 130, 105, 360, 105, "#d4af37", 0.8, "3,3");
+        drawLine(canvas, 210, 75, 360, 75, "#d4af37", 0.8, "3,3");
+        
+        drawText(canvas, 120, 108, "Máx Vela 1", "#64748b", 7.5, "right");
+        drawText(canvas, 230, 72, "Mín Vela 3", "#64748b", 7.5, "left");
+        
+        // Later test and rebalance of the FVG
+        drawCandle(canvas, 310, 55, 90, 50, 98); // Red candle testing the FVG
+        drawCircle(canvas, 310, 90, 4.5, "#00ffff", "url(#glow)");
+        drawText(canvas, 310, 125, "Retest / Mitigación", "#00ffff", 8.5, "middle", "bold");
       }
       else if (type.includes("structure") || type.includes("bos") || type.includes("choch") || type.includes("alignment")) {
-        // BOS structure wave
-        drawPath(canvas, "M 50,170 L 150,110 L 110,130 L 250,50 L 210,70 L 350,10", "#3b82f6", 2.5);
-        drawLine(canvas, 150, 110, 260, 110, "#00ffff", 1.5, "3,3");
-        drawText(canvas, 200, 100, "BOS Confirmado", "#00ffff", 8.5);
+        // Grid lines
+        for (let y = 60; y <= 180; y += 40) {
+          drawLine(canvas, 30, y, 470, y, "rgba(255,255,255,0.015)", 1, "4,4");
+        }
+        
+        // Structure lines
+        drawPath(canvas, "M 60,165 L 140,105 L 110,120 L 220,55 L 190,70 L 310,15", "rgba(59, 130, 246, 0.25)", 1.5, "2,2");
+        
+        // Candlesticks forming structure
+        drawCandle(canvas, 80, 155, 140, 130, 165); // HL
+        drawCandle(canvas, 120, 140, 105, 100, 145); // HH peak at 100
+        drawCandle(canvas, 160, 105, 120, 100, 125); // Pullback
+        
+        // Rupture (BOS) candle
+        drawCandle(canvas, 200, 120, 75, 70, 125); // Breaking body
+        drawCandle(canvas, 240, 75, 45, 40, 85); // continuation
+        
+        // Horizontal BOS line extending from peak 100
+        drawLine(canvas, 120, 100, 310, 100, "#00ffff", 1, "2,2");
+        drawCircle(canvas, 200, 100, 4, "#00ffff", "url(#glow)");
+        drawText(canvas, 255, 93, "BOS CONFIRMADO (Cuerpo de Vela)", "#00ffff", 8, "middle", "700");
+        
+        // HL Test
+        drawCandle(canvas, 280, 45, 95, 40, 100); // Red pullback
+        drawCandle(canvas, 320, 95, 30, 25, 100); // Green reversal HH
       }
       else if (type.includes("compounding") || type.includes("payouts") || type.includes("invisible")) {
-        // compound interest growth bars
-        drawRect(canvas, 100, 120, 30, 40, "#3b82f6");
-        drawRect(canvas, 180, 100, 30, 60, "#3b82f6");
-        drawRect(canvas, 260, 80, 30, 80, "#3b82f6");
-        drawRect(canvas, 340, 50, 30, 110, "#dfb750");
-        drawText(canvas, 355, 40, "Escalamiento", "#dfb750", 9, "middle");
+        // Grid lines
+        for (let y = 60; y <= 180; y += 45) {
+          drawLine(canvas, 50, y, 450, y, "rgba(255,255,255,0.02)", 1, "3,3");
+        }
+
+        // Gold compound interest growth area shading
+        drawRect(canvas, 80, 40, 340, 125, "url(#gold-grad)", "#1e293b", 0.5, 4);
+        
+        // Compounding Curve
+        drawPath(canvas, "M 80,165 Q 160,160 240,130 T 420,50", "#d4af37", 3, "", "url(#gold-glow)");
+        
+        // Compounding bars
+        drawRect(canvas, 140, 148, 12, 17, "rgba(59,130,246,0.45)", "none", 0, 1.5);
+        drawRect(canvas, 200, 134, 12, 31, "rgba(59,130,246,0.55)", "none", 0, 1.5);
+        drawRect(canvas, 260, 114, 12, 51, "rgba(59,130,246,0.65)", "none", 0, 1.5);
+        drawRect(canvas, 320, 84, 12, 81, "rgba(59,130,246,0.8)", "none", 0, 1.5);
+        drawRect(canvas, 380, 48, 12, 117, "#d4af37", "none", 0, 1.5);
+        
+        drawText(canvas, 386, 36, "#d4af37", 9, "$$$ Escalamiento", "middle", "bold");
+        drawText(canvas, 250, 185, "RETORNO E INTERÉS COMPUESTO GEOMÉTRICO", "#64748b", 8.5, "middle", "bold");
+      }
+      else if (type.includes("ema200") || type.includes("rsi") || type.includes("confluence")) {
+        // Price / RSI panels divider line
+        drawLine(canvas, 30, 130, 470, 130, "rgba(255,255,255,0.06)", 1);
+        drawText(canvas, 35, 124, "PRECIO / EMA 200", "#475569", 8, "700");
+        drawText(canvas, 35, 142, "MOMENTUM RSI (14)", "#475569", 8, "700");
+        
+        // EMA 200 Curve
+        drawPath(canvas, "M 50,85 Q 200,80 450,50", "#00ffff", 1.8, "3,3", "url(#glow)");
+        drawText(canvas, 420, 43, "#00ffff", 8, "EMA 200", "left", "bold");
+        
+        // Price candles bouncing off EMA 200
+        drawCandle(canvas, 90, 75, 90, 65, 100);
+        drawCandle(canvas, 130, 90, 83, 80, 95);  // touches EMA
+        drawCandle(canvas, 170, 83, 62, 55, 88);  // bounces
+        drawCandle(canvas, 210, 62, 40, 35, 68);  // runs
+        
+        // RSI sub-panel
+        drawLine(canvas, 50, 175, 450, 175, "rgba(255,255,255,0.05)", 0.8, "2,2"); // RSI 50 midline
+        drawText(canvas, 455, 178, "#475569", 7.5, "50");
+        
+        // RSI line
+        drawPath(canvas, "M 50,195 L 110,185 L 140,162 L 210,148 L 300,158", "#10b981", 2, "", "url(#glow)");
+        drawCircle(canvas, 140, 162, 3.5, "#10b981");
+        drawText(canvas, 140, 153, "RSI > 50 (Inyección)", "#10b981", 8, "middle", "bold");
+      }
+      else if (type.includes("prop_firms") || type.includes("trailing") || type.includes("lot_consistency") || type.includes("patience")) {
+        // Draw prop firm dashboard mockup
+        drawRect(canvas, 80, 50, 340, 110, "#090d16", "#1e293b", 1, 6);
+        
+        drawText(canvas, 250, 72, "#f8fafc", 9.5, "AUDITORÍA DE CONSISTENCIA PROP FIRM", "middle", "bold");
+        
+        // Progress bar to profit target
+        drawText(canvas, 100, 94, "#94a3b8", 8, "Meta de Ganancia: $3,000 / $3,000");
+        drawRect(canvas, 100, 100, 300, 10, "#1e293b", "none", 0, 3);
+        drawRect(canvas, 100, 100, 300, 10, "#10b981", "none", 0, 3); // completed green
+        
+        // Trailing drawdown marker
+        drawLine(canvas, 155, 115, 155, 140, "#ef4444", 1.2, "2,2");
+        drawText(canvas, 155, 150, "Trailing Drawdown Máx", "#ef4444", 8, "middle");
+        
+        // Badge
+        drawRect(canvas, 205, 120, 90, 18, "rgba(16, 185, 129, 0.12)", "#10b981", 0.8, 3);
+        drawText(canvas, 250, 131, "#10b981", 8, "APROBADO", "middle", "bold");
       }
       else {
-        // Standard technical vector representation
-        drawPath(canvas, "M 50,150 L 150,90 L 250,110 L 350,50 L 450,70", "#00ffff", 2.5);
-        drawCircle(canvas, 350, 50, 4, "#dfb750");
-        drawText(canvas, 350, 35, "Zona Relevante", "#dfb750", 9, "middle");
+        // Fallback default chart
+        for (let y = 60; y <= 180; y += 40) {
+          drawLine(canvas, 30, y, 470, y, "rgba(255,255,255,0.015)", 1, "4,4");
+        }
+        drawPath(canvas, "M 50,150 L 150,90 L 250,110 L 350,50 L 450,70", "#00ffff", 2.5, "", "url(#glow)");
+        drawCircle(canvas, 350, 50, 4.5, "#dfb750", "url(#gold-glow)");
+        drawText(canvas, 350, 36, "Zona de Confluencia", "#dfb750", 9, "middle", "bold");
       }
     }
 
     // Helper drawing functions
-    function drawPath(canvas, d, color, width) {
+    function drawPath(canvas, d, color, width, dash = "", filter = "") {
       const el = document.createElementNS("http://www.w3.org/2000/svg", "path");
       el.setAttribute("d", d);
       el.setAttribute("fill", "none");
       el.setAttribute("stroke", color);
       el.setAttribute("stroke-width", width);
+      if (dash) el.setAttribute("stroke-dasharray", dash);
+      if (filter) el.setAttribute("filter", filter);
       canvas.appendChild(el);
     }
     function drawLine(canvas, x1, y1, x2, y2, color, width, dash = "") {
@@ -867,40 +1097,43 @@
       if (dash) el.setAttribute("stroke-dasharray", dash);
       canvas.appendChild(el);
     }
-    function drawCircle(canvas, cx, cy, r, color) {
+    function drawCircle(canvas, cx, cy, r, color, filter = "") {
       const el = document.createElementNS("http://www.w3.org/2000/svg", "circle");
       el.setAttribute("cx", cx);
       el.setAttribute("cy", cy);
       el.setAttribute("r", r);
       el.setAttribute("fill", color);
+      if (filter) el.setAttribute("filter", filter);
       canvas.appendChild(el);
     }
-    function drawRect(canvas, x, y, w, h, fill, stroke = "none", sw = 1) {
+    function drawRect(canvas, x, y, w, h, fill, stroke = "none", sw = 1, rx = 0) {
       const el = document.createElementNS("http://www.w3.org/2000/svg", "rect");
       el.setAttribute("x", x);
       el.setAttribute("y", y);
       el.setAttribute("width", w);
       el.setAttribute("height", h);
       el.setAttribute("fill", fill);
+      if (rx) {
+        el.setAttribute("rx", rx);
+      }
       if (stroke !== "none") {
         el.setAttribute("stroke", stroke);
         el.setAttribute("stroke-width", sw);
       }
       canvas.appendChild(el);
     }
-    function drawText(canvas, x, y, fill, size, text, align = "left") {
+    function drawText(canvas, x, y, fill, size, text, align = "left", weight = "normal", font = "Inter, sans-serif") {
       const el = document.createElementNS("http://www.w3.org/2000/svg", "text");
       el.setAttribute("x", x);
       el.setAttribute("y", y);
       el.setAttribute("fill", fill);
       el.setAttribute("font-size", size);
-      el.setAttribute("font-family", "Inter, sans-serif");
+      el.setAttribute("font-family", font);
+      el.setAttribute("font-weight", weight);
       el.setAttribute("text-anchor", align === "middle" ? "middle" : (align === "right" ? "end" : "start"));
       el.textContent = text;
       canvas.appendChild(el);
-    }
-
-    // Launch
+    }    // Launch
     window.addEventListener("DOMContentLoaded", init);
   </script>
 
