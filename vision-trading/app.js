@@ -295,7 +295,7 @@ const pilarQuizzes = {
       explanation: "Cobrar parciales y poner breakeven asegura ganancias reales en la cuenta y elimina el riesgo financiero, liberando al trader de estrés."
     },
     {
-      q: "¿Qué porcentaje de riesgo monetario máximo por operación dicta el checklist definitivo de Albert Sierra?",
+      q: "¿Qué porcentaje de riesgo monetario máximo por operación dicta el checklist definitivo de Visión Trading Pro?",
       options: [
         "El 5% de la cuenta.",
         "Exactamente el 1% del capital (o menos), calculado de forma estricta según la distancia del stop loss.",
@@ -1319,7 +1319,7 @@ const getGraphicForDay = (dayNum) => {
       break;
 
     case 38:
-      title = "El Checklist de Albert Sierra";
+      title = "El Checklist de Visión Trading Pro";
       elementsHtml += `
         <rect x="50" y="30" width="400" height="150" fill="#131a22" stroke="#d4af37" stroke-width="1.5" rx="8" />
         <text x="250" y="48" fill="#d4af37" font-size="11.5" font-weight="bold" text-anchor="middle">Checklist Institucional de Confluencias</text>
@@ -1409,7 +1409,7 @@ const getGraphicForDay = (dayNum) => {
         <text x="250" y="85" fill="#9ca3af" font-size="7.5" text-anchor="middle">OTORGADO POR COMPLETAR EXPOSITIVAMENTE LA MASTERCLASS</text>
         <text x="250" y="110" fill="#f3f4f6" font-size="14" font-weight="bold" text-anchor="middle">MAESTRÍA EN TRADING PROFESIONAL</text>
         
-        <text x="350" y="142" fill="#d4af37" font-size="7" font-weight="bold" text-anchor="middle">Firma: Albert Sierra</text>
+        <text x="350" y="142" fill="#d4af37" font-size="7" font-weight="bold" text-anchor="middle">Firma: Visión Trading Pro</text>
       `;
       break;
 
@@ -1524,7 +1524,7 @@ const renderPilarQuiz = (pilarId) => {
   // Submit button
   html += `
     <div class="quiz-action-bar">
-      <button class="btn btn-success" id="btn-submit-quiz-pilar" onclick="submitPilarQuiz(${pilarId})" disabled>
+      <button class="btn-oro-liquido" id="btn-submit-quiz-pilar" onclick="submitPilarQuiz(${pilarId})" disabled style="padding: 10px 24px; border-radius: var(--radius-sm); font-size: 0.85rem; display: inline-flex; align-items: center; gap: 8px;">
         <i data-lucide="check"></i> Evaluar Cuestionario Semanal
       </button>
     </div>
@@ -1612,8 +1612,8 @@ window.submitPilarQuiz = (pilarId) => {
         <h4 style="color: var(--color-bull); margin-bottom: 8px;">🎉 Pilar Aprobado con Éxito</h4>
         <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 16px;">Has asimilado perfectamente las reglas innegociables de este pilar.</p>
         ${courseData[nextDayId]
-          ? `<button class="btn btn-success" onclick="window.loadDay('${nextDayId}')">Siguiente Semana <i data-lucide='arrow-right'></i></button>`
-          : `<button class="btn btn-success" onclick="showSection('certificate')">Obtener Mi Diploma <i data-lucide='award'></i></button>`
+          ? `<button class="btn-oro-liquido" onclick="window.loadDay('${nextDayId}')" style="padding: 10px 24px; border-radius: var(--radius-sm); font-size: 0.85rem;">Siguiente Semana <i data-lucide='arrow-right'></i></button>`
+          : `<button class="btn-oro-liquido" onclick="showSection('certificate')" style="padding: 10px 24px; border-radius: var(--radius-sm); font-size: 0.85rem;">Obtener Mi Diploma <i data-lucide='award'></i></button>`
         }
       </div>
     `;
@@ -1623,7 +1623,7 @@ window.submitPilarQuiz = (pilarId) => {
         <div class="quiz-score-circle fail">${correctCount}/5</div>
         <h4 style="color: var(--color-bear); margin-bottom: 8px;">⚠️ Cuestionario No Superado</h4>
         <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 16px;">Para avanzar de pilar debes responder correctamente el 100% de las preguntas operativas.</p>
-        <button class="btn btn-secondary" onclick="renderPilarQuiz(${pilarId})">Reintentar Cuestionario</button>
+        <button class="btn-oro-borde" onclick="renderPilarQuiz(${pilarId})" style="padding: 10px 24px; border-radius: var(--radius-sm); font-size: 0.85rem;">Reintentar Cuestionario</button>
       </div>
     `;
   }
@@ -1668,7 +1668,7 @@ const renderCertificate = () => {
   const dateText = document.getElementById("cert-date-str");
   
   if (nameInput) {
-    const storedName = localStorage.getItem("vision_student_name") || "Albert Sierra";
+    const storedName = localStorage.getItem("vision_student_name") || "Trader Consistente";
     nameInput.textContent = storedName;
   }
   if (dateText) {
@@ -1687,7 +1687,7 @@ const getApiKey = () => {
 const getVoiceId = () => {
   const stored = localStorage.getItem("vision_elevenlabs_voice_id");
   if (!stored || stored === "null" || stored === "undefined" || stored.trim() === "") {
-    return "c6rAmJGsdzNWAIVkws45"; // Default voice ID (Albert Sierra)
+    return "c6rAmJGsdzNWAIVkws45"; // Default voice ID (Visión Trading Pro)
   }
   return stored.trim();
 };
@@ -2138,7 +2138,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (btnPrintCert) {
     btnPrintCert.addEventListener("click", () => {
       // Prompt for name customization
-      const currentName = localStorage.getItem("vision_student_name") || "Albert Sierra";
+      const currentName = localStorage.getItem("vision_student_name") || "Trader Consistente";
       const customizedName = prompt("Escribe tu nombre y apellido tal como deseas que aparezca en tu diploma:", currentName);
       
       if (customizedName !== null && customizedName.trim() !== "") {

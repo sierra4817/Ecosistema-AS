@@ -157,7 +157,7 @@
               <div class="highlight-box">
                 <strong>💡 Recomendación:</strong> Completa las lecciones de forma ordenada. Cada lección cuenta con un desafío práctico diario para registrar en tu bitácora, y cada semana concluye con una evaluación para avanzar al siguiente módulo.
               </div>
-              <button class="btn btn-success" onclick="window.openPillar(1)">
+              <button class="btn-oro-liquido" onclick="window.openPillar(1)" style="padding: 12px 24px; border-radius: var(--radius-sm); font-size: 0.9rem; display: inline-flex; align-items: center; gap: 8px;">
                 Comenzar Curso <i data-lucide="arrow-right"></i>
               </button>
             </div>
@@ -275,10 +275,10 @@
               <textarea id="challenge-response" class="form-control" rows="4" placeholder="Escribe aquí tu análisis de errores, decisiones tomadas y respuestas al desafío técnico..." style="font-family: var(--font-sans); line-height: 1.5; font-size: 0.9rem; resize: vertical; background: var(--bg-primary);"></textarea>
             </div>
             <div style="display: flex; justify-content: flex-end; gap: 10px; flex-wrap: wrap;">
-              <button id="btn-save-challenge" class="btn" style="background-color: var(--color-warning); color: var(--bg-primary); padding: 10px 20px; font-size: 0.85rem;">
-                <i data-lucide="save" style="width: 16px; height: 16px; display: inline; vertical-align: middle; margin-right: 4px;"></i> Guardar Desafío en Bitácora
+              <button id="btn-save-challenge" class="btn-oro-liquido" style="padding: 10px 20px; border-radius: var(--radius-sm); font-size: 0.85rem; display: inline-flex; align-items: center; gap: 8px;">
+                <i data-lucide="save" style="width: 16px; height: 16px;"></i> Guardar Desafío en Bitácora
               </button>
-              <button id="btn-next-lesson-audio" class="btn" onclick="window.goToNextLesson(true)" style="background-color: var(--color-accent); color: #ffffff; padding: 10px 20px; font-size: 0.85rem; display: none; align-items: center; gap: 6px;">
+              <button id="btn-next-lesson-audio" class="btn-oro-liquido" onclick="window.goToNextLesson(true)" style="padding: 10px 20px; border-radius: var(--radius-sm); font-size: 0.85rem; display: none; align-items: center; gap: 8px;">
                 Siguiente Lección (Con Audio) <i data-lucide="volume-2" style="width: 16px; height: 16px;"></i>
               </button>
             </div>
@@ -344,9 +344,9 @@
                   
                   <div class="cert-signatures">
                     <div class="cert-sig-block">
-                      <div class="cert-signature-draw">Albert Sierra</div>
+                      <div class="cert-signature-draw">Visión Trading Pro</div>
                       <div class="cert-sig-line"></div>
-                      <div class="cert-sig-role">Albert Sierra</div>
+                      <div class="cert-sig-role">Visión Trading Pro</div>
                       <div class="cert-sig-desc">Fundador, Visión Trading Pro</div>
                     </div>
                     <div class="cert-sig-block">
@@ -362,7 +362,7 @@
           </div>
           
           <div style="display: flex; justify-content: center; gap: 15px; margin-top: 30px;">
-            <button id="btn-print-cert" class="btn btn-success"><i data-lucide="printer"></i> Imprimir Diploma</button>
+            <button id="btn-print-cert" class="btn-oro-liquido" style="padding: 10px 24px; border-radius: var(--radius-sm);"><i data-lucide="printer"></i> Imprimir Diploma</button>
           </div>
         </div>
       </section>
@@ -435,7 +435,7 @@
               <div class="highlight-box" style="margin-top: 15px; margin-bottom: 0;">
                 <strong id="res-warning-msg">⚠️ Nota:</strong> Para contratos Mini/Micro estándar, los decimales indican que debes redondear hacia abajo (operar 0 contratos si es menor a 1, o usar el equivalente Micro para mayor precisión).
               </div>
-              <button id="btn-export-plan" class="btn btn-secondary" style="margin-top: 15px; width: 100%; border-color: var(--color-warning); color: var(--color-warning); background: transparent; display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: 600;">
+              <button id="btn-export-plan" class="btn-oro-borde" style="margin-top: 15px; width: 100%; height: 42px; display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: 600;">
                 <i data-lucide="file-text" style="width: 16px; height: 16px;"></i> Generar Plan de Trading Personalizado
               </button>
             </div>
@@ -620,7 +620,7 @@
         <div class="input-group" style="margin-bottom: 14px;">
           <label class="input-label" style="font-size: 0.75rem;">Voz del Narrador</label>
           <select id="el-voice-select" class="form-control" style="background: var(--bg-primary); color: var(--text-primary); border: 1px solid var(--border-color); padding: 8px 10px; border-radius: var(--radius-sm); font-size: 0.85rem; outline: none; width: 100%; cursor: pointer;">
-            <option value="c6rAmJGsdzNWAIVkws45" selected>Albert Sierra (Voz de Hombre)</option>
+            <option value="c6rAmJGsdzNWAIVkws45" selected>Visión Trading Pro (Voz de Hombre)</option>
             <option value="ErXwobaYiN019PkySvjV">Antoni (Hombre Profesional - ElevenLabs)</option>
             <option value="custom">Personalizada (Ingresar Voice ID abajo)</option>
           </select>
@@ -641,11 +641,11 @@
         </div>
 
         <div class="highlight-box" style="margin: 12px 0 20px 0; padding: 12px; font-size: 0.8rem; border-left-color: var(--color-warning); background: rgba(245, 158, 11, 0.03);">
-          <strong>⚠️ Nota de Permisos:</strong> Tu clave API en ElevenLabs debe tener activada la casilla de permisos de <strong>"Text-to-Speech"</strong> (Texto a Voz). De lo contrario, los servidores de ElevenLabs denegarán la llamada para reproducir la voz de Albert.
+          <strong>⚠️ Nota de Permisos:</strong> Tu clave API en ElevenLabs debe tener activada la casilla de permisos de <strong>"Text-to-Speech"</strong> (Texto a Voz). De lo contrario, los servidores de ElevenLabs denegarán la llamada para reproducir la voz del narrador.
         </div>
 
         <div style="display: flex; justify-content: flex-end; gap: 10px;">
-          <button id="btn-save-audio-settings" class="btn btn-success">Guardar Configuración</button>
+          <button id="btn-save-audio-settings" class="btn-oro-liquido" style="padding: 10px 20px; border-radius: var(--radius-sm);">Guardar Configuración</button>
         </div>
       </div>
     </div>

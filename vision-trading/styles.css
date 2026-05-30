@@ -1434,4 +1434,61 @@ main {
   letter-spacing: 0.5px;
 }
 
+/* Premium Liquid Gold Button Styles */
+.btn-oro-liquido {
+  background: linear-gradient(135deg, #f9e8a2 0%, #d4af37 30%, #ab8222 70%, #f9e8a2 100%);
+  background-size: 200% auto;
+  color: #000000 !important;
+  border: 1px solid rgba(212, 175, 55, 0.8);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+  animation: shimmer-gold 4s infinite linear;
+  cursor: pointer;
+}
+
+.btn-oro-liquido:hover {
+  background-position: right center;
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+  transform: translateY(-1.5px);
+}
+
+.btn-oro-liquido:active {
+  transform: translateY(0);
+}
+
+@keyframes shimmer-gold {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.btn-oro-borde {
+  background: transparent;
+  color: #d4af37 !important;
+  border: 1px solid rgba(212, 175, 55, 0.5);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.btn-oro-borde:hover {
+  background: rgba(212, 175, 55, 0.1);
+  border-color: rgba(212, 175, 55, 0.9);
+  box-shadow: 0 0 12px rgba(212, 175, 55, 0.25);
+  transform: translateY(-1px);
+}
+.btn-oro-borde:active {
+  transform: translateY(0);
+}
+
+
+
 
