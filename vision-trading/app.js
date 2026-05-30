@@ -1109,17 +1109,8 @@ const showSection = (sectionId) => {
 
 // Open Specific Pilar from Welcome Screen
 window.openPillar = (pilarId) => {
-  // Find first unlocked day of this pilar
-  const pilarDays = Object.values(courseData).filter(d => d.pilar === pilarId);
-  const unlockedDays = pilarDays.filter(d => d.unlocked);
-  
-  if (unlockedDays.length > 0) {
-    // Open the latest unlocked day of this pilar
-    const targetDay = unlockedDays[unlockedDays.length - 1];
-    window.loadDay(targetDay.id);
-  } else {
-    alert("Este pilar se encuentra bloqueado. Debes completar las lecciones y evaluaciones de la semana anterior.");
-  }
+  const startDayNum = (pilarId - 1) * 7 + 1;
+  window.location.href = `template_leccion.html?day=${startDayNum}`;
 };
 
 // Render Collapsible sidebar week list

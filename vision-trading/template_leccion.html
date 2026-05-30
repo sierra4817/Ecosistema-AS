@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LMS Académico - Visión Trading Pro</title>
+  <link rel="stylesheet" href="styles.css?v=6">
+  <!-- Google Fonts for Luxury Brand style -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body style="background-color: #000000; color: #f3f4f6; font-family: 'Inter', sans-serif;">
+
+  <!-- Header Section -->
+  <header>
+    <div class="logo-container">
+      <div class="logo-icon">
+        <svg width="40" height="35" viewBox="0 0 40 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="8" y="10" width="6" height="15" rx="1" fill="#10b981"/>
+          <line x1="11" y1="4" x2="11" y2="30" stroke="#10b981" stroke-width="2" stroke-linecap="round"/>
+          <rect x="17" y="6" width="6" height="20" rx="1" fill="#3b82f6"/>
+          <line x1="20" y1="2" x2="20" y2="32" stroke="#3b82f6" stroke-width="2" stroke-linecap="round"/>
+          <rect x="26" y="14" width="6" height="12" rx="1" fill="#ef4444"/>
+          <line x1="29" y1="8" x2="29" y2="28" stroke="#ef4444" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="logo-text">
+        <span>VISIÓN</span>
+        <span class="logo-sub">TRADING PRO</span>
+      </div>
+    </div>
+
+    <!-- Navigation settings and voice narrator button -->
+    <div style="display: flex; align-items: center; gap: 12px; margin-left: auto; margin-right: 12px;">
+      <a href="../index.html" class="indicator-toggle" style="background: rgba(59, 130, 246, 0.15); border: 1px solid rgba(59, 130, 246, 0.35); color: #00d2ff; text-decoration: none; cursor: pointer; padding: 8px 14px; border-radius: 50px; display: flex; align-items: center; gap: 8px; font-size: 0.85rem; font-weight: 600; transition: 0.2s ease;">
+        <i data-lucide="arrow-left" style="width: 16px; height: 16px;"></i> Dashboard
+      </a>
+      <button id="btn-audio-narrate" class="indicator-toggle" style="background: rgba(36, 47, 61, 0.4); border: 1px solid var(--border-color); color: #f3f4f6; cursor: pointer; padding: 8px 14px; border-radius: 50px; display: flex; align-items: center; gap: 8px; font-size: 0.85rem;">
+        <i data-lucide="volume-2" style="width: 16px; height: 16px;"></i> <span>Narrar Lección</span>
+      </button>
+    </div>
+
+    <!-- Profile card -->
+    <div class="user-profile">
+      <div class="user-info">
+        <span class="user-name">Albert</span>
+        <span class="user-handle">@vision.trader7</span>
+      </div>
+      <img src="logo-transp.png" onerror="this.src='LOGO.jpg';" alt="Albert Profile" class="user-avatar">
+    </div>
+  </header>
+
+  <div class="app-container">
+    
+    <!-- Sidebar Navigation for 10 Pilares -->
+    <aside style="background: rgba(10, 10, 10, 0.85); border-right: 1px solid var(--border-color); padding: 20px;">
+      <div class="progress-widget">
+        <div class="progress-header">
+          <span class="progress-title">Progreso Académico</span>
+          <span id="progress-text" class="progress-percentage">0%</span>
+        </div>
+        <div class="progress-bar-bg">
+          <div id="progress-bar" class="progress-bar-fill" style="width: 0%;"></div>
+        </div>
+      </div>
+
+      <ul class="menu-list" id="sidebar-pillars-menu" style="display: flex; flex-direction: column; gap: 6px; overflow-y: auto; max-height: calc(100vh - 180px); padding-bottom: 20px;">
+        <!-- Dynamically rendered by JavaScript -->
+      </ul>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main style="background-color: #000000; padding: 24px; overflow-y: auto; display: flex; flex-direction: column; gap: 24px;">
+      
+      <!-- Lesson Card -->
+      <div class="card" id="lesson-card-container" style="background: rgba(10, 10, 10, 0.6); backdrop-filter: blur(20px); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 28px;">
+        <span id="lesson-module-tag" style="font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 2px; color: var(--text-secondary); text-transform: uppercase;">Módulo 1</span>
+        <h1 id="lesson-title" style="font-family: 'Playfair Display', serif; color: #d4af37; font-size: 2rem; margin-top: 8px; margin-bottom: 24px; font-weight: 700;">Cargando lección...</h1>
+        
+        <!-- Interactive Technical SVG Graphic Support -->
+        <div id="graphic-wrapper" style="margin-bottom: 24px;">
+          <div class="canvas-container" style="background: #080a0f; border: 1px solid var(--border-color); border-radius: var(--radius-md); overflow: hidden; padding: 10px; display: flex; justify-content: center; align-items: center; min-height: 240px;">
+            <svg id="academic-svg-canvas" width="500" height="220" viewBox="0 0 500 220" style="max-width: 100%; height: auto; display: block;">
+              <!-- Drawn dynamically by JS -->
+            </svg>
+          </div>
+        </div>
+
+        <!-- Technical Content Rich Text -->
+        <div class="lesson-body" id="lesson-body-content" style="line-height: 1.7; font-size: 0.95rem; color: #d1d5db; display: flex; flex-direction: column; gap: 16px;">
+          <!-- Loaded dynamically -->
+        </div>
+      </div>
+
+      <!-- Mentalidad Estoica Card -->
+      <div class="card" id="mindset-card-container" style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.03) 0%, rgba(10, 10, 10, 0.8) 100%); border: 1px solid rgba(212, 175, 55, 0.25); border-radius: var(--radius-lg); padding: 24px;">
+        <h3 style="font-family: var(--font-sans); color: #d4af37; font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+          <i data-lucide="shield" style="width: 16px; height: 16px;"></i> Mentalidad Operativa (Foco Estoico)
+        </h3>
+        <p id="lesson-mindset-text" style="font-style: italic; color: #e5e7eb; font-size: 0.95rem; line-height: 1.6; padding-left: 12px; border-left: 2px solid #d4af37;">
+          <!-- Loaded dynamically -->
+        </p>
+      </div>
+
+      <!-- Challenge / Bitácora Input Area -->
+      <div class="card" style="background: rgba(10, 10, 10, 0.6); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 24px;">
+        <h3 style="font-family: var(--font-sans); color: #00ffff; font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
+          <i data-lucide="book-open"></i> Desafío Práctico de Bitácora
+        </h3>
+        <p id="lesson-challenge-desc" style="color: #9ca3af; font-size: 0.9rem; margin-bottom: 16px;">
+          <!-- Loaded dynamically -->
+        </p>
+        <textarea id="challenge-response-input" placeholder="Escribe aquí tu análisis, observaciones técnicas o compromiso de mentalidad..." style="width: 100%; height: 100px; background: rgba(5, 5, 5, 0.8); border: 1px solid var(--border-color); border-radius: var(--radius-sm); color: #f3f4f6; padding: 12px; font-family: inherit; font-size: 0.9rem; resize: none; outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='rgba(0, 255, 255, 0.5)'" onblur="this.style.borderColor='var(--border-color)'"></textarea>
+        <button id="btn-save-challenge" class="indicator-toggle" style="background: rgba(0, 255, 255, 0.1); border: 1px solid rgba(0, 255, 255, 0.3); color: #00ffff; font-weight: 600; padding: 10px 18px; border-radius: var(--radius-sm); margin-top: 12px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; font-size: 0.85rem;">
+          <i data-lucide="save" style="width: 15px; height: 15px;"></i> Guardar en Bitácora
+        </button>
+      </div>
+
+      <!-- Quiz Card (Displayed on Exam Days: 7, 14, 21, 28, 35, 42, 49, 56, 63, 70) -->
+      <div class="card" id="exam-quiz-card" style="background: rgba(13, 10, 6, 0.85); border: 1px solid rgba(212, 175, 55, 0.35); border-radius: var(--radius-lg); padding: 28px; display: none;">
+        <h3 style="color: #d4af37; font-family: var(--font-sans); font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
+          <i data-lucide="award"></i> Evaluación Semanal de Módulo
+        </h3>
+        <div id="quiz-question-container">
+          <!-- Loaded dynamically -->
+        </div>
+      </div>
+
+      <!-- Navigation buttons -->
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px; gap: 16px; margin-bottom: 40px;">
+        <button id="btn-prev-lesson" class="btn" style="background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border-color); color: #9ca3af; width: auto; min-width: 160px; padding: 12px 24px; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: 600; cursor: pointer; font-size: 0.85rem;">
+          <i data-lucide="chevron-left" style="width: 16px; height: 16px;"></i> Lección Anterior
+        </button>
+        <button id="btn-next-lesson" class="btn btn-pago-dorado" style="width: auto; min-width: 220px; padding: 12px 30px; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; font-size: 0.85rem; letter-spacing: 1px;">
+          <span>Siguiente Lección</span> <i data-lucide="chevron-right" style="width: 16px; height: 16px;"></i>
+        </button>
+      </div>
+
+    </main>
+  </div>
+
+  <script>
+    // 10 Pilares configuration
+    const pilares = [
+      { id: 1, name: "Pilar 1: Mentalidad Ganadora", icon: "brain" },
+      { id: 2, name: "Pilar 2: Gestión y Disciplina", icon: "shield-check" },
+      { id: 3, name: "Pilar 3: Estrategia de Alta Probabilidad", icon: "trending-up" },
+      { id: 4, name: "Pilar 4: Ejecución y Evaluación", icon: "activity" },
+      { id: 5, name: "Pilar 5: Bloques de Órdenes", icon: "box" },
+      { id: 6, name: "Pilar 6: Liquidez Avanzada", icon: "target" },
+      { id: 7, name: "Pilar 7: Vacíos de Liquidez (FVG)", icon: "split" },
+      { id: 8, name: "Pilar 8: Análisis Fractal (HTF/LTF)", icon: "layers" },
+      { id: 9, name: "Pilar 9: Especulación de Fondos", icon: "award" },
+      { id: 10, name: "Pilar 10: Plan de Negocios y Retiros", icon: "check-square" }
+    ];
+
+    // Quizzes for all 10 modules
+    const quizzes = {
+      1: [
+        { q: "¿Cuál es la única realidad objetiva del mercado?", options: ["Las noticias macroeconómicas", "El consenso del precio en tiempo real", "Los indicadores técnicos rezagados"], answer: 1 }
+      ],
+      2: [
+        { q: "¿Qué porcentaje de ganancia necesitas para recuperarte de un drawdown del 50%?", options: ["50%", "75%", "100%"], answer: 2 }
+      ],
+      3: [
+        { q: "¿Qué requiere un BOS (Break of Structure) alcista real?", options: ["Que una vela traspase el nivel con mecha rápida", "Que la vela cierre con su cuerpo por encima del máximo anterior", "Que el RSI esté sobrecomprado"], answer: 1 }
+      ],
+      4: [
+        { q: "¿Cómo actúa la EMA 200 en tu checklist operativo?", options: ["Como oscilador de momentum", "Como brújula de tendencia mayor para filtrar operaciones", "Como nivel de stop loss fijo"], answer: 1 }
+      ],
+      5: [
+        { q: "¿Qué representa un Order Block (OB) institucional?", options: ["La última vela de sentido contrario antes de una expansión impulsiva de volumen", "Una media móvil ponderada", "El volumen de contratos acumulado al cierre de la sesión"], answer: 0 }
+      ],
+      6: [
+        { q: "¿Por qué las instituciones realizan un sweep o barrido de mínimos previos (SSL)?", options: ["Para inducir compras minoristas caras", "Para activar Stop Losses minoristas (órdenes de venta) y absorberlos como contrapartida barata", "Para cerrar la sesión de trading rápidamente"], answer: 1 }
+      ],
+      7: [
+        { q: "¿Qué es un Fair Value Gap (FVG)?", options: ["Un soporte histórico de polaridad", "Un desequilibrio de 3 velas donde el precio se entregó de forma unilateral dejando un vacío", "El volumen transaccionado en el POC"], answer: 1 }
+      ],
+      8: [
+        { q: "¿Qué es la alineación temporal perfecta en SMC?", options: ["Esperar que coincida la apertura de Nueva York y Londres", "Identificar un POI HTF y esperar un CHoCH + FVG local en temporalidad LTF", "Operar a favor de los osciladores en diario"], answer: 1 }
+      ],
+      9: [
+        { q: "¿Qué hace la regla del Trailing Drawdown en una Prop Firm?", options: ["Persigue el saldo máximo de tu cuenta reduciendo tu margen de pérdida permitido", "Permite pérdidas ilimitadas", "Aumenta tus lotes automáticamente"], answer: 0 }
+      ],
+      10: [
+        { q: "¿Cuál es el enfoque correcto para el escalamiento de contratos?", options: ["Aumentar lotes tras una racha de pérdidas para recuperar rápido", "Aumentar lotes gradualmente basados en el crecimiento matemático de tu colchón de drawdown", "Mantener siempre el mismo apalancamiento sin importar el balance"], answer: 1 }
+      ]
+    };
+
+    // State Variables
+    let currentDayId = "day1";
+    let courseData = {};
+    let progressState = {
+      days: {},
+      quizzes: { 1: false, 2: false, 3: false, 4: false, 5: false, 6: false, 7: false, 8: false, 9: false, 10: false }
+    };
+    let activeAccordion = 1;
+    let selectedQuizAnswers = {};
+
+    // Load data from JSON
+    async function init() {
+      try {
+        const response = await fetch("cursos_data.json");
+        const json = await response.json();
+        courseData = json.lessons;
+
+        // Load progress from localStorage
+        const saved = localStorage.getItem("vision_70day_progress");
+        if (saved) {
+          try {
+            const parsed = JSON.parse(saved);
+            progressState = parsed;
+            // Backwards compatibility or initialize missing pillars
+            if (!progressState.quizzes) progressState.quizzes = {};
+            for(let i=1; i<=10; i++) {
+              if (progressState.quizzes[i] === undefined) progressState.quizzes[i] = false;
+            }
+          } catch(e) {
+            console.error("Error reading saved progress", e);
+          }
+        } else {
+          // Initialize empty progress for 70 days
+          Object.keys(courseData).forEach((key, index) => {
+            progressState.days[key] = {
+              completed: false,
+              unlocked: index === 0
+            };
+          });
+          localStorage.setItem("vision_70day_progress", JSON.stringify(progressState));
+        }
+
+        // Get day from URL params
+        const urlParams = new URLSearchParams(window.location.search);
+        const dayParam = urlParams.get("day");
+        if (dayParam && courseData["day" + dayParam]) {
+          currentDayId = "day" + dayParam;
+        } else {
+          // Open latest unlocked day
+          const unlockedDays = Object.keys(courseData).filter(k => progressState.days[k]?.unlocked);
+          if (unlockedDays.length > 0) {
+            currentDayId = unlockedDays[unlockedDays.length - 1];
+          }
+        }
+
+        activeAccordion = courseData[currentDayId].pilar;
+
+        renderSidebarMenu();
+        loadLesson(currentDayId);
+        updateUIProgress();
+
+      } catch (err) {
+        console.error("Failed to initialize course engine:", err);
+      }
+    }
+
+    // Load dynamic content
+    function loadLesson(dayId) {
+      currentDayId = dayId;
+      const day = courseData[dayId];
+      if (!day) return;
+
+      // Update URL without refreshing
+      const newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?day=' + dayId.replace("day", "");
+      window.history.pushState({path:newurl},'',newurl);
+
+      document.getElementById("lesson-module-tag").textContent = `Módulo ${day.pilar} • Día ${dayId.replace("day", "")}`;
+      document.getElementById("lesson-title").textContent = day.title;
+      document.getElementById("lesson-body-content").innerHTML = day.content;
+      document.getElementById("lesson-mindset-text").textContent = day.mindset;
+      document.getElementById("lesson-challenge-desc").textContent = day.challenge;
+
+      // Load saved challenge response
+      const savedResponse = localStorage.getItem(`vision_challenge_${dayId}`) || "";
+      document.getElementById("challenge-response-input").value = savedResponse;
+
+      // Draw SVG support graphic
+      drawSVGGraphic(day.graphic_desc, parseInt(dayId.replace("day", "")));
+
+      // Render Quiz if it is an exam day
+      const dayNum = parseInt(dayId.replace("day", ""));
+      const isExam = (dayNum % 7 === 0);
+      const quizCard = document.getElementById("exam-quiz-card");
+
+      if (isExam) {
+        quizCard.style.display = "block";
+        renderQuiz(day.pilar);
+      } else {
+        quizCard.style.display = "none";
+      }
+
+      // Update buttons text
+      const nextBtn = document.getElementById("btn-next-lesson");
+      if (dayId === "day70") {
+        nextBtn.querySelector("span").textContent = "Finalizar Curso";
+      } else if (isExam && !progressState.quizzes[day.pilar]) {
+        nextBtn.querySelector("span").textContent = "Aprobar Examen";
+      } else {
+        nextBtn.querySelector("span").textContent = "Siguiente Lección";
+      }
+
+      // Update sidebar visual active item
+      document.querySelectorAll(".day-item").forEach(item => {
+        item.classList.remove("active");
+        if (item.getAttribute("data-id") === dayId) {
+          item.classList.add("active");
+        }
+      });
+
+      // Stop speech
+      if (window.speechSynthesis) window.speechSynthesis.cancel();
+      const narrateBtn = document.getElementById("btn-audio-narrate");
+      narrateBtn.querySelector("span").textContent = "Narrar Lección";
+      narrateBtn.querySelector("i").setAttribute("data-lucide", "volume-2");
+      lucide.createIcons();
+    }
+
+    // Render 10 Pilares Accordion
+    function renderSidebarMenu() {
+      const container = document.getElementById("sidebar-pillars-menu");
+      if (!container) return;
+
+      let html = "";
+      pilares.forEach(pilar => {
+        const isOpen = activeAccordion === pilar.id;
+        html += `
+          <div class="pilar-group ${isOpen ? 'open' : ''}" id="pilar-group-${pilar.id}">
+            <div class="pilar-header" onclick="toggleAccordion(${pilar.id})" style="padding: 12px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); border-radius: var(--radius-sm); font-size: 0.85rem; font-weight: 600;">
+              <span style="display: flex; align-items: center; gap: 8px;">
+                <i data-lucide="${pilar.icon}" style="width: 14px; height: 14px; color: ${isOpen ? '#00ffff' : '#9ca3af'}"></i>
+                ${pilar.name}
+              </span>
+              <i data-lucide="${isOpen ? 'chevron-down' : 'chevron-right'}" style="width: 14px; height: 14px; color: #6b7280;"></i>
+            </div>
+            <div class="pilar-sub-list" style="display: ${isOpen ? 'flex' : 'none'}; flex-direction: column; gap: 4px; padding: 4px 8px; margin-top: 4px;">
+        `;
+
+        // Render 7 lessons of this pilar
+        for (let i = 1; i <= 7; i++) {
+          const dNum = (pilar.id - 1) * 7 + i;
+          const dId = "day" + dNum;
+          const day = courseData[dId];
+
+          if (day) {
+            const isCompleted = progressState.days[dId]?.completed;
+            const isUnlocked = progressState.days[dId]?.unlocked;
+            const isActive = currentDayId === dId;
+
+            let statusIcon = '<i data-lucide="lock" class="status-locked" style="width:12px; height:12px; opacity: 0.5;"></i>';
+            if (isCompleted) {
+              statusIcon = '<i data-lucide="check-circle" style="width:12px; height:12px; color:#10b981;"></i>';
+            } else if (isUnlocked) {
+              statusIcon = '<i data-lucide="circle" style="width:12px; height:12px; color:#00ffff;"></i>';
+            }
+
+            html += `
+              <div class="day-item ${isActive ? 'active' : ''} ${!isUnlocked ? 'locked' : ''}" data-id="${dId}" onclick="${isUnlocked ? `loadLesson('${dId}')` : 'alert(\'Esta lección está bloqueada. Debes completar las anteriores.\')'}" style="padding: 8px 12px; border-radius: var(--radius-sm); font-size: 0.8rem; display: flex; justify-content: space-between; align-items: center; cursor: ${isUnlocked ? 'pointer' : 'not-allowed'}; opacity: ${isUnlocked ? 1 : 0.45}; background: ${isActive ? 'rgba(0, 255, 255, 0.08)' : 'transparent'}; border-left: ${isActive ? '2px solid #00ffff' : 'none'};">
+                <span>Día ${dNum}: ${day.title}</span>
+                <span>${statusIcon}</span>
+              </div>
+            `;
+          }
+        }
+
+        html += `
+            </div>
+          </div>
+        `;
+      });
+
+      container.innerHTML = html;
+      lucide.createIcons();
+    }
+
+    window.toggleAccordion = (pilarId) => {
+      activeAccordion = activeAccordion === pilarId ? null : pilarId;
+      renderSidebarMenu();
+    };
+
+    // Render Pilar Quiz
+    function renderQuiz(pilarId) {
+      const container = document.getElementById("quiz-question-container");
+      if (!container) return;
+
+      const pQuizzes = quizzes[pilarId];
+      if (!pQuizzes || pQuizzes.length === 0) {
+        container.innerHTML = "<p>No hay evaluación disponible para este módulo.</p>";
+        return;
+      }
+
+      let html = "";
+      pQuizzes.forEach((quiz, idx) => {
+        const isPassed = progressState.quizzes[pilarId];
+        html += `
+          <div style="margin-bottom: 20px;">
+            <p style="font-size: 0.95rem; color: #f3f4f6; font-weight: 600; margin-bottom: 12px;">P${idx+1}: ${quiz.q}</p>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+        `;
+
+        quiz.options.forEach((opt, oIdx) => {
+          const isSelected = selectedQuizAnswers[idx] === oIdx;
+          const isCorrect = oIdx === quiz.answer;
+          let btnStyle = "background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); color: #f3f4f6;";
+          
+          if (isSelected) {
+            btnStyle = "background: rgba(0, 255, 255, 0.1); border: 1px solid #00ffff; color: #00ffff;";
+          }
+          if (isPassed && isCorrect) {
+            btnStyle = "background: rgba(16, 185, 129, 0.15); border: 1px solid #10b981; color: #10b981;";
+          }
+
+          html += `
+            <button class="indicator-toggle" onclick="${isPassed ? '' : `selectOption(${idx}, ${oIdx})`}" style="padding: 10px 16px; border-radius: var(--radius-sm); font-size: 0.85rem; text-align: left; cursor: ${isPassed ? 'default' : 'pointer'}; ${btnStyle}">
+              ${opt}
+            </button>
+          `;
+        });
+
+        html += `
+            </div>
+          </div>
+        `;
+      });
+
+      if (progressState.quizzes[pilarId]) {
+        html += `
+          <div style="background: rgba(16, 185, 129, 0.1); border: 1px solid #10b981; padding: 12px; border-radius: var(--radius-sm); display: flex; align-items: center; gap: 8px; color: #10b981; font-weight: 600; font-size: 0.85rem;">
+            <i data-lucide="check-circle" style="width: 16px; height: 16px;"></i> ¡Evaluación Aprobada! El siguiente módulo está desbloqueado.
+          </div>
+        `;
+      } else {
+        html += `
+          <button onclick="submitQuiz(${pilarId})" class="btn" style="background: rgba(212, 175, 55, 0.1); border: 1px solid #d4af37; color: #d4af37; font-weight: 700; width: auto; padding: 8px 20px; border-radius: var(--radius-sm); font-size: 0.85rem; cursor: pointer;">
+            Enviar Respuestas
+          </button>
+        `;
+      }
+
+      container.innerHTML = html;
+      lucide.createIcons();
+    }
+
+    window.selectOption = (qIdx, oIdx) => {
+      selectedQuizAnswers[qIdx] = oIdx;
+      const day = courseData[currentDayId];
+      renderQuiz(day.pilar);
+    };
+
+    window.submitQuiz = (pilarId) => {
+      const pQuizzes = quizzes[pilarId];
+      let allCorrect = true;
+
+      for (let i = 0; i < pQuizzes.length; i++) {
+        if (selectedQuizAnswers[i] !== pQuizzes[i].answer) {
+          allCorrect = false;
+          break;
+        }
+      }
+
+      if (allCorrect) {
+        progressState.quizzes[pilarId] = true;
+        
+        // Mark current exam day completed
+        progressState.days[currentDayId].completed = true;
+        
+        // Unlock next day
+        const dayNum = parseInt(currentDayId.replace("day", ""));
+        const nextDayNum = dayNum + 1;
+        const nextDayId = "day" + nextDayNum;
+        if (courseData[nextDayId]) {
+          progressState.days[nextDayId].unlocked = true;
+        }
+
+        saveProgress();
+        updateUIProgress();
+        renderSidebarMenu();
+        loadLesson(currentDayId);
+
+        alert("¡Felicidades! Has aprobado el examen y desbloqueado la siguiente etapa del curso.");
+      } else {
+        alert("Algunas respuestas son incorrectas. Repasa los conceptos del pilar e inténtalo de nuevo.");
+      }
+    };
+
+    // Save progress to localStorage
+    function saveProgress() {
+      localStorage.setItem("vision_70day_progress", JSON.stringify(progressState));
+    }
+
+    // Update Progress bar
+    function updateUIProgress() {
+      let completed = 0;
+      const total = 70;
+
+      Object.values(progressState.days).forEach(day => {
+        if (day.completed) completed++;
+      });
+
+      const percentage = Math.round((completed / total) * 100);
+      document.getElementById("progress-text").textContent = `${percentage}%`;
+      document.getElementById("progress-bar").style.width = `${percentage}%`;
+
+      // Set menu badge in header if certificate is unlocked
+      const certAvailable = Object.values(progressState.quizzes).every(val => val === true);
+      const certItem = document.getElementById("menu-item-certificate");
+      if (certItem) certItem.style.display = certAvailable ? "block" : "none";
+    }
+
+    // Handle Challenge bitácora save
+    document.getElementById("btn-save-challenge").addEventListener("click", () => {
+      const response = document.getElementById("challenge-response-input").value;
+      localStorage.setItem(`vision_challenge_${currentDayId}`, response);
+      alert("Desafío guardado exitosamente en tu bitácora.");
+    });
+
+    // Handle Navigation Previous Lesson
+    document.getElementById("btn-prev-lesson").addEventListener("click", () => {
+      const dNum = parseInt(currentDayId.replace("day", ""));
+      if (dNum > 1) {
+        const prevId = "day" + (dNum - 1);
+        loadLesson(prevId);
+      } else {
+        alert("Ya te encuentras en la primera lección del curso.");
+      }
+    });
+
+    // Handle Navigation Next Lesson
+    document.getElementById("btn-next-lesson").addEventListener("click", () => {
+      const dNum = parseInt(currentDayId.replace("day", ""));
+      const isExam = (dNum % 7 === 0);
+      const day = courseData[currentDayId];
+
+      if (isExam && !progressState.quizzes[day.pilar]) {
+        alert("Debes aprobar la evaluación final de este módulo antes de poder avanzar.");
+        return;
+      }
+
+      // Mark current day completed
+      progressState.days[currentDayId].completed = true;
+
+      if (dNum < 70) {
+        const nextId = "day" + (dNum + 1);
+        progressState.days[nextId].unlocked = true;
+        saveProgress();
+        updateUIProgress();
+        renderSidebarMenu();
+        loadLesson(nextId);
+      } else {
+        saveProgress();
+        updateUIProgress();
+        renderSidebarMenu();
+        alert("¡Felicidades! Has completado las 70 lecciones del Curso de Trading Profesional (Ecosistema AS).");
+      }
+    });
+
+    // Speak Text clean up
+    let synthAudio = null;
+    document.getElementById("btn-audio-narrate").addEventListener("click", function() {
+      if (synthAudio && !synthAudio.paused) {
+        window.speechSynthesis.cancel();
+        this.querySelector("span").textContent = "Narrar Lección";
+        this.querySelector("i").setAttribute("data-lucide", "volume-2");
+        lucide.createIcons();
+        synthAudio = null;
+        return;
+      }
+
+      const tempDiv = document.createElement("div");
+      tempDiv.innerHTML = courseData[currentDayId].content;
+      let text = tempDiv.innerText || tempDiv.textContent || "";
+      
+      // Clean dollar signs to read "dólares"
+      text = text.replace(/\$(\d+(?:[.,]\d+)?)/g, "$1 dólares");
+      text = text.replace(/\$/g, " dólares ");
+      text = text.replace(/USD/gi, " dólares ");
+
+      // Strip Markdown symbols
+      text = text.replace(/[*_#`~]/g, "");
+      text = text.replace(/\s+/g, " ").trim();
+
+      if (!window.speechSynthesis) {
+        alert("Tu navegador no soporta la síntesis de voz.");
+        return;
+      }
+
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "es-ES";
+      
+      this.querySelector("span").textContent = "Detener Narración";
+      this.querySelector("i").setAttribute("data-lucide", "square");
+      lucide.createIcons();
+
+      utterance.onend = () => {
+        this.querySelector("span").textContent = "Narrar Lección";
+        this.querySelector("i").setAttribute("data-lucide", "volume-2");
+        lucide.createIcons();
+      };
+
+      window.speechSynthesis.speak(utterance);
+      synthAudio = { paused: false }; // Dummy reference
+    });
+
+    // Technical SVG Drawing library for 70 Days conceptual graphics
+    function drawSVGGraphic(type, dayNum) {
+      const canvas = document.getElementById("academic-svg-canvas");
+      if (!canvas) return;
+      canvas.innerHTML = ""; // Clear canvas
+
+      // Draw background
+      const bg = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+      bg.setAttribute("width", "500");
+      bg.setAttribute("height", "220");
+      bg.setAttribute("fill", "#080a0f");
+      bg.setAttribute("rx", "6");
+      bg.setAttribute("stroke", "#242f3d");
+      bg.setAttribute("stroke-width", "1");
+      canvas.appendChild(bg);
+
+      // Label day
+      const label = document.createElementNS("http://www.w3.org/2000/svg", "text");
+      label.setAttribute("x", "20");
+      label.setAttribute("y", "25");
+      label.setAttribute("fill", "#6b7280");
+      label.setAttribute("font-size", "9.5");
+      label.setAttribute("font-family", "Space Grotesk, sans-serif");
+      label.setAttribute("font-weight", "600");
+      label.textContent = `DIAGRAMA CONCEPTUAL • DÍA ${dayNum}`;
+      canvas.appendChild(label);
+
+      // Draw specific vector elements based on type
+      if (type.includes("reality") || type.includes("biases") || type.includes("probability")) {
+        // Double auction curve
+        drawPath(canvas, "M 50,160 L 150,110 L 250,130 L 350,70 L 450,90", "#00ffff", 3);
+        drawCircle(canvas, 350, 70, 5, "#dfb750");
+        drawText(canvas, 350, 55, "Punto de Subasta de Consenso", "#dfb750", 9, "middle");
+      }
+      else if (type.includes("manipulation") || type.includes("fakeout") || type.includes("ssl") || type.includes("bsl") || type.includes("retail")) {
+        // Liquidity hunt support sweep
+        drawLine(canvas, 40, 120, 460, 120, "#ef4444", 1.5, "4,4");
+        drawText(canvas, 45, 110, "Sell Stops Pool (Soporte Retail)", "#ef4444", 8.5);
+        drawPath(canvas, "M 60,80 L 150,120 L 220,90 L 290,120 L 310,150 L 360,60", "#3b82f6", 3);
+        drawCircle(canvas, 310, 150, 5, "#10b981");
+        drawText(canvas, 310, 175, "Absorción Institucional (Sweep)", "#10b981", 9, "middle");
+      }
+      else if (type.includes("ob_")) {
+        // Order block mitigation
+        drawRect(canvas, 100, 70, 120, 50, "rgba(0, 255, 255, 0.08)", "#00ffff", 1);
+        drawText(canvas, 160, 98, "Order Block (Zona)", "#00ffff", 9, "middle");
+        drawPath(canvas, "M 50,160 L 160,95 L 300,95 L 420,50", "#3b82f6", 2.5);
+        drawCircle(canvas, 160, 95, 4, "#dfb750");
+        drawText(canvas, 160, 135, "Mitigación Exacta", "#dfb750", 8.5, "middle");
+      }
+      else if (type.includes("fvg_")) {
+        // Fair value gap
+        drawRect(canvas, 150, 60, 180, 80, "rgba(255, 255, 255, 0.04)", "#6b7280", 1);
+        drawText(canvas, 240, 105, "Fair Value Gap (FVG)", "#9ca3af", 9.5, "middle");
+        drawPath(canvas, "M 60,180 L 150,140 L 240,100 L 330,60 L 440,30", "#00ffff", 2.5);
+      }
+      else if (type.includes("structure") || type.includes("bos") || type.includes("choch") || type.includes("alignment")) {
+        // BOS structure wave
+        drawPath(canvas, "M 50,170 L 150,110 L 110,130 L 250,50 L 210,70 L 350,10", "#3b82f6", 2.5);
+        drawLine(canvas, 150, 110, 260, 110, "#00ffff", 1.5, "3,3");
+        drawText(canvas, 200, 100, "BOS Confirmado", "#00ffff", 8.5);
+      }
+      else if (type.includes("compounding") || type.includes("payouts") || type.includes("invisible")) {
+        // compound interest growth bars
+        drawRect(canvas, 100, 120, 30, 40, "#3b82f6");
+        drawRect(canvas, 180, 100, 30, 60, "#3b82f6");
+        drawRect(canvas, 260, 80, 30, 80, "#3b82f6");
+        drawRect(canvas, 340, 50, 30, 110, "#dfb750");
+        drawText(canvas, 355, 40, "Escalamiento", "#dfb750", 9, "middle");
+      }
+      else {
+        // Standard technical vector representation
+        drawPath(canvas, "M 50,150 L 150,90 L 250,110 L 350,50 L 450,70", "#00ffff", 2.5);
+        drawCircle(canvas, 350, 50, 4, "#dfb750");
+        drawText(canvas, 350, 35, "Zona Relevante", "#dfb750", 9, "middle");
+      }
+    }
+
+    // Helper drawing functions
+    function drawPath(canvas, d, color, width) {
+      const el = document.createElementNS("http://www.w3.org/2000/svg", "path");
+      el.setAttribute("d", d);
+      el.setAttribute("fill", "none");
+      el.setAttribute("stroke", color);
+      el.setAttribute("stroke-width", width);
+      canvas.appendChild(el);
+    }
+    function drawLine(canvas, x1, y1, x2, y2, color, width, dash = "") {
+      const el = document.createElementNS("http://www.w3.org/2000/svg", "line");
+      el.setAttribute("x1", x1);
+      el.setAttribute("y1", y1);
+      el.setAttribute("x2", x2);
+      el.setAttribute("y2", y2);
+      el.setAttribute("stroke", color);
+      el.setAttribute("stroke-width", width);
+      if (dash) el.setAttribute("stroke-dasharray", dash);
+      canvas.appendChild(el);
+    }
+    function drawCircle(canvas, cx, cy, r, color) {
+      const el = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+      el.setAttribute("cx", cx);
+      el.setAttribute("cy", cy);
+      el.setAttribute("r", r);
+      el.setAttribute("fill", color);
+      canvas.appendChild(el);
+    }
+    function drawRect(canvas, x, y, w, h, fill, stroke = "none", sw = 1) {
+      const el = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+      el.setAttribute("x", x);
+      el.setAttribute("y", y);
+      el.setAttribute("width", w);
+      el.setAttribute("height", h);
+      el.setAttribute("fill", fill);
+      if (stroke !== "none") {
+        el.setAttribute("stroke", stroke);
+        el.setAttribute("stroke-width", sw);
+      }
+      canvas.appendChild(el);
+    }
+    function drawText(canvas, x, y, fill, size, text, align = "left") {
+      const el = document.createElementNS("http://www.w3.org/2000/svg", "text");
+      el.setAttribute("x", x);
+      el.setAttribute("y", y);
+      el.setAttribute("fill", fill);
+      el.setAttribute("font-size", size);
+      el.setAttribute("font-family", "Inter, sans-serif");
+      el.setAttribute("text-anchor", align === "middle" ? "middle" : (align === "right" ? "end" : "start"));
+      el.textContent = text;
+      canvas.appendChild(el);
+    }
+
+    // Launch
+    window.addEventListener("DOMContentLoaded", init);
+  </script>
+
+</body>
+</html>
