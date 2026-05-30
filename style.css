@@ -744,4 +744,28 @@ body {
   .hero-greeting {
     font-size: 1.8rem;
   }
+}/* Tarjeta Premium con Glassmorphism */
+.dashboard-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 24px;
+    padding: 2rem;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6);
+}
+
+/* Efecto hover elegante para interacción */
+.dashboard-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(212, 175, 55, 0.6);
+}
+
+/* Tipografía de encabezados */
+h2 {
+    color: #D4AF37; /* Dorado Código AS */
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    margin-top: 0;
 }
