@@ -1631,6 +1631,14 @@ main {
   color: #38bdf8;
 }
 
+/* Lesson tool section visible permanently in lesson template view */
+.lesson-tool-section {
+  display: block !important;
+  animation: fadeIn 0.3s ease-out;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 
 
 
