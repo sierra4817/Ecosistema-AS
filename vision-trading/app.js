@@ -1,6 +1,6 @@
-// Dynamic Course Manager - Visión Trading Pro (30-Day Intensive)
+// Dynamic Course Manager - Visión Trading Pro (42-Day Intensive)
 
-// 30 Days Syllabus Data
+// 42 Days Syllabus Data
 const courseData = {
   day1: {
     id: "day1",
@@ -33,7 +33,7 @@ const courseData = {
       <p>Hoy analizaremos en profundidad los <strong>sesgos cognitivos</strong>. Estos son atajos mentales que el cerebro evolutivo utiliza de forma automática para ahorrar energía y protegernos del peligro, pero que en el entorno probabilístico del trading resultan letales para tu capital de trabajo.</p>
       <h3>Sesgos Principales que Destruyen Cuentas</h3>
       <ul>
-        <li><strong>Sesgo de Aversión a la Pérdida:</strong> El dolor psicológico de perder es dos veces más intenso que el placer de ganar. Esto te lleva a mover tu Stop Loss alejándolo del precio con la esperanza irracional de un rebote, transformando una pérdida pequeña y controlada en una catástrofe financiera.</li>
+        <li><strong>Sesgo de Aversión a la Pérdida:</strong> El dolor psicológico de perder es dos veces más intenso que el placer de ganar. Esto te lleva a mover tu Stop Loss alejándolo del precio con la esperanza irreal de un rebote, transformando una pérdida pequeña y controlada en una catástrofe financiera.</li>
         <li><strong>Sesgo de Confirmación:</strong> Consiste en buscar de forma selectiva cualquier indicador o análisis que apoye tu posición abierta, mientras ignoras deliberadamente las señales obvias que indican que tu trade ha fallado.</li>
         <li><strong>Sesgo de Reciente:</strong> Evaluar tu sistema o tu habilidad basándote únicamente en los resultados de las últimas 2 o 3 operaciones, lo que te incita a cambiar de estrategia constantemente.</li>
       </ul>
@@ -121,7 +121,7 @@ const courseData = {
     completed: false,
     challenge: "Calcula la ruina matemática de una cuenta de $10,000 arriesgando el 10% por operación frente al 1% en una racha de 10 operaciones fallidas.",
     content: `
-      <p>Iniciamos el <strong>Módulo 2: Gestión y Disciplina</strong>. El trading no es un arte místico; es un negocio estricto de **gestión del capital de trabajo y estadísticas aplicadas**.</p>
+      <p>Iniciamos el <strong>Módulo 2: Gestión y Disciplina</strong>. El trading no es un arte místico; es un negocio de **gestión del capital de trabajo y estadísticas aplicadas**.</p>
       <h3>La Tabla de Recuperación del Drawdown</h3>
       <p>Cuando pierdes capital operativo, tu capacidad matemática de recuperación se deteriora exponencialmente:</p>
       <ul>
@@ -216,10 +216,10 @@ const courseData = {
   day14: {
     id: "day14",
     pilar: 2,
-    title: "Cálculo Dinámico de Contratos",
+    title: "Cálculo Dinámico de Contratos & Examen",
     unlocked: false,
     completed: false,
-    challenge: "Si tu cuenta tiene $5,000, arriesgas el 1% ($50) y tu Stop Loss en MES está a 10 puntos ($5 por punto por contrato), ¿cuántos contratos debes operar?",
+    challenge: "Firma tu manifiesto de riesgo y define tu riesgo máximo por operación (%) y tu límite de pérdida diario en dólares en tu bitácora.",
     content: `
       <p>El tamaño de tu posición nunca debe ser estimado o dejarse a la intuición. Se calcula matemáticamente antes de cada operación basándote en la volatilidad y la distancia de tu Stop Loss técnico.</p>
       <h3>La Fórmula Inquebrantable de Gestión de Riesgo</h3>
@@ -229,25 +229,13 @@ const courseData = {
       <p>Por ejemplo, si arriesgas el 1% de una cuenta de $10,000 ($100) y tu stop loss técnico está a 20 puntos en el Micro E-mini S&P 500 (MES, valor del punto = $5), debes operar exactamente 1 contrato:</p>
       <p><strong>$100 / (20 ptos x $5) = 1 Contrato.</strong></p>
       <p>Si la volatilidad del mercado te obliga a ampliar el Stop Loss a 40 puntos para que la operación respire, debes reducir la posición para que tu pérdida máxima siga siendo de exactamente $100.</p>
-    `
-  },
-  day15: {
-    id: "day15",
-    pilar: 2,
-    title: "Evaluación de Gestión y Riesgo",
-    unlocked: false,
-    completed: false,
-    challenge: "Firma tu manifiesto de riesgo y define tu riesgo máximo por operación (%) y tu límite de pérdida diario en dólares.",
-    content: `
-      <p>Has finalizado con éxito el Módulo 2. Ahora comprendes las matemáticas de la ruina, los ratios asimétricos R:R, el cálculo científico del tamaño de posición y el control del drawdown diario.</p>
-      <p>Con estas herramientas de gestión listas y tu mente disciplinada, estás preparado para pasar al **Módulo de Lectura Técnica Limpia y Estructuras de Alta Probabilidad**.</p>
       <div class="alert-box" style="border-left-color: var(--color-accent); background: rgba(59, 130, 246, 0.03);">
         <strong>📝 Evaluación del Módulo 2:</strong> Aprueba el cuestionario de gestión de riesgo abajo para desbloquear el Módulo de Estrategia Técnica.
       </div>
     `
   },
-  day16: {
-    id: "day16",
+  day15: {
+    id: "day15",
     pilar: 3,
     title: "Estructura de Mercado Real",
     unlocked: false,
@@ -264,8 +252,8 @@ const courseData = {
       <p>Alinear tus operaciones con la dirección de la estructura del mercado es la base fundamental de todo setup de alta probabilidad.</p>
     `
   },
-  day17: {
-    id: "day17",
+  day16: {
+    id: "day16",
     pilar: 3,
     title: "Ruptura de Estructura (BOS)",
     unlocked: false,
@@ -280,8 +268,8 @@ const courseData = {
       </div>
     `
   },
-  day18: {
-    id: "day18",
+  day17: {
+    id: "day17",
     pilar: 3,
     title: "Soportes y Resistencias de Valor",
     unlocked: false,
@@ -293,8 +281,8 @@ const courseData = {
       <p>Una zona de demanda de valor se sitúa en el origen de un fuerte movimiento impulsivo alcista previo que rompió estructura. Al regresar el precio a este bloque por primera vez (retesteo), buscamos incorporarnos en compras porque la probabilidad de que los creadores de mercado defiendan e inyecten capital en sus posiciones originales es altamente favorable.</p>
     `
   },
-  day19: {
-    id: "day19",
+  day18: {
+    id: "day18",
     pilar: 3,
     title: "Acción del Precio Pura",
     unlocked: false,
@@ -306,8 +294,8 @@ const courseData = {
       <p>Operar con el precio puro consiste en observar e interpretar la interacción de impulsos y retrocesos, el tamaño y la velocidad de los cuerpos de las velas, y la longitud de las mechas de rechazo de mínimos y máximos. Esta lectura en tiempo real te da una ventaja de velocidad decisiva frente a los operadores que esperan señales tardías de sus indicadores.</p>
     `
   },
-  day20: {
-    id: "day20",
+  day19: {
+    id: "day19",
     pilar: 3,
     title: "La Ley de Polaridad S/R",
     unlocked: false,
@@ -319,8 +307,8 @@ const courseData = {
       <p>Cuando una resistencia técnica fuerte es perforada al alza con volumen, los vendedores atrapados en esa zona se encuentran en pérdidas. Al regresar el precio a ese mismo nivel de precios, estos operadores cierran sus ventas a precio de entrada (Breakeven), lo que genera una oleada de compras del mercado. Esta fuerza de compra combinada con nuevos compradores transforma la antigua resistencia en un nuevo soporte.</p>
     `
   },
-  day21: {
-    id: "day21",
+  day20: {
+    id: "day20",
     pilar: 3,
     title: "Filtros Técnicos de Confluencia",
     unlocked: false,
@@ -334,8 +322,8 @@ const courseData = {
       </ul>
     `
   },
-  day22: {
-    id: "day22",
+  day21: {
+    id: "day21",
     pilar: 3,
     title: "Evaluación de Lectura Técnica",
     unlocked: false,
@@ -349,8 +337,8 @@ const courseData = {
       </div>
     `
   },
-  day23: {
-    id: "day23",
+  day22: {
+    id: "day22",
     pilar: 4,
     title: "Rutina y Protocolo del Trader",
     unlocked: false,
@@ -362,8 +350,8 @@ const courseData = {
       <p>El trading requiere un enfoque y una claridad mental absoluta. Dormir las horas necesarias, realizar actividad física básica y mantener un estado mental de calma estoica antes de sentarse frente a las pantallas reduce drásticamente las decisiones irracionales y las entradas fuera del plan impulsadas por el estrés.</p>
     `
   },
-  day24: {
-    id: "day24",
+  day23: {
+    id: "day23",
     pilar: 4,
     title: "El Protocolo Pre-market y Checklist",
     unlocked: false,
@@ -382,8 +370,8 @@ const courseData = {
       <p>Si alguna de estas preguntas es negativa, no hay operación. Respetar el checklist es tu escudo contra la aleatoriedad emocional.</p>
     `
   },
-  day25: {
-    id: "day25",
+  day24: {
+    id: "day24",
     pilar: 4,
     title: "Ejecución bajo Presión",
     unlocked: false,
@@ -395,8 +383,8 @@ const courseData = {
       <p>La consistencia operativa consiste en ejecutar tu plan independientemente del miedo o de la avaricia momentáneos. Si has calculado correctamente tu riesgo monetario unitario y aceptas la pérdida potencial como el costo operativo de tu negocio de probabilidades, la ansiedad de apretar el gatillo disminuye notablemente y ejecutas con la frialdad de un algoritmo.</p>
     `
   },
-  day26: {
-    id: "day26",
+  day25: {
+    id: "day25",
     pilar: 4,
     title: "Protocolo de Cierre Post-Sesión",
     unlocked: false,
@@ -408,8 +396,8 @@ const courseData = {
       <p>Una vez terminado tu horario operativo programado, tu única tarea es guardar los datos en tu bitácora, guardar las capturas de tus operaciones y apagar por completo las plataformas. Quedarte horas observando los gráficos genera fatiga mental, fomenta la sobreoperación por aburrimiento y destruye la disciplina de tu rutina.</p>
     `
   },
-  day27: {
-    id: "day27",
+  day26: {
+    id: "day26",
     pilar: 4,
     title: "Auditoría Crítica de Operaciones",
     unlocked: false,
@@ -424,8 +412,8 @@ const courseData = {
       </ul>
     `
   },
-  day28: {
-    id: "day28",
+  day27: {
+    id: "day27",
     pilar: 4,
     title: "El Diario de Errores Operativos",
     unlocked: false,
@@ -441,43 +429,31 @@ const courseData = {
       </ul>
     `
   },
-  day29: {
-    id: "day29",
+  day28: {
+    id: "day28",
     pilar: 4,
-    title: "Mejora Continua Estoica",
+    title: "Mejora Continua Estoica & Examen 28-Días",
     unlocked: false,
     completed: false,
-    challenge: "Define una medida correctiva específica y procesable para el error más frecuente (técnico o emocional) que hayas detectado en tu diario de errores.",
+    challenge: "Define una medida correctiva específica y procesable para el error más frecuente (técnico o emocional) que hayas detectado en tu diario de errores y aprueba el examen final.",
     content: `
       <p>El estoicismo no es una filosofía teórica; es una guía de acción pragmática. No te lamentes por los errores del pasado; utilízalos de forma científica para diseñar **acciones correctivas procesables**.</p>
       <h3>El Ciclo de Mejora Kaizen</h3>
       <p>Si tu auditoría revela que tu error principal es entrar de forma impulsiva antes del cierre de vela, tu regla correctiva obligatoria debe ser: \"No puedo tocar el ratón hasta que el temporizador de la vela actual en curso llegue a cero\". Automatiza tus barreras de comportamiento.</p>
-    `
-  },
-  day30: {
-    id: "day30",
-    pilar: 4,
-    title: "Examen de Certificación Final",
-    unlocked: false,
-    completed: false,
-    challenge: "Completa y aprueba el examen final del Módulo 4 con 100%. Genera y descarga tu Diploma de Maestría en Trading Profesional.",
-    content: `
-      <p>Has completado el riguroso programa de formación de 30 días del Ecosistema-AS. Has progresado desde desmitificar tus sesgos cognitivos hasta dominar las matemáticas de gestión y las estructuras de mercado.</p>
-      <p>A partir de hoy, estás preparado para avanzar hacia los pilares avanzados de **Trading Institucional (Smart Money Concepts) y Especulación Algorítmica (Pilares 5 al 14)**.</p>
       <div class="alert-box" style="border-left-color: gold; background: rgba(245, 158, 11, 0.03);">
-        <strong>🏆 Examen de Certificación Final:</strong> Aprueba la evaluación final de 5 preguntas técnicas para desbloquear la descarga de tu Diploma de Maestría firmado por Albert Sierra.
+        <strong>🏆 Examen de Certificación:</strong> Aprueba la evaluación final de 5 preguntas técnicas de abajo para desbloquear el diploma de los primeros 4 módulos y avanzar a la especialización institucional.
       </div>
     `
   },
-  day31: {
-    id: "day31",
+  day29: {
+    id: "day29",
     pilar: 5,
     title: "Bloques de Órdenes e Intervención Algorítmica",
     unlocked: false,
     completed: false,
     challenge: "Identifica en tu gráfico del simulador una vela de fuerte intención que haya roto un nivel estructural (BOS) y marca el origen de esa vela como un Bloque de Órdenes (OB) institucional.",
     content: `
-      <p>Comenzamos el <strong>Módulo 5: Bloques de Órdenes</strong>. En el trading institucional avanzado, entendemos que el mercado de futuros es conducido por algoritmos interbancarios avanzados de entrega de precios (como el IPDA).</p>
+      <p>Comenzamos el <strong>Módulo 5: Trading Institucional</strong>. En el trading institucional avanzado, entendemos que el mercado de futuros es conducido por algoritmos interbancarios avanzados de entrega de precios (como el IPDA).</p>
       <h3>Mecánica de un Order Block (OB)</h3>
       <p>Un Order Block es la última vela en sentido opuesto antes de una expansión impulsiva de fuerte volumen que rompe la estructura del mercado (BOS). Esta zona representa el rastro donde las grandes instituciones acumularon y distribuyeron sus órdenes límite.</p>
       <p>Dado que su volumen es demasiado grande para rellenarse al instante, dejan órdenes pendientes en esa zona de origen. Al regresar el precio a mitigar este nivel, estas órdenes se activan, provocando una reacción fuerte y predecible a favor del movimiento original.</p>
@@ -487,15 +463,15 @@ const courseData = {
       </ul>
     `
   },
-  day32: {
-    id: "day32",
-    pilar: 6,
+  day30: {
+    id: "day30",
+    pilar: 5,
     title: "Caza de Liquidez y la Ilusión de Soportes/Resistencias",
     unlocked: false,
     completed: false,
     challenge: "Encuentra una mecha larga que haya barrido un soporte o resistencia previa para luego darse la vuelta inmediatamente. Anota el precio del barrido de liquidez.",
     content: `
-      <p>Comenzamos el <strong>Módulo 6: Liquidez del Mercado</strong>. Los operadores retail ven los soportes y resistencias como barreras impenetrables donde comprar o vender; las instituciones los ven como **piscinas de liquidez llenas de dinero** (Liquidity Pools).</p>
+      <p>Hoy analizaremos la liquidez del mercado. Los operadores retail ven los soportes y resistencias como barreras impenetrables donde comprar o vender; las instituciones los ven como **piscinas de liquidez llenas de dinero** (Liquidity Pools).</p>
       <h3>La Caza de Stops (Stops Sweeps)</h3>
       <p>Para que una institución pueda acumular una posición de compra gigante, necesita que otros participantes le vendan en esa zona. Los Stop Losses de los compradores retail se sitúan justo por debajo de los soportes obvios, y se ejecutan como órdenes de venta a mercado.</p>
       <p>El algoritmo institucional empuja el precio temporalmente por debajo del soporte para activar estos stops (inyección forzosa de ventas minoristas), absorbiéndolos como compras baratas a precios de descuento para iniciar el movimiento alcista real.</p>
@@ -505,29 +481,29 @@ const courseData = {
       </ul>
     `
   },
-  day33: {
-    id: "day33",
-    pilar: 7,
+  day31: {
+    id: "day31",
+    pilar: 5,
     title: "Desequilibrios Algorítmicos e Ineficiencias (FVG)",
     unlocked: false,
     completed: false,
     challenge: "Localiza un desequilibrio de 3 velas en el simulador donde la primera y la tercera vela no se solapen, dejando un vacío o Fair Value Gap (FVG). Anota el precio del rebalanceo.",
     content: `
-      <p>Comenzamos el <strong>Módulo 7: Fair Value Gaps</strong>. Cuando el capital institucional entra de golpe al mercado con fuerza, crea un desequilibrio drástico en el flujo de órdenes llamado **Fair Value Gap (FVG)** o ineficiencia de precios.</p>
+      <p>Hoy estudiamos los Fair Value Gaps. Cuando el capital institucional entra de golpe al mercado con fuerza, crea un desequilibrio drástico en el flujo de órdenes llamado **Fair Value Gap (FVG)** o ineficiencia de precios.</p>
       <h3>Anatomía del FVG (Desequilibrio de Velas)</h3>
       <p>Un FVG se compone de un patrón secuencial de 3 velas consecutivas. Ocurre cuando el movimiento de la segunda vela es tan rápido y voluminoso que la mecha de la primera vela y la de la tercera no logran tocarse, dejando un vacío intermedio donde el precio se entregó de forma ineficiente de un solo lado (compras o ventas).</p>
       <p>El algoritmo de precios interbancario tiene el mandato de regresar en el futuro a rellenar este vacío de precios para entregar el mercado de forma eficiente. Esto convierte a los FVG en excelentes imanes de precio y zonas de entrada confluentes.</p>
     `
   },
-  day34: {
-    id: "day34",
-    pilar: 8,
+  day32: {
+    id: "day32",
+    pilar: 5,
     title: "Fractalidad y Alineación Temporal (HTF/LTF)",
     unlocked: false,
     completed: false,
     challenge: "Describe por escrito cómo utilizarías un gráfico de 1 hora para determinar la dirección general y un gráfico de 1 o 5 minutos para afinar tu stop loss de entrada.",
     content: `
-      <p>Comenzamos el <strong>Módulo 8: Fractalidad del Mercado</strong>. Los mercados financieros se mueven de manera fractal; los mismos patrones se repiten de forma idéntica en marcos de 4 horas, 1 hora, 5 minutos o 1 minuto.</p>
+      <p>Hoy analizaremos la fractalidad. Los mercados financieros se mueven de manera fractal; los mismos patrones se repiten de forma idéntica en marcos de 4 horas, 1 hora, 5 minutos o 1 minuto.</p>
       <h3>Análisis Top-Down (De Mayor a Menor)</h3>
       <p>El trader institucional consistente utiliza la fractalidad a su favor para refinar el riesgo y maximizar el ratio R:R:</p>
       <ul>
@@ -536,15 +512,15 @@ const courseData = {
       </ul>
     `
   },
-  day35: {
-    id: "day35",
-    pilar: 9,
+  day33: {
+    id: "day33",
+    pilar: 5,
     title: "Zonas Premium y Descuento: Comprar Barato, Vender Caro",
     unlocked: false,
     completed: false,
     challenge: "Traza un rango operativo desde el inicio del impulso hasta el final del retroceso en tu simulador. Identifica si el precio actual cotiza por encima (Premium) o por debajo (Descuento) del 50%.",
     content: `
-      <p>Comenzamos el <strong>Módulo 9: Rangos de Descuento</strong>. Las instituciones financieras operan bajo las leyes más básicas del comercio mayorista: **comprar al por mayor a precio de descuento y vender en zonas de precios premium**.</p>
+      <p>Hoy analizamos los rangos de equilibrio. Las instituciones financieras operan bajo las leyes más básicas del comercio mayorista: **comprar al por mayor a precio de descuento y vender en zonas de precios premium**.</p>
       <h3>Determinación del Rango Operativo</h3>
       <p>Al trazar un rango desde el origen de un impulso hasta su extremo final, usamos la línea media del 50% (Equilibrio) como frontera técnica ineludible:</p>
       <ul>
@@ -553,58 +529,73 @@ const courseData = {
       </ul>
     `
   },
-  day36: {
-    id: "day36",
-    pilar: 10,
+  day34: {
+    id: "day34",
+    pilar: 5,
     title: "El Poder de los Breaker Blocks (OB Roto)",
     unlocked: false,
     completed: false,
     challenge: "Describe la diferencia entre un Order Block normal y un Breaker Block (OB roto que cambia de función). Encuentra un ejemplo en tu simulador.",
     content: `
-      <p>Comenzamos el <strong>Módulo 10: Mitigación & Breakers</strong>. ¿Qué ocurre cuando un bloque de órdenes institucional falla y es sobrepasado con fuerza? Se transforma en una zona operativa de alta fiabilidad llamada **Breaker Block**.</p>
+      <p>Hoy estudiamos los Breakers. ¿Qué ocurre cuando un bloque de órdenes institucional falla y es sobrepasado con fuerza? Se transforma en una zona operativa de alta fiabilidad llamada **Breaker Block**.</p>
       <h3>Mecánica de un Breaker Block</h3>
       <p>Un Breaker es un bloque de órdenes que fue roto con fuerza debido a una inyección masiva de volumen que barrió liquidez previa en sentido contrario. Cuando el precio regresa a testear este bloque roto, el algoritmo interbancario utiliza este nivel como soporte/resistencia dinámico para mitigar y cerrar a precio de equilibrio (Breakeven) las posiciones perdedoras acumuladas por las instituciones en la manipulación previa.</p>
     `
   },
-  day37: {
-    id: "day37",
-    pilar: 11,
-    title: "Subasta de Volumen: POC y Zonas de Alta Liquidez",
+  day35: {
+    id: "day35",
+    pilar: 5,
+    title: "Evaluación de Trading Institucional",
+    unlocked: false,
+    completed: false,
+    challenge: "Describe en un párrafo cómo se complementan un FVG y un Order Block para aumentar la probabilidad de éxito de tu entrada, y completa la evaluación del módulo.",
+    content: `
+      <p>Felicidades por culminar el Módulo de Trading Institucional. Hoy consolidamos la teoría del volumen interbancario, los barridos de stops y los rangos operativos de descuento y premium.</p>
+      <p>A partir de mañana, avanzaremos hacia las herramientas de especialización final: perfiles de volumen avanzados, reglas de evaluación de firmas de fondeo y planes consistentes de interés compuesto.</p>
+      <div class="alert-box" style="border-left-color: var(--color-accent); background: rgba(59, 130, 246, 0.03);">
+        <strong>📝 Evaluación del Módulo 5:</strong> Responde y aprueba el cuestionario de abajo para certificar tu maestría en trading institucional y desbloquear la semana de especialización.
+      </div>
+    `
+  },
+  day36: {
+    id: "day36",
+    pilar: 6,
+    title: "Subasta de Volumen: POC y Perfil de Volumen",
     unlocked: false,
     completed: false,
     challenge: "Identifica el Punto de Control de Volumen (POC) en una consolidación lateral y explica cómo usar las áreas de bajo volumen (LVN) para colocar tu Stop Loss técnico.",
     content: `
-      <p>Comenzamos el <strong>Módulo 11: Perfil de Volumen</strong>. Mientras que la acción de precio nos describe el movimiento del precio en el tiempo, el perfil de volumen nos indica **dónde se ha acumulado el verdadero volumen transaccional de contratos**.</p>
+      <p>Comenzamos el <strong>Módulo 6: Especialización y Plan Final</strong>. Mientras que la acción de precio nos describe el movimiento del precio en el tiempo, el perfil de volumen nos indica **dónde se ha acumulado el verdadero volumen transaccional de contratos**.</p>
       <h3>Zonas Clave de Subasta de Volumen</h3>
       <ul>
-        <li><strong>POC (Point of Control):</strong> El nivel de precios donde se negoció la mayor cantidad de contratos de futuros. Actúa como el centro de gravedad del precio y zona de alta aceptación.</li>
+        <li><strong>POC (Point of Control):</strong> El precio exacto donde se negoció el mayor volumen de la sesión. Actúa como el centro de gravedad del precio y zona de alta aceptación.</li>
         <li><strong>Value Area (VA):</strong> La zona de precios que concentra el 70% del volumen total transaccionado de la sesión.</li>
         <li><strong>LVN (Low Volume Nodes):</strong> Áreas de precios donde hubo poca negociación. Representan rechazo y velocidad, ideales para colocar Stop Losses detrás de ellas.</li>
       </ul>
     `
   },
-  day38: {
-    id: "day38",
-    pilar: 12,
-    title: "Reglas de Fondeo y Control de drawdown Institucional",
+  day37: {
+    id: "day37",
+    pilar: 6,
+    title: "Reglas de Fondeo y Control de Drawdown",
     unlocked: false,
     completed: false,
     challenge: "Diseña tu plan de Drawdown Máximo Diario específico para una cuenta financiada simulada de $50,000, respetando el límite del 2% diario.",
     content: `
-      <p>Comenzamos el <strong>Módulo 12: Especulación de Fondos</strong>. Operar de forma profesional en la actualidad implica la gran ventaja de trabajar con capital de terceros a través de empresas de fondeo de futuros (*Prop Firms*).</p>
+      <p>Hoy analizaremos las firmas de fondeo. Operar de forma profesional en la actualidad implica la gran ventaja de trabajar con capital de terceros a través de empresas de fondeo de futuros (*Prop Firms*).</p>
       <h3>Las Reglas de Supervivencia de las Prop Firms</h3>
       <p>Operar el capital de una firma de fondeo exige el máximo rigor y control de drawdown. Las reglas de consistencia de beneficios y límites estrictos de pérdida diaria (DLL) están diseñadas para forzar el comportamiento estoico del trader. Un solo día de indisciplina o venganza operativa se traduce en la cancelación inmediata de tu cuenta. La gestión emocional y el apego al riesgo son tus únicas armas de éxito.</p>
     `
   },
-  day39: {
-    id: "day39",
-    pilar: 13,
+  day38: {
+    id: "day38",
+    pilar: 6,
     title: "Gestión Activa de Posición: Tomar Parciales y Riesgo Cero",
     unlocked: false,
     completed: false,
     challenge: "Simula una operación con 2 contratos en el simulador. Al alcanzar un R:R 1:1, cierra 1 contrato (toma de parcial) y mueve el Stop Loss del segundo contrato a Breakeven.",
     content: `
-      <p>Comenzamos el <strong>Módulo 13: Drawdown & Cierres</strong>. El objetivo final de un operador rentable no es acertar todas las operaciones, sino **extraer capital del mercado activamente y minimizar la varianza de pérdidas**.</p>
+      <p>Hoy estudiamos la gestión activa. El objetivo final de un operador rentable no es acertar todas las operaciones, sino **extraer capital del mercado activamente y minimizar la varianza de pérdidas**.</p>
       <h3>Gestión Activa del Riesgo</h3>
       <p>La regla inquebrantable de la preservación de capital dictamina:</p>
       <ul>
@@ -614,15 +605,15 @@ const courseData = {
       <p>Al hacer esto, has garantizado ganancias en tu saldo y has transformado la posición restante en una operación libre de riesgo financiero (*free trade*), liberándote de toda presión psicológica para dejar correr el beneficio al target final 1:2.</p>
     `
   },
-  day40: {
-    id: "day40",
-    pilar: 14,
-    title: "El Checklist Institucional de Albert Sierra",
+  day39: {
+    id: "day39",
+    pilar: 6,
+    title: "El Checklist de Albert Sierra",
     unlocked: false,
     completed: false,
-    challenge: "Redacta tu Checklist final de 5 confluencias institucionales antes de cada trade y aprueba la evaluación final de Maestría del Ecosistema.",
+    challenge: "Escribe tu Checklist final de 5 confluencias institucionales antes de cada trade en tu bitácora.",
     content: `
-      <p>Comenzamos el <strong>Módulo 14: Plan de Trading Final</strong>. Has completado con éxito tu formación en la especulación de futuros interbancarios. En este último módulo unificamos todo tu conocimiento en una rutina innegociable.</p>
+      <p>Hoy unificamos todo tu conocimiento en una rutina innegociable. El plan de trading se resume en seguir la disciplina de un piloto antes de cada operación.</p>
       <h3>El Checklist Maestro de Confluencias de Albert Sierra</h3>
       <p>Antes de pulsar los botones de compra o venta en el simulador de futuros, debes marcar positivamente y sin excepciones:</p>
       <ol>
@@ -632,13 +623,50 @@ const courseData = {
         <li>¿Cotizamos a precios de descuento para compras (barato) o premium para ventas (caro)?</li>
         <li>¿El tamaño de los contratos ha sido recalculado con precisión para no exponer más del 1% del capital?</li>
       </ol>
+    `
+  },
+  day40: {
+    id: "day40",
+    pilar: 6,
+    title: "Psicología y Psicotrading para Cuentas Financiadas",
+    unlocked: false,
+    completed: false,
+    challenge: "Escribe tu plan de control de estrés ante la cercanía del drawdown máximo y cómo gestionarás las emociones de tu primer pago o retiro de una cuenta financiada.",
+    content: `
+      <p>Hoy analizaremos la psicología aplicada al capital financiado. Operar con capital institucional a través de cuentas financiadas (Prop Firms) introduce una carga psicológica distinta. Ya no estás arriesgando tu propio capital inicial, sino que estás operando bajo un conjunto estricto de reglas de control de pérdidas.</p>
+      <h3>Preservar en vez de Agrandar</h3>
+      <p>La presión por obtener retiros (payouts) y el miedo a violar el drawdown máximo diario pueden forzar malas conductas. El psicotrading estoico se centra en ver estas reglas como aliados disciplinarios, no como restricciones injustas. Aceptar que las reglas protegen el capital te libera de la tensión emocional y te permite ejecutar de forma objetiva.</p>
+    `
+  },
+  day41: {
+    id: "day41",
+    pilar: 6,
+    title: "Plan de Trading Consistente a Largo Plazo",
+    unlocked: false,
+    completed: false,
+    challenge: "Traza un plan de asignación de capital para tus retiros de trading: define qué porcentaje se irá a capital propio, a impuestos, y a gastos de vida.",
+    content: `
+      <p>Hoy estudiamos el trading como un negocio formal. Para convertir el trading de futuros en una profesión sostenible a largo plazo, debes tratarlo como una corporación real.</p>
+      <h3>La Asignación de Capital Inteligente</h3>
+      <p>Esto requiere planificar el interés compuesto, pero también gestionar las ganancias de forma prudente. Al retirar fondos de tus cuentas de fondeo, debes destinarlos a la construcción de tu propio fondo patrimonial (\"el capital invisible\"), realizar previsiones para el pago de impuestos y comisiones, y mantener un colchón de seguridad operativa para épocas de baja volatilidad o drawdown temporal.</p>
+    `
+  },
+  day42: {
+    id: "day42",
+    pilar: 6,
+    title: "Evaluación de Maestría Final",
+    unlocked: false,
+    completed: false,
+    challenge: "Completa y aprueba la evaluación final de Maestría del Ecosistema para obtener tu diploma definitivo firmado por Albert Sierra.",
+    content: `
+      <p>¡Has alcanzado el último día del Ecosistema-AS! En esta sesión consolidamos todo el conocimiento de los 6 pilares de maestría técnica y estoica.</p>
+      <p>Repasamos la subasta de volumen por perfil, las reglas corporativas de fondeo, la gestión activa de posición con tomas parciales y el checklist final antes de cada trade. Estás listo para certificar tu maestría en trading profesional y recibir tu diploma.</p>
       <div class="alert-box" style="border-left-color: gold; background: rgba(245, 158, 11, 0.03);">
-        <strong>🏆 Examen de Maestría Final del Ecosistema:</strong> Responde y aprueba la evaluación final técnica abajo para certificar tu maestría y completar tu formación en el Ecosistema AS.
+        <strong>🏆 Examen de Maestría Final del Ecosistema:</strong> Responde y aprueba la evaluación final técnica abajo para certificar tu maestría definitiva y completar el Ecosistema AS.
       </div>
     `
   }
 };
-
 const pilarQuizzes = {
   1: [
     {
@@ -694,270 +722,262 @@ const pilarQuizzes = {
   ],
   2: [
     {
-      q: "Si arriesgas el 1% de una cuenta de $10,000, ¿cuál es tu pérdida máxima en dólares por operación?",
-      options: ["$10.00 USD", "$100.00 USD", "$1,000.00 USD"],
+      q: "Si pierdes el 50% de tu cuenta de trading, ¿qué porcentaje de rentabilidad necesitas ganar sobre el saldo restante solo para volver al punto inicial (breakeven)?",
+      options: [
+        "50%",
+        "75%",
+        "100% (Duplicar el capital restante)"
+      ],
+      answer: 2,
+      explanation: "Perder el 50% reduce tu capital a la mitad. Para volver al capital inicial, debes duplicar (100% de ganancia) tu balance restante."
+    },
+    {
+      q: "Con un Ratio Riesgo/Beneficio (R:R) de 1:2, ¿cuál es la tasa mínima de acierto requerida para estar en ganancias netas (sin contar comisiones)?",
+      options: [
+        "Aproximadamente 34% o más",
+        "Exactamente 50%",
+        "Por encima de 60%"
+      ],
+      answer: 0,
+      explanation: "Con un R:R 1:2, ganar 1 operación compensa 2 pérdidas. A partir del 34% de acierto, el resultado neto de la muestra es matemáticamente positivo."
+    },
+    {
+      q: "¿Qué dicta el protocolo estoico ante el secuestro emocional provocado por pérdidas consecutivas?",
+      options: [
+        "Apagar el ordenador e irse inmediatamente, aceptando el límite de pérdida diaria programado.",
+        "Aumentar el tamaño de la posición para recuperar lo perdido rápidamente.",
+        "Cambiar de activo a uno más volátil como el Nasdaq para compensar."
+      ],
+      answer: 0,
+      explanation: "El drawdown diario actúa como cinturón de seguridad. Al tocar el límite, apagar la plataforma frena la destructiva toma de decisiones emocional."
+    },
+    {
+      q: "En la bitácora técnica de procesos, ¿cómo se califica un trade ganador que violó las reglas del plan?",
+      options: [
+        "Como un excelente trade que demuestra intuición de mercado.",
+        "Como un mal trade con resultado fortuito que pone en peligro la consistencia futura.",
+        "Como un trade neutral que no requiere análisis."
+      ],
       answer: 1,
-      explanation: "El 1% de $10,000 es exactamente $100. Este es tu límite financiero por operación."
+      explanation: "Seguir las reglas define la consistencia. Un trade ganador fuera del plan fomenta indisciplina y hábitos destructivos a largo plazo."
     },
     {
-      q: "Con un ratio de Riesgo/Beneficio (R:R) de 1:2, ¿qué tasa de acierto necesitas para estar en equilibrio (sin pérdidas)?",
-      options: ["50%", "34%", "20%"],
+      q: "¿Cómo calculas el tamaño de posición (contratos) si tu Stop Loss técnico está situado a mayor distancia de lo habitual?",
+      options: [
+        "Mantienes el mismo número de contratos y aceptas mayor pérdida.",
+        "Reduces proporcionalmente el número de contratos para que el riesgo en dólares siga siendo el mismo.",
+        "Aumentas los contratos para compensar la distancia."
+      ],
       answer: 1,
-      explanation: "Al ganar el doble de lo que pierdes, con solo un 34% de acierto cubres tus pérdidas y comisiones operativas."
-    },
-    {
-      q: "¿Qué indica la regla del Drawdown Máximo Diario?",
-      options: [
-        "El límite de pérdida en dólares tras el cual apagas la plataforma inmediatamente.",
-        "El objetivo de ganancia diario para retirarte.",
-        "El capital mínimo necesario para operar futuros MES."
-      ],
-      answer: 0,
-      explanation: "El drawdown diario actúa de freno automático: una vez tocado, detienes la operativa para evitar dañar más tu capital."
-    },
-    {
-      q: "¿Cuál es el propósito de registrar tus operaciones en la Bitácora de Trading?",
-      options: [
-        "Identificar patrones de comportamiento repetibles para construir consistencia.",
-        "Mostrar tus resultados en redes sociales para ganar seguidores.",
-        "Evitar pagar comisiones al broker."
-      ],
-      answer: 0,
-      explanation: "La bitácora proporciona datos objetivos sobre tus decisiones pasadas para evaluar tu apego al plan y corregir desviaciones."
-    },
-    {
-      q: "¿Cómo se calcula el tamaño de posición (contratos) óptimo?",
-      options: [
-        "Contratos = Riesgo ($) / (Distancia SL x Valor Punto del Contrato)",
-        "Contratos = Capital x Apalancamiento",
-        "Contratos = Capital / Margen de Garantía"
-      ],
-      answer: 0,
-      explanation: "Esta fórmula vincula de manera científica la pérdida tolerada con la distancia del Stop Loss técnico en el activo operado."
+      explanation: "El riesgo monetario es fijo (ej. 1% por trade). Si el Stop Loss técnico es amplio, el número de contratos debe disminuir para mantener el mismo riesgo."
     }
   ],
   3: [
     {
-      q: "¿Por qué un trader institucional de futuros prefiere un gráfico limpio a uno lleno de indicadores rezagados?",
+      q: "En una tendencia alcista estructural, ¿cómo se denominan los puntos clave de mínimos?",
       options: [
-        "Porque los indicadores secundarios causan parálisis por análisis y añaden ruido al precio puro.",
-        "Porque los indicadores cuestan dinero en la plataforma de futuros.",
-        "Porque el precio no tiene ninguna relación con las medias móviles."
-      ],
-      answer: 0,
-      explanation: "El precio y la estructura de mercado son los únicos elementos líderes. Los osciladores y medias son sólo cálculos secundarios retrasados."
-    },
-    {
-      q: "¿Qué es un BOS (Break of Structure) en una tendencia alcista?",
-      options: [
-        "El rompimiento al alza del último máximo de oscilación (HH) confirmando la tendencia.",
-        "El quiebre a la baja del último mínimo ascendente (HL) sugiriendo un cambio de tendencia.",
-        "Una vela japonesa de cuerpo muy grande con volumen bajo."
+        "Mínimos más Bajos (LL)",
+        "Mínimos más Altos (HL)",
+        "Máximos más Altos (HH)"
       ],
       answer: 1,
-      explanation: "Romper el último HL implica el fin de la estructura de mínimos crecientes, sugiriendo que los vendedores toman el control."
+      explanation: "Una tendencia alcista consiste en una sucesión de Máximos más Altos (HH) y Mínimos más Altos (HL)."
     },
     {
-      q: "Según la ley de polaridad, ¿qué sucede cuando se rompe una resistencia fuerte?",
+      q: "¿Qué confirmación técnica es obligatoria para validar un Quiebre de Estructura (BOS)?",
       options: [
-        "Tiende a actuar como soporte en testeos posteriores debido a la acumulación de órdenes.",
-        "Pierde toda su relevancia y debe ser borrada del gráfico.",
-        "El precio cae inmediatamente en una tendencia bajista."
+        "Que una mecha de vela cruce el nivel y regrese rápido.",
+        "Que el cuerpo de una vela cierre por fuera del último nivel estructural.",
+        "Que el oscilador RSI esté en sobrecompra."
       ],
-      answer: 0,
-      explanation: "Los vendedores rezagados cierran sus posiciones a breakeven, transformando el nivel roto en soporte ante el testeo del precio."
+      answer: 1,
+      explanation: "Un BOS requiere un cierre con cuerpo de vela fuera del nivel para confirmar la intención institucional de desplazar el precio."
     },
     {
-      q: "¿Cuál es la función principal de la EMA 200 en la lectura técnica?",
+      q: "¿Cuál es la diferencia entre un soporte minorista clásico y una zona de demanda de valor?",
       options: [
-        "Actuar como filtro direccional: solo largos sobre ella, solo cortos bajo ella.",
-        "Dar la señal exacta de compra o venta en cada cruce.",
-        "Determinar el tamaño de posición óptimo."
+        "El soporte minorista es una zona de acumulación de medias móviles.",
+        "La zona de demanda se localiza en el origen de un fuerte movimiento impulsivo previo que rompió estructura.",
+        "No existe ninguna diferencia, son términos idénticos."
       ],
-      answer: 0,
-      explanation: "La EMA 200 sirve de brújula de tendencia: evita operar en contra del flujo dominante de capital institucional."
+      answer: 1,
+      explanation: "Las zonas de demanda representan áreas donde el volumen institucional desplazó el precio de forma agresiva, dejando órdenes pendientes."
     },
     {
-      q: "¿Cómo se utiliza el RSI de 14 períodos en una estrategia sin ruido?",
+      q: "En el Setup de Confluencia Visión Pro, ¿cuál es la función de la EMA 200?",
       options: [
-        "Como medidor de momentum en el nivel central de 50 a favor de la tendencia.",
-        "Para vender cuando toca 70 (sobrecompra) y comprar cuando toca 30 (sobreventa).",
-        "Como indicador de la hora de apertura del mercado."
+        "Indicar el nivel exacto de toma de beneficios.",
+        "Actuar como filtro direccional inquebrantable (compras sobre ella, cortos bajo ella).",
+        "Medir la sobrecompra del oscilador."
+      ],
+      answer: 1,
+      explanation: "La EMA 200 sirve de brújula de tendencia mayor para alinear todas nuestras operaciones a favor de la dirección dominante del mercado."
+    },
+    {
+      q: "¿Cómo confirmamos la confluencia de momentum utilizando el oscilador RSI 14?",
+      options: [
+        "Cuando el RSI cruza la línea central de 50 en la misma dirección de la tendencia de la EMA 200.",
+        "Cuando el RSI entra en la zona extrema de sobreventa.",
+        "Cuando el RSI permanece plano cerca de cero."
       ],
       answer: 0,
-      explanation: "El nivel 50 determina el ecuador de la fuerza; cruzar sobre 50 en tendencia alcista es confirmación de momentum comprador."
+      explanation: "El cruce de la línea 50 en el RSI valida que el impulso de corto plazo está alineado a favor del flujo tendencial."
     }
   ],
   4: [
     {
-      q: "¿Qué comprende la rutina de pre-market de un trader profesional?",
+      q: "¿Qué propósito principal persigue la checklist pre-market de 5 puntos del operador?",
       options: [
-        "Preparar el gráfico, verificar noticias de alto impacto y validar la checklist antes de operar.",
-        "Abrir varias operaciones en demo para ver el impulso.",
-        "Revisar las redes sociales para ver qué recomiendan comprar."
+        "Aumentar el número de operaciones ejecutadas por sesión.",
+        "Actuar como un filtro objetivo para eliminar la aleatoriedad y la ejecución emocional.",
+        "Predecir con exactitud hacia dónde irá el precio en la apertura."
       ],
-      answer: 0,
-      explanation: "La rutina asegura que estás alineado física y técnicamente antes del inicio de la sesión, evitando sorpresas informativas."
+      answer: 1,
+      explanation: "La checklist actúa como protocolo de despegue para asegurar que sólo se ejecutan operaciones con confluencias técnicas preestablecidas."
     },
     {
-      q: "¿Cómo se clasifica un error en el diario operativo?",
+      q: "Al auditar semanalmente tus estadísticas, ¿qué representa un 'Profit Factor' de 1.5?",
       options: [
-        "Como técnico (violación del setup) o emocional (violación del autocontrol).",
-        "Como error del broker o error de la plataforma de gráficos.",
-        "Como mala suerte o error por manipulación de mercado."
+        "Que tus ganancias brutas equivalen a 1.5 veces tus pérdidas brutas (operativa saludable).",
+        "Que has perdido el 50% de la cuenta.",
+        "Que tienes una tasa de acierto del 15%."
       ],
       answer: 0,
-      explanation: "Dividirlos entre técnicos y emocionales te permite enfocar tu proceso correctivo de forma precisa sobre el conocimiento o el autocontrol."
+      explanation: "El Profit Factor mide la relación ganancias/pérdidas. Un ratio superior a 1.2 indica un sistema y una operativa rentables."
     },
     {
-      q: "¿Qué es la inactividad forzada en el protocolo de trading?",
+      q: "En el diario de errores, ¿cómo se clasifica el acto de entrar tarde a un trade debido al miedo a perder la oportunidad?",
       options: [
-        "Retirarse inmediatamente tras tocar el límite de pérdida diaria para evitar la venganza.",
-        "Esperar a que el mercado cierre para poder operar.",
-        "Dejar de operar durante un año si tienes una pérdida."
+        "Error Técnico de trazado.",
+        "Error Emocional de disciplina (FOMO).",
+        "Ejecución perfecta del plan."
       ],
-      answer: 0,
-      explanation: "La inactividad protege tu cuenta: te retiras al tocar tus límites para calmar la mente y preservar el capital restante."
+      answer: 1,
+      explanation: "Entrar de forma impulsiva por miedo a perderse el trade es una manifestación clásica de FOMO (error emocional)."
     },
     {
-      q: "¿Cuál es el objetivo de auditar de forma crítica tu diario de errores?",
+      q: "¿Cuál es la regla de oro estoica del protocolo de cierre de sesión?",
       options: [
-        "Identificar tus debilidades recurrentes y planificar acciones correctivas específicas.",
-        "Saber cuánto dinero ganaste en comisiones.",
-        "Justificar las pérdidas alegando manipulación de mercado."
+        "Mantener la plataforma abierta todo el día para vigilar el precio.",
+        "Guardar capturas, registrar los datos en la bitácora y apagar por completo las pantallas.",
+        "Seguir operando si la sesión fue perdedora."
       ],
-      answer: 0,
-      explanation: "La auditoría objetiva busca patrones débiles en tu operativa para mitigarlos con reglas escritas correctivas."
+      answer: 1,
+      explanation: "El apagado de pantallas protege tu psicología del aburrimiento o la frustración, forzando la desconexión mental y la disciplina."
     },
     {
-      q: "¿Cuál es la premisa fundamental del mercado de futuros para un operador estoico?",
+      q: "En el ciclo de mejora Kaizen, ¿cuál es el paso posterior a identificar un error recurrente en tu bitácora?",
       options: [
-        "El mercado es un entorno de probabilidades, no de certezas.",
-        "El mercado siempre sube a largo plazo.",
-        "Se puede predecir el precio exacto con indicadores correctos."
+        "Lamentar el capital perdido y dudar de la estrategia.",
+        "Diseñar e implementar una medida correctiva específica y obligatoria en tu comportamiento.",
+        "Ignorar el error y esperar que no se repita en la siguiente sesión."
       ],
-      answer: 0,
-      explanation: "El mercado opera bajo incertidumbre. Entenderlo como probabilidades erradica el dolor de perder y la necesidad de tener la razón."
+      answer: 1,
+      explanation: "Kaizen consiste en corregir desviaciones mediante medidas accionables concretas para blindar el comportamiento en la siguiente sesión."
     }
   ],
   5: [
     {
-      q: "¿Qué valida la existencia de un Bloque de Órdenes (Order Block) institucional válido?",
+      q: "¿Qué representa un Order Block (OB) válido en el trading institucional?",
       options: [
-        "Que el precio haya roto estructura (BOS) y haya dejado ineficiencias (FVG) en su expansión.",
-        "Que la vela sea de color verde y tenga un volumen muy bajo.",
-        "Que coincida con la hora del cierre del mercado de Londres."
+        "Cualquier vela de consolidación en el centro de un rango operativo lateral.",
+        "La última vela en sentido opuesto previa a una expansión impulsiva de fuerte volumen que genera un BOS.",
+        "El cruce de las bandas de Bollinger con alto volumen de contratos."
+      ],
+      answer: 1,
+      explanation: "Un OB válido requiere haber generado una ruptura estructural (BOS) y haber dejado ineficiencias de entrega (FVG) en su expansión."
+    },
+    {
+      q: "¿Por qué las instituciones financieras buscan cazar la liquidez de los soportes y resistencias minoristas (sweeps)?",
+      options: [
+        "Para inyectar volatilidad al mercado sin un fin transaccional.",
+        "Para activar los Stop Losses minoristas (ventas/compras a mercado) y usarlos como contrapartida para llenar sus órdenes gigantes a precio de descuento.",
+        "Para cerrar sus plataformas de negociación antes del fin de semana."
+      ],
+      answer: 1,
+      explanation: "Las instituciones necesitan contrapartida de volumen para rellenar sus órdenes millonarias sin desplazar el precio en su contra; los sweeps proveen esa liquidez."
+    },
+    {
+      q: "¿Qué define a un Fair Value Gap (FVG) o ineficiencia de precios?",
+      options: [
+        "Una secuencia de 3 velas donde la mecha de la primera y de la tercera no se solapan, dejando un vacío transaccional.",
+        "Un gap de apertura de mercado de futuros el domingo por la tarde.",
+        "Una consolidación estrecha que dura más de dos horas sin volumen."
       ],
       answer: 0,
-      explanation: "Un OB es válido únicamente si el algoritmo rompe estructura (BOS) y expande con fuerza, dejando ineficiencias de volumen."
+      explanation: "El FVG representa una entrega ineficiente del precio donde sólo hubo participación de compras o ventas, y el mercado tiende a rebalancearlo en el futuro."
+    },
+    {
+      q: "En el análisis top-down fractal, ¿cuál es la combinación ideal de marcos temporales?",
+      options: [
+        "Buscar el sesgo direccional y las zonas de interés en HTF (1H/4H), y esperar el gatillo y confirmación BOS en LTF (1m/5m).",
+        "Operar en 1 minuto sin mirar gráficos mayores.",
+        "Analizar en mensual para operar contratos de scalping rápido en segundos."
+      ],
+      answer: 0,
+      explanation: "El marco HTF proporciona el sesgo y la zona de alta probabilidad, mientras que el marco LTF permite refinar la entrada para optimizar el R:R."
+    },
+    {
+      q: "Si trazamos un rango operativo desde el origen del impulso hasta su fin, ¿dónde debemos situar las compras?",
+      options: [
+        "En la Zona Premium (por encima del 50% del rango) porque el precio sube rápido.",
+        "En la Zona de Descuento (por debajo del 50% del rango) para comprar a precios baratos.",
+        "En el precio de equilibrio exacto del 50% sin importar confluencias."
+      ],
+      answer: 1,
+      explanation: "Comprar en descuento (barato) en confluencia con OB y FVG es la regla de oro mayorista de la especulación institucional."
     }
   ],
   6: [
     {
-      q: "¿Cuál es el propósito algorítmico detrás de un barrido de liquidez (Liquidity Sweep)?",
+      q: "En la subasta de Volumen, ¿qué es el POC (Point of Control) y qué utilidad tiene?",
       options: [
-        "Activar los Stop Losses de operadores minoristas para absorber contrapartida institucional.",
-        "Dar tiempo a los reguladores a revisar las transacciones del día.",
-        "Reducir el apalancamiento general de la cuenta del simulador."
+        "El precio con mayor volumen de contratos negociados; actúa como imán del precio y punto de equilibrio dinámico.",
+        "El nivel de precio más alto alcanzado en la sesión de futuros.",
+        "Una señal de cruce de medias móviles en el perfil de volumen."
       ],
       answer: 0,
-      explanation: "Las instituciones necesitan activar stops (órdenes contrarias a mercado) para contrapartida de sus órdenes masivas."
-    }
-  ],
-  7: [
+      explanation: "El POC es el nivel más negociado de la sesión, representando la zona de máxima aceptación de valor por parte de compradores y vendedores."
+    },
     {
-      q: "¿Cómo se forma un Fair Value Gap (FVG) en un patrón de tres velas?",
+      q: "¿Cuál es la regla de oro para evitar la cancelación inmediata de una cuenta financiada (Prop Firm)?",
       options: [
-        "Cuando la mecha de la primera vela y la mecha de la tercera vela no logran solaparse, dejando una ineficiencia en la segunda vela.",
-        "Cuando la segunda vela cruza por encima de la EMA 200.",
-        "Cuando el volumen de la tercera vela es exactamente el doble de la primera."
+        "Operar el máximo tamaño de contratos permitido desde el primer día.",
+        "Respetar de forma inquebrantable el límite de pérdida diaria (drawdown) y no dejarse llevar por la frustración.",
+        "Aumentar el riesgo tras cada operación fallida para recuperar rápido."
       ],
-      answer: 0,
-      explanation: "Un FVG es un vacío de precios provocado por un flujo unilateral agresivo que impide el solapamiento de mechas adyacentes."
-    }
-  ],
-  8: [
+      answer: 1,
+      explanation: "El control riguroso del drawdown diario y total es el único requisito ineludible que exigen las firmas de fondeo institucional."
+    },
     {
-      q: "¿Cuál es la regla fundamental para alinear marcos de tiempo (HTF y LTF)?",
+      q: "¿Qué beneficio psicológico y matemático aporta la toma de parciales a R:R 1:1 y mover el Stop Loss a Breakeven?",
       options: [
-        "Definir la dirección y el sesgo en el gráfico mayor (HTF) y buscar el gatillo de entrada en el gráfico menor (LTF).",
-        "Operar únicamente compras en LTF si el RSI en HTF está en sobreventa superior a 90.",
-        "Ejecutar operaciones en sentido contrario a la estructura mayor si se rompe una media móvil."
+        "Elimina las pérdidas futuras asegurando ganancias y transformando el trade en una operación libre de riesgo.",
+        "Garantiza que siempre ganarás el 100% de las operaciones.",
+        "Te obliga a pasar más horas mirando los gráficos."
       ],
       answer: 0,
-      explanation: "Usar HTF para la brújula direccional y LTF para optimizar el Stop Loss técnico maximiza el ratio R:R."
-    }
-  ],
-  9: [
+      explanation: "Cobrar parciales y poner breakeven asegura ganancias reales en la cuenta y elimina el riesgo financiero, liberando al trader de estrés."
+    },
     {
-      q: "Si buscamos operaciones de compra institucionales (Largas), ¿en qué zona de precios debemos operar?",
+      q: "¿Qué porcentaje de riesgo monetario máximo por operación dicta el checklist definitivo de Albert Sierra?",
       options: [
-        "Por debajo de la línea del 50% del rango operativo (Zona de Descuento).",
-        "Por encima de la línea del 50% del rango operativo (Zona Premium).",
-        "Exactamente en el punto del POC de volumen máximo sin importar la tendencia."
+        "El 5% de la cuenta.",
+        "Exactamente el 1% del capital (o menos), calculado de forma estricta según la distancia del stop loss.",
+        "Un número de contratos fijo sin importar la volatilidad."
       ],
-      answer: 0,
-      explanation: "Las compras deben buscarse en zona barata (Descuento) para maximizar la asimetría matemática."
-    }
-  ],
-  10: [
+      answer: 1,
+      explanation: "Arriesgar máximo el 1% (o menos) es la armadura del trader estoico para preservar su capital de trabajo a largo plazo."
+    },
     {
-      q: "¿Qué define a un Breaker Block alcista?",
+      q: "Para tratar el trading como un negocio consistente a largo plazo, ¿cómo debes gestionar tus retiros (payouts)?",
       options: [
-        "Un bloque de órdenes bajista que fue roto con fuerza al alza tras barrer liquidez, y ahora actúa como soporte.",
-        "Una vela que se cierra justo en el POC de la sesión anterior.",
-        "Un gap que nunca fue rellenado en la apertura de Nueva York."
+        "Gastar todo el beneficio en bienes de consumo de inmediato.",
+        "Asignar capital de forma inteligente a impuestos, colchón de drawdown operativo, y transferir a tu cuenta de capital propio (Capital Invisible).",
+        "Dejar todo el beneficio en la cuenta de fondeo para operar con el máximo tamaño de contratos."
       ],
-      answer: 0,
-      explanation: "El Breaker es un OB fallido que se transforma en soporte debido a la mitigación de posiciones en breakeven por parte de instituciones."
-    }
-  ],
-  11: [
-    {
-      q: "¿Qué representa el Punto de Control (POC) en un perfil de volumen?",
-      options: [
-        "El precio exacto donde se negoció el mayor volumen de la sesión.",
-        "El precio máximo alcanzado durante la sesión asiática.",
-        "El stop loss óptimo calculado por la plataforma."
-      ],
-      answer: 0,
-      explanation: "El POC representa la zona de mayor aceptación del precio por parte de compradores y vendedores institucionales."
-    }
-  ],
-  12: [
-    {
-      q: "¿Cuál es la medida estoica indispensable para no perder una cuenta de fondeo (Prop Firm)?",
-      options: [
-        "Detener la operativa y apagar la plataforma al tocar tu límite de drawdown diario programado.",
-        "Aumentar el tamaño de contratos al perder para recuperar la cuenta rápido.",
-        "Operar únicamente minutos antes del cierre del mercado para evitar comisiones."
-      ],
-      answer: 0,
-      explanation: "Respetar el drawdown diario incondicionalmente es la única regla inquebrantable de consistencia."
-    }
-  ],
-  13: [
-    {
-      q: "¿Cuál es la ventaja de tomar cierres parciales de posición al R:R 1:1?",
-      options: [
-        "Asegurar ganancias reales de capital y permitir colocar el riesgo de la posición restante a Breakeven.",
-        "Evitar el pago de comisiones del broker.",
-        "Garantizar que el 100% de los trades sean ganadores sin importar el Stop Loss."
-      ],
-      answer: 0,
-      explanation: "Asegurar beneficios intermedios reduce el drawdown emocional y crea una operación libre de riesgo financiero."
-    }
-  ],
-  14: [
-    {
-      q: "¿Qué regla estoica final resume el checklist de Albert Sierra antes de abrir una operación?",
-      options: [
-        "Cumplir el 100% de tus confluencias escritas y no abrir el trade si falta un solo elemento.",
-        "Abrir la operación rápido por FOMO si el precio corre con fuerza en Nueva York.",
-        "Apostar todo el balance sim de tu cuenta si confías mucho en la dirección."
-      ],
-      answer: 0,
-      explanation: "La disciplina estoica consiste en ejecutar únicamente cuando tu checklist institucional se cumple al 100%."
+      answer: 1,
+      explanation: "Retirar y distribuir capital hacia el ahorro patrimonial y la reserva de drawdown es la base del crecimiento de un negocio consistente."
     }
   ]
 };
@@ -967,9 +987,8 @@ let activeSection = "welcome";
 let activeDayId = "day1";
 let activePilarAccordion = 1;
 let activeQuizAnswers = {}; // { questionIndex: selectedOptionIndex }
-let pilarPassedStates = { 1: false, 2: false, 3: false, 4: false, 5: false, 6: false, 7: false, 8: false, 9: false, 10: false, 11: false, 12: false, 13: false, 14: false };
+let pilarPassedStates = { 1: false, 2: false, 3: false, 4: false, 5: false, 6: false };
 
-// Load state from localStorage
 const loadProgress = () => {
   const savedProgress = localStorage.getItem("vision_30day_progress");
   if (savedProgress) {
@@ -1008,7 +1027,7 @@ const saveProgress = () => {
 // Update progress bar and unlock states
 const updateUIProgress = () => {
   let completedCount = 0;
-  const totalDays = 40;
+  const totalDays = 42;
 
   Object.values(courseData).forEach(day => {
     if (day.completed) completedCount++;
@@ -1033,7 +1052,7 @@ const updateUIProgress = () => {
 
 // Reset academy progress
 window.resetAcademyProgress = () => {
-  if (confirm("¿Estás seguro de que deseas reiniciar todo tu progreso del curso de 30 días y tu bitácora?")) {
+  if (confirm("¿Estás seguro de que deseas reiniciar todo tu progreso del curso de 42 días y tu bitácora?")) {
     localStorage.removeItem("vision_30day_progress");
     localStorage.removeItem("vision_simulator_balance");
     Object.keys(courseData).forEach((key, index) => {
@@ -1041,7 +1060,7 @@ window.resetAcademyProgress = () => {
       courseData[key].unlocked = index === 0;
       localStorage.removeItem(`vision_challenge_${key}`);
     });
-    pilarPassedStates = { 1: false, 2: false, 3: false, 4: false, 5: false, 6: false, 7: false, 8: false, 9: false, 10: false, 11: false, 12: false, 13: false, 14: false };
+    pilarPassedStates = { 1: false, 2: false, 3: false, 4: false, 5: false, 6: false };
     saveProgress();
     updateUIProgress();
     renderAcademicMenu();
@@ -1051,11 +1070,11 @@ window.resetAcademyProgress = () => {
 
 // Unlock all lessons and quizzes
 window.unlockAllLessons = () => {
-  if (confirm("¿Deseas desbloquear todas las lecciones del curso de 30 días y evaluaciones para navegar libremente?")) {
+  if (confirm("¿Deseas desbloquear todas las lecciones del curso de 42 días y evaluaciones para navegar libremente?")) {
     Object.keys(courseData).forEach(key => {
       courseData[key].unlocked = true;
     });
-    pilarPassedStates = { 1: true, 2: true, 3: true, 4: true };
+    pilarPassedStates = { 1: true, 2: true, 3: true, 4: true, 5: true, 6: true };
     saveProgress();
     updateUIProgress();
     renderAcademicMenu();
@@ -1113,18 +1132,10 @@ const renderAcademicMenu = () => {
   const pilares = [
     { id: 1, name: "Pilar 1: Mentalidad Ganadora", icon: "brain" },
     { id: 2, name: "Pilar 2: Gestión y Disciplina", icon: "shield-check" },
-    { id: 3, name: "Pilar 3: Estrategia de Valor", icon: "trending-up" },
-    { id: 4, name: "Pilar 4: Ejecución y Auditoría", icon: "activity" },
-    { id: 5, name: "Pilar 5: Bloques de Órdenes", icon: "box" },
-    { id: 6, name: "Pilar 6: Liquidez del Mercado", icon: "target" },
-    { id: 7, name: "Pilar 7: Fair Value Gaps", icon: "split" },
-    { id: 8, name: "Pilar 8: Fractalidad HTF/LTF", icon: "layers" },
-    { id: 9, name: "Pilar 9: Rangos de Descuento", icon: "percent" },
-    { id: 10, name: "Pilar 10: Mitigación & Breakers", icon: "repeat" },
-    { id: 11, name: "Pilar 11: Perfil de Volumen", icon: "bar-chart-2" },
-    { id: 12, name: "Pilar 12: Especulación de Fondos", icon: "award" },
-    { id: 13, name: "Pilar 13: Drawdown & Cierres", icon: "shield" },
-    { id: 14, name: "Pilar 14: Plan de Trading Final", icon: "check-square" }
+    { id: 3, name: "Pilar 3: Estrategia de Alta Probabilidad", icon: "trending-up" },
+    { id: 4, name: "Pilar 4: Ejecución y Evaluación", icon: "activity" },
+    { id: 5, name: "Pilar 5: Trading Institucional", icon: "box" },
+    { id: 6, name: "Pilar 6: Especialización y Plan Final", icon: "check-square" }
   ];
 
   pilares.forEach(pilar => {
@@ -1177,7 +1188,6 @@ window.togglePilarAccordion = (pilarId) => {
   renderAcademicMenu();
 };
 
-// Dynamic support chart generator for the 40 days of the course (TradingView-like style)
 const getGraphicForDay = (dayNum) => {
   const width = 500;
   const height = 220;
@@ -1451,15 +1461,6 @@ const getGraphicForDay = (dayNum) => {
       break;
 
     case 15:
-      title = "Ancla Metodológica";
-      elementsHtml += `
-        <path d="M 250,55 L 250,140 M 210,75 L 290,75 M 190,110 C 190,165 310,165 310,110" fill="none" stroke="#f59e0b" stroke-width="4.5" stroke-linecap="round" />
-        <circle cx="250" cy="55" r="10" stroke="#f59e0b" stroke-width="3" fill="none" />
-        <text x="250" y="165" fill="#f3f4f6" font-size="11" font-weight="bold" text-anchor="middle">PRESERVACIÓN DEL CAPITAL DE TRABAJO</text>
-      `;
-      break;
-
-    case 16:
       title = "Estructura de Mercado (Tendencia Alcista)";
       elementsHtml += wave([[40, 160], [100, 100], [140, 120], [210, 60], [250, 85], [320, 30], [360, 50], [420, 15]], "#3b82f6", 3.5);
       
@@ -1472,7 +1473,7 @@ const getGraphicForDay = (dayNum) => {
       elementsHtml += circle(360, 50, 4, "#10b981"); elementsHtml += text(360, 66, "HL", 9.5, "#10b981", "middle", "bold");
       break;
 
-    case 17:
+    case 16:
       title = "Quiebre de Estructura (BOS Bajista)";
       elementsHtml += wave([[40, 140], [100, 80], [160, 110], [220, 50], [280, 125], [320, 140]], "#3b82f6", 3.5);
       
@@ -1481,7 +1482,7 @@ const getGraphicForDay = (dayNum) => {
       elementsHtml += text(345, 114, "BOS Bajista (Quiebre)", 9.5, "#ef4444", "start", "bold");
       break;
 
-    case 18:
+    case 17:
       title = "Zonas de Oferta y Demanda";
       elementsHtml += `
         <rect x="40" y="30" width="420" height="35" fill="rgba(239, 68, 68, 0.05)" stroke="#ef4444" stroke-width="1.2" stroke-dasharray="2,2" rx="4" />
@@ -1492,7 +1493,7 @@ const getGraphicForDay = (dayNum) => {
       `;
       break;
 
-    case 19:
+    case 18:
       title = "Acción del Precio Pura";
       elementsHtml += `
         <!-- Stylized pinbar pattern -->
@@ -1503,7 +1504,7 @@ const getGraphicForDay = (dayNum) => {
       `;
       break;
 
-    case 20:
+    case 19:
       title = "La Ley de Polaridad";
       elementsHtml += line(40, 110, 460, 110, "#f59e0b", 2);
       elementsHtml += text(45, 100, "Resistencia Antigua", 9, "#f59e0b");
@@ -1513,7 +1514,7 @@ const getGraphicForDay = (dayNum) => {
       elementsHtml += circle(330, 110, 6, "#10b981");
       break;
 
-    case 21:
+    case 20:
       title = "EMA 200 y Momentum RSI";
       elementsHtml += wave([[40, 80], [120, 110], [200, 90], [280, 60], [360, 80], [440, 40]], "#3b82f6", 3.5);
       elementsHtml += wave([[40, 120], [120, 115], [200, 105], [280, 95], [360, 90], [440, 80]], "#f59e0b", 2);
@@ -1529,7 +1530,7 @@ const getGraphicForDay = (dayNum) => {
       `;
       break;
 
-    case 22:
+    case 21:
       title = "Faro de Dirección";
       elementsHtml += `
         <rect x="50" y="30" width="400" height="150" fill="#131a22" stroke="#242f3d" rx="8" />
@@ -1541,7 +1542,7 @@ const getGraphicForDay = (dayNum) => {
       `;
       break;
 
-    case 23:
+    case 22:
       title = "Cronograma Diario del Operador";
       elementsHtml += `
         <rect x="40" y="40" width="420" height="135" fill="#131a22" stroke="#242f3d" rx="8" />
@@ -1561,7 +1562,7 @@ const getGraphicForDay = (dayNum) => {
       `;
       break;
 
-    case 24:
+    case 23:
       title = "Checklist pre-market Visión Pro";
       elementsHtml += `
         <rect x="50" y="30" width="400" height="150" fill="#131a22" stroke="#242f3d" rx="8" />
@@ -1583,7 +1584,7 @@ const getGraphicForDay = (dayNum) => {
       });
       break;
 
-    case 25:
+    case 24:
       title = "Pulsaciones vs Enfoque Estoico";
       elementsHtml += `
         <rect x="40" y="30" width="420" height="150" fill="#131a22" stroke="#242f3d" rx="8" />
@@ -1598,7 +1599,7 @@ const getGraphicForDay = (dayNum) => {
       `;
       break;
 
-    case 26:
+    case 25:
       title = "Apagado y Cierre Operativo";
       elementsHtml += `
         <rect x="50" y="30" width="400" height="150" fill="#131a22" stroke="#ef4444" stroke-width="1.5" rx="8" />
@@ -1608,7 +1609,7 @@ const getGraphicForDay = (dayNum) => {
       `;
       break;
 
-    case 27:
+    case 26:
       title = "Métricas Reales vs Planificadas";
       elementsHtml += `
         <rect x="50" y="30" width="400" height="150" fill="#131a22" stroke="#242f3d" rx="8" />
@@ -1628,7 +1629,7 @@ const getGraphicForDay = (dayNum) => {
       `;
       break;
 
-    case 28:
+    case 27:
       title = "Agrupación de Errores Operativos";
       elementsHtml += `
         <rect x="50" y="30" width="400" height="150" fill="#131a22" stroke="#242f3d" rx="8" />
@@ -1647,14 +1648,14 @@ const getGraphicForDay = (dayNum) => {
       `;
       break;
 
-    case 29:
+    case 28:
       title = "Bucle de Mejora Continua Estoica";
       elementsHtml += `
         <rect x="50" y="30" width="400" height="150" fill="#131a22" stroke="#242f3d" rx="8" />
         
-        <path d="M 250,55 A 45,45 0 1,1 205,100" fill="none" stroke="#3b82f6" stroke-width="3" marker-end="url(#arr-29)" />
-        <path d="M 205,100 A 45,45 0 0,1 250,145" fill="none" stroke="#10b981" stroke-width="3" marker-end="url(#arr-29)" />
-        <path d="M 250,145 A 45,45 0 0,1 250,55" fill="none" stroke="#f59e0b" stroke-width="3" marker-end="url(#arr-29)" />
+        <path d="M 250,55 A 45,45 0 1,1 205,100" fill="none" stroke="#3b82f6" stroke-width="3" marker-end="url(#arr-28)" />
+        <path d="M 205,100 A 45,45 0 0,1 250,145" fill="none" stroke="#10b981" stroke-width="3" marker-end="url(#arr-28)" />
+        <path d="M 250,145 A 45,45 0 0,1 250,55" fill="none" stroke="#f59e0b" stroke-width="3" marker-end="url(#arr-28)" />
         
         <text x="250" y="80" fill="#3b82f6" font-size="8.5" font-weight="bold" text-anchor="middle">1. AUDITAR</text>
         <text x="180" y="115" fill="#10b981" font-size="8.5" font-weight="bold" text-anchor="middle">2. MEDIR</text>
@@ -1662,23 +1663,8 @@ const getGraphicForDay = (dayNum) => {
       `;
       break;
 
-    case 30:
-      title = "Diploma de Certificación Final";
-      elementsHtml += `
-        <rect x="80" y="30" width="340" height="150" fill="#131a22" stroke="#d4af37" stroke-width="3" rx="4" />
-        <rect x="88" y="38" width="324" height="134" fill="none" stroke="rgba(212,175,55,0.2)" stroke-width="1.2" />
-        
-        <text x="250" y="65" fill="#d4af37" font-size="13" font-weight="bold" text-anchor="middle" letter-spacing="2">DIPLOMA DE CERTIFICACIÓN</text>
-        <text x="250" y="85" fill="#9ca3af" font-size="7.5" text-anchor="middle">OTORGADO POR COMPLETAR EXPOSITIVAMENTE LA MASTERCLASS</text>
-        <text x="250" y="110" fill="#f3f4f6" font-size="14" font-weight="bold" text-anchor="middle">MAESTRÍA EN TRADING PROFESIONAL</text>
-        
-        <text x="350" y="142" fill="#d4af37" font-size="7" font-weight="bold" text-anchor="middle">Firma: Albert Sierra</text>
-      `;
-      break;
-
-    case 31:
+    case 29:
       title = "Order Block (OB) e Intervención Algorítmica";
-      // Stylized candles
       elementsHtml += `
         <!-- OB candle (bear) -->
         <rect x="80" y="110" width="20" height="40" fill="rgba(239, 68, 68, 0.15)" stroke="#ef4444" stroke-width="1.5" />
@@ -1701,8 +1687,8 @@ const getGraphicForDay = (dayNum) => {
       `;
       break;
 
-    case 32:
-      title = " sweeps de Liquidez (SSL / BSL)";
+    case 30:
+      title = "sweeps de Liquidez (SSL / BSL)";
       elementsHtml += `
         <line x1="40" y1="120" x2="460" y2="120" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="3,3" />
         <text x="50" y="112" fill="#ef4444" font-size="9">Sell Stops Pool (Soporte Obvio Minorista)</text>
@@ -1711,12 +1697,11 @@ const getGraphicForDay = (dayNum) => {
         <path d="M 60,80 L 150,120 L 220,90 L 290,120 L 310,155 L 350,60" fill="none" stroke="#3b82f6" stroke-width="3" />
         
         <circle cx="310" cy="155" r="5" fill="#10b981" />
-        <arrow x1="310" y1="190" x2="310" y2="162" color="#10b981" />
         <text x="310" y="202" fill="#10b981" font-size="9" font-weight="bold" text-anchor="middle">Barrido de Stops (SSL Sweep)</text>
       `;
       break;
 
-    case 33:
+    case 31:
       title = "Fair Value Gap (Ineficiencias)";
       elementsHtml += `
         <!-- Candle 1 -->
@@ -1737,7 +1722,7 @@ const getGraphicForDay = (dayNum) => {
       `;
       break;
 
-    case 34:
+    case 32:
       title = "Fractalidad del Mercado";
       elementsHtml += `
         <!-- Left Panel: HTF Bias -->
@@ -1752,11 +1737,11 @@ const getGraphicForDay = (dayNum) => {
         <path d="M 295,130 L 320,110 L 335,118 L 365,90 L 380,98 L 420,55" fill="none" stroke="#10b981" stroke-width="1.8" />
         
         <!-- Connection Arrow -->
-        <path d="M 225,105 L 275,105" stroke="#f59e0b" stroke-width="1.5" marker-end="url(#arr-34)" />
+        <path d="M 225,105 L 275,105" stroke="#f59e0b" stroke-width="1.5" marker-end="url(#arr-32)" />
       `;
       break;
 
-    case 35:
+    case 33:
       title = "Zonas Premium y Descuento";
       elementsHtml += `
         <!-- Equilibrium line -->
@@ -1773,7 +1758,7 @@ const getGraphicForDay = (dayNum) => {
       `;
       break;
 
-    case 36:
+    case 34:
       title = "Mitigación y Breaker Blocks";
       const brY = 110;
       elementsHtml += `
@@ -1790,7 +1775,7 @@ const getGraphicForDay = (dayNum) => {
       `;
       break;
 
-    case 37:
+    case 35:
       title = "POC y Subasta de Perfil de Volumen";
       const drawHorizontalVolumeBar = (y, w, isPOC) => {
         const color = isPOC ? "#ef4444" : "#3b82f6";
@@ -1818,7 +1803,7 @@ const getGraphicForDay = (dayNum) => {
       `;
       break;
 
-    case 38:
+    case 36:
       title = "Reglas de Drawdown Institucional";
       elementsHtml += `
         <rect x="50" y="40" width="400" height="130" fill="#131a22" stroke="#242f3d" rx="8" />
@@ -1837,7 +1822,7 @@ const getGraphicForDay = (dayNum) => {
       `;
       break;
 
-    case 39:
+    case 37:
       title = "Cierres Parciales y Riesgo Cero";
       const entryY = 110;
       const stopY = 145;
@@ -1858,7 +1843,7 @@ const getGraphicForDay = (dayNum) => {
       `;
       break;
 
-    case 40:
+    case 38:
       title = "El Checklist de Albert Sierra";
       elementsHtml += `
         <rect x="50" y="30" width="400" height="150" fill="#131a22" stroke="#d4af37" stroke-width="1.5" rx="8" />
@@ -1878,6 +1863,79 @@ const getGraphicForDay = (dayNum) => {
           <text x="95" y="${y + 3}" fill="#f3f4f6" font-size="9.5" font-weight="bold">${str}</text>
         `;
       });
+      break;
+
+    case 39:
+      title = "Curva de Crecimiento y Consistencia";
+      elementsHtml += `
+        <text x="250" y="45" fill="#f3f4f6" font-size="11" font-weight="bold" text-anchor="middle">PLAN DE ESCALAMIENTO PROFESIONAL</text>
+        <line x1="60" y1="160" x2="440" y2="160" stroke="#242f3d" stroke-width="1.5" />
+        <line x1="60" y1="60" x2="60" y2="160" stroke="#242f3d" stroke-width="1.5" />
+        
+        <path d="M 60,160 Q 180,150 260,100 T 420,60" fill="none" stroke="#10b981" stroke-width="3" />
+        <circle cx="260" cy="100" r="5" fill="#f59e0b" />
+        <text x="260" y="85" fill="#f59e0b" font-size="8.5" font-weight="bold" text-anchor="middle">Retiro Seguro ($2,500)</text>
+        
+        <circle cx="420" cy="60" r="5" fill="#10b981" />
+        <text x="425" y="52" fill="#10b981" font-size="8.5" font-weight="bold">Cuenta Duplicada / Escalamiento</text>
+      `;
+      break;
+
+    case 40:
+      title = "Gestión de Retiros y Payouts";
+      elementsHtml += `
+        <rect x="40" y="40" width="420" height="135" fill="#131a22" stroke="#242f3d" rx="6" />
+        <text x="250" y="62" fill="#f3f4f6" font-size="11" font-weight="bold" text-anchor="middle">Distribución de Beneficios (Prop Firm)</text>
+        
+        <g fill="#9ca3af" font-size="9.5" transform="translate(60, 95)">
+          <text x="0" y="0">1. RETIRO SOLICITADO:</text>
+          <text x="180" y="0" fill="#10b981" font-weight="bold">80% / 90% para el Trader</text>
+          
+          <text x="0" y="24">2. COLCHÓN DE DRAWDOWN:</text>
+          <text x="180" y="24" fill="#3b82f6" font-weight="bold">Mantener reserva de seguridad</text>
+          
+          <text x="0" y="48">3. CAPITAL INVISIBLE:</text>
+          <text x="180" y="48" fill="#f59e0b" font-weight="bold">Invertir en cuenta de fondos propios</text>
+        </g>
+      `;
+      break;
+
+    case 41:
+      title = "Plan de Interés Compuesto y Negocio";
+      elementsHtml += `
+        <rect x="50" y="30" width="400" height="150" fill="#131a22" stroke="#242f3d" rx="8" />
+        <text x="250" y="52" fill="#f3f4f6" font-size="10" font-weight="bold" text-anchor="middle">CRECIMIENTO ANUAL DE CAPITAL INVISIBLE</text>
+        
+        <!-- Bar 1 -->
+        <rect x="100" y="110" width="30" height="40" fill="#3b82f6" rx="2" />
+        <text x="115" y="165" fill="#9ca3af" font-size="8" text-anchor="middle">Mes 1</text>
+        
+        <!-- Bar 2 -->
+        <rect x="170" y="90" width="30" height="60" fill="#3b82f6" rx="2" />
+        <text x="185" y="165" fill="#9ca3af" font-size="8" text-anchor="middle">Mes 3</text>
+        
+        <!-- Bar 3 -->
+        <rect x="240" y="70" width="30" height="80" fill="#3b82f6" rx="2" />
+        <text x="255" y="165" fill="#9ca3af" font-size="8" text-anchor="middle">Mes 6</text>
+        
+        <!-- Bar 4 (Gold) -->
+        <rect x="310" y="45" width="30" height="105" fill="#d4af37" rx="2" />
+        <text x="325" y="165" fill="#d4af37" font-size="8" font-weight="bold" text-anchor="middle">Mes 12</text>
+      `;
+      break;
+
+    case 42:
+      title = "Diploma de Certificación Final";
+      elementsHtml += `
+        <rect x="80" y="30" width="340" height="150" fill="#131a22" stroke="#d4af37" stroke-width="3" rx="4" />
+        <rect x="88" y="38" width="324" height="134" fill="none" stroke="rgba(212,175,55,0.2)" stroke-width="1.2" />
+        
+        <text x="250" y="65" fill="#d4af37" font-size="13" font-weight="bold" text-anchor="middle" letter-spacing="2">DIPLOMA DE CERTIFICACIÓN</text>
+        <text x="250" y="85" fill="#9ca3af" font-size="7.5" text-anchor="middle">OTORGADO POR COMPLETAR EXPOSITIVAMENTE LA MASTERCLASS</text>
+        <text x="250" y="110" fill="#f3f4f6" font-size="14" font-weight="bold" text-anchor="middle">MAESTRÍA EN TRADING PROFESIONAL</text>
+        
+        <text x="350" y="142" fill="#d4af37" font-size="7" font-weight="bold" text-anchor="middle">Firma: Albert Sierra</text>
+      `;
       break;
 
     default:
@@ -1930,7 +1988,7 @@ window.loadDay = (dayId) => {
   // Toggle Quiz displaying if review day
   const quizCard = document.getElementById("academy-quiz-card");
   
-  if ([7, 15, 22, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40].includes(dayNum)) {
+  if ([7, 14, 21, 28, 35, 42].includes(dayNum)) {
     quizCard.style.display = "block";
     renderPilarQuiz(day.pilar);
   } else {
@@ -2713,7 +2771,7 @@ window.goToNextLesson = (autoPlayAudio) => {
   if (responseText) {
     localStorage.setItem(`vision_challenge_${activeDayId}`, responseText);
     const dayNum = parseInt(activeDayId.replace("day", ""));
-    const isExamDay = [7, 15, 22, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40].includes(dayNum);
+    const isExamDay = [7, 14, 21, 28, 35, 42].includes(dayNum);
 
     if (!isExamDay) {
       courseData[activeDayId].completed = true;

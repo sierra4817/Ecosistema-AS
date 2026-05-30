@@ -738,6 +738,11 @@ main {
   color: var(--text-primary);
 }
 
+#simulator {
+  max-width: 100% !important;
+  width: 100%;
+}
+
 .canvas-container {
   background-color: #080a0f;
   border: 1px solid var(--border-color);
@@ -750,13 +755,17 @@ main {
 .main-chart-canvas {
   display: block;
   width: 100%;
-  height: 380px;
+  height: 60vh;
+  min-height: 350px;
+  max-height: 650px;
 }
 
 .rsi-chart-canvas {
   display: block;
   width: 100%;
-  height: 120px;
+  height: 20vh;
+  min-height: 100px;
+  max-height: 180px;
   border-top: 1px solid var(--border-color);
 }
 
@@ -1003,8 +1012,8 @@ main {
 }
 
 .module-card-list {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 16px;
   margin-top: 20px;
 }

@@ -125,13 +125,12 @@ document.addEventListener("DOMContentLoaded", () => {
   let trendDuration = 100; // candles before switching trends
   let trendCount = 0;
   
-  // Resize handler
   const resizeCanvases = () => {
     // Set internal resolution based on CSS size
     chartCanvas.width = chartCanvas.parentElement.clientWidth;
-    chartCanvas.height = 380;
+    chartCanvas.height = chartCanvas.clientHeight || 380;
     rsiCanvas.width = rsiCanvas.parentElement.clientWidth;
-    rsiCanvas.height = 120;
+    rsiCanvas.height = rsiCanvas.clientHeight || 120;
     drawChart();
   };
 

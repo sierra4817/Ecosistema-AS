@@ -80,7 +80,7 @@
 
         <li class="menu-section-title">Contenido Académico</li>
         
-        <!-- Accordion container for 30-day syllabus built in JS -->
+        <!-- Accordion container for 42-day syllabus built in JS -->
         <div id="academic-menu-container" style="display: flex; flex-direction: column; gap: 4px; padding: 0 8px;"></div>
 
         <li class="menu-section-title">Herramientas Prácticas</li>
@@ -146,8 +146,8 @@
           <div class="card">
             <h2 class="card-title"><i data-lucide="graduation-cap"></i> Bienvenido al Curso de Trading Profesional</h2>
             <div class="lesson-body">
-              <p>Hola futuro trader profesional. Te damos la bienvenida al <strong>Curso de Trading Profesional: Maestría Técnica y Mental (Enfoque Estoico y Pragmático | 30 Días de Transformación)</strong>. Este programa está diseñado para convertir a un operador aficionado en un trader disciplinado, eliminando promesas de dinero fácil y centrándose en el control del riesgo, la lectura técnica limpia y el dominio emocional.</p>
-              <p>A través de este viaje de 30 días, aprenderás:</p>
+              <p>Hola futuro trader profesional. Te damos la bienvenida al <strong>Curso de Trading Profesional: Maestría Técnica y Mental (Enfoque Estoico y Pragmático | 42 Días de Transformación)</strong>. Este programa está diseñado para convertir a un operador aficionado en un trader disciplinado, eliminando promesas de dinero fácil y centrándose en el control del riesgo, la lectura técnica limpia y el dominio emocional.</p>
+              <p>A través de este viaje de 42 días, aprenderás:</p>
               <ul>
                 <li><strong>Mentalidad Ganadora:</strong> Desmitificando sesgos cognitivos y eliminando falsas expectativas.</li>
                 <li><strong>Gestión y Disciplina:</strong> Las matemáticas del trader, ratios R:R y control estricto del drawdown.</li>
@@ -166,33 +166,47 @@
         </div>
 
         <div class="card">
-          <h3 class="card-title"><i data-lucide="book-open"></i> Módulos de Transformación</h3>
+          <h3 class="card-title"><i data-lucide="book-open"></i> Pilares de Transformación</h3>
           <div class="module-card-list">
             <div class="module-card" onclick="window.openPillar(1)">
               <div class="module-card-info">
-                <span class="module-card-num">Módulo 1 (Semana 1)</span>
-                <span class="module-card-title">Mentalidad Ganadora (Pilar: Psicología)</span>
+                <span class="module-card-num">Pilar 1 (Semana 1)</span>
+                <span class="module-card-title">Mentalidad Ganadora (Psicología y Sesgos)</span>
               </div>
               <i data-lucide="chevron-right" class="text-secondary"></i>
             </div>
             <div class="module-card" onclick="window.openPillar(2)">
               <div class="module-card-info">
-                <span class="module-card-num">Módulo 2 (Semana 2)</span>
-                <span class="module-card-title">Gestión y Disciplina (Pilar: Riesgo Innegociable)</span>
+                <span class="module-card-num">Pilar 2 (Semana 2)</span>
+                <span class="module-card-title">Gestión y Disciplina (Matemáticas del Riesgo)</span>
               </div>
               <i data-lucide="chevron-right" class="text-secondary"></i>
             </div>
             <div class="module-card" onclick="window.openPillar(3)">
               <div class="module-card-info">
-                <span class="module-card-num">Módulo 3 (Semana 3)</span>
-                <span class="module-card-title">Estrategia de Alta Probabilidad (Pilar: Lectura Sin Ruido)</span>
+                <span class="module-card-num">Pilar 3 (Semana 3)</span>
+                <span class="module-card-title">Estrategia de Alta Probabilidad (Acción del Precio)</span>
               </div>
               <i data-lucide="chevron-right" class="text-secondary"></i>
             </div>
             <div class="module-card" onclick="window.openPillar(4)">
               <div class="module-card-info">
-                <span class="module-card-num">Módulo 4 (Semana 4)</span>
-                <span class="module-card-title">Ejecución y Evaluación (Pilar: Control bajo Presión)</span>
+                <span class="module-card-num">Pilar 4 (Semana 4)</span>
+                <span class="module-card-title">Ejecución y Evaluación (Rutinas y Auditoría)</span>
+              </div>
+              <i data-lucide="chevron-right" class="text-secondary"></i>
+            </div>
+            <div class="module-card" onclick="window.openPillar(5)">
+              <div class="module-card-info">
+                <span class="module-card-num">Pilar 5 (Semana 5)</span>
+                <span class="module-card-title">Trading Institucional (Smart Money y Liquidez)</span>
+              </div>
+              <i data-lucide="chevron-right" class="text-secondary"></i>
+            </div>
+            <div class="module-card" onclick="window.openPillar(6)">
+              <div class="module-card-info">
+                <span class="module-card-num">Pilar 6 (Semana 6)</span>
+                <span class="module-card-title">Especialización y Plan Final (Volumen y Consistencia)</span>
               </div>
               <i data-lucide="chevron-right" class="text-secondary"></i>
             </div>
@@ -453,7 +467,7 @@
             </div>
 
             <!-- TradingView Live widget container -->
-            <div class="tradingview-container" id="sim-tv-container" style="display: none; height: 500px; border: 1px solid var(--border-color); border-radius: var(--radius-md); overflow: hidden; background: #131722; width: 100%;">
+            <div class="tradingview-container" id="sim-tv-container" style="display: none; height: 78vh; min-height: 480px; max-height: 800px; border: 1px solid var(--border-color); border-radius: var(--radius-md); overflow: hidden; background: #131722; width: 100%;">
               <div id="tradingview_chart" style="height: 100%; width: 100%;"></div>
             </div>
           </div>
