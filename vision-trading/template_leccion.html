@@ -555,6 +555,13 @@
         updateUIProgress();
         renderSidebarMenu();
         loadLesson(nextId);
+        // Automatically start narration of the next lesson
+        setTimeout(() => {
+          const btn = document.getElementById("btn-audio-narrate");
+          if (btn) {
+            handleNarrateClick(nextId, btn);
+          }
+        }, 150);
       } else {
         saveProgress();
         updateUIProgress();
