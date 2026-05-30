@@ -25,7 +25,7 @@
   --radius-sm: 8px;
 
   --font-serif: 'Playfair Display', Georgia, serif;
-  --font-sans: 'Montserrat', sans-serif;
+  --font-sans: 'Inter', 'Montserrat', sans-serif;
   --font-mono: 'Space Grotesk', monospace;
 
   --transition-smooth: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -508,6 +508,30 @@ body {
 .btn-gold:hover {
   box-shadow: 0 6px 20px rgba(223, 183, 80, 0.45);
   transform: translateY(-1px);
+}
+
+.btn-pago-dorado {
+  background: linear-gradient(135deg, #d4af37 0%, #ab8222 50%, #f9e8a2 100%);
+  background-size: 200% auto;
+  color: #000000 !important;
+  box-shadow: 0 4px 20px rgba(212, 175, 55, 0.45);
+  border: 1px solid rgba(212, 175, 55, 0.6);
+  font-weight: 800;
+  text-transform: uppercase;
+  transition: all 0.4s ease;
+  animation: shimmer-gold 4s infinite linear;
+}
+
+.btn-pago-dorado:hover {
+  background-position: right center;
+  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.7);
+  transform: translateY(-2px);
+}
+
+@keyframes shimmer-gold {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 /* Sidebar Column Panels */

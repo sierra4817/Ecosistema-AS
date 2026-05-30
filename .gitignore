@@ -39,3 +39,7 @@ build/
 out/
 *.tmp
 *.temp
+
+# Python cache
+__pycache__/
+*.pyc
