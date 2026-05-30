@@ -115,6 +115,10 @@ document.addEventListener("DOMContentLoaded", () => {
   if (simBalanceEl) {
     simBalanceEl.textContent = `$${account.balance.toFixed(2)}`;
   }
+  const statBalanceInit = document.getElementById("stat-balance");
+  if (statBalanceInit) {
+    statBalanceInit.textContent = `$${account.balance.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+  }
 
   // Simulation parameters
   let ticksPerCandle = 10;
@@ -729,6 +733,10 @@ document.addEventListener("DOMContentLoaded", () => {
     // Hide Widget
     activePositionWidget.style.display = "none";
     simBalanceEl.textContent = `$${account.balance.toFixed(2)}`;
+    const statBalanceClose = document.getElementById("stat-balance");
+    if (statBalanceClose) {
+      statBalanceClose.textContent = `$${account.balance.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+    }
     simPnlEl.textContent = "$0.00";
     simPnlEl.className = "balance-val";
     simMarginEl.textContent = "$0.00";

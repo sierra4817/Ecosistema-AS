@@ -58,8 +58,8 @@
   <div class="app-container">
     
     <!-- Sidebar Navigation for 10 Pilares -->
-    <aside style="background: rgba(10, 10, 10, 0.85); border-right: 1px solid var(--border-color); padding: 20px;">
-      <div class="progress-widget">
+    <aside style="background: rgba(10, 10, 10, 0.85); border-right: 1px solid var(--border-color); padding: 20px; display: flex; flex-direction: column; gap: 15px; overflow-y: auto; height: 100vh; position: sticky; top: 0; min-width: 280px; max-width: 320px;">
+      <div class="progress-widget" style="flex-shrink: 0;">
         <div class="progress-header">
           <span class="progress-title">Progreso Académico</span>
           <span id="progress-text" class="progress-percentage">0%</span>
@@ -69,9 +69,85 @@
         </div>
       </div>
 
-      <ul class="menu-list" id="sidebar-pillars-menu" style="display: flex; flex-direction: column; gap: 6px; overflow-y: auto; max-height: calc(100vh - 180px); padding-bottom: 20px;">
+      <ul class="menu-list" id="sidebar-pillars-menu" style="display: flex; flex-direction: column; gap: 6px;">
         <!-- Dynamically rendered by JavaScript -->
       </ul>
+
+      <!-- Card: Resumen de Estadísticas -->
+      <div class="glass-panel stats-panel" style="margin-top: 15px; flex-shrink: 0;">
+        <h3 class="panel-title" style="margin-top: 0;">
+          <i data-lucide="layout-dashboard"></i>
+          Resumen Operativo
+        </h3>
+        
+        <div class="stat-rows-container">
+          <div class="stat-row">
+            <span class="stat-label">Balance Sim.</span>
+            <span class="stat-val highlight-gold" id="stat-balance">$10,000.00</span>
+          </div>
+          
+          <div class="stat-row">
+            <span class="stat-label">Lecciones Completadas</span>
+            <span class="stat-val" id="stat-completed-days">0 / 70</span>
+          </div>
+          
+          <div class="stat-row">
+            <span class="stat-label">Desafíos Bitácora</span>
+            <span class="stat-val" id="stat-challenges">0</span>
+          </div>
+
+          <div class="stat-row">
+            <span class="stat-label">Acceso al Manifiesto</span>
+            <span class="stat-val" id="stat-manifesto" style="font-weight: 700;">Bloqueado</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card: Calculadora Rápida de Riesgo (Widget) -->
+      <div class="glass-panel calculator-panel" style="flex-shrink: 0; margin-bottom: 20px;">
+        <h3 class="panel-title" style="margin-top: 0;">
+          <i data-lucide="calculator" class="icon-accent"></i>
+          Calculadora Rápida
+        </h3>
+        
+        <form id="quick-calc-form" onsubmit="event.preventDefault();">
+          <div class="quick-input-group">
+            <label class="calc-label" for="qc-capital">Capital de Cuenta ($)</label>
+            <input type="number" id="qc-capital" value="10000" min="100" class="calc-input">
+          </div>
+
+          <div class="quick-input-group">
+            <label class="calc-label" for="qc-risk-pct">Riesgo (%)</label>
+            <input type="number" id="qc-risk-pct" value="1" min="0.1" max="10" step="0.1" class="calc-input">
+          </div>
+
+          <div class="quick-input-group">
+            <label class="calc-label" for="qc-asset">Activo</label>
+            <select id="qc-asset" class="calc-select">
+              <option value="ES" selected>ES (S&P 500 Mini) - $50/pt</option>
+              <option value="MES">MES (S&P 500 Micro) - $5/pt</option>
+              <option value="NQ">NQ (Nasdaq Mini) - $20/pt</option>
+              <option value="MNQ">MNQ (Nasdaq Micro) - $2/pt</option>
+            </select>
+          </div>
+
+          <div class="quick-input-group">
+            <label class="calc-label" for="qc-sl-pts">Distancia SL (Puntos)</label>
+            <input type="number" id="qc-sl-pts" value="15" min="0.25" step="0.25" class="calc-input">
+          </div>
+
+          <div class="calc-results-widget">
+            <div class="qc-res-row">
+              <span class="qc-res-label">Pérdida Máxima:</span>
+              <span class="qc-res-val alert-red" id="qc-res-loss">$100.00</span>
+            </div>
+            <div class="qc-res-row">
+              <span class="qc-res-label">Contratos Óptimos:</span>
+              <span class="qc-res-val highlight-blue" id="qc-res-contracts">0.13 Contratos</span>
+            </div>
+          </div>
+        </form>
+      </div>
     </aside>
 
     <!-- Main Content Area -->
@@ -437,6 +513,121 @@
     let activeAccordion = 1;
     let selectedQuizAnswers = {};
 
+    function loadEcosystemStats() {
+      // 1. Course progress
+      const savedProgress = localStorage.getItem('vision_70day_progress');
+      let completedDaysCount = 0;
+      const totalDays = 70;
+      
+      if (savedProgress) {
+        try {
+          const parsed = JSON.parse(savedProgress);
+          if (parsed && parsed.days) {
+            Object.keys(parsed.days).forEach(key => {
+              if (parsed.days[key].completed) {
+                completedDaysCount++;
+              }
+            });
+          }
+        } catch (e) {
+          console.error("Error reading course progress:", e);
+        }
+      }
+
+      const statCompleted = document.getElementById('stat-completed-days');
+      if (statCompleted) statCompleted.textContent = `${completedDaysCount} / ${totalDays}`;
+
+      // 2. Bitácora challenges
+      let challengesCount = 0;
+      for (let i = 1; i <= 70; i++) {
+        const response = localStorage.getItem(`vision_challenge_day${i}`);
+        if (response && response.trim() !== '') {
+          challengesCount++;
+        }
+      }
+      const statChallenges = document.getElementById('stat-challenges');
+      if (statChallenges) statChallenges.textContent = challengesCount.toString();
+
+      // 3. Balance Sim
+      const savedBalance = localStorage.getItem('vision_simulator_balance');
+      let balanceVal = 10000.00;
+      if (savedBalance) {
+        const parsed = parseFloat(savedBalance);
+        if (!isNaN(parsed)) {
+          balanceVal = parsed;
+        }
+      }
+      const statBalance = document.getElementById('stat-balance');
+      if (statBalance) {
+        statBalance.textContent = `$${balanceVal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+      }
+
+      // 4. Acceso al Manifiesto
+      const subscriberEmail = localStorage.getItem('capital_invisible_subscriber');
+      const statManifesto = document.getElementById('stat-manifesto');
+      if (statManifesto) {
+        if (subscriberEmail && subscriberEmail.trim() !== '') {
+          statManifesto.textContent = 'Suscrito (Libre)';
+          statManifesto.style.color = '#10b981';
+        } else {
+          statManifesto.textContent = 'Bloqueado';
+          statManifesto.style.color = '#ef4444';
+        }
+      }
+    }
+
+    function initQuickCalculator() {
+      const qcCapital = document.getElementById('qc-capital');
+      const qcRisk = document.getElementById('qc-risk-pct');
+      const qcAsset = document.getElementById('qc-asset');
+      const qcSlPts = document.getElementById('qc-sl-pts');
+
+      if (!qcCapital || !qcRisk || !qcAsset || !qcSlPts) return;
+
+      const calculate = () => {
+        const capital = parseFloat(qcCapital.value) || 0;
+        const riskPct = parseFloat(qcRisk.value) || 0;
+        const asset = qcAsset.value;
+        const slPts = parseFloat(qcSlPts.value) || 0.25;
+
+        const lossMoney = capital * (riskPct / 100);
+
+        const specs = {
+          ES: 50,
+          MES: 5,
+          NQ: 20,
+          MNQ: 2
+        };
+
+        const pointValue = specs[asset] || 50;
+
+        let contracts = 0;
+        if (slPts > 0) {
+          contracts = lossMoney / (slPts * pointValue);
+        }
+
+        const resLoss = document.getElementById('qc-res-loss');
+        const resContracts = document.getElementById('qc-res-contracts');
+
+        if (resLoss) {
+          resLoss.textContent = `$${lossMoney.toFixed(2)}`;
+        }
+        if (resContracts) {
+          resContracts.textContent = `${contracts.toFixed(2)} Contratos`;
+          if (contracts < 1.0 && (asset === 'ES' || asset === 'NQ')) {
+            resContracts.innerHTML = `${contracts.toFixed(2)} <span style="font-size:0.65rem; color:#f59e0b; display:block; font-weight:normal;">(Considera Micro ${asset === 'ES' ? 'MES' : 'MNQ'})</span>`;
+          }
+        }
+      };
+
+      [qcCapital, qcRisk, qcAsset, qcSlPts].forEach(element => {
+        element.addEventListener('input', calculate);
+        element.addEventListener('change', calculate);
+      });
+
+      calculate();
+    }
+
     // Load data from JSON or local script
     async function init() {
       try {
@@ -491,6 +682,8 @@
         renderSidebarMenu();
         loadLesson(currentDayId);
         updateUIProgress();
+        loadEcosystemStats();
+        initQuickCalculator();
 
       } catch (err) {
         console.error("Failed to initialize course engine:", err);
@@ -749,6 +942,8 @@
       const certAvailable = Object.values(progressState.quizzes).every(val => val === true);
       const certItem = document.getElementById("menu-item-certificate");
       if (certItem) certItem.style.display = certAvailable ? "block" : "none";
+
+      loadEcosystemStats();
     }
 
     // Handle Challenge bitácora save
@@ -756,6 +951,7 @@
       const response = document.getElementById("challenge-response-input").value;
       localStorage.setItem(`vision_challenge_${currentDayId}`, response);
       alert("Desafío guardado exitosamente en tu bitácora.");
+      loadEcosystemStats();
     });
 
     // Handle Navigation Previous Lesson
