@@ -1,0 +1,686 @@
+// Centralized Course Database
+window.courseModules = [
+  {
+    "id": 1,
+    "name": "Módulo 1: Fundamentos de la Subasta Financiera (Psicología y Mecánica)",
+    "icon": "brain"
+  },
+  {
+    "id": 2,
+    "name": "Módulo 2: Matemáticas del Riesgo y Ruina (Gestión de Capital)",
+    "icon": "shield-check"
+  },
+  {
+    "id": 3,
+    "name": "Módulo 3: Estructura del Mercado y Tendencias (Acción del Precio)",
+    "icon": "trending-up"
+  },
+  {
+    "id": 4,
+    "name": "Módulo 4: Filtros Operativos y Confluencias (EMA 200 y RSI)",
+    "icon": "activity"
+  },
+  {
+    "id": 5,
+    "name": "Módulo 5: Bloques de Órdenes (Order Blocks Institucionales)",
+    "icon": "box"
+  },
+  {
+    "id": 6,
+    "name": "Módulo 6: Liquidez Avanzada (Stops Sweeps y Pools de Liquidez)",
+    "icon": "target"
+  },
+  {
+    "id": 7,
+    "name": "Módulo 7: Vacíos de Liquidez (Fair Value Gaps y Rebalanceos)",
+    "icon": "split"
+  },
+  {
+    "id": 8,
+    "name": "Módulo 8: Análisis Multitemporal Fractal (Top-Down de H4 a M1)",
+    "icon": "layers"
+  },
+  {
+    "id": 9,
+    "name": "Módulo 9: Especialización de Firmas de Fondeo (Prop Firms y Drawdown)",
+    "icon": "award"
+  },
+  {
+    "id": 10,
+    "name": "Módulo 10: Plan de Negocios y Consistencia (Crecimiento de Capital)",
+    "icon": "check-square"
+  }
+];
+
+window.courseData = {
+  "day1": {
+    "id": "day1",
+    "pilar": 1,
+    "title": "El Precio es la Única Realidad",
+    "challenge": "Identifica y documenta un sesgo de falsas expectativas en tu bitácora.",
+    "content": "<p>El mercado es un mecanismo de subasta doble continua. El precio de cotización en cada segundo es el único consenso de valor real en ese instante. Proyectar deseos subjetivos sobre el gráfico es una fantasía destructiva.</p><ul><li><strong>Aceptación Objetiva:</strong> Si tu stop es cruzado, acepta que tu hipótesis era incorrecta.</li><li><strong>Desapego:</strong> Un trader consistente no busca tener razón; busca fluir con el flujo de capital real.</li></ul>",
+    "mindset": "Concéntrate en el proceso, no en el resultado. Lo que no está bajo tu control (el movimiento del mercado) debe ser aceptado de forma neutral.",
+    "graphic_desc": "chart_reality"
+  },
+  "day2": {
+    "id": "day2",
+    "pilar": 1,
+    "title": "Sesgos Cognitivos en el Trading",
+    "challenge": "Identifica y documenta tu sesgo cognitivo más frecuente durante el análisis.",
+    "content": "<p>Los sesgos cognitivos son atajos mentales que el cerebro evolutivo utiliza para protegerse del peligro, pero en el entorno probabilístico del trading resultan letales para tu capital de trabajo.</p><ul><li><strong>Aversión a la Pérdida:</strong> Mover el Stop Loss con la esperanza irreal de un rebote.</li><li><strong>Confirmación:</strong> Buscar sólo indicadores que apoyen tu posición abierta.</li></ul>",
+    "mindset": "La mente prefiere una mentira cómoda antes que una verdad dolorosa. Tu labor es auditar científicamente tu comportamiento frente al gráfico.",
+    "graphic_desc": "chart_biases"
+  },
+  "day3": {
+    "id": "day3",
+    "pilar": 1,
+    "title": "La Ilusión de la Certeza",
+    "challenge": "Explica por qué un trade individual impecable puede resultar en pérdida.",
+    "content": "<p>El mercado es un entorno de probabilidades puras. Cada operación es un evento estadísticamente aislado. Incluso con un sistema de 60% de acierto, rachas de 5 pérdidas consecutivas son matemáticamente normales a corto plazo.</p>",
+    "mindset": "El destino de un solo trade es aleatorio; el destino de 100 operaciones es estadística. Piensa en muestras de datos grandes.",
+    "graphic_desc": "chart_probability"
+  },
+  "day4": {
+    "id": "day4",
+    "pilar": 1,
+    "title": "Anatomía de la Manipulación de Mercado",
+    "challenge": "Busca un rompimiento falso de soporte que haya terminado en inyección alcista.",
+    "content": "<p>Las grandes instituciones operan con volúmenes masivos de contratos. Para comprar barato sin desplazar el precio, necesitan inducir ventas minoristas activando Stop Losses de soporte para obtener contrapartida barata.</p>",
+    "mindset": "No intentes pelear contra los gigantes; comprende sus necesidades de liquidez y muévete sigilosamente detrás de sus huellas.",
+    "graphic_desc": "chart_manipulation"
+  },
+  "day5": {
+    "id": "day5",
+    "pilar": 1,
+    "title": "Entendiendo el Short Squeeze",
+    "challenge": "Identifica un movimiento vertical parabólico provocado por cierre de cortos.",
+    "content": "<p>Un Short Squeeze es una cascada de compras forzadas. Ocurre cuando los Stop Losses de los vendedores en corto (que son órdenes de compra a mercado) se activan consecutivamente, impulsando el precio exponencialmente al alza.</p>",
+    "mindset": "Nunca intentes adivinar el techo de un movimiento parabólico. Luchar contra compras forzadas es suicidio financiero.",
+    "graphic_desc": "chart_squeeze"
+  },
+  "day6": {
+    "id": "day6",
+    "pilar": 1,
+    "title": "Identificación de Trampas y Fakeouts",
+    "challenge": "Diferencia en tu bitácora un sweep de mecha de una ruptura con cuerpo completo.",
+    "content": "<p>Un fakeout ocurre cuando el precio supera una resistencia pero regresa al rango inmediatamente, cerrando por debajo con mecha superior larga. Una ruptura real (BOS) requiere cierre de cuerpo de vela fuera del nivel.</p>",
+    "mindset": "La paciencia es tu mejor filtro técnico. Espera siempre a que cierre la vela antes de tomar decisiones operativas.",
+    "graphic_desc": "chart_fakeout"
+  },
+  "day7": {
+    "id": "day7",
+    "pilar": 1,
+    "title": "Evaluación del Módulo 1 y Manifiesto",
+    "challenge": "Firma tu manifiesto de mentalidad y aprueba la primera evaluación semanal.",
+    "content": "<p>Felicidades por completar el Módulo 1. Has aprendido que el precio es la única realidad y has expuesto los mecanismos de manipulación. Adopta la Dicotomía del Control Estoica en tu proceso a partir de hoy.</p>",
+    "mindset": "Acepto neutralmente cualquier resultado financiero que el mercado decida entregarme en cada trade individual.",
+    "graphic_desc": "chart_module1_exam"
+  },
+  "day8": {
+    "id": "day8",
+    "pilar": 2,
+    "title": "Matemáticas del Trader Profesional",
+    "challenge": "Calcula el drawdown máximo de tu cuenta simulada arriesgando el 1% por trade.",
+    "content": "<p>El drawdown representa la reducción del capital operativo desde un máximo. La pérdida del 50% de tu cuenta requiere una ganancia del 100% solo para volver al punto inicial (Breakeven). Mantén tu riesgo unitario muy pequeño.</p>",
+    "mindset": "La supervivencia financiera precede a la rentabilidad. Gestiona las pérdidas hoy para poder operar mañana.",
+    "graphic_desc": "chart_drawdown"
+  },
+  "day9": {
+    "id": "day9",
+    "pilar": 2,
+    "title": "Asimetría Matemática y Ratio R:R",
+    "challenge": "Calcula el beneficio neto de 20 operaciones con 40% de acierto y R:R 1:2.",
+    "content": "<p>No necesitas una alta tasa de acierto para ser rentable si buscas un ratio de Riesgo/Beneficio asimétrico (R:R 1:2 o superior). Con 4 ganadoras de 10 operaciones, el neto financiero es positivo.</p>",
+    "mindset": "Libérate de la necesidad psicológica de tener razón siempre. Deja que la asimetría matemática haga el trabajo duro.",
+    "graphic_desc": "chart_asymmetry"
+  },
+  "day10": {
+    "id": "day10",
+    "pilar": 2,
+    "title": "El Límite de Pérdida Diaria (Drawdown)",
+    "challenge": "Define tu protocolo de apagado inmediato y tu límite de pérdida diario en dólares.",
+    "content": "<p>El Daily Drawdown es el cinturón de seguridad contra el secuestro de la amígdala cerebral. Si tocas tu límite de pérdida programado (ej. 2% diario), tu única tarea es apagar el ordenador.</p>",
+    "mindset": "El autocontrol es la mayor victoria del trader. Saber cuándo detenerse te separa de los operadores que queman cuentas.",
+    "graphic_desc": "chart_daily_limit"
+  },
+  "day11": {
+    "id": "day11",
+    "pilar": 2,
+    "title": "La Bitácora de Trading",
+    "challenge": "Registra una operación en tu bitácora evaluando tus emociones durante la misma.",
+    "content": "<p>Lo que no se mide no se puede mejorar. Tu bitácora debe registrar: Checklist respetado, tamaño de posición exacto, Stop Loss original inalterado y emociones experimentadas.",
+    "mindset": "La autoevaluación honesta y constante es el único camino hacia el dominio de una habilidad compleja.",
+    "graphic_desc": "chart_journal"
+  },
+  "day12": {
+    "id": "day12",
+    "pilar": 2,
+    "title": "Cómo Documentar Procesos Operativos",
+    "challenge": "Anota las comisiones exactas y deslizamiento (slippage) estimado en tu última operación.",
+    "content": "<p>Un profesional evalúa su desempeño según la adherencia a sus procesos y reglas operativas, no por los resultados financieros individuales a corto plazo. Documenta costos y comisiones como gastos comerciales.</p>",
+    "mindset": "Un trade ganador fuera de tus reglas es un error grave. Un trade perdedor dentro de tu checklist es un éxito operativo.",
+    "graphic_desc": "chart_processes"
+  },
+  "day13": {
+    "id": "day13",
+    "pilar": 2,
+    "title": "Construcción de un Sistema Repetible",
+    "challenge": "Explica por qué operar de forma aleatoria impide tener una ventaja estadística válida.",
+    "content": "<p>Para saber si un setup tiene esperanza matemática positiva, debes ejecutarlo con reglas idénticas al menos 100 veces. Cambiar de estrategia constantemente destruye la muestra estadística.",
+    "mindset": "La consistencia de comportamiento precede a la consistencia de resultados. Conviértete en un algoritmo disciplinado.",
+    "graphic_desc": "chart_systematic"
+  },
+  "day14": {
+    "id": "day14",
+    "pilar": 2,
+    "title": "Cálculo Dinámico de Contratos & Examen",
+    "challenge": "Completa el examen del Módulo 2 y firma tu manifiesto de gestión del riesgo.",
+    "content": "<p>El tamaño de la posición nunca se estima. Se calcula: Contratos = Riesgo Monetario Máximo / (Distancia Stop Loss x Valor Punto). Si la volatilidad aumenta, reduce el tamaño de contratos.</p>",
+    "mindset": "Nunca arriesgues más de lo programado por setup. El riesgo es lo único que puedes controlar de forma absoluta.",
+    "graphic_desc": "chart_module2_exam"
+  },
+  "day15": {
+    "id": "day15",
+    "pilar": 3,
+    "title": "Estructura de Mercado Real",
+    "challenge": "Identifica una serie de máximos más altos (HH) y mínimos más altos (HL) en tendencia alcista.",
+    "content": "<p>El precio se mueve en una estructura de ondas determinadas por el flujo de órdenes en tiempo real. La estructura nos indica la dirección dominante de la subasta (Alcista: HH y HL; Bajista: LH y LL).</p>",
+    "mindset": "Alinear tus operaciones con la dirección de la estructura del mercado es la base fundamental de todo setup de alta probabilidad.",
+    "graphic_desc": "chart_structure"
+  },
+  "day16": {
+    "id": "day16",
+    "pilar": 3,
+    "title": "Ruptura de Estructura (BOS)",
+    "challenge": "Busca un BOS alcista confirmado con cierre de cuerpo de vela en temporalidad de 15 minutos.",
+    "content": "<p>El BOS (Break of Structure) ocurre cuando el precio rompe y cierra con cuerpo de vela por encima de un máximo anterior (alcista) o por debajo de un mínimo anterior (bajista), confirmando la tendencia.</p>",
+    "mindset": "Espera confirmaciones claras. Entrar antes de la ruptura de estructura es especular sobre deseos y no realidades.",
+    "graphic_desc": "chart_bos"
+  },
+  "day17": {
+    "id": "day17",
+    "pilar": 3,
+    "title": "Cambio de Carácter (CHoCH)",
+    "challenge": "Identifica la transición de una tendencia bajista a alcista marcada por un CHoCH.",
+    "content": "<p>El CHoCH (Change of Character) es el primer cambio de dirección en la estructura del mercado. Indica que la fuerza dominante previa está perdiendo el control y se avecina una reversión.</p>",
+    "mindset": "Sé flexible ante los cambios del gráfico. El mercado cambia constantemente de dirección; tu mente también debe hacerlo.",
+    "graphic_desc": "chart_choch"
+  },
+  "day18": {
+    "id": "day18",
+    "pilar": 3,
+    "title": "Soportes y Resistencias de Valor",
+    "challenge": "Identifica en el gráfico una zona donde el precio haya rebotado al menos dos veces y márcala.",
+    "content": "<p>Los soportes y resistencias no son líneas, sino zonas de acumulación de órdenes institucionales pendientes. Operar en estas zonas de valor aumenta dramáticamente la probabilidad del setup.</p>",
+    "mindset": "Busca confluencia. Operar en el vacío sin niveles estructurales detrás es jugar al azar con tu capital.",
+    "graphic_desc": "chart_zones"
+  },
+  "day19": {
+    "id": "day19",
+    "pilar": 3,
+    "title": "Acción del Precio Pura",
+    "challenge": "Analiza la acción del precio actual en tu simulador sin añadir indicadores.",
+    "content": "<p>El trading con acción de precio pura se enfoca en el comportamiento de las velas, su tamaño, mechas y velocidad. Eliminar el ruido de indicadores retail mejora la velocidad y la toma de decisiones.</p>",
+    "mindset": "Simplifica tu análisis. El exceso de información satura el cerebro prefrontal y bloquea tu capacidad de ejecución.",
+    "graphic_desc": "chart_price_action"
+  },
+  "day20": {
+    "id": "day20",
+    "pilar": 3,
+    "title": "Ley de Polaridad Transaccional",
+    "challenge": "Busca un ejemplo de resistencia rota que actúe como soporte y anota su precio.",
+    "content": "<p>La Ley de Polaridad demuestra la memoria transaccional: una zona de resistencia rota con volumen se convierte en un soporte fuerte porque los vendedores atrapados cierran en breakeven al retornar el precio.</p>",
+    "mindset": "El mercado tiene memoria porque los participantes tienen emociones. Aprovecha los retrocesos a zonas de polaridad.",
+    "graphic_desc": "chart_polarity"
+  },
+  "day21": {
+    "id": "day21",
+    "pilar": 3,
+    "title": "Evaluación de Lectura Estructural",
+    "challenge": "Completa el examen del Módulo 3 y certifica tu lectura de estructura de mercado.",
+    "content": "<p>Felicidades por culminar el Módulo 3. Has aprendido a leer estructuras, BOS, CHoCH y zonas de polaridad transaccional de forma profesional. Estás listo para integrar filtros avanzados.</p>",
+    "mindset": "La maestría técnica requiere constancia y paciencia. Has consolidado el pilar de la lectura de la acción del precio.",
+    "graphic_desc": "chart_module3_exam"
+  },
+  "day22": {
+    "id": "day22",
+    "pilar": 4,
+    "title": "El Filtro de Tendencia de Fondo (EMA 200)",
+    "challenge": "Configura la EMA 200 e identifica si el precio cotiza por encima (compras) o por debajo (ventas).",
+    "content": "<p>La Media Móvil Exponencial de 200 periodos actúa como brújula direccional. Si el precio cotiza arriba, la tendencia mayor es alcista y filtramos compras. Si cotiza por debajo, filtramos ventas.</p>",
+    "mindset": "No luches contra la marea de fondo. Opera en la dirección de la tendencia mayor para tener la corriente a tu favor.",
+    "graphic_desc": "chart_ema200"
+  },
+  "day23": {
+    "id": "day23",
+    "pilar": 4,
+    "title": "Momentum de Oscilador (RSI 14)",
+    "challenge": "Identifica un cruce del nivel 50 en el RSI 14 alineado con la dirección de la EMA 200.",
+    "content": "<p>El Relative Strength Index (RSI) mide la fuerza del impulso del precio. Confirmamos el momentum alcista cuando el RSI 14 cruza por encima del nivel neutral 50 a favor de la tendencia de la EMA 200.</p>",
+    "mindset": "Espera a que el impulso esté de tu lado. Entrar en mercados exhaustos o sin momentum reduce tu tasa de acierto.",
+    "graphic_desc": "chart_rsi"
+  },
+  "day24": {
+    "id": "day24",
+    "pilar": 4,
+    "title": "Zonas de Confluencia Estadística",
+    "challenge": "Busca un setup de compra donde confluyan: polaridad S/R, EMA 200 por debajo y RSI > 50.",
+    "content": "<p>La confluencia es la coincidencia de múltiples factores técnicos en un mismo nivel de precios. Al cruzar polaridades estructurales con filtros de tendencia y osciladores, la probabilidad estadística aumenta.</p>",
+    "mindset": "Busca la acumulación de evidencias a tu favor antes de arriesgar tu capital operativo. Sé un selector de setups exigente.",
+    "graphic_desc": "chart_confluence"
+  },
+  "day25": {
+    "id": "day25",
+    "pilar": 4,
+    "title": "Rutinas de Sesión y Pre-market",
+    "challenge": "Documenta tu checklist pre-market con 5 puntos obligatorios antes de la apertura.",
+    "content": "<p>Un trader profesional sigue un protocolo rígido antes de operar: revisión de noticias económicas de alto impacto, marcaje de zonas clave en temporalidades mayores y configuración de alarmas.</p>",
+    "mindset": "La preparación del pre-market determina la calidad de tu ejecución bajo presión durante la sesión operativa.",
+    "graphic_desc": "chart_routine"
+  },
+  "day26": {
+    "id": "day26",
+    "pilar": 4,
+    "title": "Ejecución bajo Presión",
+    "challenge": "Realiza 5 operaciones en el simulador y puntúa del 1 al 10 tu nivel de calma antes de entrar.",
+    "content": "<p>Durante la sesión, el estrés estimula la amígdala cerebral y promueve conductas irracionales. Ejecutar tu setup basado en el checklist te ayuda a mantener la calma emocional.</p>",
+    "mindset": "Acepta el costo del stop loss de antemano. El miedo a perder es lo que bloquea tu disciplina operativa.",
+    "graphic_desc": "chart_execution"
+  },
+  "day27": {
+    "id": "day27",
+    "pilar": 4,
+    "title": "Bitácora de Errores Operativos",
+    "challenge": "Identifica tu último error en simulador y clasifícalo como 'técnico' o 'emocional'.",
+    "content": "<p>Los errores se clasifican rigurosamente: Técnico (error al trazar zonas, cálculo de contratos) o Emocional (entrar por FOMO, mover stop loss, sobreoperar por revancha).</p>",
+    "mindset": "Errar es parte de la estadística; no documentar ni corregir el error es negligencia contra tu propio negocio.",
+    "graphic_desc": "chart_errors"
+  },
+  "day28": {
+    "id": "day28",
+    "pilar": 4,
+    "title": "Mejora Continua Kaizen & Examen",
+    "challenge": "Aprueba el examen del Módulo 4 y define una acción correctiva para tu error más frecuente.",
+    "content": "<p>Felicidades por completar el Módulo 4. Para evitar la sobreoperación o la ansiedad de entrada, automatiza barreras de comportamiento como alarmas o reglas de apagado inmediatas.</p>",
+    "mindset": "Con el Módulo 4 finalizas las bases del trading clásico. Prepárate para el salto al trading institucional SMC.",
+    "graphic_desc": "chart_module4_exam"
+  },
+  "day29": {
+    "id": "day29",
+    "pilar": 5,
+    "title": "Bloques de Órdenes (Order Blocks)",
+    "challenge": "Identifica un Order Block en el origen de un fuerte movimiento expansivo que rompió estructura.",
+    "content": "<p>Un Order Block (OB) es la última vela en sentido opuesto antes de una expansión impulsiva con fuerte volumen institucional. Representa el rastro donde las grandes instituciones acumularon órdenes límite.</p>",
+    "mindset": "Opera en las huellas de las instituciones. No intentes adivinar los movimientos; sigue los bloques de acumulación.",
+    "graphic_desc": "chart_ob_intro"
+  },
+  "day30": {
+    "id": "day30",
+    "pilar": 5,
+    "title": "Tipos de OB: Mitigados y No Mitigados",
+    "challenge": "Dibuja un OB no mitigado y marca el nivel exacto del 50% como zona sensible.",
+    "content": "<p>Un OB no mitigado (inmaculado) conserva las órdenes pendientes institucionales intactas. El retorno del precio a testear el bloque (mitigación) reactiva estas órdenes, provocando un fuerte rebote técnico.</p>",
+    "mindset": "Ten la paciencia de esperar a que el precio regrese a tus zonas de interés POI antes de apretar el gatillo.",
+    "graphic_desc": "chart_ob_mitigation"
+  },
+  "day31": {
+    "id": "day31",
+    "pilar": 5,
+    "title": "Order Blocks de Origen vs Decisión",
+    "challenge": "Compara un OB en el origen del rango frente a un OB decisivo que generó la ruptura BOS.",
+    "content": "<p>El OB de Origen se sitúa al inicio del impulso estructural. El OB Decisivo es el responsable inmediato de romper la estructura previa. Ambos son zonas sensibles para colocar órdenes límite de entrada.</p>",
+    "mindset": "Gestiona tu capital seleccionando únicamente los bloques de órdenes de mayor probabilidad y mejor R:R.",
+    "graphic_desc": "chart_ob_origin_decision"
+  },
+  "day32": {
+    "id": "day32",
+    "pilar": 5,
+    "title": "Refinamiento de OB en Temporalidades Menores",
+    "challenge": "Refina un OB de temporalidad de 1 Hora buscando su equivalente en 5 Minutos.",
+    "content": "<p>El refinamiento consiste en buscar el bloque de órdenes en una temporalidad menor (LTF) dentro del bloque de temporalidad mayor (HTF). Esto reduce el tamaño del Stop Loss y aumenta el R:R significativamente.</p>",
+    "mindset": "Usa la fractalidad para afinar tu precisión, pero sin perder de vista la tendencia estructural de fondo.",
+    "graphic_desc": "chart_ob_refinement"
+  },
+  "day33": {
+    "id": "day33",
+    "pilar": 5,
+    "title": "El Rastro del Capital Institucional",
+    "challenge": "Explica la diferencia de volumen entre una consolidación y la expansión de un bloque de órdenes.",
+    "content": "<p>Las instituciones operan con algoritmos interbancarios. Las expansiones bruscas de precio y volumen revelan la presencia de capital institucional. Las consolidaciones son fases de acumulación lateral.</p>",
+    "mindset": "Mantén la frialdad. Opera únicamente cuando las intenciones institucionales sean evidentes en el gráfico.",
+    "graphic_desc": "chart_institutional_trail"
+  },
+  "day34": {
+    "id": "day34",
+    "pilar": 5,
+    "title": "Zonas de Oferta y Demanda de Fuerte Expansión",
+    "challenge": "Identifica una zona de oferta de alta volatilidad donde el precio cayó con velas de gran cuerpo.",
+    "content": "<p>Las zonas de oferta y demanda con desplazamientos violentos indican un desequilibrio masivo. Al retestear estas zonas por primera vez, la probabilidad de defensa por parte de las instituciones es muy alta.</p>",
+    "mindset": "Colócate del lado del desequilibrio de la oferta y la demanda. No intentes operar en rangos ruidosos sin volumen.",
+    "graphic_desc": "chart_supply_demand"
+  },
+  "day35": {
+    "id": "day35",
+    "pilar": 5,
+    "title": "Evaluación de Order Blocks & Examen",
+    "challenge": "Completa el examen del Módulo 5 para certificar tus conocimientos en Order Blocks.",
+    "content": "<p>Felicidades por completar el Módulo 5. Has aprendido a identificar bloques de órdenes, mitigaciones, origen, decisión y a refinar tus zonas en temporalidades menores para optimizar tus ratios R:R.</p>",
+    "mindset": "Has dominado la primera herramienta clave de la metodología SMC. La disciplina y la práctica consolidarán tu maestría.",
+    "graphic_desc": "chart_module5_exam"
+  },
+  "day36": {
+    "id": "day36",
+    "pilar": 6,
+    "title": "Caza de Liquidez y Soportes Retail",
+    "challenge": "Encuentra una zona de soporte retail que haya sido perforada por una mecha antes de subir con fuerza.",
+    "content": "<p>El dinero minorista (retail) coloca sus Stop Losses justo por debajo de soportes obvios. Las instituciones utilizan estos Stop Losses (órdenes de venta) como contrapartida barata para acumular compras.</p>",
+    "mindset": "Entiende que el mercado está diseñado para cazar a la masa. Deja de pensar como minorista y opera con las instituciones.",
+    "graphic_desc": "chart_retail_liquidity"
+  },
+  "day37": {
+    "id": "day37",
+    "pilar": 6,
+    "title": "Sell Stop Liquidity (SSL Sweep)",
+    "challenge": "Identifica un barrido de mínimos relativos iguales (EQL) que haya terminado en reversión alcista.",
+    "content": "<p>El SSL Sweep ocurre cuando el precio barre los Stop Losses acumulados debajo de mínimos previos e inmediatamente revierte su dirección al alza, confirmando la absorción institucional de la liquidez.</p>",
+    "mindset": "No entres en la zona de soporte; espera a que la liquidez sea barrida (sweep) para unirte al movimiento institucional real.",
+    "graphic_desc": "chart_ssl_sweep"
+  },
+  "day38": {
+    "id": "day38",
+    "pilar": 6,
+    "title": "Buy Stop Liquidity (BSL Sweep)",
+    "challenge": "Identifica un barrido de máximos relativos iguales (EQH) que haya terminado en reversión bajista.",
+    "content": "<p>El BSL Sweep ocurre cuando el precio barre los Stop Losses de los vendedores acumulados por encima de máximos previos para inmediatamente reverter a la baja, absorbiendo la contrapartida minorista.</p>",
+    "mindset": "Los máximos iguales son imanes para el precio. Espera a que se capture la liquidez antes de posicionarte en corto.",
+    "graphic_desc": "chart_bsl_sweep"
+  },
+  "day39": {
+    "id": "day39",
+    "pilar": 6,
+    "title": "Liquidez Interna vs Liquidez Externa",
+    "challenge": "Marca la liquidez externa en el máximo/mínimo del rango y la liquidez interna dentro de él.",
+    "content": "<p>La liquidez externa reside en los extremos principales del rango estructural. La liquidez interna se sitúa en los máximos y mínimos menores creados durante los retrocesos dentro del rango principal.</p>",
+    "mindset": "El precio fluctúa buscando liquidez: de interna a externa, y de externa a interna. Entiende el ciclo de la subasta.",
+    "graphic_desc": "chart_internal_external"
+  },
+  "day40": {
+    "id": "day40",
+    "pilar": 6,
+    "title": "Inducción de Mercado (Inducement)",
+    "challenge": "Identifica un Inducement (IDM) o trampa menor que induzca a comprar antes de barrer los stops.",
+    "content": "<p>El Inducement (IDM) es una trampa técnica menor diseñada para inducir a los traders minoristas a entrar al mercado prematuramente antes de que el precio alcance el bloque de órdenes institucional real.</p>",
+    "mindset": "No caigas en la impaciencia. La impaciencia es la mayor fuente de financiamiento para los algoritmos institucionales.",
+    "graphic_desc": "chart_inducement"
+  },
+  "day41": {
+    "id": "day41",
+    "pilar": 6,
+    "title": "El Algoritmo Interbancario IPDA",
+    "challenge": "Describe cómo el algoritmo IPDA entrega los precios eficientemente barriendo liquidez.",
+    "content": "<p>El IPDA (Interbank Price Delivery Algorithm) es el software que gestiona la cotización de los mercados financieros con dos objetivos: entregar el precio de forma eficiente y recolectar la liquidez expuesta.</p>",
+    "mindset": "El mercado no es libre ni caótico; es un software centralizado y lógico. Alíneate con las reglas del IPDA.",
+    "graphic_desc": "chart_ipda"
+  },
+  "day42": {
+    "id": "day42",
+    "pilar": 6,
+    "title": "Evaluación de Mecánica de Liquidez & Examen",
+    "challenge": "Completa el examen del Módulo 6 y aprueba la evaluación sobre barridos de liquidez.",
+    "content": "<p>Felicidades por completar el Módulo 6. Has aprendido a identificar la liquidez minorista, sweeps de SSL y BSL, liquidez interna, inducement y la mecánica de funcionamiento del algoritmo IPDA.</p>",
+    "mindset": "Has aprendido a ver el mercado en términos de liquidez y dinero expuesto. Este es el verdadero mapa de la acción institucional.",
+    "graphic_desc": "chart_module6_exam"
+  },
+  "day43": {
+    "id": "day43",
+    "pilar": 7,
+    "title": "Ineficiencias de Mercado (Fair Value Gaps)",
+    "challenge": "Identifica un Fair Value Gap (FVG) en el simulador y marca la ineficiencia entre velas.",
+    "content": "<p>El Fair Value Gap (FVG) es una ineficiencia en el precio que ocurre cuando hay un fuerte desequilibrio unilateral y el precio se mueve tan rápido que deja un vacío en el flujo de órdenes.</p>",
+    "mindset": "Los vacíos de liquidez son imanes para el precio. El algoritmo IPDA está programado para rellenar estas ineficiencias.",
+    "graphic_desc": "chart_fvg_intro"
+  },
+  "day44": {
+    "id": "day44",
+    "pilar": 7,
+    "title": "Anatomía del FVG de 3 Velas",
+    "challenge": "Dibuja un FVG alcista de 3 velas e identifica el vacío entre la mecha de la vela 1 y la vela 3.",
+    "content": "<p>Un FVG se compone de 3 velas consecutivas. La ineficiencia es el espacio comprendido entre el mínimo/máximo de la primera vela y el máximo/mínimo de la tercera vela, donde sólo hubo volumen de un solo sentido.</p>",
+    "mindset": "La precisión técnica requiere observación minuciosa. Identifica los límites exactos de la ineficiencia.",
+    "graphic_desc": "chart_fvg_anatomy"
+  },
+  "day45": {
+    "id": "day45",
+    "pilar": 7,
+    "title": "Rebalanceo de Precios Eficiente",
+    "challenge": "Busca un FVG que haya sido rebalanceado o rellenado por el precio al 100% y anota la reacción.",
+    "content": "<p>El rebalanceo ocurre cuando el precio regresa a cotizar dentro del FVG, rellenando la ineficiencia. Una vez rebalanceado al 100%, el precio suele rebotar y reanudar su tendencia impulsiva original.</p>",
+    "mindset": "El mercado busca el equilibrio transaccional. Espera a que el precio rebalancee la ineficiencia para entrar.",
+    "graphic_desc": "chart_fvg_rebalance"
+  },
+  "day46": {
+    "id": "day46",
+    "pilar": 7,
+    "title": "Confluencia de FVG y Order Blocks",
+    "challenge": "Identifica un POI de alta probabilidad donde confluyan un FVG y un Order Block de origen.",
+    "content": "<p>Cuando un FVG se sitúa justo por delante de un Order Block no mitigado, se crea una zona de altísima probabilidad (POI). El precio rellena la ineficiencia y se activa con la liquidez del Order Block.</p>",
+    "mindset": "Combina tus herramientas técnicas. La confluencia de ineficiencia y bloque de órdenes es la firma de la entrada institucional.",
+    "graphic_desc": "chart_fvg_ob_confluence"
+  },
+  "day47": {
+    "id": "day47",
+    "pilar": 7,
+    "title": "Volume Imbalance (Brechas de Cierre)",
+    "challenge": "Encuentra una brecha de volumen entre el cierre y la apertura de dos velas y márcala.",
+    "content": "<p>Un Volume Imbalance ocurre cuando hay una brecha entre el cuerpo de cierre de una vela y el de apertura de la siguiente. Representa una ineficiencia extrema de entrega de precios que debe ser mitigada.</p>",
+    "mindset": "El orden absoluto rige la cotización del IPDA. Cada vacío o salto de cotización es un nivel a defender.",
+    "graphic_desc": "chart_volume_imbalance"
+  },
+  "day48": {
+    "id": "day48",
+    "pilar": 7,
+    "title": "Sombreado y Mitigación de FVG al 50%",
+    "challenge": "Calcula el nivel de equilibrio (50%) de un FVG grande en tu gráfico de futuros.",
+    "content": "<p>Los FVGs grandes no siempre se rebalancean al 100%. El nivel del 50% (Consecuent Encroachment) actúa como un soporte/resistencia técnico muy fuerte donde las instituciones suelen mitigar y rebotar.</p>",
+    "mindset": "Acepta las reacciones parciales. No exijas perfección milimétrica al gráfico; opera basándote en zonas estadísticas.",
+    "graphic_desc": "chart_fvg_consequent"
+  },
+  "day49": {
+    "id": "day49",
+    "pilar": 7,
+    "title": "Evaluación de Ineficiencias & Examen",
+    "challenge": "Completa el examen del Módulo 7 y certifica tus conocimientos en FVG e ineficiencias.",
+    "content": "<p>Felicidades por completar el Módulo 7. Has aprendido a mapear vacíos de liquidez, rebalanceos eficientes, confluencias con OB, volume imbalances y el nivel de mitigación del 50% de la ineficiencia.</p>",
+    "mindset": "Has integrado el segundo concepto fundamental de la acción institucional. Estás listo para el análisis multitemporal fractal.",
+    "graphic_desc": "chart_module7_exam"
+  },
+  "day50": {
+    "id": "day50",
+    "pilar": 8,
+    "title": "Fractalidad del Mercado (Multi-timeframe)",
+    "challenge": "Dibuja un BOS en un gráfico de 1 Hora e identifica la estructura interna en 5 Minutos.",
+    "content": "<p>La fractalidad significa que las mismas estructuras y patrones se repiten de forma idéntica en cualquier escala temporal. Un retroceso en 4 Horas es una tendencia bajista completa en 5 Minutos.</p>",
+    "mindset": "Desarrolla visión dimensional. El mercado es un holograma fractal donde el macro y el micro están conectados.",
+    "graphic_desc": "chart_fractal_intro"
+  },
+  "day51": {
+    "id": "day51",
+    "pilar": 8,
+    "title": "Dirección del Rango Mayor (HTF Bias)",
+    "challenge": "Determina la dirección dominante (Bias) y el rango operativo de las últimas 100 velas en 4 Horas.",
+    "content": "<p>El HTF Bias (sesgo mayor) determina hacia dónde empuja la marea el flujo de órdenes institucional. Operamos únicamente a favor del Bias determinado por las temporalidades de 4 Horas o 1 Día.</p>",
+    "mindset": "La dirección macro manda de forma absoluta. Nunca operes en contra de la tendencia mayor buscando pequeñas correcciones.",
+    "graphic_desc": "chart_htf_bias"
+  },
+  "day52": {
+    "id": "day52",
+    "pilar": 8,
+    "title": "Estructura Local de Entrada (LTF Structure)",
+    "challenge": "Espera a que el precio llegue a un POI de 1 Hora y marca el CHoCH local en 1 Minuto.",
+    "content": "<p>La estructura local (LTF) en 1m o 5m nos da el gatillo de entrada exacto. Buscamos un cambio de carácter (CHoCH) y un rebalanceo local en la microestructura una vez mitigada la zona mayor (HTF POI).</p>",
+    "mindset": "Paciencia en lo grande, rapidez en lo pequeño. Espera el POI y reacciona de forma quirúrgica al CHoCH local.",
+    "graphic_desc": "chart_ltf_entry"
+  },
+  "day53": {
+    "id": "day53",
+    "pilar": 8,
+    "title": "Alineación Temporal Perfecta",
+    "challenge": "Simula un trade con la confluencia: POI HTF (1H) + CHoCH LTF (1m) + FVG LTF (1m).",
+    "content": "<p>La alineación temporal perfecta es la técnica definitiva del SMC. Consiste en mapear un POI mayor (OB o FVG de 1H), esperar que el precio lo mitigue, y entrar tras ver un CHoCH + FVG en 1 minuto.</p>",
+    "mindset": "Alínea las dimensiones del gráfico. Esta confluencia multitemporal minimiza el stop y maximiza tu ratio de rentabilidad.",
+    "graphic_desc": "chart_alignment"
+  },
+  "day54": {
+    "id": "day54",
+    "pilar": 8,
+    "title": "Zonas Premium y Descuento",
+    "challenge": "Traza el Fibonacci del rango operativo actual e identifica si cotiza en descuento o premium.",
+    "content": "<p>Dividimos el rango estructural en dos zonas mediante el nivel 50%: Zona Premium (por encima del 50% = precio caro para vender) y Zona Descuento (por debajo del 50% = precio barato para comprar).</p>",
+    "mindset": "Sé un comerciante inteligente. Nunca compres en precios caros (Premium) ni vendas en rebajas (Descuento).",
+    "graphic_desc": "chart_premium_discount"
+  },
+  "day55": {
+    "id": "day55",
+    "pilar": 8,
+    "title": "Breaker Blocks y Mitigación Dinámica",
+    "challenge": "Identifica un Breaker Block (OB roto con fuerza que causó un barrido de liquidez previa).",
+    "content": "<p>Un Breaker Block es un bloque de órdenes que falló al defender la estructura, pero que fue roto con fuerza. Al regresar el precio a este nivel, actúa como un soporte/resistencia dinámico de mitigación.",
+    "mindset": "Los bloques rotos no son fracasos; son zonas de polaridad institucional refinadas. Fluye con el cambio estructural.",
+    "graphic_desc": "chart_breaker"
+  },
+  "day56": {
+    "id": "day56",
+    "pilar": 8,
+    "title": "Evaluación de Análisis Fractal & Examen",
+    "challenge": "Completa el examen del Módulo 8 para certificar tus habilidades en alineación fractal.",
+    "content": "<p>Felicidades por completar el Módulo 8. Has aprendido a alinear el Bias HTF con estructuras LTF, zonas Premium/Discount y a operar Breaker Blocks con precisión milimétrica fractal.</p>",
+    "mindset": "Has unificado la teoría SMC clásica con la fractalidad temporal. Te acercas al nivel de especialización profesional.",
+    "graphic_desc": "chart_module8_exam"
+  },
+  "day57": {
+    "id": "day57",
+    "pilar": 9,
+    "title": "Firmas de Fondeo y Cuentas Financiadas",
+    "challenge": "Estudia y anota las reglas de drawdown y consistencia de una firma de fondeo de futuros.",
+    "content": "<p>Las Prop Firms evalúan tu disciplina dándote acceso a capital de trabajo. El objetivo no es ganar dinero rápido, sino respetar estrictamente los límites de riesgo y drawdown establecidos por contrato.</p>",
+    "mindset": "La meta en una Prop Firm no es demostrar que eres brillante; es demostrar que eres disciplinado y aburrido en tu gestión.",
+    "graphic_desc": "chart_prop_firms"
+  },
+  "day58": {
+    "id": "day58",
+    "pilar": 9,
+    "title": "Reglas de Drawdown Máximo Relativo",
+    "challenge": "Calcula el Trailing Drawdown de una cuenta de $50,000 en una simulación de pérdidas.",
+    "content": "<p>El Trailing Drawdown persigue el saldo máximo de tu cuenta en tiempo real. Si tu cuenta sube a $52,000, tu límite máximo de pérdida sube en consecuencia, reduciendo tu colchón operativo de seguridad.</p>",
+    "mindset": "El trailing drawdown penaliza la codicia de mantener trades abiertos sin tomar ganancias parciales. Protege tu capital.",
+    "graphic_desc": "chart_trailing"
+  },
+  "day59": {
+    "id": "day59",
+    "pilar": 9,
+    "title": "Consistencia y Gestión de Lotes",
+    "challenge": "Calcula tu tamaño de contratos para no superar el 1.5% de drawdown diario en ningún setup.",
+    "content": "<p>Mantener una gestión de contratos estricta y constante es clave para aprobar cualquier evaluación. Variar bruscamente el tamaño de lotes o sobreapalancarse invalida tu cuenta de fondeo.</p>",
+    "mindset": "La consistencia de volumen es la prueba de que operas un sistema matemático y no por impulsos del ego.",
+    "graphic_desc": "chart_lot_consistency"
+  },
+  "day60": {
+    "id": "day60",
+    "pilar": 9,
+    "title": "Estrategia Psicológica de Aprobación",
+    "challenge": "Escribe un plan de 30 días para aprobar una cuenta financiada con metas de ganancia del 0.5% diario.",
+    "content": "<p>Aprobar una cuenta financiada requiere paciencia. Dividir el profit target en metas diarias muy pequeñas (0.5% - 1% diario) disminuye la presión y previene el secuestro de la amígdala cerebral.</p>",
+    "mindset": "La prisa por aprobar la cuenta es la causa principal de su pérdida. Sé el cazador paciente, no la presa ansiosa.",
+    "graphic_desc": "chart_patience"
+  },
+  "day61": {
+    "id": "day61",
+    "pilar": 9,
+    "title": "El POC de Perfil de Volumen",
+    "challenge": "Identifica el Point of Control (POC) en una consolidación lateral en tu simulador.",
+    "content": "<p>El POC (Point of Control) es el precio exacto donde se transaccionó el mayor volumen de contratos durante la sesión. Actúa como el centro de gravedad del precio y zona de alta aceptación institucional.</p>",
+    "mindset": "El volumen transaccional describe la verdad del interés institucional. Opera en los niveles de volumen real.",
+    "graphic_desc": "chart_poc"
+  },
+  "day62": {
+    "id": "day62",
+    "pilar": 9,
+    "title": "Value Areas y Low Volume Nodes",
+    "challenge": "Identifica un nodo de bajo volumen (LVN) y utilízalo para situar tu Stop Loss de protección.",
+    "content": "<p>El Value Area concentra el 70% del volumen negociado. Los Low Volume Nodes (LVN) son zonas de poca negociación y cruce rápido. Situar tu stop loss detrás de un LVN ofrece una protección técnica sólida.</p>",
+    "mindset": "El precio atraviesa los nodos de bajo volumen a gran velocidad. Protege tus posiciones colocándote detrás de ellos.",
+    "graphic_desc": "chart_lvn"
+  },
+  "day63": {
+    "id": "day63",
+    "pilar": 9,
+    "title": "Evaluación de Gestión Fondeada & Examen",
+    "challenge": "Completa el examen del Módulo 9 y aprueba la evaluación sobre gestión de cuentas de fondeo.",
+    "content": "<p>Felicidades por completar el Módulo 9. Has aprendido a operar bajo las reglas de las Prop Firms, gestionar drawdowns relativos, mantener consistencia de volumen e interpretar perfiles de volumen.</p>",
+    "mindset": "Estás a un solo paso de completar tu formación técnica. Mantén la disciplina estoica hasta el final del proceso.",
+    "graphic_desc": "chart_module9_exam"
+  },
+  "day64": {
+    "id": "day64",
+    "pilar": 10,
+    "title": "Gestión Activa: Cierres Parciales y Break Even",
+    "challenge": "Simula una operación con 2 contratos, toma parcial al R:R 1:1 y pon stop loss a precio de entrada.",
+    "content": "<p>La gestión activa de posición consiste en tomar beneficios parciales al alcanzar un hito técnico y mover el Stop Loss a precio de entrada (Break Even), eliminando el riesgo monetario del trade.</p>",
+    "mindset": "No dejes que la codicia de ganar el trade perfecto te haga transformar una operación ganadora en una pérdida.",
+    "graphic_desc": "chart_management"
+  },
+  "day65": {
+    "id": "day65",
+    "pilar": 10,
+    "title": "Gestión de Retiros y Payouts Semanales",
+    "challenge": "Diseña un plan de retiros donde destines el 30% a impuestos y el 40% a tu fondo de Capital Invisible.",
+    "content": "<p>El trading profesional exige gestionar tus payouts. Retirar beneficios regularmente para capitalizar tu fondo propio de inversión reduce el riesgo de tus cuentas operativas de fondeo.</p>",
+    "mindset": "Retira tus beneficios para hacerlos reales. Un balance acumulado en una Prop Firm no es dinero real hasta que lo retiras.",
+    "graphic_desc": "chart_payouts"
+  },
+  "day66": {
+    "id": "day66",
+    "pilar": 10,
+    "title": "Curva de Escalamiento de Contratos",
+    "challenge": "Calcula el tamaño de contratos a operar al duplicar tu colchón de drawdown en dólares.",
+    "content": "<p>Escalar contratos debe ser un proceso geométrico y seguro: sólo aumenta el tamaño de tu posición cuando tu colchón de drawdown acumulado lo justifique matemáticamente. Nunca escale por euforia.",
+    "mindset": "El interés compuesto es la fuerza más poderosa del trading, pero requiere una disciplina matemática inquebrantable.",
+    "graphic_desc": "chart_compounding"
+  },
+  "day67": {
+    "id": "day67",
+    "pilar": 10,
+    "title": "Plan de Capital Invisible",
+    "challenge": "Describe cómo transferirás tus ganancias de trading a activos de largo plazo de protección patrimonial.",
+    "content": "<p>El Capital Invisible es tu portafolio de inversión patrimonial defensivo. Utiliza los beneficios generados en el trading especulativo de corto plazo para comprar activos estables de largo plazo.</p>",
+    "mindset": "Especula a corto plazo en futuros para capitalizar tu riqueza y libertad de largo plazo de forma discreta.",
+    "graphic_desc": "chart_invisible_capital"
+  },
+  "day68": {
+    "id": "day68",
+    "pilar": 10,
+    "title": "Checklist Operativo Albert Sierra",
+    "challenge": "Firma tu checklist definitivo de confluencias obligatorias de Albert Sierra.",
+    "content": "<p>El checklist final unifica: Bias HTF alineado, POI mitigado, CHoCH local, FVG local y cálculo exacto de contratos basado en el 1% de riesgo. Si se cumplen todos los puntos, ejecuta con frialdad.</p>",
+    "mindset": "Si tu checklist está completo, la operación es válida y tu ejecución debe ser inmediata y libre de emociones.",
+    "graphic_desc": "chart_checklist"
+  },
+  "day69": {
+    "id": "day69",
+    "pilar": 10,
+    "title": "Manifiesto del Trader Consistente",
+    "challenge": "Declara tu juramento de consistencia estoica y escribe tu manifiesto personal de trading.",
+    "content": "<p>Hoy consolidas el curso. Firmas tu Manifiesto Estoico del Trader Profesional: aceptas las leyes de la probabilidad, defiendes tu capital de trabajo y mantienes tu disciplina operativa por encima de tu ego.</p>",
+    "mindset": "Soy el dueño absoluto de mi comportamiento ante las pantallas. Acepto el resultado de cada trade con serenidad estoica.",
+    "graphic_desc": "chart_manifesto"
+  },
+  "day70": {
+    "id": "day70",
+    "pilar": 10,
+    "title": "Examen de Maestría y Certificación Final",
+    "challenge": "Completa la evaluación final técnica de 10 preguntas para obtener tu diploma definitivo.",
+    "content": "<p>¡Has alcanzado la lección final del Ecosistema-AS! En esta sesión consolidamos todo el conocimiento de los 10 pilares. Completa la evaluación definitiva para certificar tu maestría en trading profesional.</p>",
+    "mindset": "Has completado los 70 días de transformación técnica y mental. Ahora eres un trader consistente. Actúa con disciplina.",
+    "graphic_desc": "chart_final_diploma"
+  }
+};

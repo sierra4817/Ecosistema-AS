@@ -11,6 +11,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
   <!-- Lucide Icons CDN -->
   <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Course Data Database -->
+  <script src="cursos_data.js"></script>
 </head>
 <body style="background-color: #000000; color: #f3f4f6; font-family: 'Inter', sans-serif;">
 
@@ -144,7 +146,7 @@
 
   <script>
     // 10 Pilares configuration
-    const pilares = [
+    const pilares = window.courseModules || [
       { id: 1, name: "Pilar 1: Mentalidad Ganadora", icon: "brain" },
       { id: 2, name: "Pilar 2: Gestión y Disciplina", icon: "shield-check" },
       { id: 3, name: "Pilar 3: Estrategia de Alta Probabilidad", icon: "trending-up" },
@@ -201,12 +203,16 @@
     let activeAccordion = 1;
     let selectedQuizAnswers = {};
 
-    // Load data from JSON
+    // Load data from JSON or local script
     async function init() {
       try {
-        const response = await fetch("cursos_data.json");
-        const json = await response.json();
-        courseData = json.lessons;
+        if (typeof window.courseData !== 'undefined') {
+          courseData = window.courseData;
+        } else {
+          const response = await fetch("cursos_data.json");
+          const json = await response.json();
+          courseData = json.lessons;
+        }
 
         // Load progress from localStorage
         const saved = localStorage.getItem("vision_70day_progress");
