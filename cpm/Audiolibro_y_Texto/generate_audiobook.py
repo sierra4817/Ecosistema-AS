@@ -148,6 +148,8 @@ async def generate_chapter(text, filename, title, voice, output_dir):
     print(f"\n[Procesando] {title}")
     
     cleaned_text = clean_markdown(text)
+    # Aplicar la sustitución obligatoria: cambiar "Barcelona" por "Ginebra, Suiza"
+    cleaned_text = re.sub(r'\bBarcelona\b', 'Ginebra, Suiza', cleaned_text)
     chunks = split_into_chunks(cleaned_text, max_chars=4000)
     num_chunks = len(chunks)
     
@@ -186,7 +188,7 @@ async def main():
     script_dir = os.path.dirname(os.path.abspath(__file__))
     book_path = os.path.join(script_dir, "LIBRO_FINAL_MAQUETADO.md")
     output_dir = script_dir
-    voice = "es-ES-AlvaroNeural"
+    voice = "es-MX-JorgeNeural"
     
     if not os.path.exists(book_path):
         print(f"Error: No se encontró el libro en {book_path}")
