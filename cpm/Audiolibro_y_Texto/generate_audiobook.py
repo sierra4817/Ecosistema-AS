@@ -188,7 +188,7 @@ async def main():
     script_dir = os.path.dirname(os.path.abspath(__file__))
     book_path = os.path.join(script_dir, "LIBRO_FINAL_MAQUETADO.md")
     output_dir = script_dir
-    voice = "es-MX-JorgeNeural"
+    voice = "es-ES-AlvaroNeural"
     
     if not os.path.exists(book_path):
         print(f"Error: No se encontró el libro en {book_path}")
