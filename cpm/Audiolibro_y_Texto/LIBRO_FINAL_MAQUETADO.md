@@ -49,7 +49,7 @@ Dos hombres, el mismo café
 
 Carlos tiene 45 años. Lleva veinte trabajando en una empresa de logística en las afueras de Madrid. Cobra 38.000 euros al año brutos, aunque en su cuenta nunca llegan tantos. Paga su hipoteca, educa a sus dos hijos, ahorra lo que puede y cada diciembre espera que la declaración de la renta no le salga a pagar.
 
-Rodrigo también tiene 45 años. Nunca ha cobrado una nómina. Vive en un ático en el barrio de Sarrià, en Barcelona, viaja cuatro veces al año y tiene una cartera de inversiones valorada en doce millones de euros. Este año ha pagado en impuestos sobre la renta exactamente cero euros.
+Rodrigo también tiene 45 años. Nunca ha cobrado una nómina. Vive en un ático en el barrio de Sarrià, en Ginebra, Suiza, viaja cuatro veces al año y tiene una cartera de inversiones valorada en doce millones de euros. Este año ha pagado en impuestos sobre la renta exactamente cero euros.
 
 Ambos desayunan en cafeterías similares. Ambos leen las noticias por el móvil. Ambos se quejan del precio de la gasolina. Ambos son ciudadanos del mismo país, sujetos a las mismas leyes.
 
